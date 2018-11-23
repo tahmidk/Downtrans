@@ -80,14 +80,15 @@ def initParser():
 		action="store_true", 
 		help="Downloads and translates one chapter")
 
-	args = sys.argv[1:]
-	if args and args[0] == '-C' or args[0] == '--clean':
-		r = handleClean()
-		if r == 0:
-			print("\n[Success] /raws and /trans cleaned. Exiting...")
-		else:
-			print("\n[Complete] Cleaned all but %d files. Exiting..." % r)
-		sys.exit(0)
+	if len(sys.argv) > 1:
+		args = sys.argv[1:]
+		if args[0] == '-C' or args[0] == '--clean':
+			r = handleClean()
+			if r == 0:
+				print("\n[Success] /raws and /trans cleaned. Exiting...")
+			else:
+				print("\n[Complete] Cleaned all but %d files. Exiting..." % r)
+			sys.exit(0)
 
 	# Positional arguments
 	parser.add_argument('series', 
@@ -341,13 +342,13 @@ def writeTrans(series, ch, wn_dict):
 
 	#import pdb; pdb.set_trace()
 	for line in tqdm(raw_list, total=num_lines):
-		line = line + u'\n'
 		# Skip blank lines
-		if line == '\n':
+		if line == u'\n':
 			trans_file.write(u'\n')
 			continue
 
 		# Check raw text against dictionary and replace matches
+		line = line + u'\n'
 		prepped = line
 		for entry in wn_dict:
 			prepped = prepped.replace(entry, wn_dict[entry])
@@ -357,13 +358,17 @@ def writeTrans(series, ch, wn_dict):
 		try:
 			translated = translator.translate(prepped, src='ja', dest='en')
 		except ValueError as e:
+			import pdb; pdb.set_trace()
 			print(str(e))
-			print("\nExiting...")
-			sys.exit(1)
+			print("Skipping...")
+			trans_file.write("[ERROR LINE]")
+			continue
 		except AttributeError as e:
 			print("[Error] Whoops, something happened with googletrans. This happens sometimes so just try again.")
-			print("\nExiting...")
-			sys.exit(1)
+			print("Retrying...")
+			raw_file.close()
+			trans_file.close()
+			return writeTrans(series, ch, wn_dict)
 
 		translated = translated.text + "\n"
 		trans_file.write(translated)
