@@ -40,6 +40,9 @@ content_only = False
 
 
 # =========================[ Constants ]=========================
+# Maximum number of retries on translate
+MAX_TRIES = 5
+
 # Sound alarm constants
 ALARM_DUR = 100 	# milliseconds (ms)
 ALARM_FREQ = 600 	# hertz (Hz)
@@ -193,6 +196,7 @@ def initDict(series):
 		map_list.append(mapping)
 
 	wn_dict = OrderedDict(map_list)
+	dict_file.close()
 	return wn_dict
 
 def getSeriesURL(series, ch):
@@ -265,6 +269,10 @@ def parseContent(html):
 		if line == '<br />':
 			content.append(u'\n')
 		else:
+			# Filter out <ruby> tags that are commonly found in line
+			if "<ruby>" in line:
+				line = re.sub(r'<ruby>(.*?)<rb>(.*?)</rb>(.*?)</ruby>', 
+					r'\2', line)
 			content.append(line)
 		content.append(u'\n')
 
@@ -312,9 +320,6 @@ def writeTrans(series, ch, wn_dict):
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
-	# Initialize translator
-	translator = gt.Translator()
-
 	# Initialize trans_file
 	try:
 		trans_name = "t%s_%d.txt" % (series, ch)
@@ -353,27 +358,35 @@ def writeTrans(series, ch, wn_dict):
 		for entry in wn_dict:
 			prepped = prepped.replace(entry, wn_dict[entry])
 
-		# Feed prepped line through translator
+		# Feed prepped line through translator max 5 tries
 		#import pdb; pdb.set_trace()
-		try:
-			translated = translator.translate(prepped, src='ja', dest='en')
-		except ValueError as e:
-			import pdb; pdb.set_trace()
-			print(str(e))
-			print("Skipping...")
-			trans_file.write("[ERROR LINE]")
-			continue
-		except AttributeError as e:
-			print("[Error] Whoops, something happened with googletrans. This happens sometimes so just try again.")
-			print("Retrying...")
-			raw_file.close()
-			trans_file.close()
-			return writeTrans(series, ch, wn_dict)
+		tries = 0
+		while True:
+			try:
+				translator = gt.Translator()
+				translated = translator.translate(prepped, src='ja', dest='en')
+				translated = translated.text + "\n"
+				break
+			except ValueError as e:
+				#import pdb; pdb.set_trace()
+				print(str(e))
+				print("Skipping...")
+				trans_file.write("[ERROR LINE]")
+				return
+			except AttributeError as e:
+				print("\n\n[Error] Timeout on googletrans. Retrying line...")
+				tries = tries + 1
 
-		translated = translated.text + "\n"
+			if tries == MAX_TRIES:
+				print("\n\n[Error] Max tries reached. Couldn't translate line. Skipping....")
+				translated = "[Error line]\n"
+				break
+
+		# Write to file
 		trans_file.write(translated)
 
 	# Close all files file
+	print("Downtrans [t%s_%s.txt] complete!" % (series, ch))
 	raw_file.close()
 	trans_file.close()
 
