@@ -10,13 +10,14 @@
 レアル・ファルベール --> Rearu Farbell
 レアルさん --> Rearu-san
 レアル --> Rearu
+ファルマリアス --> Falmarias
 ファイマ --> Faima
 有月 --> Yuzuki
 柊美咲 --> Hiragi Misaki
 美咲さん --> Misaki-san
 美咲 --> Misaki\
 浅葱彩菜 --> Asagi Ayana
-彩菜 --> Ayana
+彩菜 --> Ayana\
 綾菜 --> Ayana\
 クロエ --> Chloe
 アガットさん --> Agatt-san
@@ -28,11 +29,15 @@
 ルキス・アーベルン --> Lukis Abelon
 ルキス --> Lukis
 アーベルン --> Abelon
+ドリスト --> Dollist
+アルナベス --> Alnabes
+オーロティ --> Ouroti
 後より答えを出す者フラガラッハ --> Flagarach the Answerer
 フラガラッハ・アンサラ --> Flagarach Ansall
 フラガラッハ --> Flagarach
 アンサラ --> Ansall
 フィー --> Phii
+キスカ --> Kisuka
 シナディさん --> Shinadi-san
 シナディ --> Shinadi
 セラファイド --> Selphyd
@@ -41,6 +46,11 @@
 バルハルト --> Balhart
 レグルス --> Regulus
 ダイン --> Dayn
+ベクト --> Vect
+カクルド --> Kakurud
+スケリア --> Skeria
+ランド --> Rando
+シュライア --> Shuraia
 
 // Language
 坊ちゃま --> young master
@@ -65,33 +75,49 @@
 ワフワフ --> Waffuwaffu~
 ワフッ --> Wafffu~
 モフ --> mofu~mofu
-ちッ --> tsk
-ちっ --> tsk
-うわぁ --> Uwaaah
-アンちゃん --> an-chan
-やっべ --> shit
-やばいッ --> crap
-オマエラ --> you guys
 
 // Places
 ドラクニル --> Draknil
 ディアガル --> Diagall
 ユルフィリア --> Yurufilia
 ヒノイズル --> Hinoizuru
+竜帝の歴所 --> Dragon Emperor's Palace
 
-// Misc
+// Web Novel specific
 超強化オーバードライブ --> Enchanced Overdrive
 幻竜騎士団 --> Order of the Grand Dragon
+鋼竜騎士団 --> Order of the Iron Dragon
+天竜騎士団 --> Order of the Heavenly Dragon
+大いなる祝福 --> Grand Blessings
+わんわんタイム --> WanWan Time
+竜剣 --> Dragon Knight
+ヒート○ーベ○ --> Heat Blade
+白夜叉 --> White Demon
+天神教 --> Divine God Faith
+黒幕 --> Mastermind
+サイレント・フィールド --> Silent Field
+
+// Misc
 赤らめ --> blush
 可愛い --> cute
 どうにか --> somehow
-白夜叉 --> White Demon
+ちッ --> tsk
+ちっ --> tsk
+ジィィ --> ~stare~
+うわぁ --> Uwaaah
+違いない --> without a doubt
+アンちゃん --> an-chan
+やっべ --> shit
+やばいッ --> crap
+オマエラ --> you guys
+ラノベ --> Light Novels
 チャラ男 --> debauch
 ヘタレ --> incompetence
-竜剣 --> Dragon Knight
-黒幕 --> Mastermind
+万能なる者 --> "Overpowered People"
+ジャーマンスープレックス --> German Suplex
 ョイ上ほど --> around
 オネム --> sleep
+おんぶ --> piggyback
 リア充 --> Riajuu
 オーガ --> Ogre
 リザードマン --> Lizardman
@@ -103,10 +129,12 @@
 魔王 --> Demon King
 魔神 --> Demon
 勇者 --> Hero
+乳 --> boobs
 酷い --> terrible
 いいから --> just do it
 性根 --> character
 考える --> think
+ハーレム --> Harem
 五月蠅い --> shut up
 魔術式 --> magician
 ハイタッチ --> high-five
@@ -115,7 +143,6 @@
 仲間達 --> companions
 前振り --> warning
 口撃 --> provocation
-ヒート○ーベ○ --> Heat Blade
 ヒモ --> gigolo
 貴様 --> Bastard
 お人好し --> softhearted
@@ -128,6 +155,7 @@
 貴族 --> Noble
 隣 --> nearby
 癒し系 --> soothing
+ビヤク --> aphrodisiac
 討伐 --> subjugation
 系 --> quest
 ところで --> by the way

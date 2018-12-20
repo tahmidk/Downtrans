@@ -14,6 +14,7 @@ from tqdm import tqdm						# Progress bar
 
 import sys, os, io 					# System operations
 import winsound 					# Sounc alarm
+import time 						# For sleeping thread between retries
 import re 							# Regex for parsing HTML
 
 import itertools as it 				# Iteration tool
@@ -29,7 +30,9 @@ syosetu_url = "https://ncode.syosetu.com/"
 # Put series to (code, dict) mappings here 
 Series = {
 	"Kanna": 		('n3877cq',	"kanna.dict"),
-	"ChiyuMahou": 	('n2468ca', "chiyumahou.dict")
+	"ChiyuMahou": 	('n2468ca', "chiyumahou.dict"),
+	"Glitch":		('n9078bd', "glitch.dict"),
+	"LV999":		('n7612ct', "lv999.dict")
 }
 NCODE = 0				# The position of the NCode portion of the Series map
 DICT = 1				# The position of the dict portion of the Series map
@@ -40,7 +43,7 @@ content_only = False
 
 
 # =========================[ Constants ]=========================
-# Maximum number of retries on translate
+# Maximum number of retries on translate and URL fetching
 MAX_TRIES = 5
 
 # Sound alarm constants
@@ -180,9 +183,9 @@ def initDict(series):
 		dict_name = Series[series][DICT]
 		dict_file = io.open(os.path.join(DICT_PATH, dict_name), mode='r', encoding='utf8')
 	except Exception:
-		print("[Error] Error opening dictionary file. Make sure '.dict' exists in the dict/ folder")
-		print("\nExiting...")
-		sys.exit(1)
+		print("[Error] Error opening dictionary file. Make sure '.dict' exists in the dict/ folder... ")
+		print("Proceeding without special translations")
+		return {}
 
 	# Parse the mappings into a list
 	map_list = []
@@ -223,15 +226,21 @@ def fetchHTML(url):
 		------------------------------------------------------------------
 	"""
 	# Request NCode page
-	try:
-	    response = ureq.urlopen(url)
-	# Some error has occurred
-	except Exception as e:
-		print(str(e))
-		print("[Error] Could not get response from <%s>" % url)
-		print("  Make sure this URL exists")
-		print("\nSkipping chapter %d..." % url.split('/')[-2])
-		return None
+	tries = 0
+	while True:
+		try:
+		    response = ureq.urlopen(url)
+		    break
+		# Some error has occurred
+		except Exception as e:
+			tries += 1
+			print("\n[Error] Could not get response from <%s>... Retrying [tries=%d]" % (url, tries))
+			time.sleep(2)
+		
+		if tries == MAX_TRIES:
+			print("\n[Error] Max tries reached. No response from <%s>. Make sure this URL exists" % url)
+			return None
+
 
 	source = response.read()
 	data = source.decode('utf8')
@@ -298,7 +307,7 @@ def writeRaw(series, ch, content):
 	except Exception:
 		print("[Error] Error opening raw file [%s]" % raw_name)
 		print("\nExiting...")
-		sys.exit(1)
+		return 1
 
 	# Write to raw
 	for line in content:
@@ -307,6 +316,7 @@ def writeRaw(series, ch, content):
 
 	# Close raw file
 	raw_file.close()
+	return 0
 
 def writeTrans(series, ch, wn_dict):
 	"""-------------------------------------------------------------------
@@ -327,7 +337,7 @@ def writeTrans(series, ch, wn_dict):
 	except Exception:
 		print("[Error] Error opening trans file [%s]" % trans_name)
 		print("\nExiting...")
-		sys.exit(1)
+		return 1
 
 	# Open raw_file
 	try:
@@ -336,7 +346,7 @@ def writeTrans(series, ch, wn_dict):
 	except Exception:
 		print("[Error] Error opening raw file [%s]" % raw_name)
 		print("\nExiting...")
-		sys.exit(1)
+		return 1
 
 	# Count number of lines in raw source file
 	num_lines = 0
@@ -346,6 +356,7 @@ def writeTrans(series, ch, wn_dict):
 		raw_list.append(line)
 
 	#import pdb; pdb.set_trace()
+	ret = 0
 	for line in tqdm(raw_list, total=num_lines):
 		# Skip blank lines
 		if line == u'\n':
@@ -370,16 +381,16 @@ def writeTrans(series, ch, wn_dict):
 			except ValueError as e:
 				#import pdb; pdb.set_trace()
 				print(str(e))
-				print("Skipping...")
-				trans_file.write("[ERROR LINE]")
-				return
+				print("Exiting...")
+				return 1
 			except AttributeError as e:
-				print("\n\n[Error] Timeout on googletrans. Retrying line...")
-				tries = tries + 1
+				tries += 1
+				print("\n[Error] Timeout on googletrans. Retrying [tries=%d]..." % tries)
 
 			if tries == MAX_TRIES:
-				print("\n\n[Error] Max tries reached. Couldn't translate line. Skipping....")
+				print("\n[Error] Max tries reached. Couldn't translate line. Skipping....")
 				translated = "[Error line]\n"
+				ret = 1
 				break
 
 		# Write to file
@@ -389,6 +400,7 @@ def writeTrans(series, ch, wn_dict):
 	print("Downtrans [t%s_%s.txt] complete!" % (series, ch))
 	raw_file.close()
 	trans_file.close()
+	return ret
 
 
 # =========================[ Script ]=========================
@@ -414,10 +426,17 @@ def batch_procedure(series, ch_queue):
 	pool.close()
 	pool.join()
 
+	print("\nError Report (Consider redownloading erroneous chapters w/ -O flag)")
+	ret_codes = list(results)
+	for i in range(0, len(ret_codes)):
+		if ret_codes[i] == 0:
+			print("\tChapter %s: SUCCESS" % ch_queue[i])
+		else:
+			print("\tChapter %s: FAILURE" % ch_queue[i])
 
 def _default_procedure(args):
 	""" Simple wrapper method for pooling default_procedure """
-	default_procedure(*args)
+	return default_procedure(*args)
 
 def default_procedure(series, ch):
 	"""-------------------------------------------------------------------
@@ -431,21 +450,25 @@ def default_procedure(series, ch):
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
+	# Ret code: 0 - success, non-0 - failure
+	ret = 0
+
 	# Fetch the html source code
 	url = getSeriesURL(series, ch)
 	html = fetchHTML(url)
+	if html == None:
+		return 1
 
 	# Parse out relevant content from the website source code
 	title = parseTitle(html)
 	content = [title] + parseContent(html)
-	#import pdb; pdb.set_trace()
-
-	# Write raw_file
-	writeRaw(series, ch, content)
+	ret += writeRaw(series, ch, content)
 
 	# Translate and write trans_file
 	wn_dict = initDict(series)
-	writeTrans(series, ch, wn_dict)
+	ret += writeTrans(series, ch, wn_dict)
+
+	return ret
 
 
 def main():
