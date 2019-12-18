@@ -1,0 +1,589 @@
+
+[L1] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=８１　学園ダンジョン突入前　{62}
+
+
+	Unprocessed Translation: 81 school dungeon rush before {62}
+
+	Replacing token...
+		{62} ==> senpai
+[L2] Processing non-blank line...
+	Unprocessed Translation: Please be heroine component firmly taken in this story and the next story. When you have made dungeon is not for a while (planned). I rubbed it this time solo ....
+
+[L5] Processing non-blank line...
+	Detected token 伊織 in line. Replacing with {11}
+	Prepped=　食事を終えて{11}と別れた後、さあ、先輩の所へ行こう！　とした時だった。ふわふわのピンク髪が目に入ったのは。先輩に会いに行く途中ではあるが、久しぶりに見かける顔があったので声をかける。
+
+
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　食事を終えて{11}と別れた後、さあ、{62}の所へ行こう！　とした時だった。ふわふわのピンク髪が目に入ったのは。{62}に会いに行く途中ではあるが、久しぶりに見かける顔があったので声をかける。
+
+
+	Unprocessed Translation: After she broke up with finished the meal {11}, Come on, let's go to the place of {62}! It was when was. Fluffy pink hair's has entered the eyes. It is a way to go to meet {62}, but call out because there was a face seen in a long time.
+
+	Replacing token...
+		{62} ==> senpai
+	Replacing token...
+		{11} ==> Iori
+[L12] Processing non-blank line...
+	Detected token ルイージャ先生 in line. Replacing with {27}
+	Prepped=「こんにちは、{27}」
+
+
+	Unprocessed Translation: "Hello, {27}"
+
+	Replacing token...
+		{27} ==> Ruija-sensei
+[L15] Processing non-blank line...
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　体をびくりと震わせ、ゆっくりこちらに顔を向ける{63}。
+
+
+	Unprocessed Translation: The body trembling and Bikuri, here direct face slowly {63}.
+
+	Replacing token...
+		{63} ==> sensei
+[L18] Processing non-blank line...
+	Unprocessed Translation: "U, UU"
+
+[L25] Processing non-blank line...
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　こわばった笑顔を浮かべていた{63}だが、やがて諦めたかのように、シュンと悲しそうな顔に変わる。
+
+
+	Unprocessed Translation: Had floated a stiff smile {63} But, as if to give up eventually, change to Shun and sad face.
+
+	Replacing token...
+		{63} ==> sensei
+[L28] Processing non-blank line...
+	Detected token ええと in line. Replacing with {70}
+	Prepped=「その、何でしょうか。{70}、覚悟は一応出来てます……」
+
+
+	Unprocessed Translation: "That, what. {70}, readiness has made once ......"
+
+	Replacing token...
+		{70} ==> uhh...
+[L31] Processing non-blank line...
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　なんのかな？　俺が言葉を失っていると、{63}は言葉を続ける。
+
+
+	Unprocessed Translation: What I wonder if? As I have lost the words, {63} will continue to words.
+
+	Replacing token...
+		{63} ==> sensei
+[L38] Processing non-blank line...
+	Unprocessed Translation: "That, because the first time a ......"
+
+[L41] Processing non-blank line...
+	Unprocessed Translation: "I guess I have started to say what suddenly?"
+
+[L48] Processing non-blank line...
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　急な暴露やめてくれません？　そもそも登場ヒロイン全員がそうであることは知ってるし。{63}の場合は確か、初めて好きになった人に彼氏がいたせいで及び腰になったんだよな。いろんな意味で衝撃半端なかったに違いない……察するに余りある。
+
+
+	Unprocessed Translation: Do not you quit sudden exposure? The first place it appeared heroine all is the case is to know. Certainly in the case of {63}, it's became reluctant due that had a boyfriend to the person who for the first time love. There is too much to Presumably ...... no difference in impact was odd not in many ways.
+
+	Replacing token...
+		{63} ==> sensei
+[L55] Processing non-blank line...
+	Detected token ご主人様 in line. Replacing with {65}
+	Prepped=「ルイージャ様、{65}はゆっくり関係を進めていきたいとのことで、まずは膝枕をご所望のようです」
+
+
+	Unprocessed Translation: "Ruija like, {65} than that of would like to proceed slowly relationship, First is your desired as the knee bolster."
+
+	Replacing token...
+		{65} ==> master
+[L58] Processing non-blank line...
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=　突然{37}が前に出てきたかと思いきや、そんなことを言い放つ。
+
+
+	Unprocessed Translation: I thought whether came out before suddenly {37}, avow such a thing.
+
+	Replacing token...
+		{37} ==> Nanami
+[L61] Processing non-blank line...
+	Unprocessed Translation: "Oh, that. ... If you was about it."
+
+[L68] Processing non-blank line...
+	Unprocessed Translation: Do you good. I because I do not otherwise specified Do not, if not everyone around!
+
+[L75] Processing non-blank line...
+	Detected token 瀧音 in line. Replacing with {5}
+	Prepped=「その、ねえ、{5}君……私この子見たことが無いんだけど」
+
+
+	Unprocessed Translation: "That, hey, {5} kun ...... I'm is not that I saw this child."
+
+	Replacing token...
+		{5} ==> Takioto
+[L78] Processing non-blank line...
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=　{37}を見ながら困惑した様子で尋ねてくる先生。
+
+
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　{37}を見ながら困惑した様子で尋ねてくる{63}。
+
+
+	Unprocessed Translation: I will ask in how puzzled while watching the {37} {63}.
+
+	Replacing token...
+		{63} ==> sensei
+	Replacing token...
+		{37} ==> Nanami
+[L81] Processing non-blank line...
+	Unprocessed Translation: Do not Yeah, Nante guy that swagger in the school in the maid, that there is no seen Datte me. But it's there is Toka kimono. What this school ....
+
+[L88] Processing non-blank line...
+	Unprocessed Translation: "Oh, I was admitted recently"
+
+[L91] Processing non-blank line...
+	Unprocessed Translation: "Eee, recently? For example, ... I'm not anything I have heard?"
+
+[L94] Processing non-blank line...
+	Unprocessed Translation: Okay because the highest authorities had issued permission, maybe. Well this story Let without hesitation flow.
+
+[L101] Processing non-blank line...
+	Unprocessed Translation: "I did not meet for a while, what about then the course?"
+
+[L104] Processing non-blank line...
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　ぱっと明るくなる{63}。
+
+
+	Unprocessed Translation: Suddenly becomes bright {63}.
+
+	Replacing token...
+		{63} ==> sensei
+[L107] Processing non-blank line...
+	Unprocessed Translation: "It's right, It was able to afford a little life, no longer come a telephone call Toka reminder is. Although I have a Speaking ask"
+
+[L114] Processing non-blank line...
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　{63}は桃色の髪を抑えて、はにかんでもじもじとする。
+
+
+	Unprocessed Translation: {63} is suppressed hair pink, and fidgeting in shy.
+
+	Replacing token...
+		{63} ==> sensei
+[L117] Processing non-blank line...
+	Unprocessed Translation: "Please?"
+
+[L120] Processing non-blank line...
+	Unprocessed Translation: "............ I Do not want to increase its ...... pocket money."
+
+[L127] Processing non-blank line...
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=　{37}の顔がぴくっと反応したのが分かった。そりゃ驚くよな。教師が生徒にお小遣いの増額を申し入れすれば。
+
+
+	Unprocessed Translation: Face {37} was found that reacted with Piku'. Well I'm surprised. If the teacher offer the increase of pocket money to students.
+
+	Replacing token...
+		{37} ==> Nanami
+[L130] Processing non-blank line...
+	Unprocessed Translation: "I'd not mind, what do you are you going to use?"
+
+[L137] Processing non-blank line...
+	Detected token ルイージャ先生 in line. Replacing with {27}
+	Prepped=　現在の{27}はお小遣い制である。学園からのお給料は先生の口座、ではなく俺の口座に入金される。そこから俺が借金返済分やら光熱費やらを引いて、使っても良い分だけ先生の口座に入れている。ネットで振り込んだときは、何で俺がこんなことやってるんだろうと思った。
+
+
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　現在の{27}はお小遣い制である。学園からのお給料は{63}の口座、ではなく俺の口座に入金される。そこから俺が借金返済分やら光熱費やらを引いて、使っても良い分だけ{63}の口座に入れている。ネットで振り込んだときは、何で俺がこんなことやってるんだろうと思った。
+
+
+	Unprocessed Translation: Current {27} is a pocket money system. Your salary from the school will be credited to the account my account instead, of {63}. Pull me is What with debt repayment Yara utility costs from there, have put to the account of only may minutes using {63}. When you transfer money on the net is, what in I thought I would do is doing such a thing.
+
+	Replacing token...
+		{63} ==> sensei
+	Replacing token...
+		{27} ==> Ruija-sensei
+[L144] Processing non-blank line...
+	Unprocessed Translation: "It let me see .., it is seems there is a very good sleep pillow, only of ...... If now."
+
+[L147] Processing non-blank line...
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=「はい却下。{37}、行こうか」
+
+
+	Unprocessed Translation: "Yes rejected. {37}, or let's go."
+
+	Replacing token...
+		{37} ==> Nanami
+[L150] Processing non-blank line...
+	Unprocessed Translation: "Hey, where let's go and are you doing!?"
+
+[L157] Processing non-blank line...
+	Unprocessed Translation: I just thought that only Do useless hear.
+
+[L164] Processing non-blank line...
+	Unprocessed Translation: "Please, because I only a little, No seems to be bought only now!?"
+
+[L167] Processing non-blank line...
+	Unprocessed Translation: "Oh yes yes. I sleep pillow. Because there is the cheap I like the it. You have to send later."
+
+[L170] Processing non-blank line...
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　ネットで注文して{63}宅に届ければ良いだろう。
+
+
+	Unprocessed Translation: Order in the net would be it Todokere to {63} home.
+
+	Replacing token...
+		{63} ==> sensei
+[L173] Processing non-blank line...
+	Unprocessed Translation: "It 's bad Tsu of! Now and do not buy this pillow per cent!"
+
+[L180] Processing non-blank line...
+	Unprocessed Translation: Modus operandi of it Truly fraud!
+
+[L187] Processing non-blank line...
+	Unprocessed Translation: "Is not at all bad, I think I have gained enough pocket money I mean?"
+
+[L190] Processing non-blank line...
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　{63}は手で髪をいじりながら、舌をぺろっと出す。
+
+
+	Unprocessed Translation: {63} while playing with hair by hand, issues a tongue Perot.
+
+	Replacing token...
+		{63} ==> sensei
+[L193] Processing non-blank line...
+	Unprocessed Translation: "...... I've soaked ...... just because there is a very good futon"
+
+[L196] Processing non-blank line...
+	Unprocessed Translation: It is out of the question but cute.
+
+[L203] Processing non-blank line...
+	Unprocessed Translation: "The cooling-off"
+
+[L210] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　すがってくる先生を振り払いながら、{62}との待ち合わせ場所に向う。{62}はすでに来ていたようで、着席したまま唖然とした様子でこちらを見ていた。
+
+
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　すがってくる{63}を振り払いながら、{62}との待ち合わせ場所に向う。{62}はすでに来ていたようで、着席したまま唖然とした様子でこちらを見ていた。
+
+
+	Unprocessed Translation: While it shakes off the leaning come {63}, toward the meeting place between the {62}. {62} is like had already come, had seen here in a state that was stunned remain seated.
+
+	Replacing token...
+		{63} ==> sensei
+	Replacing token...
+		{62} ==> senpai
+[L217] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=「あっ{62}、申し訳ないです。……遅くなってしまって」
+
+
+	Unprocessed Translation: "There {62}, I'm sorry. ... and ended up late."
+
+	Replacing token...
+		{62} ==> senpai
+[L220] Processing non-blank line...
+	Unprocessed Translation: "Oh, oh. I just I was too early. Time's just but ......"
+
+[L223] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　{62}が動揺している。まあ理由は分かるが、あなたいつまでひっついてるんですかね？！
+
+
+	Unprocessed Translation: {62} is upset. Although Well the reason is understood, I guess I have Hittsui you forever? !
+
+	Replacing token...
+		{62} ==> senpai
+[L226] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=「{62}、目の前の状況ってどう見えますか？」
+
+
+	Unprocessed Translation: "{62}, how do you see me before the situation of the eye?"
+
+	Replacing token...
+		{62} ==> senpai
+[L233] Processing non-blank line...
+	Unprocessed Translation: "The young husband found the affair site, it looks like his wife cling say" I Tsu I do not want to farewell. ' "
+
+[L240] Processing non-blank line...
+	Unprocessed Translation: Kana daytime drama. It would have made to this tomorrow absolute rumor.
+
+[L243] Processing non-blank line...
+	Unprocessed Translation: "Indeed, it is even better feeling This way."
+
+[L246] Processing non-blank line...
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=　と言って{37}が先生と反対側にすがりつく。男を取り合う二人組の完成だ。これはあれだ、白そうなアルバムシリーズか、学校デイズか。
+
+
+	Detected token 先生 in line. Replacing with {63}
+	Prepped=　と言って{37}が{63}と反対側にすがりつく。男を取り合う二人組の完成だ。これはあれだ、白そうなアルバムシリーズか、学校デイズか。
+
+
+	Unprocessed Translation: Saying {37} is cling to the side opposite to the {63}. Twosome of completed stay in man. It's there, or white seems album series, school Days.
+
+	Replacing token...
+		{63} ==> sensei
+	Replacing token...
+		{37} ==> Nanami
+[L253] Processing non-blank line...
+	Detected token ルイージャ先生 in line. Replacing with {27}
+	Prepped=　昼ドラだな。俺は二人を払うと、ななみに{27}を任せて（押しつけて）、頭を下げる。
+
+
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=　昼ドラだな。俺は二人を払うと、{37}に{27}を任せて（押しつけて）、頭を下げる。
+
+
+	Unprocessed Translation: Noon That's gong. When I pay two people, {37} leave the {27} in (pressed), lowering the head.
+
+	Replacing token...
+		{37} ==> Nanami
+	Replacing token...
+		{27} ==> Ruija-sensei
+[L256] Processing non-blank line...
+	Unprocessed Translation: "I'm sorry, and I have brought a weird"
+
+[L263] Processing non-blank line...
+	Unprocessed Translation: "I, no, but various surprised but calm."
+
+[L266] Processing non-blank line...
+	Detected token ルイージャ先生 in line. Replacing with {27}
+	Prepped=　ふとななみを見れば、{27}と何かを話している。
+
+
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=　ふと{37}を見れば、{27}と何かを話している。
+
+
+	Unprocessed Translation: If you look at the suddenly {37}, are talking about something {27}.
+
+	Replacing token...
+		{37} ==> Nanami
+	Replacing token...
+		{27} ==> Ruija-sensei
+[L269] Processing non-blank line...
+	Unprocessed Translation: "Gohon, is, now to say that test tomorrow, you would do to challenge?"
+
+[L272] Processing non-blank line...
+	Detected token 毬乃さん in line. Replacing with {23}
+	Prepped=「ええ、行きますよ。まあこれ{23}と、ななみ以外に話すつもりは無かったんですけどね……」
+
+
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=「ええ、行きますよ。まあこれ{23}と、{37}以外に話すつもりは無かったんですけどね……」
+
+
+	Unprocessed Translation: "Yes, I will go. And Well this {23}, But I'm going to did not speak other than {37} ..."
+
+	Replacing token...
+		{37} ==> Nanami
+	Replacing token...
+		{23} ==> Marino-san
+[L279] Processing non-blank line...
+	Detected token 毬乃さん in line. Replacing with {23}
+	Prepped=　心配かけそうだから伝えるのは止めて欲しいと言ったのに、{23}たら次の日にバラしてるんだもんなぁ……。
+
+
+	Unprocessed Translation: Though said that I want to stop to tell because it is likely you worry, I wonder mon I'm rose the next day Tara {23} .......
+
+	Replacing token...
+		{23} ==> Marino-san
+[L282] Processing non-blank line...
+	Unprocessed Translation: "I see. Fufu'. I'm really going."
+
+[L285] Processing non-blank line...
+	Unprocessed Translation: "Yes, I will go. It I came to school today for its preparation."
+
+[L288] Processing non-blank line...
+	Unprocessed Translation: I want things, entered the firm hand. It is, another little should be towards the school dungeon. I about things to be prepared on the day.
+
+[L295] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　ははは、と{62}は心底おかしそうに笑う。
+
+
+	Unprocessed Translation: Mother, and {62} is laughing sincerely amused.
+
+	Replacing token...
+		{62} ==> senpai
+[L298] Processing non-blank line...
+	Unprocessed Translation: "In your unprecedented first time, it replaces the respect and laughter past the amazed"
+
+[L305] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　といって{62}は制服のポケットから緑色の巾着を取り出すと、中に手を入れ何かを取り出した。そして俺の側に近づいてくる。
+
+
+	Unprocessed Translation: Saying {62} and is and take out a green purse from the uniforms of the pocket, he took out something put your hand in. And approaching to my side.
+
+	Replacing token...
+		{62} ==> senpai
+[L312] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　あと一歩の所まで近づくと、{62}は少し照れくさそうに美しい黒髪をさっと払い、耳にかける。{62}の白く潤いのある頬と、三日月のように弧を描く耳が空気に晒された。
+
+
+	Unprocessed Translation: Approaches to the place after one step, {62} is quickly pay beautiful black hair a little shy so, applied to the ear. A cheek with a white moist {62}, ear sweeping is exposed to the air as a crescent.
+
+	Replacing token...
+		{62} ==> senpai
+[L315] Processing non-blank line...
+	Unprocessed Translation: And, like looking at the animals just like birth, look here in such a gentle eyes, laugh and medicine.
+
+[L318] Processing non-blank line...
+	Unprocessed Translation: "I gave us a hand."
+
+[L325] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　俺が手を差し出すと、{62}は巾着から取り出した何かを、俺の手に乗せる。そして俺の手を両手で優しく包み込んだ。
+
+
+	Unprocessed Translation: As I hold out his hand, {62} is something taken out of the purse, put into my hands. Then I gently wrapped my hands with both hands.
+
+	Replacing token...
+		{62} ==> senpai
+[L332] Processing non-blank line...
+	Unprocessed Translation: "Although you are without hesitation say, by the heresy that you are trying to do, it is very high degree of difficulty."
+
+[L335] Processing non-blank line...
+	Unprocessed Translation: "Hey Is that so?"
+
+[L342] Processing non-blank line...
+	Unprocessed Translation: "Hora', would have talk in a flirtatious tone Datte now. There'm not that kind of place, quite painful?"
+
+[L345] Processing non-blank line...
+	Unprocessed Translation: "No, no, I have the thought is that it is very in its own way. Even going at the same time Well can. And if it can not this much, I think we can not become the strongest, Nante"
+
+[L348] Processing non-blank line...
+	Detected token モニカ生徒会長 in line. Replacing with {34}
+	Prepped=「これくらい、か。難しいな。私は戦闘ならば行けるだろうが、時間的に無理だ。{34}なら出来るかもしれない」
+
+
+	Unprocessed Translation: "This much, either. Do not difficult. I would go if combat, it may be time'm forced to. Can do it {34}"
+
+	Replacing token...
+		{34} ==> Student Council President Monica
+[L355] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　{62}は浮かべていた笑みを消し、真剣な表情でこちらを見た。
+
+
+	Unprocessed Translation: {62} will erase the smile that has been floated, seen here in a serious look.
+
+	Replacing token...
+		{62} ==> senpai
+[L362] Processing non-blank line...
+	Unprocessed Translation: "To tell the truth, I also want to Tsuiteiki. I want to got take me together."
+
+[L365] Processing non-blank line...
+	Detected token リュディ in line. Replacing with {15}
+	Prepped=　俺だって連れて行きたい。先輩も{15}もななみも、全員連れて行きたい。でも今回ばかりはどうしてもダメなのだ。
+
+
+	Detected token ななみ in line. Replacing with {37}
+	Prepped=　俺だって連れて行きたい。先輩も{15}も{37}も、全員連れて行きたい。でも今回ばかりはどうしてもダメなのだ。
+
+
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　俺だって連れて行きたい。{62}も{15}も{37}も、全員連れて行きたい。でも今回ばかりはどうしてもダメなのだ。
+
+
+	Unprocessed Translation: I want to take Datte me. {62} also {15} also {37} also, want to take everyone. But only this time it really gotta.
+
+	Replacing token...
+		{62} ==> senpai
+	Replacing token...
+		{37} ==> Nanami
+	Replacing token...
+		{15} ==> Ludi
+[L368] Processing non-blank line...
+	Unprocessed Translation: "Exactly, it is Do not. I wonder there is a reason? Found to such a face."
+
+[L375] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　{62}は名残惜しむように、ゆっくりと手を離していく。俺の手に乗せられていたのは見覚えのある風景が縫われた、お守りだった。
+
+
+	Unprocessed Translation: {62}, as spared remnants, it will release the slowly. Is a familiar landscape had been put in my hand has been sewn, was the charm.
+
+	Replacing token...
+		{62} ==> senpai
+[L378] Processing non-blank line...
+	Unprocessed Translation: Was the waterfall had been drawn there. A small waterfall and brook to receive it. That, beautiful scenery.
+
+[L381] Processing non-blank line...
+	Unprocessed Translation: Ours was the first time I met that waterfall.
+
+[L384] Processing non-blank line...
+	Unprocessed Translation: The waterfall is private land. It would not have only a few people who knows a place like this, people who go would be even less. That's why, this is not is not being sold in the store.
+
+[L391] Processing non-blank line...
+	Unprocessed Translation: It handmade charm.
+
+[L398] Processing non-blank line...
+	Unprocessed Translation: "Given the ring I got from you, but something not worth at all."
+
+[L401] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　はにかんだ笑みを浮かべながら{62}はそう言った。俺はそのお守りをぎゅっと握る。
+
+
+	Unprocessed Translation: With a smile that shy {62} has said so. I hold the amulet tightly.
+
+	Replacing token...
+		{62} ==> senpai
+[L404] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=「{62}……そんな事無いです。もし俺があの指輪五個と、このお守りどちらか選べって言われたら、俺は指輪を火口に捨てたっていい」
+
+
+	Unprocessed Translation: "{62} ... it is not such a thing. If you and your pieces I have that ring, When you are told to choose either this amulet, say me I threw away a ring on the crater."
+
+	Replacing token...
+		{62} ==> senpai
+[L411] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=　価値ある指輪なのかも知れない。でも俺は、{62}の大事な時間を削ってまで作ってくれたこのお守りの方が、はるかに価値がある。
+
+
+	Unprocessed Translation: It might be valuable ring from. But I, {62} important person of the charm that made me up by cutting the amount of time is, there is much value.
+
+	Replacing token...
+		{62} ==> senpai
+[L414] Processing non-blank line...
+	Unprocessed Translation: "Haha', you'll waste, also riding a fool. But, thank you."
+
+[L417] Processing non-blank line...
+	Unprocessed Translation: I open the slowly hand, stare at the amulet which was holding.
+
+[L424] Processing non-blank line...
+	Detected token 先輩 in line. Replacing with {62}
+	Prepped=「{62}、テスト近いって言うのに、ホント何してるんですか……ただでさえ俺の鍛練に付き合って貰っているって言うのに、馬鹿はどっちですか。凄く、嬉しいです」
+
+
+	Unprocessed Translation: "{62}, to say close test, to say really even what are you to do ...... just have got going out to my discipline, idiot Which Is. Really, I'm happy."
+
+	Replacing token...
+		{62} ==> senpai
+[L431] Processing non-blank line...
+	Unprocessed Translation: The amulet is pretty elaborate products. Not easy to make those in an hour or two. In an important time that before the test, not only me going out on my wrought, he told me over this kind of time and effort.
+
+[L438] Processing non-blank line...
+	Detected token 瀧音 in line. Replacing with {5}
+	Prepped=「{5}……成功を祈ってる」
+
+
+	Unprocessed Translation: "{5} ... I am praying for success."
+
+	Replacing token...
+		{5} ==> Takioto
