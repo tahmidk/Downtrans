@@ -11,6 +11,7 @@
 from timeit import default_timer as timer 	# Timer
 from collections import OrderedDict			# Ordered Dictionary
 from tqdm import tqdm						# Progress bar
+from pdb import set_trace					# Python debugger
 from urllib.request import Request, urlopen	# Fetch URL Requests
 from stat import S_IREAD, S_IRGRP, S_IROTH 	# Changing file permissions
 
