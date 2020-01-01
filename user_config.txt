@@ -1,0 +1,10 @@
+PREFERRED_READER_PATH: C:\Program Files\SublimeText3\sublime_text.exe
+
+SERIES CODE
+Kanna n3877cq
+ChiyuMahou n2468ca
+Glitch n9078bd
+LV999 n7612ct
+BlackSum n1222ci
+Mismatch n1578dx
+Magicex n2413ep
