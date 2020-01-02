@@ -197,7 +197,7 @@ def handleClean():
 	raw_dir = os.listdir(RAW_PATH)
 	for file in raw_dir:
 		path = os.path.join(RAW_PATH, file)
-		print(("\tremoving [%s]...\t" % path))
+		print(("\tremoving [%s]...\t" % path), end='')
 		try:
 			os.remove(path)
 		except OSError:
@@ -210,7 +210,7 @@ def handleClean():
 	trans_dir = os.listdir(TRANS_PATH)
 	for file in trans_dir:
 		path = os.path.join(TRANS_PATH, file)
-		print(("\tremoving [%s]...\t" % path))
+		print(("\tremoving [%s]...\t" % path), end='')
 		try:
 			os.remove(path)
 		except OSError:
@@ -223,7 +223,7 @@ def handleClean():
 	log_dir = os.listdir(LOG_PATH)
 	for file in log_dir:
 		path = os.path.join(LOG_PATH, file)
-		print(("\tremoving [%s]...\t" % path))
+		print(("\tremoving [%s]...\t" % path), end='')
 		try:
 			os.remove(path)
 		except OSError:
@@ -386,6 +386,43 @@ def writeRaw(series, ch, content):
 	raw_file.close()
 	return 0
 
+def setPrevLink(resource_string, series, ch):
+	"""-------------------------------------------------------------------
+		Function:		[setPrevLink]
+		Description:	Insert anchor to previous chapter html file into 
+						given resource string or fake anchor if file DNE
+		Input:
+		  [resource_string] the string version of the html translation
+		  [series]			series name
+		  [ch]				current chapter number
+		Return:			resource_string with the previous chapter anchor
+						incorporated
+		------------------------------------------------------------------
+	"""
+	if ch > 1:
+		prev_file_name = "t%s_%d.html" % (series, ch-1)
+		prev_file_path = os.path.join(TRANS_PATH, prev_file_name)
+		return re.sub(r'PREV_CHAPTER_ANCHOR', prev_file_name, resource_string)
+
+	return re.sub(r'PREV_CHAPTER_ANCHOR', r'#', resource_string)
+
+def setNextLink(resource_string, series, ch):
+	"""-------------------------------------------------------------------
+		Function:		[setNextLink]
+		Description:	Insert anchor to next chapter html file into 
+						given resource string or fake anchor if file DNE
+		Input:
+		  [resource_string] the string version of the html translation
+		  [series]			series name
+		  [ch]				current chapter number
+		Return:			resource_string with the next chapter anchor
+						incorporated
+		------------------------------------------------------------------
+	"""
+	next_file_name = "t%s_%d.html" % (series, ch+1)
+	next_file_path = os.path.join(TRANS_PATH, next_file_name)
+	return re.sub(r'NEXT_CHAPTER_ANCHOR', next_file_name, resource_string)
+
 def setPageTitle(resource_string, pg_title):
 	"""-------------------------------------------------------------------
 		Function:		[setPageTitle]
@@ -463,8 +500,10 @@ def writeTrans(series, ch, title, series_dict, log_file):
 		resource_string = resource_file.read()
 		resource_string = setPageTitle(resource_string, "%s | %d" % (series, ch))
 		resource_string = setChapterTitle(resource_string, title)
+		resource_string = setPrevLink(resource_string, series, ch)
+		resource_string = setNextLink(resource_string, series, ch)
 	except Exception:
-		print(("[Error] Error opening resource file [%s]" % raw_name))
+		print(("[Error] Error opening or using resource file [%s]" % raw_name))
 		print("\nExiting...")
 		return 1		
 
@@ -509,6 +548,27 @@ def writeTrans(series, ch, title, series_dict, log_file):
 	trans_file.close()
 	return ret
 
+def openBrowser(series, ch):
+	"""-------------------------------------------------------------------
+		Function:		[openBrowser]
+		Description:	Opens a given chapter in select browser
+		Input:
+		  [series]		The series name
+		  [ch]			The chapter to open
+		Return:			N/A
+		------------------------------------------------------------------
+	"""
+	path_trans = TRANS_PATH + "t%s_%d.html" % (series, ch)
+	if len(PREFERRED_BROWSER_PATH) == 0:
+		print("No preferred browser detected. Please open translation files manually\
+			or input a path for your preferred browser .exe file in user_config.txt")
+	else:
+		try:
+			webbrowser.open('file://' + os.path.realpath(path_trans))
+		except OSError:
+			print("\n[Error] The preferred browser [%s] does not exist. Skipping" % PREFERRED_BROWSER_PATH)
+		except Exception:
+			print("\n[Error] Cannot open the preferred reader [%s]. Skipping" % PREFERRED_BROWSER_PATH)
 
 # =========================[ Script ]=========================
 def batch_procedure(series, ch_queue):
@@ -559,6 +619,7 @@ def default_procedure(series, ch):
 	"""
 	# Ret code: 0 - success, non-0 - failure
 	ret = 0
+	initConfig()
 
 	# Fetch the html source code
 	url = getSeriesURL(series, ch)
@@ -614,24 +675,13 @@ def main():
 	if mode_batch:
 		chapters = list(range(ch_start, ch_end+1))
 		batch_procedure(series, chapters)
+		openBrowser(series, ch_start)
 	elif mode_single:
 		err_code = default_procedure(series, ch_start)
 		if err_code != 0:
 			print("[Error] Could not download or translate. Exiting")
 			sys.exit(5)
-
-		# After done with the main procedure, automatically open file in Sublime
-		path_trans = TRANS_PATH + "t%s_%d.html" % (series, ch_start)
-		if len(PREFERRED_BROWSER_PATH) == 0:
-			print("No preferred browser detected. Please open translation files manually\
-				or input a path for your preferred browser .exe file in user_config.txt")
-		else:
-			try:
-				webbrowser.open('file://' + os.path.realpath(path_trans))
-			except OSError:
-				print("\n[Error] The preferred browser [%s] does not exist. Skipping" % PREFERRED_BROWSER_PATH)
-			except Exception:
-				print("\n[Error] Cannot open the preferred reader [%s]. Skipping" % PREFERRED_BROWSER_PATH)
+		openBrowser(series, ch_start)
 	else:
 		print("[Error] Unexpected mode")
 		sys.exit(1)

@@ -4,6 +4,10 @@ body{
  	font-family:sans-serif;
 }
 
+a{
+	text-decoration: none !important;
+}
+
 section{
 	position:absolute;
 	top:0;
@@ -101,3 +105,42 @@ ul li span:nth-child(1){
  	color:#fff;
 }
 
+.prev_button{
+	position: fixed;
+	top:5em;
+	right:10em;
+	margin:0;
+	padding:1em 0 0 0;
+	width:5em;
+	height:2.5em;
+	z-index:1;
+	border-radius:0.6em 0 0 0.6em;
+	background: #ff8d00;
+
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1em;
+	font-variant: all-small-caps;
+	font-weight: bolder;
+	text-align: center;
+	color: #FFF;
+}
+
+.next_button{
+	position: fixed;
+	top:5em;
+	right:5em;
+	margin:0;
+	padding:1em 0 0 0;
+	width:5em;
+	height:2.5em;
+	z-index:1;
+	border-radius:0 0.6em 0.6em 0;
+	background: #ff5e00;
+
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1em;
+	font-variant: all-small-caps;
+	font-weight: bolder;
+	text-align: center;
+	color: #fff
+}
