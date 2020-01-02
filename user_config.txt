@@ -1,4 +1,4 @@
-PREFERRED_READER_PATH: C:\Program Files\SublimeText3\sublime_text.exe
+PREFERRED_BROWSER_PATH: C:\Program Files (x86)\Google\Chrome\Application
 
 SERIES CODE
 Kanna n3877cq

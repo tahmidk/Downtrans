@@ -24,12 +24,8 @@ import itertools as it 				# Iteration tool
 import argparse as argp 			# Parse input arguments
 import multiprocessing as mp 		# Multiprocessing tasks
 import subprocess 					# Open file in preferred text editor
+import webbrowser					# Open translation HTMLs in browser
 import ssl 							# For certificate authentication
-
-# Choose one or the other translator API
-#import googletrans as gt 			# Google trranslation API
-import translate as gt 				# Alternate translator
-
 
 # =======================[ WN Constants ]========================
 syosetu_url = "https://ncode.syosetu.com/"
@@ -38,7 +34,7 @@ syosetu_url = "https://ncode.syosetu.com/"
 content_only = False
 # Important globals initialized from user_config.txt
 series_map = {}
-PREFERRED_READER_PATH = ""
+PREFERRED_BROWSER_PATH = ""
 
 
 
@@ -55,6 +51,7 @@ DICT_PATH = "./dicts/"
 RAW_PATH = "./raws/"
 TRANS_PATH = "./trans/"
 LOG_PATH = "./logs/"
+RESOURCE_PATH = "./resources/skeleton.html"
 
 # Format of the divider for .dict file
 DIV = " --> "
@@ -75,7 +72,7 @@ def initConfig():
 		print("\n[Error] user_config file does not exist. Creating file skeleton...")
 		try:
 			config_file = io.open(os.path.join("./user_config.txt"), mode='w', encoding='utf8')
-			config_file.write(u"PREFERRED_READER_PATH: notepad.exe\n\n")
+			config_file.write(u"PREFERRED_BROWSER_PATH: path/to/browser.exe\n\n")
 			config_file.write(u"SERIES CODE\n")
 		except Exception:
 			print("\n[Error] Error creating user_config.txt. Exiting...")
@@ -94,10 +91,10 @@ def initConfig():
 			if len(line) == 2:
 				if line[0] == u"SERIES" and line[1] == u"CODE\n":
 					continue
-				elif line[0] == "PREFERRED_READER_PATH:":
-					global PREFERRED_READER_PATH
-					PREFERRED_READER_PATH = line[1][:-1] if line[1][-1] == u'\n' else line[1]
-					print("\nPreferred Reader: \'%s\'" % PREFERRED_READER_PATH)
+				elif line[0] == "PREFERRED_BROWSER_PATH:":
+					global PREFERRED_BROWSER_PATH
+					PREFERRED_BROWSER_PATH = line[1][:-1] if line[1][-1] == u'\n' else line[1]
+					print("\nPreferred Reader: \'%s\'" % PREFERRED_BROWSER_PATH)
 				else:
 					series = line[0]
 					code = line[1][:-1] if line[1][-1] == u'\n' else line[1]
@@ -257,27 +254,18 @@ def initDict(series):
 		return ({}, {})
 
 	# Parse the mappings into a list
-	rawToIndx = []
-	indxToSubst = []
-	subst_indx = 1
+	dictList = []
 	for line in dict_file:
 		# Skip unformatted/misformatted lines
 		if not DIV in line:
 			continue
 
 		line = line[:-1]	# Ignore newline '\n' at the end of the line
-		(raw_txt, subst_txt) = line.split(DIV)
-		subst_str = "{%d}" % subst_indx
-		rawToIndx.append((raw_txt, subst_str))
-		indxToSubst.append((subst_str, subst_txt))
+		dictList.append(line.split(DIV))
 
-		subst_indx = subst_indx + 1
-
-	raw_dict = OrderedDict(rawToIndx)
-	indx_dict = OrderedDict(indxToSubst)
-
+	series_dict = OrderedDict(dictList)
 	dict_file.close()
-	return (raw_dict, indx_dict)
+	return series_dict
 
 def getSeriesURL(series, ch):
 	"""-------------------------------------------------------------------
@@ -398,24 +386,65 @@ def writeRaw(series, ch, content):
 	raw_file.close()
 	return 0
 
-def writeTrans(series, ch, raw_dict, indx_dict, log_file):
+def setPageTitle(resource_string, pg_title):
+	"""-------------------------------------------------------------------
+		Function:		[setPageTitle]
+		Description:	Inserts a page title as an html tag into the 
+						given resource string
+		Input:
+		  [resource_string] the string version of the html translation
+		  [pg_title]		the page title string
+		Return:			resource_string with the chapter title incorporated
+		------------------------------------------------------------------
+	"""
+	return re.sub(r'<!--PAGE_TITLE-->', pg_title, resource_string)
+
+def setChapterTitle(resource_string, ch_title):
+	"""-------------------------------------------------------------------
+		Function:		[setChapterTitle]
+		Description:	Inserts a chapter title as an html header into the 
+						given resource string
+		Input:
+		  [resource_string] the string version of the html translation
+		  [ch_title]		the chapter title string
+		Return:			resource_string with the chapter title incorporated
+		------------------------------------------------------------------
+	"""
+	return re.sub(r'<!--CHAPTER_TITLE-->', ch_title, resource_string)
+
+def insertLine(resource_string, line):
+	"""-------------------------------------------------------------------
+		Function:		[insertLine]
+		Description:	Inserts a line as an html paragraph into the given 
+						resource string
+		Input:
+		  [resource_string] the string version of the html translation
+		  [line]			the line to add an html element for
+		Return:			resource_string with the line incorporated
+		------------------------------------------------------------------
+	"""
+	line_html = "<p>%s</p>\n<!--END_OF_BODY-->" % line
+	return re.sub(r'<!--END_OF_BODY-->', line_html, resource_string)
+
+def writeTrans(series, ch, title, series_dict, log_file):
 	"""-------------------------------------------------------------------
 		Function:		[writeTrans]
 		Description:	Write translations to trans file
 		Input:
 		  [series]		The series to write translation for
 		  [ch]			The chapter number to write translation for
-		  [raw_dict]	The dict mapping raw to indices
-		  [indx_dict]	The dict mapping indices to true substitutions
+		  [title]		The title string of this chapter
+		  [series_dict]	The dict map for this series
+		  [log_file]	The associated log file for this translation
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
 	# Initialize trans_file
 	try:
-		trans_name = "t%s_%d.txt" % (series, ch)
+		trans_name = "t%s_%d.html" % (series, ch)
 		trans_file = io.open(os.path.join(TRANS_PATH, trans_name), mode='w', encoding='utf8')
 	except Exception:
-		print(("[Error] Error opening trans file [%s]" % trans_name))
+		print(("[Error] Error opening translation file [%s]" % trans_name))
 		print("\nExiting...")
 		return 1
 
@@ -427,6 +456,17 @@ def writeTrans(series, ch, raw_dict, indx_dict, log_file):
 		print(("[Error] Error opening raw file [%s]" % raw_name))
 		print("\nExiting...")
 		return 1
+
+	# Open and read reference html
+	try:
+		resource_file = io.open(os.path.join(RESOURCE_PATH), mode='r', encoding='utf8')
+		resource_string = resource_file.read()
+		resource_string = setPageTitle(resource_string, "%s | %d" % (series, ch))
+		resource_string = setChapterTitle(resource_string, title)
+	except Exception:
+		print(("[Error] Error opening resource file [%s]" % raw_name))
+		print("\nExiting...")
+		return 1		
 
 	# Count number of lines in raw source file
 	num_lines = 0
@@ -440,66 +480,31 @@ def writeTrans(series, ch, raw_dict, indx_dict, log_file):
 	line_num = 0
 	for line in tqdm(raw_list, total=num_lines):
 		line_num += 1
-		# Pick out specific problematic line for debug purposes
-		#if line_num == 32:
-		#	import pdb; pdb.set_trace()
 
 		# Skip blank lines
 		if line == '\n':
-			trans_file.write('\n')
+			resource_string = insertLine(resource_string, '\n')
 			continue
 
 		# Check raw text against dictionary and replace matches
 		log_file.write("\n[L%d] Processing non-blank line..." % line_num)
 		line = line + '\n'
 		prepped = line
-		for entry in raw_dict:
+		for entry in series_dict:
 			if entry in prepped:
-				log_file.write("\n\tDetected token %s in line. Replacing with %s" % (entry, raw_dict[entry]))
-				prepped = prepped.replace(entry, raw_dict[entry])
+				log_file.write("\n\tDetected token %s in line. Replacing with %s" % (entry, series_dict[entry]))
+				new_entry = "<span class=\"notranslate\">" + series_dict[entry] + "</span>"
+				prepped = prepped.replace(entry, new_entry)
 				log_file.write("\n\tPrepped=%s" % prepped)
 
-		# Feed prepped line through translator max 5 tries
-		#import pdb; pdb.set_trace()
-		tries = 0
-		while True:
-			try:
-				# Google translate API code
-				#translator = gt.Translator()
-				#translated = translator.translate(prepped, src='ja', dest='en')
-				#translated = translated.text + "\n"
-				# Alt translate API code
-				translator = gt.Translator(from_lang='ja', to_lang='en')
-				translated = translator.translate(prepped) + "\n"
-				
-				log_file.write("\n\tUnprocessed Translation: %s" % translated)
-				for k, v in [(k, indx_dict[k]) for k in reversed(indx_dict)]:
-					if k in translated:
-						log_file.write("\n\tReplacing token...")
-						log_file.write("\n\t\t%s ==> %s" % (k, v))
-						translated = translated.replace(k, v)
-				break
-			except ValueError as e:
-				log_file.write("\n[Error line] Line = %d" % line_num)
-				print((str(e)))
-				print("Exiting...")
-				return 1
-			except AttributeError as e:
-				tries += 1
-				print(("\n[Error] Timeout on googletrans. Retrying [tries=%d]..." % tries))
+		# Add line to the resource string
+		resource_string = insertLine(resource_string, prepped)
 
-			if tries == MAX_TRIES:
-				print("\n[Error] Max tries reached. Couldn't translate line. Skipping....")
-				translated = "[Error line]\n"
-				ret = 1
-				break
-
-		# Write to file
-		trans_file.write(translated)
-		#trans_file.write(roma(line) + u'\n')
+	# Write to trans file
+	trans_file.write(resource_string)
 
 	# Close all files file
-	print(("Downtrans [t%s_%s.txt] complete!" % (series, ch)))
+	print(("Downtrans [t%s_%s.html] complete!" % (series, ch)))
 	raw_file.close()
 	trans_file.close()
 	return ret
@@ -563,19 +568,19 @@ def default_procedure(series, ch):
 
 	# Parse out relevant content from the website source code
 	title = parseTitle(html)
-	content = [title] + parseContent(html)
+	content = parseContent(html)
 	ret += writeRaw(series, ch, content)
 
 	# Translate and write trans_file
-	(raw_dict, indx_dict) = initDict(series)
-	# Open log file in write mode
+	series_dict = initDict(series)
 	try:
+		# Open log file in write mode
 		log_name ="l%s_%d.log" % (series, ch)
 		log_file = io.open(os.path.join(LOG_PATH, log_name), mode='w', encoding='utf8')
 	except Exception:
 		print("[Error] Error opening log file... ")
 		return -1
-	ret += writeTrans(series, ch, raw_dict, indx_dict, log_file)
+	ret += writeTrans(series, ch, title, series_dict, log_file)
 	log_file.close()
 
 	return ret
@@ -616,19 +621,17 @@ def main():
 			sys.exit(5)
 
 		# After done with the main procedure, automatically open file in Sublime
-		path_raw = RAW_PATH + "r%s_%d.txt" % (series, ch_start)
-		path_trans = TRANS_PATH + "t%s_%d.txt" % (series, ch_start)
-		if len(PREFERRED_READER_PATH) == 0:
-			print("No preferred reader detected. Please open translation files manually\
-				or input a path for your preferred reader .exe file in user_config.txt")
+		path_trans = TRANS_PATH + "t%s_%d.html" % (series, ch_start)
+		if len(PREFERRED_BROWSER_PATH) == 0:
+			print("No preferred browser detected. Please open translation files manually\
+				or input a path for your preferred browser .exe file in user_config.txt")
 		else:
 			try:
-				subprocess.Popen([PREFERRED_READER_PATH, path_raw])
-				subprocess.Popen([PREFERRED_READER_PATH, path_trans])
+				webbrowser.open('file://' + os.path.realpath(path_trans))
 			except OSError:
-				print("\n[Error] The preferred reader [%s] does not exist. Skipping" % PREFERRED_READER_PATH)
+				print("\n[Error] The preferred browser [%s] does not exist. Skipping" % PREFERRED_BROWSER_PATH)
 			except Exception:
-				print("\n[Error] Cannot open the preferred reader [%s]. Skipping" % PREFERRED_READER_PATH)
+				print("\n[Error] Cannot open the preferred reader [%s]. Skipping" % PREFERRED_BROWSER_PATH)
 	else:
 		print("[Error] Unexpected mode")
 		sys.exit(1)
