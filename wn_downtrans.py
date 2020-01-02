@@ -24,9 +24,11 @@ import itertools as it 				# Iteration tool
 import argparse as argp 			# Parse input arguments
 import multiprocessing as mp 		# Multiprocessing tasks
 import subprocess 					# Open file in preferred text editor
-import googletrans as gt 			# Translation API
 import ssl 							# For certificate authentication
 
+# Choose one or the other translator API
+#import googletrans as gt 			# Google trranslation API
+import translate as gt 				# Alternate translator
 
 
 # =======================[ WN Constants ]========================
@@ -462,9 +464,14 @@ def writeTrans(series, ch, raw_dict, indx_dict, log_file):
 		tries = 0
 		while True:
 			try:
-				translator = gt.Translator()
-				translated = translator.translate(prepped, src='ja', dest='en')
-				translated = translated.text + "\n"
+				# Google translate API code
+				#translator = gt.Translator()
+				#translated = translator.translate(prepped, src='ja', dest='en')
+				#translated = translated.text + "\n"
+				# Alt translate API code
+				translator = gt.Translator(from_lang='ja', to_lang='en')
+				translated = translator.translate(prepped) + "\n"
+				
 				log_file.write("\n\tUnprocessed Translation: %s" % translated)
 				for k, v in [(k, indx_dict[k]) for k in reversed(indx_dict)]:
 					if k in translated:
