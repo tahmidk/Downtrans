@@ -521,6 +521,7 @@ def writeTrans(series, ch, title, series_dict, log_file):
 	#import pdb; pdb.set_trace()
 	ret = 0
 	line_num = 0
+	placeholder_id = 1
 	for line in tqdm(raw_list, total=num_lines):
 		line_num += 1
 
@@ -536,9 +537,12 @@ def writeTrans(series, ch, title, series_dict, log_file):
 		for entry in series_dict:
 			if entry in prepped:
 				log_file.write("\n\tDetected token %s in line. Replacing with %s" % (entry, series_dict[entry]))
-				new_entry = "<span class=\"notranslate\">" + series_dict[entry] + "</span>"
-				prepped = prepped.replace(entry, new_entry)
+				placeholder = "<span class=\"placeholder\" id=%d>placeholder</span>" % placeholder_id
+				new_entry = "<span class=\"notranslate\" id=w%d>%s</span>" % (placeholder_id, series_dict[entry])
+				prepped = prepped.replace(entry, "%s%s" % (new_entry, placeholder))
+				
 				log_file.write("\n\tPrepped=%s" % prepped)
+				placeholder_id += 1
 
 		# Add line to the resource string
 		resource_string = insertLine(resource_string, prepped)
