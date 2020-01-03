@@ -59,11 +59,12 @@ DIV = " --> "
 
 
 # =========================[ Functions ]=========================
-def initConfig():
+def initConfig(print_config):
 	"""-------------------------------------------------------------------
 		Function:		[initConfig]
 		Description:	Initializes some important globals using user_config.txt
-		Input:			None
+		Input:			
+		  [print_config]Flag to print config statements or not
 		Return:			None
 		------------------------------------------------------------------
 	"""
@@ -94,14 +95,17 @@ def initConfig():
 				elif line[0] == "PREFERRED_BROWSER_PATH:":
 					global PREFERRED_BROWSER_PATH
 					PREFERRED_BROWSER_PATH = line[1][:-1] if line[1][-1] == u'\n' else line[1]
-					print("\nPreferred Reader: \'%s\'" % PREFERRED_BROWSER_PATH)
+					if print_config:
+						print("\nPreferred Reader: \'%s\'" % PREFERRED_BROWSER_PATH)
 				else:
 					series = line[0]
 					code = line[1][:-1] if line[1][-1] == u'\n' else line[1]
 					series_map[series] = code
-					print("Series: \'%s\' (Code=%s)" % (series, code))
+					if print_config:
+						print("Series: \'%s\' (Code=%s)" % (series, code))
 
-		print("\nConfig success. Check that the above information is correct...\n")
+		if print_config:
+			print("\nConfig success. Check that the above information is correct...\n")
 		config_file.close()
 	except Exception:
 		print("\n[Error] Error creating user_config.txt. Exiting...")
@@ -619,7 +623,7 @@ def default_procedure(series, ch):
 	"""
 	# Ret code: 0 - success, non-0 - failure
 	ret = 0
-	initConfig()
+	initConfig(False)
 
 	# Fetch the html source code
 	url = getSeriesURL(series, ch)
@@ -649,7 +653,7 @@ def default_procedure(series, ch):
 
 def main():
 	start = timer()
-	initConfig()
+	initConfig(True)
 
 	# Fetch arguments from parser
 	parser = initParser()
