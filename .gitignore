@@ -3,3 +3,4 @@ logs/*
 *.txt
 *.html
 !user_config.txt
+!skeleton.html
