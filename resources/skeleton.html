@@ -6,8 +6,12 @@
 
 	<title><!--PAGE_TITLE--></title>
 
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <style type="text/css">
+    html{
+      scroll-behavior: smooth;
+    }
     body{
       margin:0;
       padding:0;
@@ -45,17 +49,22 @@
     }
 
     /* Dictionary text style */
-    .notranslate{
+    .word{
       font-variant: petite-caps;
       font-weight: bolder;
       margin-left: 0.5em;
       margin-right: 0.5em;
       color: #007eff;
       transition: 0.2s;
-      
     }
-    .notranslate.dark{
+    .word.dark{
       color: #ff8d00;
+    }
+    .notranslate{
+      display: none;
+    }
+    .splash_screen.notranslate{
+      display: inline;
     }
 
     /* Line styles */
@@ -202,7 +211,7 @@
       .prev_button{
         display: none;
       }
-      .ui_div_top{
+      .fade_div{
         width: 100%;
         height: 120px;
         position: fixed;
@@ -210,7 +219,7 @@
         background-image: linear-gradient(white, #fffffffa, rgba(255, 255, 255, 0));
         transition: 0.2s;
       }
-      .ui_div_top.dark{
+      .fade_div.dark{
         background-image: linear-gradient(#151515, #151515fc, rgba(0, 0, 0, 0));
       }
     }
@@ -238,7 +247,7 @@
       .prev_button{
         display: none;
       }
-      .ui_div_top{
+      .fade_div{
         width: 100%;
         height: 100px;
         position: fixed;
@@ -246,7 +255,7 @@
         background-image: linear-gradient(white, #fffffffa, rgba(255, 255, 255, 0));
         transition: 0.2s;
       }
-      .ui_div_top.dark{
+      .fade_div.dark{
         background-image: linear-gradient(#151515, #151515fc, rgba(0, 0, 0, 0));
       }
     }
@@ -258,6 +267,7 @@
   		<h1><!--CHAPTER_TITLE--></h1>
   		<hr style="margin-top: 0.5em; margin-bottom: 2em;">
   		<!--END_OF_BODY-->
+      <div id="bottom_marker" class="incomplete"></div>
  	</section>
 
   <!-- Night and day mode toggle -->
@@ -273,19 +283,79 @@
   <a class="next_button" href="NEXT_CHAPTER_ANCHOR"> Next 🡢 </a>  
 
   <!-- Fade outs on smaller screens-->
-  <div class="ui_div_top"> </div>
+  <div class="fade_div"> </div>
 
  	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+  <!-- Script to replace placeholders with correct dictionary term -->
+  <script type="text/javascript">
+    // Replaces placeholders with actual words
+    function replace_placeholders()
+    {
+      var placeholders = document.getElementsByClassName('placeholder');
+      for(let elem of placeholders){
+        if( elem.innerHTML.toLowerCase().includes("placeholder") ){
+          var word = document.getElementById('w' + elem.id).innerHTML;
+          var pattern = new RegExp("placeholder", 'gi');
+          var replacement = "<span class=\'word\'>" + word + "</span>"
+
+          elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
+        }
+      }
+    }
+    function _replace_placeholders(){
+      // Need a small delay to let translation load
+      setTimeout(replace_placeholders, 2000);
+    }
+
+    function scroll_to_bottom(){
+      var elmnt = document.getElementById("bottom_marker");
+      elmnt.scrollIntoView({behavior: "smooth"}); 
+    }
+    function scroll_to_top(){
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Listen for mutations to the html class name, which indicates if page is translated or not
+    const observer = new MutationObserver(function(mutationsList){
+      mutationsList.forEach(mutation => {
+        if (mutation.attributeName === 'class') {
+          if (!mutation.oldValue){
+            scroll_to_bottom();
+          }
+        }
+      })
+    });
+    observer.observe(document.getElementsByTagName('html')[0], { attributes: true, attributeOldValue: true });
+  </script>
+
   <!-- Script to toggle night and day mode -->
  	<script type="text/javascript">
 		$(document).ready(function(){
  			$('ul').click(function(){
   			$('ul').toggleClass('active')
   			$('section').toggleClass('dark')
-        $('.notranslate').toggleClass('dark')
-        $('.ui_div_top').toggleClass('dark')
+        $('.word').toggleClass('dark')
+        $('.fade_div').toggleClass('dark')
+        $('.ui_div_bottom').toggleClass('dark')
  			})
 		})
+    $(window).scroll(function() {
+      if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        var incomplete_flag = document.getElementsByClassName("incomplete");
+        if(incomplete_flag.length > 0){
+          // Perform substitutions after reaching the bottom
+          _replace_placeholders();
+          scroll_to_top();
+          // Mark page with "complete" flag
+          incomplete_flag[0].className = "complete";
+        }
+      }
+    });
  	</script>
+
 </body>
 </html>
