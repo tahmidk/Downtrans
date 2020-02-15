@@ -1,11 +1,15 @@
 PREFERRED_BROWSER_PATH: C:\Program Files (x86)\Google\Chrome\Application
 
 SERIES CODE
-Kanna n3877cq
-ChiyuMahou n2468ca
-Glitch n9078bd
-LV999 n7612ct
-BlackSum n1222ci
-Mismatch n1578dx
-Magicex n2413ep
-Wordmaster n7031bs
+// Japanese Webnovels
+Kanna n3877cq Syosetu
+ChiyuMahou n2468ca Syosetu
+Glitch n9078bd Syosetu
+LV999 n7612ct Syosetu
+BlackSum n1222ci Syosetu
+Mismatch n1578dx Syosetu
+Magicex n2413ep Syosetu
+Wordmaster n7031bs Syosetu
+
+// Chinese Webnovels
+GOI 100273 69shu

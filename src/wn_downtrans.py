@@ -29,6 +29,8 @@ import ssl 							# For certificate authentication
 
 # =======================[ WN Constants ]========================
 syosetu_url = "https://ncode.syosetu.com/"
+biquyun_url = "https://www.biquyun.com/"
+69shu_url = "https://www.69shu.org/book/"
 
 # Read chapter content only? Or include author comments in translation too?
 content_only = False
@@ -92,17 +94,21 @@ def initConfig(print_config):
 			if len(line) == 2:
 				if line[0] == u"SERIES" and line[1] == u"CODE\n":
 					continue
+				elif line[0:1] == u"//":
+					continue
 				elif line[0] == "PREFERRED_BROWSER_PATH:":
 					global PREFERRED_BROWSER_PATH
 					PREFERRED_BROWSER_PATH = line[1][:-1] if line[1][-1] == u'\n' else line[1]
 					if print_config:
 						print("\nPreferred Reader: \'%s\'" % PREFERRED_BROWSER_PATH)
 				else:
-					series = line[0]
-					code = line[1][:-1] if line[1][-1] == u'\n' else line[1]
-					series_map[series] = code
+					config_info = line.split()
+					series = config_info[0]
+					code = config_info[1]
+					website = config_info[2]
+					series_map[series] = (code, website)
 					if print_config:
-						print("Series: \'%s\' (Code=%s)" % (series, code))
+						print("Series: \'%s\'\n  Code=%s\n  Website=%s" % (series, code, website))
 
 		if print_config:
 			print("\nConfig success. Check that the above information is correct...\n")
