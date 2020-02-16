@@ -8,6 +8,7 @@
 """
 
 # =========================[ Imports ]==========================
+from abc import ABCMeta, abstractmethod
 
 class RawManager:
 	def __init__(self):

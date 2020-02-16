@@ -15,7 +15,7 @@ from pdb import set_trace					# Python debugger
 from urllib.request import Request, urlopen	# Fetch URL Requests
 from stat import S_IREAD, S_IRGRP, S_IROTH 	# Changing file permissions
 
-import sys, os, io 					# System operations
+import sys, os, io, shutil			# System operations
 import winsound 					# Sounc alarm
 import time 						# For sleeping thread between retries
 import re 							# Regex for parsing HTML
@@ -27,19 +27,11 @@ import subprocess 					# Open file in preferred text editor
 import webbrowser					# Open translation HTMLs in browser
 import ssl 							# For certificate authentication
 
+# Internal dependencies
+import configdata					# Custom config data structure
+#import rawscaninitializer			# Custom raw download and parsing class
+
 # =======================[ WN Constants ]========================
-syosetu_url = "https://ncode.syosetu.com/"
-biquyun_url = "https://www.biquyun.com/"
-69shu_url = "https://www.69shu.org/book/"
-
-# Read chapter content only? Or include author comments in translation too?
-content_only = False
-# Important globals initialized from user_config.txt
-series_map = {}
-PREFERRED_BROWSER_PATH = ""
-
-
-
 # =========================[ Constants ]=========================
 # Maximum number of retries on translate and URL fetching
 MAX_TRIES = 5
@@ -49,79 +41,58 @@ ALARM_DUR = 100 	# milliseconds (ms)
 ALARM_FREQ = 600 	# hertz (Hz)
 
 # File paths
-DICT_PATH = "./dicts/"
-RAW_PATH = "./raws/"
-TRANS_PATH = "./trans/"
-LOG_PATH = "./logs/"
-RESOURCE_PATH = "./resources/skeleton.html"
+DICT_PATH = 		os.path.join("../dicts/")
+RAW_PATH = 			os.path.join("../raws/")
+TRANS_PATH = 		os.path.join("../trans/")
+LOG_PATH = 			os.path.join("../logs/")
+RESOURCE_PATH = 	os.path.join("../resources/")
+CONFIG_FILE_PATH = 	os.path.join("../user_config.json")
 
 # Format of the divider for .dict file
 DIV = " --> "
 
-
+# Config data container
+config_data = None
 
 # =========================[ Functions ]=========================
-def initConfig(print_config):
+def initConfig():
 	"""-------------------------------------------------------------------
 		Function:		[initConfig]
-		Description:	Initializes some important globals using user_config.txt
-		Input:			
-		  [print_config]Flag to print config statements or not
+		Description:	Initializes config data using user_config.txt
+		Input:			None
 		Return:			None
 		------------------------------------------------------------------
 	"""
 	# If config file does not exist, create it and exit
-	if not os.path.exists("./user_config.txt"):
-		print("\n[Error] user_config file does not exist. Creating file skeleton...")
+	if not os.path.exists(CONFIG_FILE_PATH):
+		print("\n[Error] user_config.json file does not exist. Creating file \
+			skeleton...")
 		try:
-			config_file = io.open(os.path.join("./user_config.txt"), mode='w', encoding='utf8')
-			config_file.write(u"PREFERRED_BROWSER_PATH: path/to/browser.exe\n\n")
-			config_file.write(u"SERIES CODE\n")
+			src_dir = os.path.join(RESOURCE_PATH + "config_skeleton.json")
+			dst_dir = CONFIG_FILE_PATH
+			shutil.copy(src_dir, dst_dir)
 		except Exception:
-			print("\n[Error] Error creating user_config.txt. Exiting...")
-			sys.exit(4)
+			print("\n[Error] Error creating user_config.json. Exiting...")
+			sys.exit(1)
 
-		print("\nuser_config.txt created. Please add some series/code pairs and try again. Exiting...")
-		config_file.close()
+		print("\nuser_config.json created. Please add some series entries and \
+			try again. Exiting...")
 		sys.exit(0)
 
 	# Otherwise, read config file and initialize globals
-	global series_map
-	try:
-		config_file = io.open(os.path.join("./user_config.txt"), mode='r', encoding='utf8')
-		for line in config_file:
-			line = line.split(" ", 1)
-			if len(line) == 2:
-				if line[0] == u"SERIES" and line[1] == u"CODE\n":
-					continue
-				elif line[0:1] == u"//":
-					continue
-				elif line[0] == "PREFERRED_BROWSER_PATH:":
-					global PREFERRED_BROWSER_PATH
-					PREFERRED_BROWSER_PATH = line[1][:-1] if line[1][-1] == u'\n' else line[1]
-					if print_config:
-						print("\nPreferred Reader: \'%s\'" % PREFERRED_BROWSER_PATH)
-				else:
-					config_info = line.split()
-					series = config_info[0]
-					code = config_info[1]
-					website = config_info[2]
-					series_map[series] = (code, website)
-					if print_config:
-						print("Series: \'%s\'\n  Code=%s\n  Website=%s" % (series, code, website))
+	global config_data
+	config_data = configdata.ConfigData(CONFIG_FILE_PATH)
 
-		if print_config:
-			print("\nConfig success. Check that the above information is correct...\n")
-		config_file.close()
-	except Exception:
-		print("\n[Error] Error creating user_config.txt. Exiting...")
-		sys.exit(4)
-
-	if len(series_map) == 0:
-		print("\n[Error] No series/code pairs detected. Please add some series/code \
-			pairs (single space seperated) in user_config.txt under \'SERIES CODE\'")
+	if config_data.getNumHosts() == 0:
+		print("\n[Error] No hosts detected. Please add at least 1 host in \
+			user_config.json under hosts")
 		print("Exiting...")
-		sys.exit(5)
+		sys.exit(1)
+	if config_data.getNumSeries() == 0:
+		print("\n[Error] No series detected. Please add some series in \
+			user_config.json under series")
+		print("Exiting...")
+		sys.exit(1)
 
 
 def initParser():

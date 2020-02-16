@@ -1,0 +1,64 @@
+{
+    "preferredBrowser": "C:\\Program Files (x86)\\Google\\Chrome\\Application",
+    "hosts": [
+        { "host_name": "Syosetu",   "base_url": "https://ncode.syosetu.com/"},
+        { "host_name": "Biquyun",   "base_url": "https://www.biquyun.com/"},
+        { "host_name": "69shu",     "base_url": "https://www.69shu.org/book/"}
+    ],
+    "series": [
+        {
+            "name": "Kanna",
+            "lang": "JA",
+            "host": "Syosetu",
+            "code": "n3877cq"
+        },
+        {
+            "name": "ChiyuMahou",
+            "lang": "JA",
+            "host": "Syosetu",
+            "code": "n2468ca"
+        },
+        {
+            "name": "Glitch",
+            "lang": "JA",
+            "host": "Syosetu",
+            "code": "n9078bd"
+        },
+        {
+            "name": "LV999",
+            "lang": "JA",
+            "host": "Syosetu",
+            "code": "n7612ct"
+        },
+        {
+            "name": "BlackSum",
+            "lang": "JA",
+            "host": "Syosetu",
+            "code": "n1222ci"
+        },
+        {
+            "name": "Mismatch",
+            "lang": "JA",
+            "host": "Syosetu",
+            "code": "n1578dx"
+        },
+        {
+            "name": "Magicex",
+            "lang": "JA",
+            "host": "Syosetu",
+            "code": "n2413ep"
+        },
+        {
+            "name": "Wordmaster",
+            "lang": "JA",
+            "host": "Syosetu",
+            "code": "n7031bs"
+        },
+        {
+            "name": "GodOfIllusions",
+            "lang": "CN",
+            "host": "69shu",
+            "code": "100273"
+        }
+    ]
+}
