@@ -5,7 +5,7 @@
   Description:	This module initializes and holds data contained
   				in a given config JSON file customized by the user
 """
-import json
+import json 		# JSON processing library
 
 # Length of dividers when printing
 DIVIDER_BOLD = "=" * 90
@@ -28,9 +28,14 @@ class ConfigData:
 			config = json.loads(config_file.read())
 
 			# Initialize preferred browser path and counters
-			self.browser = config['preferredBrowser']
-			self.num_hosts = len(config['hosts'])
-			self.num_series = len(config['series'])
+			self.__num_hosts = len(config['hosts'])
+			self.__num_series = len(config['series'])
+			self.__browser = config['preferredBrowser'] if 
+				len(config['preferredBrowser']) == 0 else None
+			print("Preferred Browser: %s\n" % 
+				self.__browser if self.__browser is not None else
+				"UNSET (Do not automatically open translations in browser)"
+			)
 
 			# Initialize list of host websites
 			self.initHostMap(config['hosts'])
@@ -49,13 +54,12 @@ class ConfigData:
 			Return:			None
 			------------------------------------------------------------------
 		"""
-		self.hosts = {}
+		self.__hosts = {}
 		print(DIVIDER_BOLD)
 		print("Detected Host Websites:")
 		print(DIVIDER_THIN)
 		for entry in hosts:
-			self.hosts[entry['host_name']] = entry['base_url']
-			self.num_hosts += 1
+			self.__hosts[entry['host_name']] = entry['base_url']
 			print("\t%-20s: %s" % (entry['host_name'], entry['base_url']))
 		print(DIVIDER_BOLD)
 
@@ -68,19 +72,30 @@ class ConfigData:
 			Return:			None
 			------------------------------------------------------------------
 		"""
-		self.series = {}
+		self.__series = {}
 		print(DIVIDER_BOLD)
 		print("Detected Series Data:")
 		print(DIVIDER_THIN)
 		for entry in series:
-			self.series[entry['name']] = {
+			# Each series host must have a corresponding entry in self.__hosts
+			if entry['host'] not in self.__hosts:
+				print("[Error] No corresponding entry in the hosts JSON list \
+					for \"host\": \"%s\" listed under the series \'%s\'!\n \
+					Please insert an entry for this host and try again." %
+					(entry['host'], entry['abbr'])
+				)
+				sys.exit(1)
+
+			self.__series[entry['abbr']] = {
+				'name': entry['name']
 				'lang': entry['lang'],
 				'host': entry['host'],
 				'code': entry['code']
 			}
-			print("\t%-20s: lang=%-5s code=%-10s host=%s" % (
+			print("\t%-20s: lang=%-5s abbr=%-10s code=%-10s host=%s" % (
 					entry['name'],
 					entry['lang'],
+					entry['abbr'],
 					entry['host'],
 					entry['code']
 				)
@@ -98,7 +113,7 @@ class ConfigData:
 			Return:			Number of hosts
 			------------------------------------------------------------------
 		"""
-		return self.num_hosts
+		return self.__num_hosts
 
 	def getNumSeries(self):
 		"""-------------------------------------------------------------------
@@ -108,7 +123,7 @@ class ConfigData:
 			Return:			Number of series
 			------------------------------------------------------------------
 		"""
-		return self.num_series
+		return self.__num_series
 
 	def getPreferredBrowser(self):
 		"""-------------------------------------------------------------------
@@ -118,45 +133,58 @@ class ConfigData:
 			Return:			Preferred browser local absolute path
 			------------------------------------------------------------------
 		"""
-		return self.browser
+		return self.__browser
 
-	def getSeriesLang(self, series_name):
+	def getSeriesTitle(self, series_abbr):
 		"""-------------------------------------------------------------------
 			Function:		[getSeriesLang]
 			Description:	Fetches the given series language
 			Input:			
-			  [series_name] Name of the series to look up
+			  [series_abbr] Abbreviated name of the series to look up
+			Return:			Given series full title in string form
+			------------------------------------------------------------------
+		"""
+		if self.seriesIsValid(series_abbr):
+			return self.__series[series_abbr]['name']
+		return None
+
+	def getSeriesLang(self, series_abbr):
+		"""-------------------------------------------------------------------
+			Function:		[getSeriesLang]
+			Description:	Fetches the given series language
+			Input:			
+			  [series_abbr] Abbreviated name of the series to look up
 			Return:			Given series language in string form
 			------------------------------------------------------------------
 		"""
-		if self.seriesIsValid(series_name):
-			return self.series[series_name]['lang']
+		if self.seriesIsValid(series_abbr):
+			return self.__series[series_abbr]['lang']
 		return None
 
-	def getSeriesHost(self, series_name):
+	def getSeriesHost(self, series_abbr):
 		"""-------------------------------------------------------------------
 			Function:		[getSeriesHost]
 			Description:	Fetches the given series language
 			Input:			
-			  [series_name]	Name of the series to look up
+			  [series_abbr]	Abbreviated name of the series to look up
 			Return:			Given series host website in string form
 			------------------------------------------------------------------
 		"""
-		if self.seriesIsValid(series_name):
-			return self.series[series_name]['host']
+		if self.seriesIsValid(series_abbr):
+			return self.__series[series_abbr]['host']
 		return None
 
-	def getSeriesCode(self, series_name):
+	def getSeriesCode(self, series_abbr):
 		"""-------------------------------------------------------------------
 			Function:		[getSeriesCode]
 			Description:	Fetches the given series language
 			Input:			
-			  [series_name] Name of the series to look up
+			  [series_abbr] Abbreviated name of the series to look up
 			Return:			Given series web code in string form
 			------------------------------------------------------------------
 		"""
-		if self.seriesIsValid(series_name):
-			return self.series[series_name]['code']
+		if self.seriesIsValid(series_abbr):
+			return self.__series[series_abbr]['code']
 		return None
 
 	def getHostUrl(self, host_name):
@@ -169,7 +197,7 @@ class ConfigData:
 			------------------------------------------------------------------
 		"""
 		if self.hostIsValid(host_name):
-			return self.hosts[host_name]
+			return self.__hosts[host_name]
 
 	#--------------------------------------------------------------------------
 	#  Validation functions
@@ -184,24 +212,24 @@ class ConfigData:
 			Return:			True if host was configured. False otherwise
 			------------------------------------------------------------------
 		"""
-		if host_name not in self.hosts:
+		if host_name not in self.__hosts:
 			print("Host \'%s\' was not initialized from config file!" %
 				host_name)
 			return False
 		return True
 
-	def seriesIsValid(self, series_name):
+	def seriesIsValid(self, series_abbr):
 		"""-------------------------------------------------------------------
 			Function:		[seriesIsValid]
 			Description:	Determines if the given series name was configured
 							and initialized from the user config file
 			Input:			
-			  [series_name] Name of the series to validate
+			  [series_abbr] Abbreviated name of the series to validate
 			Return:			True if series was configured. False otherwise
 			------------------------------------------------------------------
 		"""
-		if series_name not in self.series:
+		if series_abbr not in self.__series:
 			print("Series \'%s\' was not initialized from config file!" %
-				series_name)
+				series_abbr)
 			return False
 		return True

@@ -7,55 +7,64 @@
     ],
     "series": [
         {
-            "name": "Kanna",
-            "lang": "JA",
+            "abbr": "Kanna",
+            "name": "Kanna no Kanna",
+            "lang": "JP",
             "host": "Syosetu",
             "code": "n3877cq"
         },
         {
-            "name": "ChiyuMahou",
-            "lang": "JA",
+            "abbr": "ChiyuMahou",
+            "name": "The Wrong Way to Use Healing Magic",
+            "lang": "JP",
             "host": "Syosetu",
             "code": "n2468ca"
         },
         {
-            "name": "Glitch",
-            "lang": "JA",
+            "abbr": "Glitch",
+            "name": "This World Is a Game but Only I Know It",
+            "lang": "JP",
             "host": "Syosetu",
             "code": "n9078bd"
         },
         {
-            "name": "LV999",
-            "lang": "JA",
+            "abbr": "LV999",
+            "name": "LV999 Villager",
+            "lang": "JP",
             "host": "Syosetu",
             "code": "n7612ct"
         },
         {
-            "name": "BlackSum",
-            "lang": "JA",
+            "abbr": "BlackSum",
+            "name": "Black Summoner",
+            "lang": "JP",
             "host": "Syosetu",
             "code": "n1222ci"
         },
         {
-            "name": "Mismatch",
-            "lang": "JA",
+            "abbr": "Mismatch",
+            "name": "The Student Unsuited for Demon Lord School",
+            "lang": "JP",
             "host": "Syosetu",
             "code": "n1578dx"
         },
         {
-            "name": "Magicex",
-            "lang": "JA",
+            "abbr": "Magicex",
+            "name": "Magical Explorer",
+            "lang": "JP",
             "host": "Syosetu",
             "code": "n2413ep"
         },
         {
-            "name": "Wordmaster",
-            "lang": "JA",
+            "abbr": "Wordmaster",
+            "name": "Konjiki no Wordmaster",
+            "lang": "JP",
             "host": "Syosetu",
             "code": "n7031bs"
         },
         {
-            "name": "GodOfIllusions",
+            "abbr": "GodOfIllusions",
+            "name": "God of Illusions",
             "lang": "CN",
             "host": "69shu",
             "code": "100273"

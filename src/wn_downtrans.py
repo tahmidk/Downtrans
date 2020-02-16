@@ -18,7 +18,6 @@ from stat import S_IREAD, S_IRGRP, S_IROTH 	# Changing file permissions
 import sys, os, io, shutil			# System operations
 import winsound 					# Sounc alarm
 import time 						# For sleeping thread between retries
-import re 							# Regex for parsing HTML
 
 import itertools as it 				# Iteration tool
 import argparse as argp 			# Parse input arguments
@@ -28,10 +27,9 @@ import webbrowser					# Open translation HTMLs in browser
 import ssl 							# For certificate authentication
 
 # Internal dependencies
-import configdata					# Custom config data structure
-#import rawscaninitializer			# Custom raw download and parsing class
+import configdata			# Custom config data structure
+import htmlparser			# Custom html parsing class
 
-# =======================[ WN Constants ]========================
 # =========================[ Constants ]=========================
 # Maximum number of retries on translate and URL fetching
 MAX_TRIES = 5
@@ -51,10 +49,14 @@ CONFIG_FILE_PATH = 	os.path.join("../user_config.json")
 # Format of the divider for .dict file
 DIV = " --> "
 
-# Config data container
+# Global config data container
 config_data = None
+# Global specialized parser
+html_parser = None
 
-# =========================[ Functions ]=========================
+#============================================================================
+#  Initializer functions
+#============================================================================
 def initConfig():
 	"""-------------------------------------------------------------------
 		Function:		[initConfig]
@@ -83,6 +85,7 @@ def initConfig():
 	global config_data
 	config_data = configdata.ConfigData(CONFIG_FILE_PATH)
 
+	# Post-config validation 
 	if config_data.getNumHosts() == 0:
 		print("\n[Error] No hosts detected. Please add at least 1 host in \
 			user_config.json under hosts")
@@ -94,18 +97,36 @@ def initConfig():
 		print("Exiting...")
 		sys.exit(1)
 
-
-def initParser():
+def initEssentialPaths():
 	"""-------------------------------------------------------------------
-		Function:		[initParser]
-		Description:	Initializes the parser and runs sanity checks on 
-						parsed user arguments
+		Function:		[initEssentialPaths]
+		Description:	Creates certain necessary directories if they don't
+						already exist
 		Input:			None
-		Return:			The parser
+		Return:			None
+		------------------------------------------------------------------
+	"""
+	if not os.path.exists(DICT_PATH):
+		os.makedirs(DICT_PATH)
+	if not os.path.exists(RAW_PATH):
+		os.makedirs(RAW_PATH)
+	if not os.path.exists(TRANS_PATH):
+		os.makedirs(TRANS_PATH)
+	if not os.path.exists(LOG_PATH):
+		os.makedirs(LOG_PATH)
+
+def initArgParser():
+	"""-------------------------------------------------------------------
+		Function:		[initArgParser]
+		Description:	Initializes the arg parser and runs sanity checks on 
+						user provided arguments
+		Input:			None
+		Return:			The arg parser
 		------------------------------------------------------------------
 	"""
 	# Initialize parser and description
-	parser = argp.ArgumentParser(description="Download and run special translation on chapters directly from ncode.syosetu.com")
+	parser = argp.ArgumentParser(description="Download and run special \
+		translation on chapters directly from various host websites")
 
 	# Mode flags are mutually exclusive: Either single or batch downtrans
 	mode_flags = parser.add_mutually_exclusive_group(required=True)
@@ -144,76 +165,57 @@ def initParser():
 	# Handle errors or address warnings
 	args = parser.parse_args()
 
-	# Series mapping does not exist in series_map dictionary
-	global series_map
-	if not args.series in series_map:
-		parser.error("The series '"+str(args.series)+"' does not exist in the source code mapping")
+	# Series mapping does not exist in config data
+	global config_data
+	if not config_data.seriesIsValid(args.series):
+		parser.error("The series '"+str(args.series)+"' does not exist in the \
+			source code mapping")
 	# Batch command w/out 'end' chapter argument
 	if args.batch and not args.end:
-		parser.error("For batch downloads, both a start and end chapter are required")
+		parser.error("For batch downloads, both a start and end chapter are \
+			required")
 	# Single commang w/ 'out' chapter argument
 	elif args.one and args.end:
-		print(("[Warning] Detected flag -O for single download-translate but received both a 'start'\nand 'end' argument. Ignoring argument end=%d...." % args.end))
+		print(("[Warning] Detected flag -O for single download-translate but \
+			received both a 'start'\nand 'end' argument. Ignoring argument \
+			end=%d...." % args.end))
 	# Chapter numbering starts at 1
 	if args.start < 1:
-		parser.error("Start chapter argument is a minimum of 1 [start=%d]" % args.start)
+		parser.error("Start chapter argument is a minimum of 1 [start=%d]" % 
+			args.start)
 	# End chapter must be greater than start chapter
 	if args.batch and not (args.start < args.end):
-		parser.error("End chapter must be greater than start chapter [start=%d, end=%d]" % (args.start, args.end))
+		parser.error("End chapter must be greater than start chapter [start=%d,\
+		 end=%d]" % (args.start, args.end))
 
 	return parser
 
-def handleClean():
+def initHtmlParser(host):
 	"""-------------------------------------------------------------------
-		Function:		[handleClean]
-		Description:	Clean the /trans and /raws subdirectories
-		Input:			None
-		Return:			0 upon success. 1 if function fails to remove at least 
-						1 file in either subdirectory
+		Function:		[initHtmlParser]
+		Description:	Initializes the global html parser using the given
+						host name
+		Input:
+		  [host]		The host associated with a given series
+		Return:			0 on success
 		------------------------------------------------------------------
 	"""
-	retcode = 0
+	global html_parser
+	global config_data
 
-	print(("\nCleaning directory: %s..." % RAW_PATH))
-	raw_dir = os.listdir(RAW_PATH)
-	for file in raw_dir:
-		path = os.path.join(RAW_PATH, file)
-		print(("\tremoving [%s]...\t" % path), end='')
-		try:
-			os.remove(path)
-		except OSError:
-			print("Failed")
-			retcode = retcode + 1
-			continue
-		print("Complete")
-
-	print(("\nCleaning directory: %s..." % TRANS_PATH))
-	trans_dir = os.listdir(TRANS_PATH)
-	for file in trans_dir:
-		path = os.path.join(TRANS_PATH, file)
-		print(("\tremoving [%s]...\t" % path), end='')
-		try:
-			os.remove(path)
-		except OSError:
-			print("Failed")
-			retcode = retcode + 1
-			continue
-		print("Complete")
-
-	print(("\nCleaning directory: %s..." % LOG_PATH))
-	log_dir = os.listdir(LOG_PATH)
-	for file in log_dir:
-		path = os.path.join(LOG_PATH, file)
-		print(("\tremoving [%s]...\t" % path), end='')
-		try:
-			os.remove(path)
-		except OSError:
-			print("Failed")
-			retcode = retcode + 1
-			continue
-		print("Complete")
-
-	return retcode
+	if host == "Syosetu":
+		html_parser = htmlparser.SyosetuParser()
+		return 0
+	elif host == "Biquyun":
+		html_parser = htmlparser.BiquyunParser()
+		return 0
+	elif host == "69shu":
+		html_parser = htmlparser.Shu69Parser()
+		return 0
+	
+	print("Unrecognized host %s! Make sure this host has an entry in the\
+		hosts field of user_config.json" % host)
+	sys.exit(1)
 
 def initDict(series):
 	"""-------------------------------------------------------------------
@@ -228,11 +230,14 @@ def initDict(series):
 	# Open dict file in read mode
 	try:
 		dict_name = series.lower() + ".dict"
-		dict_file = io.open(os.path.join(DICT_PATH, dict_name), mode='r', encoding='utf8')
+		dict_file = io.open(os.path.join(DICT_PATH, dict_name), 
+			mode='r', 
+			encoding='utf8'
+		)
 	except Exception:
-		print("[Error] Error opening dictionary file. Make sure '.dict' exists in the dict/ folder... ")
-		print("Proceeding without special translations")
-		return ({}, {})
+		print("[Error] Error opening dictionary file. Make sure '.dict' exists \
+			in the dict/ folder... ")
+		sys.exit(1)
 
 	# Parse the mappings into a list
 	dictList = []
@@ -248,31 +253,121 @@ def initDict(series):
 	dict_file.close()
 	return series_dict
 
+#============================================================================
+#  Utility functions
+#============================================================================
+def handleClean():
+	"""-------------------------------------------------------------------
+		Function:		[handleClean]
+		Description:	Clean the /trans and /raws subdirectories
+		Input:			None
+		Return:			0 upon success. 1 if function fails to remove at least 
+						1 file in either subdirectory
+		------------------------------------------------------------------
+	"""
+	ret = 0
+
+	print(("\nCleaning directory: %s..." % RAW_PATH))
+	raw_dir = os.listdir(RAW_PATH)
+	for file in raw_dir:
+		path = os.path.join(RAW_PATH, file)
+		print(("\tremoving [%s]...\t" % path), end='')
+		try:
+			os.remove(path)
+		except OSError:
+			print("Failed")
+			ret = ret + 1
+			continue
+		print("Complete")
+
+	print(("\nCleaning directory: %s..." % TRANS_PATH))
+	trans_dir = os.listdir(TRANS_PATH)
+	for file in trans_dir:
+		path = os.path.join(TRANS_PATH, file)
+		print(("\tremoving [%s]...\t" % path), end='')
+		try:
+			os.remove(path)
+		except OSError:
+			print("Failed")
+			ret = ret + 1
+			continue
+		print("Complete")
+
+	print(("\nCleaning directory: %s..." % LOG_PATH))
+	log_dir = os.listdir(LOG_PATH)
+	for file in log_dir:
+		path = os.path.join(LOG_PATH, file)
+		print(("\tremoving [%s]...\t" % path), end='')
+		try:
+			os.remove(path)
+		except OSError:
+			print("Failed")
+			ret = ret + 1
+			continue
+		print("Complete")
+
+	return ret
+
+def openBrowser(series, ch):
+	"""-------------------------------------------------------------------
+		Function:		[openBrowser]
+		Description:	Opens a given chapter in select browser
+		Input:
+		  [series]		The series name
+		  [ch]			The chapter to open
+		Return:			N/A
+		------------------------------------------------------------------
+	"""
+	global config_data
+	if config_data.getPreferredBrowser() is None:
+		print("No preferred browser detected. Please open translation files \
+			manually or input a path for your preferred browser .exe file in \
+			user_config.json")
+	else:
+		path_trans = TRANS_PATH + "t%s_%d.html" % (series, ch)
+		try:
+			webbrowser.get('google-chrome').open('file://' + \
+				os.path.realpath(path_trans)
+			)
+		except OSError:
+			print("\n[Error] The preferred browser [%s] does not exist. \
+				Skipping" % PREFERRED_BROWSER_PATH)
+		except Exception:
+			print("\n[Error] Cannot open the preferred reader [%s]. \
+				Skipping" % PREFERRED_BROWSER_PATH)
+
+#============================================================================
+#  Web scraping functions
+#============================================================================
 def getSeriesURL(series, ch):
 	"""-------------------------------------------------------------------
 		Function:		[getSeriesURL]
 		Description:	Returns the complete url for the series and chapter
 		Input:			
-		  [series]		The series to build url off of
-		  [ch]			The chapter to build url off of
+		  [series]		The series to build url for
+		  [ch]			The chapter to build url for
 		Return: 		The full URL of the page containing chapter [ch] of
 						[series]
 		------------------------------------------------------------------
 	"""
-	global series_map
-	return syosetu_url + series_map[series] + "/" + str(ch) + "/"
+	global config_data
+	base_url = config_data.getHostUrl(config_data.getSeriesHost(series))
+	series_code = config_data.getSeriesCode(series)
 
-def fetchHTML(url):
+	series_url = base_url + series_code + "/" + str(ch) + "/"
+	return series_url
+
+def fetchHTML(url, lang):
 	"""-------------------------------------------------------------------
 		Function:		[fetchHTML]
 		Description:	Tries to prompt a response url and return the received
 						HTML content as a UTF-8 decoded string
 		Input:			
 		  [url]			The url to make the request to
+		  [lang]		The page's language, determines decoding scheme
 		Return: 		The HTML content of the given website address
 		------------------------------------------------------------------
 	"""
-	# Request NCode page
 	tries = 0
 	while True:
 		try:
@@ -283,61 +378,30 @@ def fetchHTML(url):
 		# Some error has occurred
 		except Exception as e:
 			tries += 1
-			print("\n[Error] Could not get response from <%s>... Retrying [tries=%d]" % (url, tries))
+			print("\n[Error] Could not get response from <%s>... Retrying \
+				[tries=%d]" % (url, tries))
 			time.sleep(2)
 		
 		if tries == MAX_TRIES:
-			print("\n[Error] Max tries reached. No response from <%s>. Make sure this URL exists" % url)
+			print("\n[Error] Max tries reached. No response from <%s>. Make \
+				sure this URL exists" % url)
 			return None
 
-
+	# Read and decode the response according to series language
 	source = response.read()
-	data = source.decode('utf8')
+	if lang == "JP":
+		data = source.decode('utf8')
+	elif lang == "CN":
+		data = source.decode('gbk')
+	else:
+		print("Unrecognized language option: \'%s\'" % lang)
+		sys.exit(1)
+
 	return data
 
-def parseTitle(html):
-	"""-------------------------------------------------------------------
-		Function:		[parseTitle]
-		Description:	Parses the title from the html source code
-		Input:
-		  [html]	The HTML source code in string form		
-		Return:			The string representing the chapter title
-		-------------------------------------------------------------------
-	"""
-	title = re.findall(r'<p class="novel_subtitle">(.*?)</p>', html)
-	return title[0]
-
-def parseContent(html):
-	"""-------------------------------------------------------------------
-		Function:		[parseContent]
-		Description:	Parses the chapter content from the html source code
-		Input:
-		  [html]	The HTML source code in string form		
-		Return:			A list constisting of each line of content from the 
-						chapter
-		-------------------------------------------------------------------
-	"""
-	content = []
-
-	# Parse lines and make them readable before adding them to content
-	lines = re.findall(r'<p id="L(.*?)">(.*?)</p>', html)
-	lines = [l[1] for l in lines]
-	for line in lines:
-		# Turn break tags into new lines
-		if line == '<br />':
-			content.append('\n')
-		else:
-			# Filter out <ruby> tags that are commonly found in line
-			if "<ruby>" in line:
-				line = re.sub(r'<ruby>(.*?)<rb>(.*?)</rb>(.*?)</ruby>', 
-					r'\2', line)
-			content.append(line)
-		content.append('\n')
-
-	#import pdb; pdb.set_trace()
-	return content
-
-
+#============================================================================
+#  Writer functions
+#============================================================================
 def writeRaw(series, ch, content):
 	"""-------------------------------------------------------------------
 		Function:		[writeRaw]
@@ -352,7 +416,10 @@ def writeRaw(series, ch, content):
 	# Open raw file in write mode
 	try:
 		raw_name = "r%s_%d.txt" % (series, ch)
-		raw_file = io.open(os.path.join(RAW_PATH, raw_name), mode='w', encoding='utf8')
+		raw_file = io.open(os.path.join(RAW_PATH, raw_name),
+			mode='w', 
+			encoding='utf8'
+		)
 	except Exception:
 		print(("[Error] Error opening raw file [%s]" % raw_name))
 		print("\nExiting...")
@@ -460,7 +527,10 @@ def writeTrans(series, ch, title, series_dict, log_file):
 	# Initialize trans_file
 	try:
 		trans_name = "t%s_%d.html" % (series, ch)
-		trans_file = io.open(os.path.join(TRANS_PATH, trans_name), mode='w', encoding='utf8')
+		trans_file = io.open(os.path.join(TRANS_PATH, trans_name), 
+			mode='w', 
+			encoding='utf8'
+		)
 	except Exception:
 		print(("[Error] Error opening translation file [%s]" % trans_name))
 		print("\nExiting...")
@@ -469,7 +539,10 @@ def writeTrans(series, ch, title, series_dict, log_file):
 	# Open raw_file
 	try:
 		raw_name = "r%s_%d.txt" % (series, ch)
-		raw_file = io.open(os.path.join(RAW_PATH, raw_name), mode='r', encoding='utf8')
+		raw_file = io.open(os.path.join(RAW_PATH, raw_name), 
+			mode='r', 
+			encoding='utf8'
+		)
 	except Exception:
 		print(("[Error] Error opening raw file [%s]" % raw_name))
 		print("\nExiting...")
@@ -477,7 +550,10 @@ def writeTrans(series, ch, title, series_dict, log_file):
 
 	# Open and read reference html
 	try:
-		resource_file = io.open(os.path.join(RESOURCE_PATH), mode='r', encoding='utf8')
+		resource_file = io.open(os.path.join(RESOURCE_PATH), 
+			mode='r', 
+			encoding='utf8'
+		)
 		resource_string = resource_file.read()
 		resource_string = setPageTitle(resource_string, "%s | %d" % (series, ch))
 		resource_string = setChapterTitle(resource_string, title)
@@ -513,10 +589,14 @@ def writeTrans(series, ch, title, series_dict, log_file):
 		prepped = line
 		for entry in series_dict:
 			if entry in prepped:
-				log_file.write("\n\tDetected token %s in line. Replacing with %s" % (entry, series_dict[entry]))
-				placeholder = "<span class=\"placeholder\" id=%d>placeholder</span>" % placeholder_id
-				new_entry = "<span class=\"notranslate\" id=w%d>%s</span>" % (placeholder_id, series_dict[entry])
-				prepped = prepped.replace(entry, "%s%s" % (new_entry, placeholder))
+				log_file.write("\n\tDetected token %s in line. Replacing \
+					with %s" % (entry, series_dict[entry]))
+				placeholder = "<span class=\"placeholder\" id=%d>placeholder\
+					</span>" % placeholder_id
+				new_entry = "<span class=\"notranslate\" id=w%d>%s</span>" % 
+					(placeholder_id, series_dict[entry])
+				prepped = prepped.replace(entry, "%s%s" % 
+					(new_entry, placeholder))
 				
 				log_file.write("\n\tPrepped=%s" % prepped)
 				placeholder_id += 1
@@ -532,28 +612,6 @@ def writeTrans(series, ch, title, series_dict, log_file):
 	raw_file.close()
 	trans_file.close()
 	return ret
-
-def openBrowser(series, ch):
-	"""-------------------------------------------------------------------
-		Function:		[openBrowser]
-		Description:	Opens a given chapter in select browser
-		Input:
-		  [series]		The series name
-		  [ch]			The chapter to open
-		Return:			N/A
-		------------------------------------------------------------------
-	"""
-	path_trans = TRANS_PATH + "t%s_%d.html" % (series, ch)
-	if len(PREFERRED_BROWSER_PATH) == 0:
-		print("No preferred browser detected. Please open translation files manually\
-			or input a path for your preferred browser .exe file in user_config.txt")
-	else:
-		try:
-			webbrowser.open('file://' + os.path.realpath(path_trans))
-		except OSError:
-			print("\n[Error] The preferred browser [%s] does not exist. Skipping" % PREFERRED_BROWSER_PATH)
-		except Exception:
-			print("\n[Error] Cannot open the preferred reader [%s]. Skipping" % PREFERRED_BROWSER_PATH)
 
 # =========================[ Script ]=========================
 def batch_procedure(series, ch_queue):
@@ -604,7 +662,6 @@ def default_procedure(series, ch):
 	"""
 	# Ret code: 0 - success, non-0 - failure
 	ret = 0
-	initConfig(False)
 
 	# Fetch the html source code
 	url = getSeriesURL(series, ch)
@@ -613,19 +670,23 @@ def default_procedure(series, ch):
 		return 1
 
 	# Parse out relevant content from the website source code
-	title = parseTitle(html)
-	content = parseContent(html)
+	global html_parser
+	title = html_parser.parseTitle(html)
+	content = html_parser.parseContent(html)
 	ret += writeRaw(series, ch, content)
 
-	# Translate and write trans_file
+	# Initialize series dictionary
 	series_dict = initDict(series)
+
+	# Try to open a log file to log translation details
 	try:
-		# Open log file in write mode
 		log_name ="l%s_%d.log" % (series, ch)
 		log_file = io.open(os.path.join(LOG_PATH, log_name), mode='w', encoding='utf8')
 	except Exception:
 		print("[Error] Error opening log file... ")
-		return -1
+		return 1
+
+	# Write translation as HTML
 	ret += writeTrans(series, ch, title, series_dict, log_file)
 	log_file.close()
 
@@ -634,10 +695,11 @@ def default_procedure(series, ch):
 
 def main():
 	start = timer()
-	initConfig(True)
+	#Initialize config data from user_config.json
+	initConfig()
 
 	# Fetch arguments from parser
-	parser = initParser()
+	parser = initArgParser()
 	args = parser.parse_args()
 	# Initialize arguments
 	mode_batch = args.batch
@@ -647,14 +709,9 @@ def main():
 	ch_end = args.end
 
 	# Create subdirectories if they don't already exist
-	if not os.path.exists(DICT_PATH):
-		os.makedirs(DICT_PATH)
-	if not os.path.exists(RAW_PATH):
-		os.makedirs(RAW_PATH)
-	if not os.path.exists(TRANS_PATH):
-		os.makedirs(TRANS_PATH)
-	if not os.path.exists(LOG_PATH):
-		os.makedirs(LOG_PATH)
+	initEssentialPaths()
+	# Initialize the HTML parser corresponding to the host of this series
+	initHtmlParser(config_data.getSeriesHost(series))
 
 	# Different execution paths depending on mode
 	if mode_batch:
@@ -665,7 +722,7 @@ def main():
 		err_code = default_procedure(series, ch_start)
 		if err_code != 0:
 			print("[Error] Could not download or translate. Exiting")
-			sys.exit(5)
+			sys.exit(1)
 		openBrowser(series, ch_start)
 	else:
 		print("[Error] Unexpected mode")
@@ -684,8 +741,8 @@ def main():
 	return 0
 
 if __name__ == '__main__':
-	# Check python version. Only run this script w/ Python 2
+	# Check python version. Only run this script w/ Python 3
 	if not sys.version_info[0] == 3:
-		print("[Error] Please run this with Python 3 only")
+		print("[Error] Must run this script w/ Python 3.X.X")
 	main()
 

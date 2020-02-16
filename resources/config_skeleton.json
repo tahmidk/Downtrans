@@ -7,8 +7,9 @@
     ],
     "series": [
         {
-            "name": "SeriesName",
-            "lang": "JA or CN",
+            "abbr": "SeriesAbbreviation",
+            "name": "The Full Series Title",
+            "lang": "JP or CN",
             "host": "Syosetu",
             "code": "n1234aa"
         }
