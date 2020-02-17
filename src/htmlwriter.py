@@ -5,23 +5,24 @@
   Description:	This module is responsible for modifying and writing the
   				pre-processed HTML version of a given chapter translation
 """
-import os
+import os 		# OS level operations
+import io 		# File reading/writing
 import re 		# Regex for parsing
 
 class HtmlWriter:
 	#--------------------------------------------------------------------------
 	#  ctor
 	#--------------------------------------------------------------------------
-	def __init__(self, skeleton_path):
+	def __init__(self, res_path):
 		"""-------------------------------------------------------------------
 			Function:		[CONSTRUCTOR]
 			Description:	Reads in the skeleton.html resource file
 			Input:			
-			  [skeleton_path]	Path to skeleton.html
+			  [res_path]	Path to skeleton.html resource
 			------------------------------------------------------------------
 		"""
-		with open(os.path.join(skeleton_path), mode='r') as resource_file:
-			self.__resource = resource_file.read()
+		with io.open(os.path.join(res_path), mode='r', encoding='utf8') as res:
+			self.__resource = res.read()
 
 	#--------------------------------------------------------------------------
 	#  Modification functions

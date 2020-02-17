@@ -16,12 +16,10 @@ from urllib.request import Request, urlopen	# Fetch URL Requests
 from stat import S_IREAD, S_IRGRP, S_IROTH 	# Changing file permissions
 
 import sys, os, io, shutil			# System operations
-import winsound 					# Sound alarm
+import multiprocessing as mp 		# General mp utilities
 import time 						# For sleeping thread between retries
 
-#import itertools as it 				# Iteration tool
 import argparse as argp 			# Parse input arguments
-import multiprocessing as mp 		# Multiprocessing tasks
 import webbrowser					# Open translation HTMLs in browser
 import platform						# Used to determine Operating System
 import ssl 							# For certificate authentication
@@ -35,10 +33,6 @@ import htmlwriter			# Custom html writing class
 # Maximum number of retries on translate and URL fetching
 MAX_TRIES = 5
 
-# Sound alarm constants
-ALARM_DUR = 100 	# milliseconds (ms)
-ALARM_FREQ = 600 	# hertz (Hz)
-
 # File paths
 DICT_PATH = 		os.path.join("../dicts/")
 RAW_PATH = 			os.path.join("../raws/")
@@ -49,13 +43,18 @@ RESOURCE_PATH = 	os.path.join("../resources/")
 CONFIG_FILE_PATH = 	os.path.join("../user_config.json")
 
 # Format of the divider for .dict file
-DIV = " --> "
+DIV = r' --> '
 
 # =========================[  Globals  ]=========================
 config_data = None   # Global config data container initialized by initConfig
 html_parser = None 	 # Global specialized parser initialized by initHtmlParser
 series_dict = None   # Global series-specific dict initialized by initDict
 page_table  = None 	 # Global series-specific page table init by initPageTable
+
+# Simple package class to share globals w/ child processes
+class GlobalsPackage:
+	def packGlobal(self, var_name):
+		exec("setattr(self, \'%s\', %s)" % (var_name, var_name))
 
 
 #============================================================================
@@ -237,7 +236,7 @@ def initDict(series):
 		print("No dictionary exists for this series... Creating new dictionary")
 		try:
 			dict_file = io.open(dict_path, mode='w', encoding='utf8')
-			dict_file.write("// NCode Link: %s\n" % getSeriesUrl(series, None))
+			dict_file.write("// NCode Link: %s\n" % getSeriesUrl(series))
 			dict_file.write("\n// Example comment (starts w/ \'//\''). \
 				Example entry below\n")
 			dict_file.write(u'ナルト --> Naruto\n')
@@ -293,7 +292,7 @@ def initPageTable(series):
 	# If .table DNE for this series, parse it from web and write one
 	elif not os.path.exists(series_table) or os.path.getsize(series_table) == 0:
 		print("No table file exists for this series... Creating a new table")
-		series_index_url = getSeriesUrl(series, None)
+		series_index_url = getSeriesUrl(series)
 		series_index_html = fetchHTML(series_index_url)
 		page_table = html_parser.parsePageTableFromWeb(series_index_html)
 
@@ -339,7 +338,7 @@ def handleClean():
 	raw_dir = os.listdir(RAW_PATH)
 	for file in raw_dir:
 		path = os.path.join(RAW_PATH, file)
-		print(("\tremoving [%s]...\t" % path), end='')
+		print(("  removing %-30s:\t" % path), end='')
 		try:
 			os.remove(path)
 		except OSError:
@@ -353,7 +352,7 @@ def handleClean():
 	trans_dir = os.listdir(TRANS_PATH)
 	for file in trans_dir:
 		path = os.path.join(TRANS_PATH, file)
-		print(("\tremoving [%s]...\t" % path), end='')
+		print(("  removing %-30s:\t" % path), end='')
 		try:
 			os.remove(path)
 		except OSError:
@@ -367,7 +366,7 @@ def handleClean():
 	log_dir = os.listdir(LOG_PATH)
 	for file in log_dir:
 		path = os.path.join(LOG_PATH, file)
-		print(("\tremoving [%s]...\t" % path), end='')
+		print(("  removing %-30s:\t" % path), end='')
 		try:
 			os.remove(path)
 		except OSError:
@@ -416,27 +415,45 @@ def openBrowser(series, ch):
 #============================================================================
 #  Web scraping functions
 #============================================================================
-def getSeriesUrl(series, ch):
+def getSeriesUrl(series):
 	"""-------------------------------------------------------------------
 		Function:		[getSeriesUrl]
-		Description:	Returns the complete url for the series and chapter
+		Description:	Returns the base url for the series
 		Input:
 		  [series]		The series to build url for
-		  [ch]			The chapter to build url for (>= 1). May be None
 		Return: 		The full URL of the page containing chapter [ch] of
 						[series] or just the series index URL if ch is None
 		------------------------------------------------------------------
 	"""
 	global config_data
+
+	# Build the url for this series table of contents page
 	base_url = config_data.getHostUrl(config_data.getSeriesHost(series))
 	series_code = config_data.getSeriesCode(series)
+	series_url = base_url + series_code + "/"
+	return series_url
 
-	if ch is None:
-		series_url = base_url + series_code + "/"
-	else:
-		global page_table
-		chapter_code = str(ch) if page_table is None else page_table[int(ch)-1]
-		series_url = base_url + series_code + "/" + chapter_code + "/"
+def getChapterUrl(series, ch, globals_pkg):
+	"""-------------------------------------------------------------------
+		Function:		[getChapterUrl]
+		Description:	Returns the complete url for the series and chapter
+		Input:
+		  [series]		The series to build url for
+		  [ch]			The chapter to build url for
+		  [globals_pkg]	Globals package
+		Return: 		The full URL of the page containing chapter [ch] of
+						[series] or just the series index URL if ch is None
+		------------------------------------------------------------------
+	"""
+	# Unpack the needed globals
+	config_data = globals_pkg.config_data
+	page_table = globals_pkg.page_table
+
+	# Build the url for this chapter
+	base_url = config_data.getHostUrl(config_data.getSeriesHost(series))
+	series_code = config_data.getSeriesCode(series)
+	chapter_code = str(ch) if page_table is None else page_table[int(ch)-1]
+	series_url = base_url + series_code + "/" + chapter_code + "/"
 
 	return series_url
 
@@ -478,7 +495,8 @@ def fetchHTML(url, lang):
 		data = source.decode('gbk')
 	else:
 		print("Unrecognized language option: \'%s\'" % lang)
-		sys.exit(1)
+		print("Defaulting to deciding as UTF8")
+		data = source.decode('utf8')
 
 	return data
 
@@ -490,9 +508,9 @@ def writeRaw(series, ch, content):
 		Function:		[writeRaw]
 		Description:	Write raw to raw file
 		Input:
-		  [series]	The series to write raw for
-		  [ch]		The chapter number to write raw for
-		  [content]	The (raw) content to write, a list
+		  [series]		The series to write raw for
+		  [ch]			The chapter number to write raw for
+		  [content]		The (raw) content to write, a list
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
@@ -517,18 +535,20 @@ def writeRaw(series, ch, content):
 	raw_file.close()
 	return 0
 
-def writeTrans(series, ch, log_file):
+def writeTrans(series, ch, globals_pkg):
 	"""-------------------------------------------------------------------
 		Function:		[writeTrans]
 		Description:	Write translations to trans file
 		Input:
 		  [series]		The series to write translation for
 		  [ch]			The chapter number to write translation for
-		  [log_file]	The associated log file for this translation
+		  [globals_pkg]	Globals package
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
-	global series_dict
+	# Unpack necessary globals
+	series_dict = globals_pkg.series_dict
+	config_data = globals_pkg.config_data
 
 	# Initialize trans_file
 	try:
@@ -539,7 +559,7 @@ def writeTrans(series, ch, log_file):
 		)
 	except Exception:
 		print(("[Error] Error opening translation file [%s]" % trans_name))
-		print("\nExiting...")
+		print("Exiting...")
 		return 1
 
 	# Open raw_file
@@ -551,11 +571,19 @@ def writeTrans(series, ch, log_file):
 		)
 	except Exception:
 		print(("[Error] Error opening raw file [%s]" % raw_name))
-		print("\nExiting...")
+		print("Exiting...")
 		return 1
 
+	# Open log file
+	try:
+		log_name ="l%s_%d.log" % (series, ch)
+		log_file = io.open(os.path.join(LOG_PATH, log_name), mode='w', encoding='utf8')
+	except Exception:
+		print("[Error] Error opening log file [%s]... " % log_name, end='')
+		print("Proceeding without logs")
+		log_file = open(os.devnull, 'w')
+
 	# Initialize HTML Writer
-	global config_data
 	skeleton_path = RESOURCE_PATH + "skeleton.html"
 	html_writer = htmlwriter.HtmlWriter(skeleton_path)
 	html_writer.setPageTitle("%s | %d" % (series, ch))
@@ -608,17 +636,19 @@ def writeTrans(series, ch, log_file):
 	print(("Downtrans [t%s_%s.html] complete!" % (series, ch)))
 	raw_file.close()
 	trans_file.close()
+	log_file.close()
 	return ret
 
 # =========================[ Script ]=========================
-def batch_procedure(series, ch_queue):
+def batch_procedure(series, ch_queue, globals_pkg):
 	"""-------------------------------------------------------------------
 		Function:		[batch_procedure]
 		Description:	Does the default procedure on each chapter in the list
 						of [chapters]
 		Input:
-		  [series]	 The series for which to downtrans chapter
-		  [ch_queue] The list of chapter numbers to downtrans
+		  [series]	 	The series for which to downtrans chapter
+		  [ch_queue] 	The list of chapter numbers to downtrans
+		  [globals_pkg]	Globals package
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
@@ -627,7 +657,7 @@ def batch_procedure(series, ch_queue):
 
 	# Multiprocess queue of chapters requested
 	pool = mp.Pool(processes=mp.cpu_count())
-	args = [(series, ch) for ch in ch_queue]
+	args = [(series, ch, globals_pkg) for ch in ch_queue]
 
 	results = pool.imap_unordered(_default_procedure, args)
 	pool.close()
@@ -643,15 +673,16 @@ def _default_procedure(args):
 	""" Simple wrapper method for pooling default_procedure """
 	return default_procedure(*args)
 
-def default_procedure(series, ch):
+def default_procedure(series, ch, globals_pkg):
 	"""-------------------------------------------------------------------
 		Function:		[default_procedure]
 		Description:	Downloads and saves a raw for chapter [ch] of series 
 						[series] and translates chapter with the dict 
 						associated with [series]
 		Input:
-		  [series]	The series for which to downtrans chapter
-		  [ch]		The integer indicating which chapter to downtrans
+		  [series]		The series for which to downtrans chapter
+		  [ch]			The integer indicating which chapter to downtrans
+		  [globals_pkg]	Globals package
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
@@ -663,30 +694,20 @@ def default_procedure(series, ch):
 	raw_chapter_path = os.path.join(RAW_PATH + raw_name)
 	if not os.path.exists(raw_chapter_path):
 		# Fetch the html source code
-		url = getSeriesUrl(series, ch)
-		global config_data
+		url = getChapterUrl(series, ch, globals_pkg)
+		config_data = globals_pkg.config_data
 		html = fetchHTML(url, config_data.getSeriesLang(series))
 		if html is None:
 			return 1
 
 		# Parse out relevant content from the website source code
-		global html_parser
+		html_parser = globals_pkg.html_parser
 		title = html_parser.parseTitle(html)
 		content = [title, u'\n'] + html_parser.parseContent(html)
 		ret += writeRaw(series, ch, content)
 
-	# Try to open a log file to log translation details
-	try:
-		log_name ="l%s_%d.log" % (series, ch)
-		log_file = io.open(os.path.join(LOG_PATH, log_name), mode='w', encoding='utf8')
-	except Exception:
-		print("[Error] Error opening log file... Proceeding without logs")
-		log_file = open(os.devnull, 'w')
-
 	# Write translation as HTML
-	ret += writeTrans(series, ch, log_file)
-	log_file.close()
-
+	ret += writeTrans(series, ch, globals_pkg)
 	return ret
 
 
@@ -717,13 +738,20 @@ def main():
 	# Initialize series dictionary
 	initDict(series)
 
+	# Package the finished globals as a Python equivalent of a C-struct
+	globals_pkg = GlobalsPackage()
+	globals_pkg.packGlobal("config_data")
+	globals_pkg.packGlobal("html_parser")
+	globals_pkg.packGlobal("series_dict")
+	globals_pkg.packGlobal("page_table")
+
 	# Different execution paths depending on mode
 	if mode_batch:
 		chapters = list(range(ch_start, ch_end+1))
-		batch_procedure(series, chapters)
+		batch_procedure(series, chapters, globals_pkg)
 		openBrowser(series, ch_start)
 	elif mode_single:
-		err_code = default_procedure(series, ch_start)
+		err_code = default_procedure(series, ch_start, globals_pkg)
 		if err_code != 0:
 			print("[Error] Could not download or translate. Exiting")
 			sys.exit(1)
@@ -740,8 +768,6 @@ def main():
 		print(("  Elapsed Time: %.2f min" % elapsed))
 	else:
 		print(("  Elapsed Time: %.2f sec" % elapsed))
-
-	winsound.Beep(ALARM_FREQ, ALARM_DUR)
 	return 0
 
 if __name__ == '__main__':
