@@ -30,12 +30,15 @@ class ConfigData:
 			# Initialize preferred browser path and counters
 			self.__num_hosts = len(config['hosts'])
 			self.__num_series = len(config['series'])
-			self.__browser = config['preferredBrowser'] if 
-				len(config['preferredBrowser']) == 0 else None
-			print("Preferred Browser: %s\n" % 
+			browser = config['chrome_path']
+			self.__browser = browser.rstrip() if len(browser) != 0 else None
+
+			print("\n" + DIVIDER_BOLD)
+			print("  chrome.exe Path: %s" % 
 				self.__browser if self.__browser is not None else
 				"UNSET (Do not automatically open translations in browser)"
 			)
+			print(DIVIDER_BOLD + "\n")
 
 			# Initialize list of host websites
 			self.initHostMap(config['hosts'])
@@ -56,12 +59,12 @@ class ConfigData:
 		"""
 		self.__hosts = {}
 		print(DIVIDER_BOLD)
-		print("Detected Host Websites:")
+		print("  Detected Host Websites:")
 		print(DIVIDER_THIN)
 		for entry in hosts:
 			self.__hosts[entry['host_name']] = entry['base_url']
-			print("\t%-20s: %s" % (entry['host_name'], entry['base_url']))
-		print(DIVIDER_BOLD)
+			print("  %-15s: %s" % (entry['host_name'], entry['base_url']))
+		print(DIVIDER_BOLD + "\n")
 
 	def initSeriesMap(self, series):
 		"""-------------------------------------------------------------------
@@ -74,7 +77,7 @@ class ConfigData:
 		"""
 		self.__series = {}
 		print(DIVIDER_BOLD)
-		print("Detected Series Data:")
+		print("  Detected Series Data:")
 		print(DIVIDER_THIN)
 		for entry in series:
 			# Each series host must have a corresponding entry in self.__hosts
@@ -87,20 +90,20 @@ class ConfigData:
 				sys.exit(1)
 
 			self.__series[entry['abbr']] = {
-				'name': entry['name']
+				'name': entry['name'],
 				'lang': entry['lang'],
 				'host': entry['host'],
 				'code': entry['code']
 			}
-			print("\t%-20s: lang=%-5s abbr=%-10s code=%-10s host=%s" % (
-					entry['name'],
-					entry['lang'],
+			print("  %-15s: lang=%-3s code=%-10s host=%-10s title=%s" % (
 					entry['abbr'],
+					entry['lang'],
+					entry['code'],
 					entry['host'],
-					entry['code']
+					entry['name']
 				)
 			)
-		print(DIVIDER_BOLD)
+		print(DIVIDER_BOLD + "\n")
 
 	#--------------------------------------------------------------------------
 	#  Accessor functions
@@ -125,9 +128,9 @@ class ConfigData:
 		"""
 		return self.__num_series
 
-	def getPreferredBrowser(self):
+	def getChromePath(self):
 		"""-------------------------------------------------------------------
-			Function:		[getPreferredBrowser]
+			Function:		[getChromePath]
 			Description:	Fetches the user provided preferred browser path
 			Input:			None
 			Return:			Preferred browser local absolute path
