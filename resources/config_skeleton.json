@@ -1,0 +1,17 @@
+{
+    "preferred_browser": "C:/path/to/browser/dot/exe",
+    "hosts": [
+        { "host_name": "Syosetu",   "base_url": "https://ncode.syosetu.com/"},
+        { "host_name": "Biquyun",   "base_url": "https://www.biquyun.com/"},
+        { "host_name": "69shu",     "base_url": "https://www.69shu.org/book/"}
+    ],
+    "series": [
+        {
+            "abbr": "SeriesAbbreviation",
+            "name": "The Full Series Title",
+            "lang": "JP or CN",
+            "host": "Syosetu",
+            "code": "n1234aa"
+        }
+    ]
+}

@@ -1,0 +1,73 @@
+{
+    "chrome_path": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+    "hosts": [
+        { "host_name": "Syosetu",   "base_url": "https://ncode.syosetu.com/"},
+        { "host_name": "Biquyun",   "base_url": "https://www.biquyun.com/"},
+        { "host_name": "69shu",     "base_url": "https://www.69shu.org/book/"}
+    ],
+    "series": [
+        {
+            "abbr": "Kanna",
+            "name": "Kanna no Kanna",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n3877cq"
+        },
+        {
+            "abbr": "ChiyuMahou",
+            "name": "The Wrong Way to Use Healing Magic",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n2468ca"
+        },
+        {
+            "abbr": "Glitch",
+            "name": "This World Is a Game but Only I Know It",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n9078bd"
+        },
+        {
+            "abbr": "LV999",
+            "name": "LV999 Villager",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n7612ct"
+        },
+        {
+            "abbr": "BlackSum",
+            "name": "Black Summoner",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n1222ci"
+        },
+        {
+            "abbr": "Mismatch",
+            "name": "The Student Unsuited for Demon Lord School",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n1578dx"
+        },
+        {
+            "abbr": "Magicex",
+            "name": "Magical Explorer",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n2413ep"
+        },
+        {
+            "abbr": "Wordmaster",
+            "name": "Konjiki no Wordmaster",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n7031bs"
+        },
+        {
+            "abbr": "GodOfIllusions",
+            "name": "God of Illusions",
+            "lang": "CN",
+            "host": "69shu",
+            "code": "100273"
+        }
+    ]
+}
