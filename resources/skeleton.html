@@ -6,36 +6,42 @@
 
 	<title><!--PAGE_TITLE--></title>
 
-  <!-- Stylesheet + Script -->
+  <!-- Script references -->
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="../resources/wnmtl_script.js"></script>
+  <!--<script src="https://raw.githubusercontent.com/tahmidk/Downtrans/master/resources/wnmtl_script.js"></script>-->
+
+  <!-- Typeface and stylesheet links -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../resources/stylesheet.css">
-  <script src="../resources/wnmtl_script.js"></script>
 
 </head>
 <body>
   <!-- Main body -->
 	<section>
-  		<h1><!--CHAPTER_TITLE--></h1>
-  		<hr style="margin-top: 0.5em; margin-bottom: 2em;">
-  		<!--END_OF_BODY-->
-      <div id="bottom_marker" class="incomplete"></div>
+    <!-- Night and day mode toggle -->
+    <ul>
+    	<li>
+     		<span>Night ☾</span>
+     		<span>Day ☼</span>
+    	</li>
+    </ul>
+
+    <!-- The chapter title and number -->
+    <div class="header_div">
+      <h1><!--CHAPTER_TITLE--></h1>
+      <h2><!--CHAPTER_NUMBER--></h2>
+    </div>
+    <div class="pigpanda_div">
+      <img class="pigpanda_png" src="../resources/pigpanda.png"/>
+    </div>
+		<!--<hr style="margin-top: 0.5em; margin-bottom: 2em;">-->
+
+    <!-- The chapter content goes here line by line -->
+		<!--END_OF_BODY-->    
  	</section>
-
-  <!-- Night and day mode toggle -->
-  <ul>
-  	<li>
-   		<span>Night ☾</span>
-   		<span>Day ☼</span>
-  	</li>
-  </ul>
-
-  <!-- Previous and next chapter buttons -->
-  <a class="prev_button" href="PREV_CHAPTER_ANCHOR"> 🡠 Prev </a>
-  <a class="next_button" href="NEXT_CHAPTER_ANCHOR"> Next 🡢 </a>  
 
   <!-- Fade outs on smaller screens-->
   <div class="fade_div"> </div>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </body>
 </html>
