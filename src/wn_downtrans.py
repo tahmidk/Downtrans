@@ -585,48 +585,26 @@ def writeTrans(series, ch, globals_pkg):
 
 	# Initialize HTML Writer
 	skeleton_path = RESOURCE_PATH + "skeleton.html"
-	html_writer = htmlwriter.HtmlWriter(skeleton_path)
-	html_writer.setPageTitle("%s | %d" % (series, ch))
+	html_writer = htmlwriter.HtmlWriter(series_dict, log_file, skeleton_path)
+	html_writer.setPageTitle(series, ch)
 	html_writer.setChapterTitle(config_data.getSeriesTitle(series))
+	html_writer.setChapterNumber(str(ch))
 
 	# Count number of lines in raw source file
-	num_lines = 0
 	raw_list = []
 	for line in raw_file: 
-		num_lines += 1
 		raw_list.append(line)
 
-	ret = 0
+	num_lines = len(raw_list)
 	line_num = 0
-	placeholder_id = 1
 	for line in tqdm(raw_list, total=num_lines):
 		line_num += 1
-
 		# Skip blank lines
-		if line == '\n':
-			html_writer.insertBlankLine()
-			continue
-
-		# Check raw text against dictionary and replace matches
-		log_file.write("\n[L%d] Processing non-blank line..." % line_num)
-		line = line + '\n'
-		prepped = line
-		for entry in series_dict:
-			if entry in prepped:
-				log_file.write("\n\tDetected token %s in line. Replacing \
-					with %s" % (entry, series_dict[entry]))
-				placeholder = "<span class=\"placeholder\" id=%d>placeholder\
-					</span>" % placeholder_id
-				new_entry = "<span class=\"notranslate\" id=w%d>%s</span>" % \
-					(placeholder_id, series_dict[entry])
-				prepped = prepped.replace(entry, "%s%s" % \
-					(new_entry, placeholder))
-				
-				log_file.write("\n\tPrepped=%s" % prepped)
-				placeholder_id += 1
-
-		# Add line to the resource string
-		html_writer.insertLine(prepped)
+		if line != '\n':
+			# Check raw text against dictionary and replace matches
+			log_file.write("\n[L%d] Processing non-blank line..." % line_num)
+			html_writer.insertLine(line)
+		html_writer.insertBlankLine()
 
 	# Write to trans file
 	resource_string = html_writer.getResourceString()
@@ -637,7 +615,7 @@ def writeTrans(series, ch, globals_pkg):
 	raw_file.close()
 	trans_file.close()
 	log_file.close()
-	return ret
+	return 0
 
 # =========================[ Script ]=========================
 def batch_procedure(series, ch_queue, globals_pkg):
