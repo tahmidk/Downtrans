@@ -9,7 +9,8 @@
 
 # =========================[ Imports ]==========================
 from abc import ABC, abstractmethod		# Pythonic abstract inheritance
-import re 								# Regex for parsing HTML
+import bs4 as soup 						# Python HTML query tool
+import re 								# Regex for personalized parsing HTML
 
 #==========================================================================
 #	[HtmlParser]
@@ -152,11 +153,32 @@ class Shu69Parser(HtmlParser):
 		super(Shu69Parser, self).__init__(True)
 
 	def parseTitle(self, html):
-		pass
+		html_soup = soup.BeautifulSoup(html, 'lxml')
+		title_div = html_soup.find('div', {'class': 'h1title'})
+		title = title_div.h1.string if title_div.h1 is not None else "NOTITLE"
+		return title
 
 	def parseContent(self, html):
-		pass
+		content = []
+
+		# Parse lines and make them readable before adding them to content
+		lines = re.findall(r'&nbsp;&nbsp;&nbsp;&nbsp;(.*?)<', html)
+		for line in lines:
+			content.append(line)
+			content.append(u'\n')
+
+		return content
+
 
 	# Erratic chapter codes, so page table needed
 	def parsePageTableFromWeb(self, html):
-		pass
+		page_table = []
+
+		html_soup = soup.BeautifulSoup(html, 'lxml')
+		ch_list = html_soup.find('ul', {'class': 'chapterlist'})
+		for ch_elem in ch_list.find_all('li', {'class': ''}):
+			if ch_elem.a is not None:
+				ch_html = ch_elem.a.get('href')
+				page_table.append(ch_html)
+
+		return page_table

@@ -282,6 +282,7 @@ def initPageTable(series):
 	"""
 	global page_table
 	global html_parser
+	global config_dat
 
 	table_name = "%s.table" % series.lower()
 	series_table = os.path.join(TABLES_PATH, table_name)
@@ -293,7 +294,7 @@ def initPageTable(series):
 	elif not os.path.exists(series_table) or os.path.getsize(series_table) == 0:
 		print("No table file exists for this series... Creating a new table")
 		series_index_url = getSeriesUrl(series)
-		series_index_html = fetchHTML(series_index_url)
+		series_index_html = fetchHTML(series_index_url, config_data.getSeriesLang(series))
 		page_table = html_parser.parsePageTableFromWeb(series_index_html)
 
 		# Save to .table file
@@ -430,7 +431,7 @@ def getSeriesUrl(series):
 	# Build the url for this series table of contents page
 	base_url = config_data.getHostUrl(config_data.getSeriesHost(series))
 	series_code = config_data.getSeriesCode(series)
-	series_url = base_url + series_code + "/"
+	series_url = base_url + series_code
 	return series_url
 
 def getChapterUrl(series, ch, globals_pkg):
@@ -453,7 +454,7 @@ def getChapterUrl(series, ch, globals_pkg):
 	base_url = config_data.getHostUrl(config_data.getSeriesHost(series))
 	series_code = config_data.getSeriesCode(series)
 	chapter_code = str(ch) if page_table is None else page_table[int(ch)-1]
-	series_url = base_url + series_code + "/" + chapter_code + "/"
+	series_url = base_url + series_code + "/" + chapter_code
 
 	return series_url
 
@@ -670,7 +671,7 @@ def default_procedure(series, ch, globals_pkg):
 	# Write the raw file if it doesn't already exist for this chapter
 	raw_name = "r%s_%d.txt" % (series, ch)
 	raw_chapter_path = os.path.join(RAW_PATH + raw_name)
-	if not os.path.exists(raw_chapter_path):
+	if not os.path.exists(raw_chapter_path) or os.path.getsize(raw_chapter_path) == 0:
 		# Fetch the html source code
 		url = getChapterUrl(series, ch, globals_pkg)
 		config_data = globals_pkg.config_data
