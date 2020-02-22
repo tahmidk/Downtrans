@@ -16,44 +16,15 @@ $(document).ready(function()
     $('.word').toggleClass('dark')
     $('.fade_div').toggleClass('dark')
     $('.ui_div_bottom').toggleClass('dark')
+    $('.content_raw').toggleClass('dark')
   })
 })
 
-/*
 function bind_all_lines()
 {
   var content_lines = document.getElementsByClassName('content_line');
   for(let l of content_lines){
-    var line = document.getElementById(l.id)
-    $(line).on('DOMSubtreeModified', line, function() {
-      // Only run replacement algorithm if page is marked translated by 
-      // Google Trans
-      var html_elem = document.querySelector("html");
-      if(html_elem.classList.contains("translated-ltr")){
-        // Select all placeholder divs in this line specifically
-        var line_n = document.querySelector('.content_line#'+line.id);
-        var placeholders = line_n.getElementsByClassName('placeholder')
-        // Replace each placeholder on this line
-        for(let elem of placeholders){
-          if( elem.innerHTML.toLowerCase().includes("placeholder") ){
-            var word = document.getElementById('w' + elem.id).innerHTML;
-            var pattern = new RegExp("placeholder", 'gi');
-            var replacement = "<span class=\'word\'>" + word + "</span>"
-
-            elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
-          }
-        }
-      }
-    });
-  }
-}
-*/
-
-function bind_all_lines()
-{
-  var content_lines = document.getElementsByClassName('content_line');
-  for(let l of content_lines){
-    // Skip first line
+    // First line doesn't need the following binding
     if(l.id == 'l1'){
       continue;
     }
@@ -78,6 +49,23 @@ function bind_all_lines()
             var replacement = "<span class=\'word\'>" + word + "</span>"
 
           elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
+        }
+      }
+
+      if(prev_line_num == 41)
+        console.log("A");
+
+      // At this point, translation and substitution for this line is complete. Do
+      // some post processing (like remove unnecessary articles) to increase readability
+      var siblingPlaceholders = 
+        document.querySelectorAll('.content_line#l'+prev_line_num+' font .placeholder');
+      for(let placeholder_elem of siblingPlaceholders)
+      {
+        var preceding_elem = placeholder_elem.previousSibling;
+        if(preceding_elem != null)
+        {
+          var remove_articles = new RegExp("(the|a)(\\s*)$", 'gi');
+          preceding_elem.innerHTML = preceding_elem.innerHTML.replace(remove_articles, "$2");
         }
       }
     });

@@ -11,6 +11,10 @@ a{
   text-decoration: none !important;
 }
 
+.noDecoration a:link a:visited{
+  text-decoration: none !important;
+}
+
 section{
   position:absolute;
   top:0;
@@ -45,7 +49,7 @@ section.dark{
   transition: 0.2s;
 }
 .word.dark{
-  color: #ff8d00;
+  color: #ffd000;
 }
 .notranslate{
   display: none;
@@ -55,8 +59,20 @@ section.dark{
 }
 
 /* Line styles */
-p{
-  margin: 4em 0 4em 0;
+.content_line{
+  margin: 4em 0 0 0;
+}
+
+/* Raw styles */
+.content_raw{
+  display: block;
+  margin: 0.5em 0 4em 0;
+  font-size: 0.6em;
+  font-weight: 500;
+  color: #9e9e9e;
+}
+.content_raw.dark{
+  color: #595959;
 }
 
 /* Chapter title style */
@@ -171,6 +187,11 @@ ul li span:nth-child(1){
     font-size: 1.2em;
     text-align: justify;
   }
+  ul{
+    top:1.5em;
+    left:50%;
+    width: 45%;
+  }
   .fade_div{
     width: 100%;
     height: 120px;
@@ -197,8 +218,7 @@ ul li span:nth-child(1){
   ul{
     top:1.5em;
     left:50%;
-    width: 74%;
-    margin-left:-37%;
+    width: 50%;
   }
   .fade_div{
     width: 100%;

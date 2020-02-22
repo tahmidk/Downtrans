@@ -84,6 +84,12 @@ class HtmlWriter:
 		"""
 		# Strip unnecessary white space at the beginning
 		line = line.lstrip()
+		raw_line = "<p class=\"content_raw notranslate\" id=r%s>%s</p>" % \
+			(self.__linenum, line)
+		raw_html = "<a href=\"https://translate.google.com/?hl=en&tab=TT&authuser\
+=0#view=home&op=translate&sl=ja&tl=en&text=%s\" class=\"noDecoration\
+\" target=\"_blank\">%s</a>" % \
+			(line, raw_line)
 
 		# Preprocess line using dictionary entities
 		for entry in self.__dictionary:
@@ -93,16 +99,16 @@ class HtmlWriter:
 
 				placeholder = "<span class=\"placeholder\" id=%d>placeholder\
 					</span>" % self.__pId
-				new_entry = "<span class=\"notranslate\" id=w%d>%s</span>" % \
-					(self.__pId, self.__dictionary[entry])
+				new_entry = "<span class=\"notranslate word_mem\" id=w%d>%s\
+					</span>" % (self.__pId, self.__dictionary[entry])
 				line = line.replace(entry, "%s%s" % (new_entry, placeholder))
 
 				self.__pId += 1
 
 		# Integrate line into resource string
-		line_html = "<p class=\"content_line\" id=l%s>%s</p>\n<!--END_OF_BODY-->" % \
-			(self.__linenum, line)
-		self.__resource = re.sub(r'<!--END_OF_BODY-->', line_html, self.__resource)
+		line_html = "<p class=\"content_line\" id=l%s>%s</p>" % (self.__linenum, line)
+		final_html = line_html + raw_html + "\n<!--END_OF_BODY-->"
+		self.__resource = re.sub(r'<!--END_OF_BODY-->', final_html, self.__resource)
 		self.__linenum += 1
 
 	def insertBlankLine(self):
