@@ -73,7 +73,7 @@ def initConfig():
 		print("\n[Error] user_config.json file does not exist. Creating file \
 			skeleton...")
 		try:
-			src_dir = os.path.join(RESOURCE_PATH + "config_skeleton.json")
+			src_dir = os.path.join(RESOURCE_PATH, "config_skeleton.json")
 			dst_dir = CONFIG_FILE_PATH
 			shutil.copy(src_dir, dst_dir)
 		except Exception:
@@ -100,20 +100,30 @@ def initConfig():
 		print("Exiting...")
 		sys.exit(1)
 
-def initEssentialPaths():
+def initEssentialPaths(series):
 	"""-------------------------------------------------------------------
 		Function:		[initEssentialPaths]
 		Description:	Creates certain necessary directories if they don't
 						already exist
-		Input:			None
+		Input:
+		  [series]		The series to make raw and trans directory for
 		Return:			None
 		------------------------------------------------------------------
 	"""
 	if not os.path.exists(DICT_PATH):	os.makedirs(DICT_PATH)
-	if not os.path.exists(RAW_PATH):	os.makedirs(RAW_PATH)
-	if not os.path.exists(TRANS_PATH):	os.makedirs(TRANS_PATH)
 	if not os.path.exists(TABLES_PATH):	os.makedirs(TABLES_PATH)
+	# Init raw directory for this series
+	if not os.path.exists(RAW_PATH):	os.makedirs(RAW_PATH)
+	if not os.path.exists(os.path.join(RAW_PATH, series)):
+		os.makedirs(os.path.join(RAW_PATH, series))
+	# Init translation directory for this series
+	if not os.path.exists(TRANS_PATH):	os.makedirs(TRANS_PATH)
+	if not os.path.exists(os.path.join(TRANS_PATH, series)):
+		os.makedirs(os.path.join(TRANS_PATH, series))
+	# Init log directory for this series
 	if not os.path.exists(LOG_PATH):	os.makedirs(LOG_PATH)
+	if not os.path.exists(os.path.join(LOG_PATH, series)):
+		os.makedirs(os.path.join(LOG_PATH, series))
 
 def initArgParser():
 	"""-------------------------------------------------------------------
@@ -337,45 +347,54 @@ def handleClean():
 
 	# Clean up raw/ directory
 	print(("\nCleaning directory: %s..." % RAW_PATH))
-	raw_dir = os.listdir(RAW_PATH)
-	for file in raw_dir:
-		path = os.path.join(RAW_PATH, file)
-		print(("  removing %-30s:\t" % path), end='')
-		try:
-			os.remove(path)
-		except OSError:
-			print("Failed")
-			ret = ret + 1
-			continue
-		print("Complete")
+	raw_subdir = [x[0] for x in os.walk(RAW_PATH)]
+	if len(raw_subdir) > 1:
+		for i in range(1, len(raw_subdir)):
+			series_dir = raw_subdir[i]
+			for file in os.listdir(series_dir):
+				path = os.path.join(series_dir, file)
+				print(("  removing %-30s:\t" % file), end='')
+				try:
+					os.remove(path)
+				except OSError:
+					print("Failed")
+					ret = ret + 1
+					continue
+				print("Complete")
 
 	# Clean up trans/ directory
 	print(("\nCleaning directory: %s..." % TRANS_PATH))
-	trans_dir = os.listdir(TRANS_PATH)
-	for file in trans_dir:
-		path = os.path.join(TRANS_PATH, file)
-		print(("  removing %-30s:\t" % path), end='')
-		try:
-			os.remove(path)
-		except OSError:
-			print("Failed")
-			ret = ret + 1
-			continue
-		print("Complete")
+	trans_subdir = [x[0] for x in os.walk(TRANS_PATH)]
+	if len(trans_subdir) > 1:
+		for i in range(1, len(trans_subdir)):
+			series_dir = trans_subdir[i]
+			for file in os.listdir(series_dir):
+				path = os.path.join(series_dir, file)
+				print(("  removing %-30s:\t" % file), end='')
+				try:
+					os.remove(path)
+				except OSError:
+					print("Failed")
+					ret = ret + 1
+					continue
+				print("Complete")
 
 	# Clean up logs/ directory
 	print(("\nCleaning directory: %s..." % LOG_PATH))
-	log_dir = os.listdir(LOG_PATH)
-	for file in log_dir:
-		path = os.path.join(LOG_PATH, file)
-		print(("  removing %-30s:\t" % path), end='')
-		try:
-			os.remove(path)
-		except OSError:
-			print("Failed")
-			ret = ret + 1
-			continue
-		print("Complete")
+	log_subdir = [x[0] for x in os.walk(LOG_PATH)]
+	if len(log_subdir) > 1:
+		for i in range(1, len(log_subdir)):
+			series_dir = log_subdir[i]
+			for file in os.listdir(series_dir):
+				path = os.path.join(series_dir, file)
+				print(("  removing %-30s:\t" % file), end='')
+				try:
+					os.remove(path)
+				except OSError:
+					print("Failed")
+					ret = ret + 1
+					continue
+				print("Complete")
 
 	return ret
 
@@ -396,7 +415,7 @@ def openBrowser(series, ch):
 		print("No preferred browser detected. Please open translation files \
 			manually or input a path for chrome.exe file in user_config.json")
 	else:
-		path_trans = TRANS_PATH + "t%s_%d.html" % (series, ch)
+		path_trans = os.path.join(TRANS_PATH, series, "t%s_%d.html" % (series, ch))
 		try:
 			if platform.system() == "Darwin":
 				chrome = 'open -a %s %s' % chrome_path
@@ -519,7 +538,7 @@ def writeRaw(series, ch, content):
 	# Open raw file in write mode
 	try:
 		raw_name = "r%s_%d.txt" % (series, ch)
-		raw_file = io.open(os.path.join(RAW_PATH, raw_name),
+		raw_file = io.open(os.path.join(RAW_PATH, series, raw_name),
 			mode='w', 
 			encoding='utf8'
 		)
@@ -555,7 +574,7 @@ def writeTrans(series, ch, globals_pkg):
 	# Initialize trans_file
 	try:
 		trans_name = "t%s_%d.html" % (series, ch)
-		trans_file = io.open(os.path.join(TRANS_PATH, trans_name), 
+		trans_file = io.open(os.path.join(TRANS_PATH, series, trans_name), 
 			mode='w', 
 			encoding='utf8'
 		)
@@ -567,7 +586,7 @@ def writeTrans(series, ch, globals_pkg):
 	# Open raw_file
 	try:
 		raw_name = "r%s_%d.txt" % (series, ch)
-		raw_file = io.open(os.path.join(RAW_PATH, raw_name), 
+		raw_file = io.open(os.path.join(RAW_PATH, series, raw_name), 
 			mode='r', 
 			encoding='utf8'
 		)
@@ -579,7 +598,10 @@ def writeTrans(series, ch, globals_pkg):
 	# Open log file
 	try:
 		log_name ="l%s_%d.log" % (series, ch)
-		log_file = io.open(os.path.join(LOG_PATH, log_name), mode='w', encoding='utf8')
+		log_file = io.open(os.path.join(LOG_PATH, series, log_name), 
+			mode='w', 
+			encoding='utf8'
+		)
 	except Exception:
 		print("[Error] Error opening log file [%s]... " % log_name, end='')
 		print("Proceeding without logs")
@@ -590,6 +612,8 @@ def writeTrans(series, ch, globals_pkg):
 	html_writer = htmlwriter.HtmlWriter(series_dict, log_file, skeleton_path)
 	html_writer.setPageTitle(series, ch)
 	html_writer.setChapterTitle(config_data.getSeriesTitle(series))
+	html_writer.setSeriesLink(getSeriesUrl(series))
+	html_writer.setChapterLink(getChapterUrl(series, ch, globals_pkg))
 	html_writer.setChapterNumber(str(ch))
 
 	# Count number of lines in raw source file
@@ -671,7 +695,7 @@ def default_procedure(series, ch, globals_pkg):
 
 	# Write the raw file if it doesn't already exist for this chapter
 	raw_name = "r%s_%d.txt" % (series, ch)
-	raw_chapter_path = os.path.join(RAW_PATH + raw_name)
+	raw_chapter_path = os.path.join(RAW_PATH, series, raw_name)
 	if not os.path.exists(raw_chapter_path) or os.path.getsize(raw_chapter_path) == 0:
 		# Fetch the html source code
 		url = getChapterUrl(series, ch, globals_pkg)
@@ -710,7 +734,7 @@ def main():
 	ch_end 		= args.end
 
 	# Create subdirectories if they don't already exist
-	initEssentialPaths()
+	initEssentialPaths(series)
 	# Initialize the HTML parser corresponding to the host of this series
 	initHtmlParser(config_data.getSeriesHost(series))
 	# Initialize the series page table according to series host

@@ -5,9 +5,10 @@
   Description:	This module is responsible for modifying and writing the
   				pre-processed HTML version of a given chapter translation
 """
-import os 		# OS level operations
-import io 		# File reading/writing
-import re 		# Regex for parsing
+import pykakasi as pkk 	# Python Japanese romanization api
+import os 				# OS level operations
+import io 				# File reading/writing
+import re 				# Regex for parsing
 
 class HtmlWriter:
 	#--------------------------------------------------------------------------
@@ -31,6 +32,32 @@ class HtmlWriter:
 			self.__resource = res.read()
 
 	#--------------------------------------------------------------------------
+	#  Romanization generation
+	#--------------------------------------------------------------------------
+	def romanizeLine(self, text_src):
+		"""-------------------------------------------------------------------
+			Function:		[romanizeLine]
+			Description:	Generate html element for the romanization of the
+							provided text (JP only)
+			Input:
+			  [text_src]	The source Japanese text to romanize
+			Return:			string representing the HTML element with the 
+							romanization
+			------------------------------------------------------------------
+		"""
+		romanizer = pkk.kakasi()
+		romanizer.setMode("H","a") 			# Enable Hiragana to ascii
+		romanizer.setMode("K","a") 			# Enable Katakana to ascii
+		romanizer.setMode("J","a") 			# Enable Japanese to ascii
+		romanizer.setMode("r","Hepburn") 	# Use Hepburn Roman table
+		romanizer.setMode("s", True) 		# Add spaces
+		romanizer.setMode("C", True) 		# Capitalize
+
+		converter = romanizer.getConverter()
+		return converter.do(text_src)
+
+
+	#--------------------------------------------------------------------------
 	#  Modification functions
 	#--------------------------------------------------------------------------
 	def setPageTitle(self, series, ch):
@@ -46,6 +73,7 @@ class HtmlWriter:
 		"""
 		pg_title = "%s %d" % (series, ch)
 		self.__resource = re.sub(r'<!--PAGE_TITLE-->', pg_title, self.__resource)
+		self.__log.write("Set page title: %s" % pg_title)
 
 	def setChapterTitle(self, ch_title):
 		"""-------------------------------------------------------------------
@@ -58,6 +86,33 @@ class HtmlWriter:
 			------------------------------------------------------------------
 		"""
 		self.__resource = re.sub(r'<!--CHAPTER_TITLE-->', ch_title, self.__resource)
+		self.__log.write("Set series title: %s" % ch_title)
+
+	def setSeriesLink(self, link):
+		"""-------------------------------------------------------------------
+			Function:		[setSeriesLink]
+			Description:	Sets the link that takes user to the webpage from 
+							which the raws for this series was pulled from
+			Input:
+			  [link]		The HTML link to insert
+			Return:			None
+			------------------------------------------------------------------
+		"""
+		self.__resource = re.sub(r'<!--SERIES_LINK-->', link, self.__resource)
+		self.__log.write("Set series link: %s" % link)
+
+	def setChapterLink(self, link):
+		"""-------------------------------------------------------------------
+			Function:		[setChapterLink]
+			Description:	Sets the link that takes user to the webpage from 
+							which the raw for this chapter was pulled from
+			Input:
+			  [link]		The HTML link to insert
+			Return:			None
+			------------------------------------------------------------------
+		"""
+		self.__resource = re.sub(r'<!--CHAPTER_LINK-->', link, self.__resource)
+		self.__log.write("Set chapter link: %s" % link)
 
 	def setChapterNumber(self, ch_num):
 		"""-------------------------------------------------------------------
@@ -71,6 +126,7 @@ class HtmlWriter:
 		"""
 		ch_num = "Chapter " + ch_num
 		self.__resource = re.sub(r'<!--CHAPTER_NUMBER-->', ch_num, self.__resource)
+		self.__log.write("Set chapter subtitle: %s" % ch_num)		
 
 	def insertLine(self, line, lang):
 		"""-------------------------------------------------------------------
@@ -85,13 +141,18 @@ class HtmlWriter:
 		"""
 		# Strip unnecessary white space at the beginning
 		line = line.lstrip()
-		raw_line = "<p class=\"content_raw notranslate\" id=r%s>%s</p>" % \
-			(self.__linenum, line)
 
+		# Display roma for JP
 		if lang == "JP":
+			raw_line = "<p class=\"content_raw notranslate\" id=r%s>%s</p>" % \
+				(self.__linenum, self.romanizeLine(line))
 			src_lang = "ja"
+		# Display raw for CN
 		elif lang == "CN":
+			raw_line = "<p class=\"content_raw notranslate\" id=r%s>%s</p>" % \
+				(self.__linenum, line)
 			src_lang = "zh-CN"
+
 		raw_html = "<a href=\"https://translate.google.com/?hl=en&tab=TT&authuser\
 =0#view=home&op=translate&sl=%s&tl=en&text=%s\" class=\"noDecoration\
 \" target=\"_blank\">%s</a>" % \
