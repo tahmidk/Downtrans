@@ -292,6 +292,7 @@ def initPageTable(series):
 		return
 	# If .table DNE for this series, parse it from web and write one
 	elif not os.path.exists(series_table) or os.path.getsize(series_table) == 0:
+		set_trace()
 		print("No table file exists for this series... Creating a new table")
 		series_index_url = getSeriesUrl(series)
 		series_index_html = fetchHTML(series_index_url, config_data.getSeriesLang(series))
@@ -604,7 +605,7 @@ def writeTrans(series, ch, globals_pkg):
 		if line != '\n':
 			# Check raw text against dictionary and replace matches
 			log_file.write("\n[L%d] Processing non-blank line..." % line_num)
-			html_writer.insertLine(line)
+			html_writer.insertLine(line, config_data.getSeriesLang(series))
 		html_writer.insertBlankLine()
 
 	# Write to trans file

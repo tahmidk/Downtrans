@@ -72,13 +72,14 @@ class HtmlWriter:
 		ch_num = "Chapter " + ch_num
 		self.__resource = re.sub(r'<!--CHAPTER_NUMBER-->', ch_num, self.__resource)
 
-	def insertLine(self, line):
+	def insertLine(self, line, lang):
 		"""-------------------------------------------------------------------
 			Function:		[insertLine]
 			Description:	Inserts a line as an html paragraph into the given 
 							resource string
 			Input:
 			  [line]		The line to add an html element for
+			  [lang]		The language the line is in
 			Return:			None
 			------------------------------------------------------------------
 		"""
@@ -86,10 +87,15 @@ class HtmlWriter:
 		line = line.lstrip()
 		raw_line = "<p class=\"content_raw notranslate\" id=r%s>%s</p>" % \
 			(self.__linenum, line)
+
+		if lang == "JP":
+			src_lang = "ja"
+		elif lang == "CN":
+			src_lang = "zh-CN"
 		raw_html = "<a href=\"https://translate.google.com/?hl=en&tab=TT&authuser\
-=0#view=home&op=translate&sl=ja&tl=en&text=%s\" class=\"noDecoration\
+=0#view=home&op=translate&sl=%s&tl=en&text=%s\" class=\"noDecoration\
 \" target=\"_blank\">%s</a>" % \
-			(line, raw_line)
+			(src_lang, line, raw_line)
 
 		# Preprocess line using dictionary entities
 		for entry in self.__dictionary:
