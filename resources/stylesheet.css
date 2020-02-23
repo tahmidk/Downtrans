@@ -7,12 +7,14 @@ body{
   font-family:sans-serif;
 }
 
-a{
+a a:link a:visited{
   text-decoration: none !important;
+  color: inherit;
 }
 
-.noDecoration a:link a:visited{
+.noDecoration{
   text-decoration: none !important;
+  color: inherit;
 }
 
 section{
