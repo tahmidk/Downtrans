@@ -31,10 +31,15 @@ function bind_all_lines()
 
     var line = document.getElementById(l.id)
     $(line).on('DOMSubtreeModified', line, function() {
-      // Basically, when Google Trans starts translating line(n+1) will replace the 
-      // placeholders in line 
+      // Basically, when Google Trans starts translating line(n) (aka. this line) this 
+      // func will replace the placeholders in line(n-1)
       var prev_line_num = this.id.substring(1) - 1;
       var line_n = document.querySelector('.content_line#l'+prev_line_num);
+
+      // No more need to listen to changes in line(n-1). This function will handle all
+      // necessary postprocessing in one go
+      $(line_n).unbind();
+
       var placeholders = line_n.getElementsByClassName('placeholder')
       // Replace each placeholder on this line
       for(let elem of placeholders){
@@ -52,9 +57,6 @@ function bind_all_lines()
         }
       }
 
-      if(prev_line_num == 41)
-        console.log("A");
-
       // At this point, translation and substitution for this line is complete. Do
       // some post processing (like remove unnecessary articles) to increase readability
       var siblingPlaceholders = 
@@ -65,7 +67,7 @@ function bind_all_lines()
         if(preceding_elem != null)
         {
           var remove_articles = new RegExp("(the|a)(\\s*)$", 'gi');
-          preceding_elem.innerHTML = preceding_elem.innerHTML.replace(remove_articles, "$2");
+          preceding_elem.innerText = preceding_elem.innerText.replace(remove_articles, "$2");
         }
       }
     });
