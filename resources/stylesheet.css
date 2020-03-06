@@ -43,6 +43,45 @@ section.dark{
   color:#cecece;
 }
 
+.scroll_indicator{
+  position: fixed;
+  width: 3em;
+  height: 40%;
+  left: 15em;
+  top: 30%;
+}
+
+.scroll_bar{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 0%;
+  background: #000;
+}
+.scroll_bar.dark{
+  background: #fff;
+}
+
+.scroll_notch{
+  position: absolute;
+  top: 47.5%;
+  right: 1em;
+  font-family: 'Courier', sans-serif;
+  font-size: 1em;
+  color: #000;
+
+  border: solid;
+  border-width: 1px;
+  width: 3em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+}
+.scroll_notch.dark{
+  color: #fff;
+}
+
 /* Dictionary text style */
 .word{
   font-variant: petite-caps;
@@ -53,11 +92,8 @@ section.dark{
 .word.dark{
   color: #ffd000;
 }
-.notranslate{
+.word_mem{
   display: none;
-}
-.splash_screen.notranslate{
-  display: inline;
 }
 
 /* Line styles */
@@ -177,6 +213,10 @@ ul li span:nth-child(1){
     font-size: 1.5em;
     text-align: justify;
   }
+
+  .scroll_indicator{
+    left: 6em;
+  }
 }
 
 @media only screen and (max-width: 1440px){
@@ -204,6 +244,9 @@ ul li span:nth-child(1){
   }
   .fade_div.dark{
     background-image: linear-gradient(#151515, #151515fc, rgba(0, 0, 0, 0));
+  }
+  .scroll_indicator{
+    display: none;
   }
 }
 /* Adaptive style for phone */

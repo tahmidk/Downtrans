@@ -17,7 +17,20 @@ $(document).ready(function()
     $('.fade_div').toggleClass('dark')
     $('.ui_div_bottom').toggleClass('dark')
     $('.content_raw').toggleClass('dark')
+    $('.scroll_bar').toggleClass('dark')
+    $('.scroll_notch').toggleClass('dark')
   })
+
+  // Credit to Codegrid for scroll indicator script: https://www.youtube.com/channel/UC7pVho4O31FyfQsZdXWejEw
+  $(window).scroll(function() {
+    var winTop = $(window).scrollTop();
+    var docHeight = $(document).height();
+    var winHeight = $(window).height();
+
+    var percent_scrolled = (winTop / (docHeight - winHeight))*100;
+    $('.scroll_bar').css('height', percent_scrolled + '%');
+    document.querySelector('.scroll_notch').innerText = Math.round(percent_scrolled) + '%';
+  });
 })
 
 function bind_all_lines()
@@ -36,6 +49,10 @@ function bind_all_lines()
       var prev_line_num = this.id.substring(1) - 1;
       var line_n = document.querySelector('.content_line#l'+prev_line_num);
 
+      if(prev_line_num == 5){
+        console.log("A");
+      }
+
       // No more need to listen to changes in line(n-1). This function will handle all
       // necessary postprocessing in one go
       $(line_n).unbind();
@@ -45,7 +62,7 @@ function bind_all_lines()
       for(let elem of placeholders){
         if( elem.innerHTML.toLowerCase().includes("placeholder") ){
           var word = document.getElementById('w' + elem.id).innerHTML;
-          var pattern = new RegExp("(?:the\s)?placeholder(?:s)?", 'gi');
+          var pattern = new RegExp("(?:the\\s|a\\s)?placeholder", 'gi');
 
           // Pay attention to which mode it is
           if(document.querySelector("section").classList.contains('dark'))

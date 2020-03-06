@@ -48,7 +48,7 @@ DIV = r' --> '
 # =========================[  Globals  ]=========================
 config_data = None   # Global config data container initialized by initConfig
 html_parser = None 	 # Global specialized parser initialized by initHtmlParser
-series_dict = None   # Global series-specific dict initialized by initDict
+series_dict = None   # Global series-specific dictionary initialized by initDict
 page_table  = None 	 # Global series-specific page table init by initPageTable
 
 # Simple package class to share globals w/ child processes
@@ -247,9 +247,9 @@ def initDict(series):
 		try:
 			dict_file = io.open(dict_path, mode='w', encoding='utf8')
 			dict_file.write("// NCode Link: %s\n" % getSeriesUrl(series))
-			dict_file.write("\n// Example comment (starts w/ \'//\''). \
-				Example entry below\n")
-			dict_file.write(u'ナルト --> Naruto\n')
+			dict_file.write("\n// Example comment (starts w/ \'//\'').")
+			dict_file.write("\n// Example entry below")
+			dict_file.write(u'\nナルト --> Naruto\n')
 			dict_file.write("\n// END OF FILE")
 			dict_file.close()
 			series_dict = {}
@@ -277,6 +277,7 @@ def initDict(series):
 		dictList.append(line.split(DIV))
 
 	# Initialize the global
+	dictList.sort(reverse=True)
 	series_dict = OrderedDict(dictList)
 	dict_file.close()
 
