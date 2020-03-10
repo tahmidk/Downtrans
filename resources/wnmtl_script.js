@@ -49,7 +49,7 @@ function bind_all_lines()
       var prev_line_num = this.id.substring(1) - 1;
       var line_n = document.querySelector('.content_line#l'+prev_line_num);
 
-      if(prev_line_num == 5){
+      if(prev_line_num == 47){
         console.log("A");
       }
 

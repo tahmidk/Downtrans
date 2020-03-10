@@ -54,13 +54,27 @@ section.dark{
 .scroll_bar{
   position: absolute;
   top: 0;
-  right: 0;
+  right: 2.5em;
   width: 1px;
   height: 0%;
   background: #000;
+  box-shadow: 0 0 5px 1px #00000070;
+
+  /* Make this unselectable */
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 .scroll_bar.dark{
   background: #fff;
+  box-shadow: 0 0 5px 1px #ffffff70;
+}
+.scroll_bar#bg{
+  height: 100% !important;
+  background: rgba(127, 127, 127, 0.4);
+  box-shadow: none;
 }
 
 .scroll_notch{
@@ -70,6 +84,8 @@ section.dark{
   font-family: 'Courier', sans-serif;
   font-size: 1em;
   color: #000;
+  background: #fff;
+  transition: 0.2s;
 
   border: solid;
   border-width: 1px;
@@ -77,9 +93,17 @@ section.dark{
   height: 2em;
   text-align: center;
   line-height: 2em;
+
+  /* Make this unselectable */
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 .scroll_notch.dark{
   color: #fff;
+  background: #151515;
 }
 
 /* Dictionary text style */
