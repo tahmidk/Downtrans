@@ -23,8 +23,8 @@ section{
   left:0;
   width:100%;
   height:auto;
-  padding-left:20em;
-  padding-right:20em;
+  padding-left:15em;
+  padding-right:15em;
   padding-top: 5em;
   padding-bottom: 5em;
 
@@ -35,7 +35,7 @@ section{
   transition:0.2s;
 
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.8em;
+  font-size: 1.5em;
   text-align: justify;
 }
 section.dark{
@@ -47,7 +47,7 @@ section.dark{
   position: fixed;
   width: 3em;
   height: 40%;
-  left: 15em;
+  left: 11em;
   top: 30%;
 }
 
@@ -229,17 +229,18 @@ ul li span:nth-child(1){
 /* Adaptive style for tablet */
 @media only screen and (max-width: 1920px){
   section{
-    padding-left:10em;
-    padding-right:10em;
+    padding-left:13em;
+    padding-right:13em;
     padding-top: 10em;
     padding-bottom: 10em;
 
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-align: justify;
   }
 
   .scroll_indicator{
-    left: 6em;
+    left: 9em;
+    font-size: 0.8em;
   }
 }
 

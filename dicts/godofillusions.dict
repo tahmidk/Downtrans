@@ -1,119 +1,299 @@
 // NCode Link: https://www.69shu.org/book/100273/
 
-// Names
-白小飞 --> Bai Xiaofei
+//================================================================================
+// 	Names
+//================================================================================
+白小飞 --> Bai Xiaofei 									// The best main character
+百小飞 --> Bai Xiaofei
+小飞飞 --> Xiaofeifei
+小飞 --> Xiaofei
 飞哥 --> Big Brother Fei
+小白 --> Little Bro Bai
+小哥 --> Little Bro Fei
 白老弟 --> Brother Bai
 白兄弟 --> Brother Bai
-小二 --> Huskie
-小黑 --> Blackie
-天机 --> Old Man Revelations
-雷山 --> Old Man Lei Shan
-狐仙儿 --> Hu Xian'er
-仙儿 --> Xian'er
+白老板 --> Boss Bai
+白学弟 --> Junior Bai
+小二 --> Huskie 											// Bai Xiaofei's first puppet
+笨狗 --> Foolish Dog
+小黑 --> Blackie 										// Bai Xiaofei's second puppet
+白龙飞 --> Bai Longfei 									// Bai Xiaofei's father
+天机 --> Old Man Revelations 							// Bai Xiaofei's master
+雷山 --> Old Man Lei Shan 								// Starnet Academy principal
+幻境老人 --> Old Man Reverie 							// Guardian of the Reverie Sandbox
+幻境老爷爷 --> Gramps Reverie
 // ----------------[ Savage class ]----------------
-雪姐 --> Teacher Xue
+雪姐 --> Teacher Xue 									// Your favorite teacher, tigress waifu
 雪影 --> Xue Ying
+林璃 --> Lin Li 											// Blossom Rank 1, Energy Stream, daughter of a hero, monotone waifu
 小璃璃 --> Little Li
-林璃 --> Lin Li
-方野 --> Fang Ye
-摩卡 --> Mo Ka
-石奎 --> Shi Kui
-武迟 --> Wu Chi
+方野 --> Fang Ye 										// BX's right hand, son of a merchant
+摩卡 --> Mo Ka 											// Stooge #1
+石奎 --> Shi Kui 										// Stooge #2
+武迟 --> Wu Chi 											// Martial artist
 刑楠 --> Xing Nan
-大明 --> Da Ming
-小明 --> Xiao Ming
-段依依 --> Duan Yiyi
+大明小明 --> The Ming Brothers
+大明 --> Da Ming 										// The first twin, Defense Stream
+小明 --> Xiao Ming 										// The other twin, Defense Stream
+段依依 --> Duan Yiyi 									// Shy and reserved
 依依 --> Yiyi
 朱诺 --> Zhu Nuo
 竹思思 --> Zhu Sisi
-戚薇 --> Qi Wei
-王航 --> Wang Hang
-徐晨 --> Xu Chen
-陈辉 --> Chen Hui
+戚薇 --> Qi Wei 											// Likes Chen Hui
+王航 --> Wang Hang 										// Model student with 
+徐晨 --> Xu Chen 										// Likes Fang Ye
+陈辉 --> Chen Hui 										// Likes Qi Wei, Assassin Stream
 //-------------[ Demons of Illusion ]---------------
-楚流云 --> Chu Liuyun
+楚流云 --> Chu Liuyun 									// Blossom Rank 3, leader of Demons of Illusion, mischevious waifu
 流云姐 --> Sister Liuyun
-云昇 --> Yun Sheng
-冷琉璃 --> Leng Liuli
-冷琉霜 --> Leng Liushuang
-冷琉影 --> Leng Liuying
-雷敏 --> Instructor Lei Min
+流云 --> Liuyun
+云昇 --> Yun Sheng 										// Only other male member of Demons of Illusion, BX's good bro
+云大哥 --> Big Bro Yun
+冷琉璃 --> Leng Liuli 									// Triplet #1, Blossom Ranker, the shy, gentle waifu
+琉璃姐 --> Sister Liuli
+琉璃 --> Liuli
+冷琉霜 --> Leng Liushuang 								// Triplet #2, Blossom Ranker, the great cook, innocent waifu
+琉霜姐 --> Sister Liushuang
+琉霜 --> Liushuang
+冷琉影 --> Leng Liuying 									// Triplet #3, Blossom Ranker, the seductive waifu
+琉影姐 --> Sister Liuying
+琉影 --> Liuying
+雷敏 --> Instructor Lei Min 								// Lei Shan's granddaughter who hates him, Demons of Illusion's only teacher
+雷姐 --> Sister Lei Min
 //---------------[ Starnet Academy ]----------------
-秦凌烟 --> Qin Lingyan
-洛副校长 --> Vice Principal Luo
+秦凌烟 --> Qin Lingyan 									// Blossom Ranker, BX's senpai, tsundere waifu
+凌烟大姐 --> Big Sis Lingyan
+凌烟姐 --> Sister Lingyan
+凌烟 --> Lingyan
+褚副校长 --> Vice Principal Chu 							// The businessman VP of Starnet Academy
+洛副校长 --> Vice Principal Luo 							// The beauty VP of Starnet Academy, hates all surnamed "Bai"
 洛惜 --> Luo Xi
-洛涵 --> Luo Han
-云惊霜 --> Yun Jingshuan
+洛涵 --> Luo Han 										// Newcomer King, top tier Support Stream, Luo Xi's niece?
+云惊霜 --> Yun Jingshuan 								// Crossdressing leader of Blossom Pavilion, best bro
 霍隆 --> Huo Long
 杨风念 --> Yang Fengnian
-韩千叶 --> Han Qianye
-谢广运 --> Xie Guangyun
-褚当阳 --> Chu Dangyang
-金二胖 --> Jin Erpan
+韩千叶 --> Han Qianye 									// Sole daughter of Han family, likes Yun Jingshuan
+千叶 --> Qianye
+谢广运 --> Xie Guangyun 									// Fortune Ranker
+褚当阳 --> Chu Dangyang 									// Fortune Ranker
+金二胖 --> Jin Erpan 									// Fortune Ranker
 林朗 --> Lin Lang
-陆灵运 --> Lu Lingyun
-泰山 --> Tai Shan
-方月生 --> Fang Yuesheng
-向涛 --> Xiang Tao
-炎苏姿 --> Yan Suzi
-卡农 --> Ka Nong
-赵子云 --> Zhao Ziyun
-白凯 --> Bai Kai
-褚小 --> Chu Xiao
+陆灵运 --> Boss Lu Lingyun	 							// Boss of Thousand Aroma Pavilion branch in Starnet Academy
+陆老哥 --> Elder Bro Lu
+泰山 --> Tai Shan 										// Newcomer King, 
+方月生 --> Fang Yuesheng									// Newcomer King, the violent one
+向涛 --> Xiang Tao 										// Newcomer King, 
+炎苏姿 --> Yan Suzi 										// Newcomer King, the one with fire powers
+卡农 --> Ka Nong 										// Newcomer King
+赵子云 --> Zhao Ziyun 									
+白凯 --> Bai Kai 										// Secondary representative of Xian'er's class
+褚小 --> Chu Xiao 										// Starnet Academy faculty member, overly subservient to Lei Shan
 褚小胖 --> Fatty Chu Xiao
 褚擎天 --> Chu Qingtian
 荆城 --> Jing Cheng
+风无痕 --> Feng Wuhen 									// The one from Ethereal Pavilion who helped Savage Class select second puppets
+芮梦琪 --> Ren Mengqi 									// The clumsy maido waifu, taken care for by BX after released from Babel contract
+梦琪 --> Mengqi
+甄祺 --> Zhen Qi
+庄副会长 --> Vice President Zhuang 						// Babel Tower representative who had trouble paying back 4+ trillion to BX
+庄明 --> Zhuang Ming
+翟江 --> Zhai Jiang 										// Shitty shitty leader of Fist of Beasts, cornered and killed by BX
+翟航 --> Zhai Hang 										// Shitty shitty leader's shitty shitty son, cornered and killed by BX
+魏峰 --> Wei Feng 										// A representative from Starnet Academy's Ethereal Pavilion branch
+司马邺 --> Sima Ye 										// Top of the Command List, Student Council President
+罗通 --> Luo Tong 										// Student Council Vice President
+司马学长 --> Senior Sima
+苏钰 --> Su Yu 											// First on the Combat Ranking
+楚天 --> Chu Tian 										// BX's "love rival", likes Chu Liuyun
+褚钺 --> Chu Yue 										// Ally during Thief Subjugation Arc, senior bro in Defense Stream
+赵天天 --> Zhao Tiantian 								// Ally during Thief Subjugation Arc, senior sis in Support Stream
+白夜 --> Bai Ye 											// Ally during Thief Subjugation Arc, fought on behalf of Qianye against BX early on
+// ------------------[ Magical Beasts ]---------------
+狐仙儿 --> Hu Xian'er 									// Blossom Rank 1, Transforamtion Stream, best fox waifu
+仙儿 --> Xian'er
+仙儿大人 --> Lord Xian'er
+猩 --> Xing 												// Ruindemon Flood Dragon, Hong's husband, saved by and grateful to BX from Heart Devourer
+红 --> Red/Hong 											// Lunapython, Xing's wife
+小萝 --> Little Radish 									// Little Earth twin #1
+小布 --> Little Bu 										// Little Earth twin #2
+野虏 --> Ye Lu 											// A magical beast lord responsible for the downfall of Royal Fox Clan
+风叔 --> Uncle Feng 										// Leopard Magic Beast, an ally
+狂塔 --> Kuang Ta 
+狂塔大人 --> Lord Kuang Ta 
+// ----------------[ Phoenix Vox Pavilion ]-----------
+印婧 --> Yin Jing 										// Representative of Phoenix Vox Pavilion, actor
+百灵 --> Bai Ling 										// Singer
+金溪 --> Jin Xi 											// Musical instrument expert
+天外飞仙组合 --> Heavensward Fairies
+千手组合 --> Qianshou Group
+左鸾 --> Zuo Luan 										// Heavensward Fairies #1, Dancer
+丁凤 --> Ding Feng 										// Heavensward Fairies #2, Dancer
+林宣仪 --> Lin Xuanyi 									// Performer, mysterious
+商秋儿 --> Shang Qiu'er									// Dancer
+百里虹 --> Baili Hong 									// Puppet Dancer
+蔚蓝 --> Wei Lan 										// Captain of Qianshou Group
+华无笙 --> Hua Wusheng 									// Actor
+// ------------[ Thunder Gale Bandits ]-------------
+风雷 --> Feng Lei 										// Leader of the Thunder Gale Bandits
+方雷 --> Feng Lei
+聂箐 --> Nie Qing 										// Illusion Stream master pretending to be Qing Fei, the thief waifu
+箐儿 --> Qing'er
+青衣姐姐 --> Sister Qingyi
+云墨 --> Yun Mo 											// Manipulates energy dogs that explode on command
+蓝曲 --> Lan Qu 											// Cowardly Support-stream user of the group
+青霜 --> Qing Shuang
+何如是 --> He Rushi 										// Hulking 7-foot pharmacist of the group
+秋沐沐 --> Qiu Mumu
+沐沐 --> Mumu
+夏荷 --> Xia He
+// ----------------[ Starnet Continent ]--------------
+林霓裳 --> Lin Nishang 									// A legendary hero and beauty of the previous era, Lin Li's mother
+赵胜 --> President Zhou Sheng 							// Representative of Land Under Heaven Chamber of Commerce
+上官梵 --> Shangguan Fan 								// Representative of Amethyst Chamber of Commerce
+上官少爷 --> Young Master Shangguan
+常百味 --> Chang Baiwei 									// Executive of Hundred Flavor House
+常执行 --> Executive Chang
+巩砂 --> Gong Sha 										// Representative of Gathering Origin Chamber of Commerce
+兰夫人 --> Madam Lan 									// Representative of Rainbow Feathers Chamber of Commerce
+章大师 --> Master Zhang 									// Representative of Propagation of Dao Chamber of Commerce
+千重楼 --> Qian Chonglou				 					// Representative of Thousand Aroma Restaurant main branch
+千执行 --> Executive Qian
+风无心 --> Feng Wuxin 									// Representative of Ethereal Chamber of Commerce
+蓝秋霜 --> Lan Qiushuang 								// Acquaintance of BX's father
+云逸 --> Yun Yi 											// Crown Prince of the Cloud Cloak Empire
+尼普顿 --> Ni Pu Dun 									// Finance minister of Kingdom of Snow
+尼普顿叔叔 --> Uncle Ni Pu Dun
+尚有道 --> Shang Youdao 									// President of Dao of Tides Chamber of Commerce
+尚会长 --> President Shang
+福伯 --> Fu Ba 											// Youdao's right hand
+荷天 --> He Tian 										// Mysterious uncle
+古黎 --> Gu Li 											// Third prince of Gu Yu State
+古衡 --> Gu Heng											// Prince of Gu Yu State
+晴妃 --> Qing Fei 										// Empress of Gu Yu State
+范总管 --> Director Fan
+唐兵 --> Tang Bing 										// Mysterious associate of the Land Under Heaven Chamber of Commerce
+虎威大将军 --> General Hu Wei
+虎威 --> General Hu Wei
 
-// Places
+//================================================================================
+// 	Places
+//================================================================================
 星罗大陆 --> Starnet Continent
-无尽山脉边缘 --> Infinite Mountain Range
-雪国 --> Kingdom of Snow
-英雄峡 --> Heroes Gorge
-百花阁 --> Blossom Pavilion
-玲珑阁 --> Ethereal Pavilion
+无尽山脉 --> Infinite Mountain Range 					// Hostile wilderness, magical beast territory
+雪国 --> Kingdom of Snow 								// The Leng triplet's home country
+英雄峡 --> Heroes Gorge 									// BX's birth place, a place for the world's rejects
+百花阁 --> Blossom Pavilion 								// Meeting place of the top beauties of Starnet Academy, Yun Jingshuan's estate
+玲珑阁 --> Ethereal Pavilion 							// Large merchant clan
 星罗 --> Starnet Academy
+英雄令 --> Hero's Order
 圣山 --> Holy Mountain
 玲珑帝国 --> Ethereal Empire 
-千香楼 --> Thousand Aroma Restaurant
-百味居 --> Hundred Flavor House
-通天商会 --> Babel House of Commerce
+千香楼 --> Thousand Aroma Restaurant 					// Poor man's Hundred Flavor House in need of revitalization
+百味居 --> Hundred Flavor House 							// Ridiculously expensive restaurant
+通天商会 --> Babel House of Commerce 					// Gambler's den
 药师塔 --> Alchemist Tower
+幻境沙盘 --> Reverie Sandbox 							// Located in Mortal Divinity department, a place to test military IQ
+遗迹 --> Then Ancient Ruins
+云幕帝国 --> Cloud Cloak Empire
+云幕 --> Cloud Cloak
+元矿 --> Origin Mine
+狂塔领地 --> Turbulent Pagoda Domain
+古越国 --> Gu Yu State
+古越 --> Gu Yu State
+纳埠城 --> Payport City 
+红袖 --> Red Sleeve
+皇城 --> Imperial City
+禁城 --> Forbidden City
+晴雪宫 --> Pure Frost Palace
+紫荆帝国 --> Avondale Redbud Empire 						// Qin Lingyan's birth country
 // -------------------[ Starnet Departments ]------------------
-幻象之妖 --> Demons of Illusion
-进击之剑 --> Sword of Assault
-固守之盾 --> The Defender's Shield
-鹰隼之眼 --> Eye of the Hawk
-野兽之拳 --> Fist of the Beast
-庇护之光 --> Light of Salvation
-钢铁之躯 --> The Iron Body
-人间之神 --> Mortal Divinity
-隐匿之刃 --> Blade of Concealment
-百炼之锤 --> Hammer of Refinement
-沉香之炉 --> Furnace of Agarwood
+幻象之妖 --> Demons of Illusion 							// Illusion department, BX's choice
+进击之剑 --> Sword of Assault 							// Onslaught Stream department
+固守之盾 --> The Defender's Shield 						// Defense Stream department
+鹰隼之眼 --> Eye of the Hawk 							// Ranged Stream department
+野兽之拳 --> Fist of the Beast 							// Transformation Stream department
+庇护之光 --> Light of Salvation 							// Support Stream department
+钢铁之躯 --> The Iron Body								// Martial Arts department
+人间之神 --> Mortal Divinity 							// Energy Stream department
+隐匿之刃 --> Blade of Concealment 						// Assassin Stream department
+百炼之锤 --> Hammer of Refinement						// Crafter's department
+沉香之炉 --> Furnace of Agarwood 						// Medical department
 
 
-// Terminology
+//================================================================================
+// 	Elite Organizations
+//================================================================================
+// --------------[ Major Chambers of Commerce ]----------------
+天下 --> Land Under Heaven
+通天 --> Heaven's Gateway
+玲珑 --> Ethereal
+紫晶 --> Amethyst
+聚元 --> Gathering Origin 								// Also a sub-level of Grandmaster Rank
+道衍 --> Propagation of Dao
+紫月 --> Violet Moon
+百仓 --> Hundred Granary
+彩羽 --> Rainbow Feather
+凤鸣阁 --> Phoenix Vox Pavilion
+鸣凤阁 --> Phoenix Vox Pavilion
+幻妖 --> Phantom Fiend									// BX's Chamber of Commerce made from scratch
+道溟 --> Dao of Tides
+百晓阁 --> Hundred Dawn Foundation 						// Info brokering institution
+
+
+//================================================================================
+// 	Terminology
+//================================================================================
 元力 --> Origin Energy
 元力共鸣 --> Origin Energy Resonance
 元丹 --> Origin Core
+意识海 --> Sea of Conciousness
 傀儡 --> Puppet
 傀儡师 --> Puppet Master
 星罗石 --> Starnet Stones
 野人班 --> Savage Class
-财富榜 --> Fortune Ranking
-百花榜 --> Blossom Ranking
-战力榜 --> Combat Ranking
+财富榜 --> Fortune Ranking 								// The tycoons of Starnet Academy
+百花榜 --> Blossom Ranking 								// The beauties of Starnet Academy
+指挥榜 --> Command Ranking 								// The strategists of Starnet Academy
+战力榜 --> Combat Ranking 								// The strongest of Starnet Academy
 百花鉴 --> Blossom Tickets
 百花 --> Hundred Blossoms
 新生大会 --> Newcomer's Tournament
 武盟 --> Martial Alliance
-天元体 --> Heavenly Origin Physique
+新生互助共同体 --> Newcomers Mutual Aid Conglomerate 		// BX's self-made organization for protecting freshmen
+学员互助共同体 --> All Student Mutual Aid Conglomerate	// New name for Newcomers Mutual Aid Conglomerate
+学员共同体 --> All-Student Mutual Aid Conglomerate
+魔兽 --> Magical Beast
+狐族 --> Royal Fox Clan
+王族魔兽 --> Royal Magic Beast
+圣兽 --> Holy Beast
+强魂 --> Ultra Soul
+学生会 --> Student Council 								// Old student community used to oppress juniors
+夜莺佣兵团团长 --> Nightingale Mercenary Corps
+风雷盗贼团 --> Thunder Gale Bandits
+天丹 --> Paradise Pill
+精神系 --> Spirit Wielder
 // --------------[ Power Levels ]-------------------
-金级 --> Gold Rank
+蓝级 --> Blue Grade
+红级 --> Red Grade
+紫级 --> Purple Grade
+黄级 --> Yellow Grade
+玄级 --> Black Grade
+金级 --> Gold Grade
+紫金级 --> Purple Gold Rank
+黑金级 --> Black Gold Rank
 大师级 --> Master Rank
+王级 --> King Rank
 玲珑级 --> Exquisite Rank
 灵级 --> Spiritual Rank
+永恒级 --> Eternal Rank
+皇级 --> Emperor Rank
+帝级 --> Emperor Rank
+宗师级 --> Grandmaster Rank
+传说级 --> Legendary Rank
+元力化铠 --> Origin Armor Stage
+御傀 --> Resistance Stage
+神游 --> Pilgrimage Stage
+开窍 --> Enlightenment Stage
 // ----------[ Puppet Mastery Jargon ]--------------
 幻象系 --> Illusion Stream
 远攻系 --> Ranged Stream
@@ -125,28 +305,88 @@
 变身系 --> Transformation Stream
 敏攻系 --> Blitz Stream
 
-// Skills
-吞天食地 --> Devouring Heaven and Earth
+//================================================================================
+//	Magical Beast Pokedex
+//================================================================================
+食心兽 --> Heart Devourer
+陨灭魔蛟 --> Ruindemon Flood Dragon
+月蟒 --> Lunapython
+土婴 --> Earthen Children
+骨魔 --> Bone Demon
+地走龙 --> Terraform Dragon
+巨猿 --> Gigant Ape
+树妖 --> Treant
+黑鳞马 --> Blackscale Horse 									// Mount-type beast, not hostile
 
-// Things
+//================================================================================
+// 	Skills and Abilities
+//================================================================================
+吞天食地 --> Devouring Heaven and Earth 						// A bullshit(?) art taught to BX by Revelation
+日月生辉 --> Lunasolar Luminesence 							// A bullshit(?) art taught to BX by Revelation
+天元体 --> Heavenly Origin Physique 							// Wu Chi's special constitution
+刹那永恒 --> Flickering Eternity								// Hu Xian'er's movement skill
+陨灭之光 --> Light of Extinction								// Xing's ultimate attack
+动态遮蔽 --> Kinetic Cloak 									// BX's ability gained from Blackie
+真实之眼 --> Eyes of Truth 								// Nie Qing's special constitution, see thru illusions
+紫炎魔蛇 --> Purple Flame Snake 								// Qin Lingyan's special
+赤炎斩 --> Crimson Slash 									// Qin Lingyan's special
+善恶之门 --> Gate of Good and Evil 							// Yun Mo's special
+
+//================================================================================
+// 	Key Items/Weapons
+//================================================================================
 涅槃珠 --> Nirvana Pearl
 紫晶币 --> Amethyst Coins
-凤羽霓裳 --> Divine Phoenix Feather Dress
-悬顶之刃 --> Floating Blade
-闪影靴 --> Shadowflash Shoes
-赤炎剑 --> Crimsonflame Sword
-灼盾 --> Blazing Shield
-火神之握 --> Vulcan Grip
-雪珠 --> Snofreeze Pearl
+凤羽霓裳 --> Divine Phoenix Feather Dress 					// Lin Li's first puppet
+千星 --> Thousand Star 										// Lin Li's second puppet
+悬顶之刃 --> Floating Blade 									// Mo Ka's weapon
+闪影靴 --> Shadowflash Shoes 								// Chen Hui's weapon
+赤炎剑 --> Crimsonflame Sword	 							// Xu Chen's weapon
+灼盾 --> Blazing Shield 										// Xu Chen's weapon
+火神之握 --> Vulcan Grip										// Xu Chen's weapon
+雪珠 --> Snofreeze Pearl 									// Wang Hang's weapon
+斩忆 --> Memory Cutlass 										// BX's weapon
+血芝 --> Blood Zoysia
+夜姬 --> Midnight Echo
+比翼鸟 --> Birds of a Feather
+生命女神 --> Goddess of Life
+复生丹 --> Pill of Revival
+水晶之恋 --> Crystal Longing 								// Delicious and expensive fruit
+紫晶卡 --> Amethyst Card
+晶石 --> Crystal Stone
+魔核 --> Magic Core
+臭臭草 --> Stink Weed
+星罗之光 --> Starnet Brilliance 								// Sign of grand prestige in Starnet Academy
+定颜丹 --> Immortalized Beauty Pill
+深海黑檀 --> Deep Atlantic Sandalwood
+凝神丹 --> The Fascinating Pill
+血妖 --> Blood Demon
+女武神之手 --> Hand of the Valkyrie
+留影眼球 --> Photon Lens 									// Starnet Continent's equivalent of cameras
+紫炎剑 --> Purple Flame Sword 								// Qin Lingyan's offensive puppet
+御之铠 --> Royal Armor										// Qin Lingyan's defensive puppet
 
-// Language
+//================================================================================
+// 	Language
+//================================================================================
 干爹 --> Godfather
 干娘 --> Godmother
 学姐 --> Senior Sister
+奴家 --> this humble Miss
+老子 --> this Father
 
-// Misc
+//================================================================================
+// 	Misc
+//================================================================================
 单挑 --> duel
+大皇子 --> Crown Prince
 卧槽 --> Fuck
-魔兽 --> Magical Beast
+萝莉 --> Loli
+花魁 --> Queen
+品 --> Rank
+武者 --> Martial Artist
+老爷子 --> Gramps
+汪汪 --> Bark Bark
+神犬 --> Divine Doggy 										// Funny way Huskie refers to himself
 
 // END OF FILE

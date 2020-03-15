@@ -49,7 +49,7 @@ function bind_all_lines()
       var prev_line_num = this.id.substring(1) - 1;
       var line_n = document.querySelector('.content_line#l'+prev_line_num);
 
-      if(prev_line_num == 47){
+      if(prev_line_num == 44){
         console.log("A");
       }
 
@@ -81,7 +81,7 @@ function bind_all_lines()
       for(let placeholder_elem of siblingPlaceholders)
       {
         var preceding_elem = placeholder_elem.previousSibling;
-        if(preceding_elem != null)
+        if(preceding_elem != null && !preceding_elem.classList.contains("placeholder"))
         {
           var remove_articles = new RegExp("(the|a)(\\s*)$", 'gi');
           preceding_elem.innerText = preceding_elem.innerText.replace(remove_articles, "$2");

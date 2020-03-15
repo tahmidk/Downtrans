@@ -274,10 +274,20 @@ def initDict(series):
 			continue
 
 		line = line[:-1]	# Ignore newline '\n' at the end of the line
-		dictList.append(line.split(DIV))
+		raw_div = line.split(DIV)
+		if len(raw_div) != 2 or len(raw_div[0]) == 0 or len(raw_div[1]) == 0:
+			print("[Warning] Malformed line detected in dictionary: %s" %
+				line)
+			print("  Make sure to minimally have something in the form of \
+				\'RAW --> TRANSLATED   // Optional comment\' with nonempty \
+				RAW and TRANSLATED entries ... Skipping entry")
+			continue
+		trans_div = raw_div[1].split("//")
+		dictList.append((raw_div[0].strip(), trans_div[0].strip()))
 
-	# Initialize the global
-	dictList.sort(reverse=True)
+	# Initialize the global. Need to sort such that longer strings are processed
+	# before the shorter ones so sort by length of the Chinese string
+	dictList.sort(key= lambda x: len(x[0]), reverse=True)
 	series_dict = OrderedDict(dictList)
 	dict_file.close()
 
@@ -437,17 +447,21 @@ def openBrowser(series, ch):
 #============================================================================
 #  Web scraping functions
 #============================================================================
-def getSeriesUrl(series):
+def getSeriesUrl(series, globals_pkg=None):
 	"""-------------------------------------------------------------------
 		Function:		[getSeriesUrl]
 		Description:	Returns the base url for the series
 		Input:
 		  [series]		The series to build url for
+		  [globals_pkg] The globals package if called from a subprocess
 		Return: 		The full URL of the page containing chapter [ch] of
 						[series] or just the series index URL if ch is None
 		------------------------------------------------------------------
 	"""
-	global config_data
+	if globals_pkg is None:
+		global config_data
+	else:
+		config_data = globals_pkg.config_data
 
 	# Build the url for this series table of contents page
 	base_url = config_data.getHostUrl(config_data.getSeriesHost(series))
@@ -554,6 +568,7 @@ def writeRaw(series, ch, content):
 		raw_file.write('\n')
 
 	# Close raw file
+	raw_file.write("End of Chapter\n")
 	raw_file.close()
 	return 0
 
@@ -613,7 +628,7 @@ def writeTrans(series, ch, globals_pkg):
 	html_writer = htmlwriter.HtmlWriter(series_dict, log_file, skeleton_path)
 	html_writer.setPageTitle(series, ch)
 	html_writer.setChapterTitle(config_data.getSeriesTitle(series))
-	html_writer.setSeriesLink(getSeriesUrl(series))
+	html_writer.setSeriesLink(getSeriesUrl(series, globals_pkg))
 	html_writer.setChapterLink(getChapterUrl(series, ch, globals_pkg))
 	html_writer.setChapterNumber(str(ch))
 
