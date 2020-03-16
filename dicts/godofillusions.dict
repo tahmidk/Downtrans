@@ -22,6 +22,7 @@
 雷山 --> Old Man Lei Shan 								// Starnet Academy principal
 幻境老人 --> Old Man Reverie 							// Guardian of the Reverie Sandbox
 幻境老爷爷 --> Gramps Reverie
+孤星 --> Gu Xing 										// Real name of Reverie
 // ----------------[ Savage class ]----------------
 雪姐 --> Teacher Xue 									// Your favorite teacher, tigress waifu
 雪影 --> Xue Ying
@@ -31,14 +32,14 @@
 摩卡 --> Mo Ka 											// Stooge #1
 石奎 --> Shi Kui 										// Stooge #2
 武迟 --> Wu Chi 											// Martial artist
-刑楠 --> Xing Nan
+刑楠 --> Xing Nan 										// From small village, idiot couple w/ Zhu Sisi
 大明小明 --> The Ming Brothers
 大明 --> Da Ming 										// The first twin, Defense Stream
 小明 --> Xiao Ming 										// The other twin, Defense Stream
 段依依 --> Duan Yiyi 									// Shy and reserved
 依依 --> Yiyi
 朱诺 --> Zhu Nuo
-竹思思 --> Zhu Sisi
+竹思思 --> Zhu Sisi 										// From small village, idiot couple w/ Xing Nan
 戚薇 --> Qi Wei 											// Likes Chen Hui
 王航 --> Wang Hang 										// Model student with 
 徐晨 --> Xu Chen 										// Likes Fang Ye
@@ -136,18 +137,19 @@
 // ------------[ Thunder Gale Bandits ]-------------
 风雷 --> Feng Lei 										// Leader of the Thunder Gale Bandits
 方雷 --> Feng Lei
-聂箐 --> Nie Qing 										// Illusion Stream master pretending to be Qing Fei, the thief waifu
+聂箐 --> Nie Qing 										// Illusion Stream master pretending to be Qing Fei, the adventurous waifu
 箐儿 --> Qing'er
 青衣姐姐 --> Sister Qingyi
 云墨 --> Yun Mo 											// Manipulates energy dogs that explode on command
 蓝曲 --> Lan Qu 											// Cowardly Support-stream user of the group
-青霜 --> Qing Shuang
+青霜 --> Qing Shuang 									// Yun Mo's wife, injured by a spirit user long ago
 何如是 --> He Rushi 										// Hulking 7-foot pharmacist of the group
 秋沐沐 --> Qiu Mumu
 沐沐 --> Mumu
-夏荷 --> Xia He
+夏荷 --> Xia He 											// Feng Lei's wife
 // ----------------[ Starnet Continent ]--------------
 林霓裳 --> Lin Nishang 									// A legendary hero and beauty of the previous era, Lin Li's mother
+霓裳 --> Hero Nishang
 赵胜 --> President Zhou Sheng 							// Representative of Land Under Heaven Chamber of Commerce
 上官梵 --> Shangguan Fan 								// Representative of Amethyst Chamber of Commerce
 上官少爷 --> Young Master Shangguan
@@ -166,14 +168,18 @@
 尚有道 --> Shang Youdao 									// President of Dao of Tides Chamber of Commerce
 尚会长 --> President Shang
 福伯 --> Fu Ba 											// Youdao's right hand
-荷天 --> He Tian 										// Mysterious uncle
+荷天 --> He Tian 										// Mysterious uncle, prospective member of Thunder Gale Bandits, died protecting BX
 古黎 --> Gu Li 											// Third prince of Gu Yu State
 古衡 --> Gu Heng											// Prince of Gu Yu State
 晴妃 --> Qing Fei 										// Empress of Gu Yu State
 范总管 --> Director Fan
+沈千冬 --> Shen Qiandong
 唐兵 --> Tang Bing 										// Mysterious associate of the Land Under Heaven Chamber of Commerce
 虎威大将军 --> General Hu Wei
 虎威 --> General Hu Wei
+康统领 --> General Kang
+张老 --> Old Zhang
+凌天下 --> Ling Tianxia 									// President of Land Under Heaven Chamber of Commerce
 
 //================================================================================
 // 	Places
@@ -206,6 +212,7 @@
 禁城 --> Forbidden City
 晴雪宫 --> Pure Frost Palace
 紫荆帝国 --> Avondale Redbud Empire 						// Qin Lingyan's birth country
+紫荆 --> Avondale Redbud Empire
 // -------------------[ Starnet Departments ]------------------
 幻象之妖 --> Demons of Illusion 							// Illusion department, BX's choice
 进击之剑 --> Sword of Assault 							// Onslaught Stream department
@@ -251,10 +258,11 @@
 傀儡师 --> Puppet Master
 星罗石 --> Starnet Stones
 野人班 --> Savage Class
-财富榜 --> Fortune Ranking 								// The tycoons of Starnet Academy
-百花榜 --> Blossom Ranking 								// The beauties of Starnet Academy
-指挥榜 --> Command Ranking 								// The strategists of Starnet Academy
-战力榜 --> Combat Ranking 								// The strongest of Starnet Academy
+星罗榜 --> Starnet List 									// List of outer world quests
+财富榜 --> Fortune List 								// The tycoons of Starnet Academy
+百花榜 --> Blossom List 								// The beauties of Starnet Academy
+指挥榜 --> Command List 								// The strategists of Starnet Academy
+战力榜 --> Combat List 								// The strongest of Starnet Academy
 百花鉴 --> Blossom Tickets
 百花 --> Hundred Blossoms
 新生大会 --> Newcomer's Tournament
@@ -272,6 +280,10 @@
 风雷盗贼团 --> Thunder Gale Bandits
 天丹 --> Paradise Pill
 精神系 --> Spirit Wielder
+血妖 --> Blood Demon
+血魔化 --> Blood Demonization
+回光丹 --> Refracting Light Pellet
+百年校庆 --> Starnet Academy Centennial Celebration
 // --------------[ Power Levels ]-------------------
 蓝级 --> Blue Grade
 红级 --> Red Grade
@@ -327,10 +339,14 @@
 刹那永恒 --> Flickering Eternity								// Hu Xian'er's movement skill
 陨灭之光 --> Light of Extinction								// Xing's ultimate attack
 动态遮蔽 --> Kinetic Cloak 									// BX's ability gained from Blackie
-真实之眼 --> Eyes of Truth 								// Nie Qing's special constitution, see thru illusions
+真实之眼 --> Eyes of Truth 									// Nie Qing's special constitution, see thru illusions
 紫炎魔蛇 --> Purple Flame Snake 								// Qin Lingyan's special
 赤炎斩 --> Crimson Slash 									// Qin Lingyan's special
 善恶之门 --> Gate of Good and Evil 							// Yun Mo's special
+缠之风 --> Coiling Wind 										// Bai Ye's special
+公平置换 --> Impartial Substitution 							// Substitution jutsu
+化灵之术 --> Spiritualization Technique 						// Secret art taught by Reverie
+化灵 --> Spiritualization
 
 //================================================================================
 // 	Key Items/Weapons
@@ -346,6 +362,7 @@
 火神之握 --> Vulcan Grip										// Xu Chen's weapon
 雪珠 --> Snofreeze Pearl 									// Wang Hang's weapon
 斩忆 --> Memory Cutlass 										// BX's weapon
+妖刀 --> Demon Edge
 血芝 --> Blood Zoysia
 夜姬 --> Midnight Echo
 比翼鸟 --> Birds of a Feather
@@ -360,11 +377,11 @@
 定颜丹 --> Immortalized Beauty Pill
 深海黑檀 --> Deep Atlantic Sandalwood
 凝神丹 --> The Fascinating Pill
-血妖 --> Blood Demon
 女武神之手 --> Hand of the Valkyrie
 留影眼球 --> Photon Lens 									// Starnet Continent's equivalent of cameras
 紫炎剑 --> Purple Flame Sword 								// Qin Lingyan's offensive puppet
 御之铠 --> Royal Armor										// Qin Lingyan's defensive puppet
+傀儡核心 --> Puppet Core
 
 //================================================================================
 // 	Language

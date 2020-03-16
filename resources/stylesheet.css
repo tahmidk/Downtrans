@@ -226,6 +226,36 @@ ul li span:nth-child(1){
   filter: invert(1);
 }
 
+/* Adaptive style for ultrawide */
+@media only screen and (max-width: 3440px){
+  section{
+    padding-left:17em;
+    padding-right:17em;
+
+    font-size: 1.8em;
+    text-align: justify;
+  }
+
+  .scroll_indicator{
+    left: 14em;
+  }
+}
+
+/* Adaptive style for true HD */
+@media only screen and (max-width: 2650px){
+  section{
+    padding-left:15em;
+    padding-right:15em;
+
+    font-size: 1.5em;
+    text-align: justify;
+  }
+
+  .scroll_indicator{
+    left: 11em;
+  }
+}
+
 /* Adaptive style for tablet */
 @media only screen and (max-width: 1920px){
   section{
