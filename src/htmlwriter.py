@@ -172,8 +172,11 @@ class HtmlWriter:
 
 				self.__pId += 1
 
+		# This invisible dummy forces translation of every line b/c otherwise some lines aren't 
+		# touched by google trans and this messes up the JS translation schema
+		dummy = "<span class=\"dummy\">模型</span>" 
 		# Integrate line into resource string
-		line_html = "<p class=\"content_line\" id=l%s>%s</p>" % (self.__linenum, line)
+		line_html = "<p class=\"content_line\" id=l%s>%s%s</p>" % (self.__linenum, line, dummy)
 		final_html = line_html + raw_html + "\n<!--END_OF_BODY-->"
 		self.__resource = re.sub(r'<!--END_OF_BODY-->', final_html, self.__resource)
 		self.__linenum += 1

@@ -1,0 +1,16 @@
+{
+    "JP":[
+        {"h_raw": "さん", "h_trans": "-san"},
+        {"h_raw": "くん", "h_trans": "-kun"},
+        {"h_raw": "さま", "h_trans": "-sama"},
+        {"h_raw": "様", "h_trans": "-sama"},
+        {"h_raw": "殿", "h_trans": "-dono"},
+        {"h_raw": "ねーちゃん", "h_trans": "-neechan"},
+        {"h_raw": "ちゃんー", "h_trans": "-chan"},
+        {"h_raw": "王女", "h_trans": "-ojou"},
+        {"h_raw": "王子", "h_trans": "-ouji"},
+        {"h_raw": "嬢", "h_trans": "-jou"}
+    ],
+    "CN":[
+    ]
+}

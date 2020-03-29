@@ -20,6 +20,8 @@ import multiprocessing as mp 		# General mp utilities
 import time 						# For sleeping thread between retries
 
 import argparse as argp 			# Parse input arguments
+import re 							# Regex
+import json 						# JSON parsing
 import webbrowser					# Open translation HTMLs in browser
 import platform						# Used to determine Operating System
 import ssl 							# For certificate authentication
@@ -41,6 +43,7 @@ TABLES_PATH = 		os.path.join("../tables/")
 LOG_PATH = 			os.path.join("../logs/")
 RESOURCE_PATH = 	os.path.join("../resources/")
 CONFIG_FILE_PATH = 	os.path.join("../user_config.json")
+HONORIFICS_PATH =   os.path.join("../honorifics.json")
 
 # Format of the divider for .dict file
 DIV = r' --> '
@@ -239,6 +242,7 @@ def initDict(series):
 		------------------------------------------------------------------
 	"""
 	global series_dict
+	global config_data
 	dict_name = series.lower() + ".dict"
 	dict_path = os.path.join(DICT_PATH, dict_name)
 
@@ -268,22 +272,33 @@ def initDict(series):
 	# Parse the mappings into a list
 	dictList = []
 	for line in dict_file:
-		# Skip comment lines and unformatted/misformatted lines
 		line = line.lstrip()
-		if line[0:2] == "//" or DIV not in line:
-			continue
-
 		line = line[:-1]	# Ignore newline '\n' at the end of the line
-		raw_div = line.split(DIV)
-		if len(raw_div) != 2 or len(raw_div[0]) == 0 or len(raw_div[1]) == 0:
-			print("[Warning] Malformed line detected in dictionary: %s" %
-				line)
-			print("  Make sure to minimally have something in the form of \
-				\'RAW --> TRANSLATED   // Optional comment\' with nonempty \
-				RAW and TRANSLATED entries ... Skipping entry")
+
+		# Skip comment lines and unformatted/misformatted lines
+		if line[0:2] == "//":
 			continue
-		trans_div = raw_div[1].split("//")
-		dictList.append((raw_div[0].strip(), trans_div[0].strip()))
+		elif re.fullmatch(r"\s*@name\{(.+), (.+)\}\s*", line) is not None:
+			nameMatch = re.fullmatch(r"\s*@name\{(.+), (.+)\}\s*", line)
+			variants = generateNameVariants(
+				nameMatch[1].strip(), 
+				nameMatch[2].strip(), 
+				config_data.getSeriesLang(series))
+			for variant in variants:
+				dictList.append(variant)
+		else:
+			if DIV not in line:
+				continue
+			raw_div = line.split(DIV)
+			if len(raw_div) != 2 or len(raw_div[0]) == 0 or len(raw_div[1]) == 0:
+				print("[Warning] Malformed line detected in dictionary: %s" %
+					line)
+				print("  Make sure to minimally have something in the form of \
+					\'RAW --> TRANSLATED   // Optional comment\' with nonempty \
+					RAW and TRANSLATED entries ... Skipping entry")
+				continue
+			trans_div = raw_div[1].split("//")
+			dictList.append((raw_div[0].strip(), trans_div[0].strip()))
 
 	# Initialize the global. Need to sort such that longer strings are processed
 	# before the shorter ones so sort by length of the Chinese string
@@ -303,7 +318,7 @@ def initPageTable(series):
 	"""
 	global page_table
 	global html_parser
-	global config_dat
+	global config_data
 
 	table_name = "%s.table" % series.lower()
 	series_table = os.path.join(TABLES_PATH, table_name)
@@ -443,6 +458,29 @@ def openBrowser(series, ch):
 		except Exception:
 			print("\n[Error] Cannot open Google Chrome [%s]. \
 				Skipping" % chrome_path)
+
+def generateNameVariants(rName, tName, lang):
+	"""-------------------------------------------------------------------
+		Function:		[generateNameVariants]
+		Description:	Generates all variants of rName --> tName dictionary
+						entries using the honorifics indicated in honorifics.json
+		Input:
+		  [rName]		The raw name dict entry
+		  [tName]		The translated name dict entry
+		  [lang] 		The language of the raw 'CN' or 'JP'
+		Return:			List of pairs of raw name variants to translated name 
+						variants
+		------------------------------------------------------------------
+	"""
+	res = [(rName, tName)]
+	with io.open(HONORIFICS_PATH, mode='r', encoding='utf8') as hon_file:
+		honorifics = json.loads(hon_file.read())
+		for entry in honorifics[lang]:
+			variant = (rName+entry['h_raw'], tName+entry['h_trans'])
+			res.append(variant)
+
+	return res
+
 
 #============================================================================
 #  Web scraping functions
@@ -642,7 +680,7 @@ def writeTrans(series, ch, globals_pkg):
 	for line in tqdm(raw_list, total=num_lines):
 		line_num += 1
 		# Skip blank lines
-		if line != '\n':
+		if not re.fullmatch(r'\s*\n', line):
 			# Check raw text against dictionary and replace matches
 			log_file.write("\n[L%d] Processing non-blank line..." % line_num)
 			html_writer.insertLine(line, config_data.getSeriesLang(series))

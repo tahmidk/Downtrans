@@ -226,6 +226,18 @@ ul li span:nth-child(1){
   filter: invert(1);
 }
 
+.dummy{
+  /* Make it invisible */
+  color: rgba(0, 0, 0, 0);
+  font-size: 0.01em;
+  /* Make it unselectable */ 
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* Adaptive style for ultrawide */
 @media only screen and (max-width: 3440px){
   section{
