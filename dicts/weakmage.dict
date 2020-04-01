@@ -4,107 +4,425 @@
 @name{高月, Takatsuki}
 @name{まこと, Makoto}
 @name{マコト, Makoto}
+まこ --> Make-kun
+マコくん --> Mako-kun
 @name{タッキー, Takki}
+精霊使いくん --> Spirit Wielder-kun
 @name{ノア, Noah}
+女神ノア --> Goddess Noah
+@name{ルーシー, Lucy}
+るーちゃん --> Lu-chan
+ルーシー・Ｊ・ウォーカー --> Lucy J. Walker
+魔法使いさん --> Magician-san
+@name{さーさん, Sa-san}
+@name{あや, Aya}
+@name{アヤ, Aya}
+@name{佐々木, Sasaki}
+戦士さん --> Warrior-san
 @name{ふじやん, Fujiyan}
 @name{藤原, Fujiwara}
 @name{みちお, Michio}
+@name{ミチオ, Michio}
 @name{ルーカス, Lucas}
 @name{マリー, Mary}
 @name{ジャン, Jean}
 @name{エミリー, Emily}
-@name{ルーシー, Lucy}
 @name{ウォーカー, Walker}
 @name{ニナ, Nina}
 @name{クリス, Chris}
 @name{クリスティアナ, Christiana}
-@name{あや, Aya}
-@name{さーさん, Sa-san}
-@name{佐々木, Sasaki}
 @name{りょうすけ, Ryosuke}
+@name{リョウスケ, Ryosuke}
 @name{桜井, Sakurai}
 @name{横山, Yokoyama}
 @name{さき, Saki}
+@name{サキ, Saki}
 @name{ノエル, Noel}
 @name{ハイランド, Highland}
 @name{ソフィア, Sophia}
+ソフィーちゃん --> Sophie-chan
 @name{ローゼス, Rozess}
 @name{アベル, Abel}
+救世主アベル --> Abel The Savior
 @name{ロザリー, Rosalie}
 @name{レオナード, Leonardo}
 @name{レオ, Leo}
 @name{エイル, Eiru}
 @name{岡田, Okada}
 @name{北山, Kitayama}
+@name{川本, Kawamoto}
+@name{えり, Eri}
+@name{勇者, Hero}
+@name{武田, Takeda}
+@name{ジェラルド, Gerald}
+ジェラさん --> Gerald-san
+@name{バランタイン, Valentin}
+@name{大賢者, Great Sage}
+@name{ジョニィ, Johnny}
+ジョニイ --> Johnny
+@name{アンナ, Anna}
+@name{エリ, Eri}
+@name{テオギル, Teogir}
+@name{アルテナ, Altina}
+@name{ピーター, Peter}
+@name{カストール, Castor}
+@name{ガイウス, Gaius}
+@name{ジュリアーノ, Julian}
+@name{ロマ, Roma}
+@name{ボルジア, Borgia}
+@name{マルコ, Marco}
+@name{ホワイトホース, Whitehorse}
+@name{ロレンツォ, Lorenzo}
+@name{ベリーズ, Beliz}
+@name{バルトロメオ, Bartholomeo}
+@name{バランタイン, Valentin}
+@name{ミハエル, Michael}
+@name{ローランド, Roland}
+@name{ヴィットリオ, Vittorio}
+@name{ホワイトヘザー, Whiteheather}
+@name{ユーウェイン, Yuwein}
+@name{ブラッドノック, Bloodnoc}
+@name{シャウーラ一, Shaura}
+@name{デネボーラ一, Denevrah}
+@name{ジェノバ, Genovah}
+@name{ジャック, Jack}
+@name{フリアエ, Freya}
+@name{フーリ, Frey}
+ふーちゃん --> Fuu-chan
+@name{イヴリース, Iblis}
+@name{イザク, Isaac}
+大主教イザク --> Archbishop Isaac
+@name{ストラ, Sutora}
+@name{バーグ, Barg}
+@name{ジャネット, Janette}
+@name{ウンディーネ, Undyne}
+@name{サンドラ, Sandra}
+@name{あんな, Anna}
+@name{コンスタンス, Constance}
+@name{ヴァイオレット, Violet}
+@name{トニー, Tony}
+@name{モニカ, Monika}
+@name{フローナ, Frona}
+@name{セテカー, Settekar}
+@name{ザガン, Zagan}
+@name{ジンバラ, Jinbara}
+@name{マキシミリアン, Maximilian}
+マキシさん --> Maxi-san
+@name{ラガヴーリン, Ragavulin}
+@name{里長, Satosa}
+@name{オルガ, Olga}
+オルガ・ソール・タリスカー --> Olga Sol Talisker
+@name{タリスカー, Talisker}
+タリスカー将軍 --> General Talisker
+@name{ケイコ, Keiko}
+@name{河北, Kahoku}
+@name{マルタン, Martin}
+@name{ブナハーブン, Bunaharbun}
+@name{ダリア, Daria}
+ダリア・ソール・グレイトキース --> Daria Sol Greatkeith
+@name{グレイトキース, Greatkeith}
+@name{ゲーアハルト, Gayhart}
+@name{エステル, Esther}
+@name{オルト, Ortho}
+@name{アレク, Alec}
+@name{アレクサンドル, Alexander}
+@name{イラ, Ira}
+ツイ --> Sui
+ナイア --> Naia
+スカーフェイス --> Scarface
+ブラザー --> Brother
+聖母アンナ --> Maiden Anna
+聖女アンナ --> Maiden Anna
 ネプトゥス --> Sea God Neptus
+テュフォン --> Typhon
+ティフォン --> Typhon
+悪魔神王テュフォン --> Demon God King Typhon
+ベンリアック --> Venriak
+ビフロンス --> Byfrons
+アシュタロト --> Ashtaroth
+オズ --> Ozz
+ヴァラク --> Vaarak
+ヴィラク --> Vaarak
+エリーニュス --> Elinus
+バルバトス --> Barbatos
+フォルネウス --> Forneus
+巨神のおっさん --> Uncle Titan
+巨神様 --> Titan-sama
+シューリ --> Shuri
 
 // Places
 マッカレン --> Makkaren
 魔の森 --> Demon's Forest
 大迷宮 --> Grand Labyrinth
 英雄酒場 --> Hero's Bar
-太陽の国 --> Sun Country
-水の国 --> Water Country
+太陽の国 --> Country of the Sun
+月の国 --> Country of the Moon
+水の国 --> Country of Water
+火の国 --> Country of Fire
+木の国 --> Country of Wood
+商業の国 --> Country of Commerce
+土の国 --> Country of Gaia
 水の神殿 --> Water Temple
 タルタロス --> Tartarus
 王都 --> Royal Capital
 ホルン --> Horun
 ローゼス城 --> Rozess Castle
+ローゼス王城 --> Rozess Castle
+シメイ湖 --> Lake Shimei
+魔大陸 --> Demon's Continent
+ラフィロイグ --> Lafroig
+シンフォニア --> Symphonia
+ガムラン --> Gamelon
+ハイランド城 --> Highland Castle
+グランド・ハイランド・カジノ --> Grand Highland Casino
+カナンの里 --> Village of Canaan
+フジワラ家 --> Fujiwara House
+迷いの森 --> Lost Forest
+海底神殿 --> Abyssal Atlantic Temple
+グレイトキース城 --> Greatkeith Castle
+コルネット --> Cornet
 
 // Skills
+//--------------------------[ Types ]-----------------------------
 水魔法 --> Water Magic
-明鏡止水 --> Serene Water Mirror
-大昇龍 --> Great Rising Dragon
-水龍 --> Water Dragon
-水鯨 --> Water Whale
-流星群 --> Meteor Shower
+氷魔法 --> Ice Magic
+土魔法 --> Earth Magic
+火魔法 --> Fire Magic
+雷魔法 --> Thunder Magic
+木魔法 --> Wood Magic
+混合魔法 --> Mixed Magic
+太陽魔法 --> Solar Magic
+月魔法 --> Lunar Magic
+光魔法 --> Light Magic
+闇魔法 --> Dark Magic
+死霊魔法 --> Necro Magic
+呪い魔 --> Curse Magic
+重力魔法 --> Gravity Magic
+運命魔法 --> Destiny Magic
+自爆魔法 --> Self-Destructive Magic
+召喚魔法 --> Evocation Magic
+//----------------------[ General Skills ]------------------------
+RPGゲームプレイヤー --> RPG Game Player
+RPGプレイヤー --> RPG Player
+冷静 --> Calm Mind
+集中 --> Concentration
 アクションゲームプレイヤー --> Action Game Player
 ギャルゲープレイヤー --> Gal Game Player
 溜め攻撃 --> Charge Attack
 ダッシュ --> Dash
+空中ジャンプ --> Aerial Jump
 マナ視の魔眼 --> Mana Envisioning Evil Eye
+大昇龍 --> Great Rising Dragon
 黄金の聖闘気 --> Golden Saint's Aura
+変化スキル --> Transfiguration Skill
+同調 --> Tuning
+冷血 --> Coolblood
+読心 --> Reading
+鑑定 --> Appraisal
+危険感知 --> Danger Radar
+索敵 --> Enemy Radar
+逃走 --> Runaway
+空間転移 --> Spatial Transmission
+石化の魔眼 --> Petrifying Vision
+変化 --> Change
+進化 --> Evolution
+無敵時間 --> Invincibility Frames
+//--------------------------[ Water ]-----------------------------
+明鏡止水 --> Serene Water Mirror
+水龍 --> Water Dragon
+水龍の爪 --> Water Dragon's Claw
+水鯨 --> Water Whale
+水流 --> Water Current
+水の巨人 --> Aqua Titan
+深海 --> Ocean Depths
+氷の床 --> Ice Floor
+王級 --> Ice Dragon
+百本の氷矢 --> Hundred Ice Arrows
+氷龍の群れ --> Ice Dragon Flock
+氷の壁 --> Ice Wall
+氷の槍 --> Ice Spear
+氷針 --> Ice Needle
+霧 --> Fog
+氷の世界 --> World of Ice
+氷の不死鳥 --> Frost Phoenix
+大氷牢 --> Grand Ice Prison
+水刃 --> Water Blade
+氷刃 --> Frost Blade
+氷の剣 --> Psychroblade
+吹雪の剣 --> Blizzard Sword
+癒しの水 --> Aquian Heal
+//--------------------------[ Fire ]-------------------------------
+流星群 --> Meteor Shower
+隕石落とし --> Meteor Fall
+ファイアボール --> Fireball
+炎の暴風 --> Firestorm
+炎の嵐 --> Firestorm
+不死鳥 --> Phoenix
+火弾 --> Flaming Bullet
+百本の火矢 --> Hundred Fire Arrows
+火弾の雨 --> Storm of Inferno
+//--------------------------[ Moon ]-------------------------------
+魅惑魔法 --> Fascination Magic
+魅了 --> Enchantment
+睡魔 --> Curse of Sleep
+因果の糸 --> Thread of Cause and Effect
+//--------------------------[ Other ]------------------------------
+岩弾 --> Stone Bullet
+大岩弾 --> Giant Boulder
+風の刃 --> Aeroblade
+落雷 --> Lightning Strike
+雷の剣 --> Sword of Thunder
+雷鳴の槍 --> Thunder Spear
+雷の槍 --> Thunder Spear
+蘇生 --> Resurrection
+精霊纏い --> Spirit Cloak
+精霊召喚 --> Summoning Spirits
 
-// Terminology
+// Creatures
+精霊さん --> Spirit-san
 ゴブリン --> Goblin
 グリフォン --> Griffon
 キメラ --> Chimera
 ハーピー --> Harpy
 ラミア --> Lamia
+ラミア女王 --> Lamia Queen
 シーサペント --> Sea Serpent
+オーク --> Ork
 リヴァイアサン --> Leviathan
 ミノタウロス --> Minotaur
-忌まわしき竜 --> Aboinable Dragon
-精霊さん --> Spirit-san
+スケルトン --> Skeleton
+ゾンビ --> Zombie
+死霊騎士 --> Death Knight
+オーガ --> Ogre
+コボルト --> Kobold
+巨人 --> Titan
+緑竜 --> Green Dragon
+古竜 --> Elder Dragon
+竜ゾンビ --> Zombie Dragons
+白金トカゲ --> Platinum Lizard
+砂竜 --> Sand Dragon
+
+// Ranking
+//----------------[ Adventurer Ranks ]---------------------
+ストーンランク --> Stone Rank
+ブロンズランク --> Bronze Rank
+アイアンランク --> Iron Rank
+シルバーランク --> Silver Rank
+ゴールドランク --> Gold Rank
+プラチナランク --> Platinum Rank
+ミスリルランク --> Mythril Rank
+オリハルコンランク --> Orichalcum Rank
+災害指定 --> Calamity Class
+//------------------[ Magic Levels ]-----------------------
+魔法使い見習い --> Apprentice Magician
+初級 --> Elementary Class
+中級 --> Intermediate Class
+王級 --> King Class
+超級 --> Super Class
+聖級 --> Holy Class
+
+// Terminology
+魂書 --> Soul Book
 精霊魔法 --> Spirit Magic
+//--------------[ Elementary Terminology ]------------------
+水の国の勇者 --> Hero of the Water Country
+水の勇者 --> Hero of Water
+ローゼスの勇者 --> Hero of Rozess
+水の女神 --> Water Goddess
 光の勇者 --> Hero of Light
+陽の巫女 --> Sun Priestess
+太陽の女神 --> Sun Goddess
+火の女神 --> Flame Goddess
+火の勇者 --> Hero of Flames
+火の女神の巫女 --> Fire Priestess
+火の巫女 --> Fire Priestess
+灼熱の勇者 --> Hero of Flames
+月の女神 --> Moon Goddess
+月の巫女 --> Moon Priestess
+運命の女神 --> Goddess of Destiny
+運命の女神の巫女 --> Priestess of Destiny
+呪いの巫女 --> Cursed Priestess
 氷雪の勇者 --> Hero of Frost
+風樹の勇者 --> Hero of Nature
+木の女神 --> Goddess of Nature
+木の女神の巫女 --> Priestess of Nature
+稲妻の勇者 --> Hero of Thunder
+雷の勇者 --> Hero of Thunder
+//---------------------[ Misc ]----------------------------
+狂った英雄 --> Crazed Heroes
 太陽の騎士団 --> Sun Knight Order
 白の大賢者 --> The Great White Sage
-大賢者 --> The Great Sage
 ヤマタノオロチ --> Yamata no Orochi
+ヤマタノ --> Yamata no Orochi
 光の剣 --> Sword of Light
-王級魔法 --> Imperial-level Magic
-魔法使い見習い --> Apprentice Magician
-精霊使い --> Spirit Controller
+精霊使い --> Spirit Wielder
 大魔王 --> The Great Demon King
 禁忌の黒騎士 --> Forbidden Black Knight
-ティターン --> Titans
-聖神 --> Holy Gods
-邪神 --> Evil Gods
+ティタン --> Titan
+タイタン神族 --> Titan God Clan
+ティターン神 --> Titan God Clan
+巨神族 --> Titan God Clan
+聖神 --> Holy God
+聖神族 --> Holy God Clan
+邪神 --> Evil God
+邪神の使徒 --> Evil God's Apostle
 神界戦争 --> War of Gods
-ストーンランク --> Stone rank
-アイアンランク --> Iron Rank
-シルバーランクへ --> Silver Rank
-ゴールドランク --> Gold rank
+魔物使い --> Demon Beast
 魔物使いのサーカス団 --> Demon Beast Circus
 忌まわしき魔物 --> Aboniable-class Demon Beast
+忌まわしき --> Aboinable
+完全同調 --> Perfect Synchro
+フジワラ商会 --> Fujiwara Company
+北征計画 --> North Subjugation Plan
+魔人族 --> Demon Tribe
+蛇の教団 --> Serpent Cult
+聖カノン号 --> Saint Kanon
+ローランド家 --> Roland House
+ホワイトホース家 --> Whitehorse House
+ベリーズ家 --> Beliz House
+バランタイン家 --> Valentin House
+半魔族 --> Half-Blood Demonkin
+上級魔族 --> Elite Demonkin
+魔族 --> Demonkin
+神殿騎士団 --> Templar Knights
+不死王 --> Immortal King
+竜の王 --> Dragon King
+海魔の王 --> Sea Monster King
+獣の王 --> Beast King
+蟲の王 --> Insect King
+堕天の王 --> Fallen King
+悪魔の王 --> Demon King
+月魔法使い --> Moon Magician
+水の大精霊 --> Great Water Fairy
+鬼神の大槌 --> Demon God's Mallet
+鬼神の槌 --> Demon God's Mallet
+神気 --> God Aura
+神撃 --> Shingeki
+紅蓮の魔女 --> Crimson Witch
+ペガサス騎士団 --> Pegasus Knight Order
+生贄術・供物 --> Tribute Skill - Offering
+クラレント --> Godsword Clarent
+アスカロン --> Godsword Ascalon
+バルムンク --> Godsword Balmunk
+カリバーン --> Godsword Calivan
+神殺しの刃 --> God-slaying Edge
+神鎧 --> Divine Armor
+賢者の石 --> Philosopher's Stone
+武闘大会 --> Fighters Tourney
+紅の翼 --> Red Wings
+龍人族 --> Dragonkin
+人族 --> Humankin
+厄災の魔女 --> Witch of Calamity
 
 // Language
 ご主人様 --> Master
-勇者 --> Hero
-勇者サマ --> Hero-sama
-姉さま --> neesama
+旦那様 --> Husband
+拙者 --> I/Me
+ワシ --> I(formal)
+若頭 --> Young master
+姉さま --> Elder Sister
+兄さま --> Elder Brother
+姫 --> Milady
 
 // Misc
 魔法使い --> Magician
@@ -112,5 +430,9 @@
 貴様 --> Bastard
 魔王 --> Demon Lord
 魔神 --> Demon
+エリア --> area
+ハーレム --> Harem
+私の騎士 --> My Guardian Knight
+オークション --> Auction
 
 // END OF FILE

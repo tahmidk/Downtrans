@@ -49,7 +49,7 @@ function bind_all_lines()
       var prev_line_num = this.id.substring(1) - 1;
       var line_n = document.querySelector('.content_line#l'+prev_line_num);
 
-      if(prev_line_num == 44){
+      if(prev_line_num == 190){
         console.log("A");
       }
 
@@ -66,9 +66,9 @@ function bind_all_lines()
 
           // Pay attention to which mode it is
           if(document.querySelector("section").classList.contains('dark'))
-            var replacement = "<span class=\'word dark\'>" + word + "</span>"
+            var replacement = "<span class=\'notranslate word dark\'>" + word + "</span>"
           else
-            var replacement = "<span class=\'word\'>" + word + "</span>"
+            var replacement = "<span class=\'notranslate word\'>" + word + "</span>"
 
           elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
         }
