@@ -7,6 +7,20 @@
     ],
     "series": [
         {
+            "abbr": "DKCand",
+            "name": "Summoned as a Demon King Candidate",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n2160dv"
+        },
+        {
+            "abbr": "StrongAdv",
+            "name": "Strongest Adventurer's School Life",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n2679fr"
+        },
+        {
             "abbr": "WeakMage",
             "name": "Clearing an Isekai with the Zero-Believers Goddess",
             "lang": "JP",
@@ -35,20 +49,6 @@
             "code": "n9078bd"
         },
         {
-            "abbr": "LV999",
-            "name": "LV999 Villager",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n7612ct"
-        },
-        {
-            "abbr": "BlackSum",
-            "name": "Black Summoner",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n1222ci"
-        },
-        {
             "abbr": "Mismatch",
             "name": "The Student Unsuited for Demon Lord School",
             "lang": "JP",
@@ -75,13 +75,6 @@
             "lang": "CN",
             "host": "69shu",
             "code": "100273"
-        },
-        {
-            "abbr": "GrimReaper",
-            "name": "After the World Turns Into a Dungeon, I Gained the Grim Reaper Class",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n0922ga"
         }
     ]
 }

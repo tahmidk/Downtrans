@@ -81,6 +81,7 @@
 @name{ヴィットリオ, Vittorio}
 @name{ホワイトヘザー, Whiteheather}
 @name{ユーウェイン, Yuwein}
+ユーウェイン総長 --> Secretary General Yuwein
 @name{ブラッドノック, Bloodnoc}
 @name{シャウーラ一, Shaura}
 @name{デネボーラ一, Denevrah}
@@ -127,6 +128,7 @@
 @name{アレク, Alec}
 @name{アレクサンドル, Alexander}
 @name{イラ, Ira}
+@name{ハヴェル, Havel}
 ツイ --> Sui
 ナイア --> Naia
 スカーフェイス --> Scarface
@@ -149,6 +151,7 @@
 巨神のおっさん --> Uncle Titan
 巨神様 --> Titan-sama
 シューリ --> Shuri
+ハヤテ --> Hayate
 
 // Places
 マッカレン --> Makkaren
@@ -201,6 +204,7 @@
 運命魔法 --> Destiny Magic
 自爆魔法 --> Self-Destructive Magic
 召喚魔法 --> Evocation Magic
+結界魔法 --> Barrier Magic
 //----------------------[ General Skills ]------------------------
 RPGゲームプレイヤー --> RPG Game Player
 RPGプレイヤー --> RPG Player
@@ -227,11 +231,14 @@ RPGプレイヤー --> RPG Player
 変化 --> Change
 進化 --> Evolution
 無敵時間 --> Invincibility Frames
+千里眼 --> Clairvoyance
+未来視 --> Future Vision
 //--------------------------[ Water ]-----------------------------
 明鏡止水 --> Serene Water Mirror
 水龍 --> Water Dragon
 水龍の爪 --> Water Dragon's Claw
 水鯨 --> Water Whale
+大鯨 --> Great Whale
 水流 --> Water Current
 水の巨人 --> Aqua Titan
 深海 --> Ocean Depths
@@ -251,6 +258,13 @@ RPGプレイヤー --> RPG Player
 氷の剣 --> Psychroblade
 吹雪の剣 --> Blizzard Sword
 癒しの水 --> Aquian Heal
+エターナル・デス・ブリザード --> Everdeath Blizzard
+青龍 --> Azure Dragon
+氷の家 --> Igloo
+水の不死鳥 --> Aqua Phoenix
+ソニックスラッシュ --> Sonic Slash
+大瀑布 --> Grand Waterfall
+水生成 --> Aquagen
 //--------------------------[ Fire ]-------------------------------
 流星群 --> Meteor Shower
 隕石落とし --> Meteor Fall
@@ -266,17 +280,19 @@ RPGプレイヤー --> RPG Player
 魅了 --> Enchantment
 睡魔 --> Curse of Sleep
 因果の糸 --> Thread of Cause and Effect
-//--------------------------[ Other ]------------------------------
-岩弾 --> Stone Bullet
-大岩弾 --> Giant Boulder
-風の刃 --> Aeroblade
+//-------------------------[ Thunder ]-----------------------------
 落雷 --> Lightning Strike
 雷の剣 --> Sword of Thunder
 雷鳴の槍 --> Thunder Spear
 雷の槍 --> Thunder Spear
+//--------------------------[ Other ]------------------------------
+岩弾 --> Stone Bullet
+大岩弾 --> Giant Boulder
+風の刃 --> Aeroblade
 蘇生 --> Resurrection
 精霊纏い --> Spirit Cloak
 精霊召喚 --> Summoning Spirits
+ライトスラッシュ --> Light Slash
 
 // Creatures
 精霊さん --> Spirit-san
@@ -339,7 +355,9 @@ RPGプレイヤー --> RPG Player
 灼熱の勇者 --> Hero of Flames
 月の女神 --> Moon Goddess
 月の巫女 --> Moon Priestess
+月の女神の巫女 --> Moon Priestess
 運命の女神 --> Goddess of Destiny
+幸運の女神 --> Goddess of Fortune
 運命の女神の巫女 --> Priestess of Destiny
 呪いの巫女 --> Cursed Priestess
 氷雪の勇者 --> Hero of Frost
@@ -413,6 +431,13 @@ RPGプレイヤー --> RPG Player
 龍人族 --> Dragonkin
 人族 --> Humankin
 厄災の魔女 --> Witch of Calamity
+精霊の右手 --> Spirit Arm
+魂の契約 --> Soul Covenant
+言の葉の契約 --> Verbal Covenant
+血の契約 --> Blood Covenant
+躯の契約 --> Physical Covenant
+
+
 
 // Language
 ご主人様 --> Master
@@ -422,7 +447,7 @@ RPGプレイヤー --> RPG Player
 若頭 --> Young master
 姉さま --> Elder Sister
 兄さま --> Elder Brother
-姫 --> Milady
+姫 --> Milady/Princess
 
 // Misc
 魔法使い --> Magician
@@ -434,5 +459,7 @@ RPGプレイヤー --> RPG Player
 ハーレム --> Harem
 私の騎士 --> My Guardian Knight
 オークション --> Auction
+姫様 --> Princess
+イライラ --> irritated
 
 // END OF FILE

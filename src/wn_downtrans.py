@@ -143,6 +143,10 @@ def initArgParser():
 		translation on chapters directly from various host websites")
 
 	# Mode flags are mutually exclusive: Either single or batch downtrans
+	parser.add_argument('-D', '--dev',
+		action="store_true",
+		help="Output uses local js/css instead of remote production ver"
+		)
 	mode_flags = parser.add_mutually_exclusive_group(required=True)
 	mode_flags.add_argument('-C', '--clean',
 		action="store_true",
@@ -610,7 +614,7 @@ def writeRaw(series, ch, content):
 	raw_file.close()
 	return 0
 
-def writeTrans(series, ch, globals_pkg):
+def writeTrans(series, ch, globals_pkg, dev_opt):
 	"""-------------------------------------------------------------------
 		Function:		[writeTrans]
 		Description:	Write translations to trans file
@@ -618,6 +622,7 @@ def writeTrans(series, ch, globals_pkg):
 		  [series]		The series to write translation for
 		  [ch]			The chapter number to write translation for
 		  [globals_pkg]	Globals package
+		  [dev_opt] 	Write developer version HTML?
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
@@ -663,7 +668,8 @@ def writeTrans(series, ch, globals_pkg):
 
 	# Initialize HTML Writer
 	skeleton_path = RESOURCE_PATH + "skeleton.html"
-	html_writer = htmlwriter.HtmlWriter(series_dict, log_file, skeleton_path)
+	html_writer = htmlwriter.HtmlWriter(series_dict, log_file, skeleton_path,
+		dev_opt)
 	html_writer.setPageTitle(series, ch)
 	html_writer.setChapterTitle(config_data.getSeriesTitle(series))
 	html_writer.setSeriesLink(getSeriesUrl(series, globals_pkg))
@@ -698,7 +704,7 @@ def writeTrans(series, ch, globals_pkg):
 	return 0
 
 # =========================[ Script ]=========================
-def batch_procedure(series, ch_queue, globals_pkg):
+def batch_procedure(series, ch_queue, globals_pkg, dev_opt):
 	"""-------------------------------------------------------------------
 		Function:		[batch_procedure]
 		Description:	Does the default procedure on each chapter in the list
@@ -707,6 +713,7 @@ def batch_procedure(series, ch_queue, globals_pkg):
 		  [series]	 	The series for which to downtrans chapter
 		  [ch_queue] 	The list of chapter numbers to downtrans
 		  [globals_pkg]	Globals package
+		  [dev_opt]		Write developer version HTML?
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
@@ -715,7 +722,7 @@ def batch_procedure(series, ch_queue, globals_pkg):
 
 	# Multiprocess queue of chapters requested
 	pool = mp.Pool(processes=mp.cpu_count())
-	args = [(series, ch, globals_pkg) for ch in ch_queue]
+	args = [(series, ch, globals_pkg, dev_opt) for ch in ch_queue]
 
 	results = pool.imap_unordered(_default_procedure, args)
 	pool.close()
@@ -731,7 +738,7 @@ def _default_procedure(args):
 	""" Simple wrapper method for pooling default_procedure """
 	return default_procedure(*args)
 
-def default_procedure(series, ch, globals_pkg):
+def default_procedure(series, ch, globals_pkg, dev_opt):
 	"""-------------------------------------------------------------------
 		Function:		[default_procedure]
 		Description:	Downloads and saves a raw for chapter [ch] of series 
@@ -741,6 +748,7 @@ def default_procedure(series, ch, globals_pkg):
 		  [series]		The series for which to downtrans chapter
 		  [ch]			The integer indicating which chapter to downtrans
 		  [globals_pkg]	Globals package
+		  [dev_opt] 	Write developer version HTML?
 		Return:			N/A
 		------------------------------------------------------------------
 	"""
@@ -765,7 +773,7 @@ def default_procedure(series, ch, globals_pkg):
 		ret += writeRaw(series, ch, content)
 
 	# Write translation as HTML
-	ret += writeTrans(series, ch, globals_pkg)
+	ret += writeTrans(series, ch, globals_pkg, dev_opt)
 	return ret
 
 
@@ -806,10 +814,10 @@ def main():
 	# Different execution paths depending on mode
 	if mode_batch:
 		chapters = list(range(ch_start, ch_end+1))
-		batch_procedure(series, chapters, globals_pkg)
+		batch_procedure(series, chapters, globals_pkg, args.dev)
 		openBrowser(series, ch_start)
 	elif mode_single:
-		err_code = default_procedure(series, ch_start, globals_pkg)
+		err_code = default_procedure(series, ch_start, globals_pkg, args.dev)
 		if err_code != 0:
 			print("[Error] Could not download or translate. Exiting")
 			sys.exit(1)

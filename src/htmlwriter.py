@@ -14,7 +14,7 @@ class HtmlWriter:
 	#--------------------------------------------------------------------------
 	#  ctor
 	#--------------------------------------------------------------------------
-	def __init__(self, dictionary, log_file, res_path):
+	def __init__(self, dictionary, log_file, res_path, dev_opt=False):
 		"""-------------------------------------------------------------------
 			Function:		[CONSTRUCTOR]
 			Description:	Reads in the skeleton.html resource file
@@ -22,6 +22,7 @@ class HtmlWriter:
 			  [dictionary]	Series dictionary
 			  [log_file]	File descriptor to write translation logs to
 			  [res_path]	Path to skeleton.html resource
+			  [dev_opt] 	Output developer version HTML?
 			------------------------------------------------------------------
 		"""
 		self.__pId = 1
@@ -30,6 +31,12 @@ class HtmlWriter:
 		self.__log = log_file
 		with io.open(os.path.join(res_path), mode='r', encoding='utf8') as res:
 			self.__resource = res.read()
+			if dev_opt:
+				pattern = re.compile(r"<!--PROD_LINKS-->(.*)<!--SKNIL_DORP-->", re.S)
+				self.__resource = pattern.sub('', self.__resource)
+			else:
+				pattern = re.compile(r"<!--DEV_LINKS-->(.*)<!--SKNIL_VED-->", re.S)
+				self.__resource = pattern.sub('', self.__resource)
 
 	#--------------------------------------------------------------------------
 	#  Romanization generation

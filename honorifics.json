@@ -3,6 +3,7 @@
         {"h_raw": "さん", "h_trans": "-san"},
         {"h_raw": "くん", "h_trans": "-kun"},
         {"h_raw": "クン", "h_trans": "-kun"},
+        {"h_raw": "君", "h_trans": "-kun"},
         {"h_raw": "さま", "h_trans": "-sama"},
         {"h_raw": "様", "h_trans": "-sama"},
         {"h_raw": "サマ", "h_trans": "-sama"},
@@ -28,8 +29,7 @@
         {"h_raw": "先生", "h_trans": "-sensei"},
         {"h_raw": "先輩", "h_trans": "-senpai"},
         {"h_raw": "嬢ちゃん", "h_trans": "-jouchan"},
-        {"h_raw": "母さん", "h_trans": "-kaasan"},
-        {"h_raw": "先輩", "h_trans": "-senpai"}
+        {"h_raw": "母さん", "h_trans": "-kaasan"}
     ],
     "CN":[
     ]
