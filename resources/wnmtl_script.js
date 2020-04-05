@@ -33,6 +33,40 @@ $(document).ready(function()
   });
 })
 
+function replace_placeholders_in_line(line_elem)
+{
+  var placeholders = line_elem.getElementsByClassName('placeholder')
+  // Replace each placeholder on this line
+  for(let elem of placeholders){
+    if( elem.innerHTML.toLowerCase().includes("placeholder") ){
+      var word = document.getElementById('w' + elem.id).innerHTML;
+      var pattern = new RegExp("(?:the\\s|a\\s)?placeholder", 'gi');
+
+      // Pay attention to which mode it is
+      if(document.querySelector("section").classList.contains('dark'))
+        var replacement = "<span class=\'notranslate word dark\'>" + word + "</span>"
+      else
+        var replacement = "<span class=\'notranslate word\'>" + word + "</span>"
+
+      elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
+    }
+  }
+
+  // At this point, translation and substitution for this line is complete. Do
+  // some post processing (like remove unnecessary articles) to increase readability
+  var siblingPlaceholders = 
+    document.querySelectorAll('.content_line#l'+prev_line_num+' font .placeholder');
+  for(let placeholder_elem of siblingPlaceholders)
+  {
+    var preceding_elem = placeholder_elem.previousSibling;
+    if(preceding_elem != null && !preceding_elem.classList.contains("placeholder"))
+    {
+      var remove_articles = new RegExp("(the|a)(\\s*)$", 'gi');
+      preceding_elem.innerText = preceding_elem.innerText.replace(remove_articles, "$2");
+    }
+  }
+}
+
 function bind_all_lines()
 {
   var content_lines = document.getElementsByClassName('content_line');
@@ -47,46 +81,19 @@ function bind_all_lines()
       // Basically, when Google Trans starts translating line(n) (aka. this line) this 
       // func will replace the placeholders in line(n-1)
       var prev_line_num = this.id.substring(1) - 1;
-      var line_n = document.querySelector('.content_line#l'+prev_line_num);
+      var prev_prev_line_num = this.id.substring(1) - 2;
+      var prev_line = document.querySelector('.content_line#l'+prev_line_num);
+      var prev_prev_line = document.querySelector('.content_line#l'+prev_prev_line_num);
 
-      if(prev_line_num == 190){
+      if(prev_line_num == 67){
         console.log("A");
       }
 
       // No more need to listen to changes in line(n-1). This function will handle all
       // necessary postprocessing in one go
-      $(line_n).unbind();
-
-      var placeholders = line_n.getElementsByClassName('placeholder')
-      // Replace each placeholder on this line
-      for(let elem of placeholders){
-        if( elem.innerHTML.toLowerCase().includes("placeholder") ){
-          var word = document.getElementById('w' + elem.id).innerHTML;
-          var pattern = new RegExp("(?:the\\s|a\\s)?placeholder", 'gi');
-
-          // Pay attention to which mode it is
-          if(document.querySelector("section").classList.contains('dark'))
-            var replacement = "<span class=\'notranslate word dark\'>" + word + "</span>"
-          else
-            var replacement = "<span class=\'notranslate word\'>" + word + "</span>"
-
-          elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
-        }
-      }
-
-      // At this point, translation and substitution for this line is complete. Do
-      // some post processing (like remove unnecessary articles) to increase readability
-      var siblingPlaceholders = 
-        document.querySelectorAll('.content_line#l'+prev_line_num+' font .placeholder');
-      for(let placeholder_elem of siblingPlaceholders)
-      {
-        var preceding_elem = placeholder_elem.previousSibling;
-        if(preceding_elem != null && !preceding_elem.classList.contains("placeholder"))
-        {
-          var remove_articles = new RegExp("(the|a)(\\s*)$", 'gi');
-          preceding_elem.innerText = preceding_elem.innerText.replace(remove_articles, "$2");
-        }
-      }
+      replace_placeholders_in_line(prev_prev_line);
+      $(prev_line).unbind();
+      replace_placeholders_in_line(prev_line);
     });
   }
 }
