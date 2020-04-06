@@ -9,6 +9,7 @@
         {"h_raw": "サマ", "h_trans": "-sama"},
         {"h_raw": "殿", "h_trans": "-dono"},
         {"h_raw": "ねーちゃん", "h_trans": "-neechan"},
+        {"h_raw": "姉ちゃん", "h_trans": "-neechan"},
         {"h_raw": "お姉様", "h_trans": "-oneesama"},
         {"h_raw": "おねーさん", "h_trans": "-oneesan"},
         {"h_raw": "お姉ちゃん", "h_trans": "-oneechan"},

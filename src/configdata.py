@@ -5,11 +5,13 @@
   Description:	This module initializes and holds data contained
   				in a given config JSON file customized by the user
 """
-import json 		# JSON processing library
+from tabulate import tabulate	# Print pretty tables
+import json 					# JSON processing library
 
 # Length of dividers when printing
-DIVIDER_BOLD = "=" * 90
-DIVIDER_THIN = "-" * 90
+DIVIDER_BOLD = "=" * 120
+DIVIDER_THIN = "-" * 120
+L_PADDING = ' ' * 2
 
 class ConfigData:
 	#--------------------------------------------------------------------------
@@ -59,11 +61,11 @@ class ConfigData:
 		"""
 		self.__hosts = {}
 		print(DIVIDER_BOLD)
-		print("  Detected Host Websites:")
+		print(L_PADDING + "Detected Host Websites:")
 		print(DIVIDER_THIN)
 		for entry in hosts:
 			self.__hosts[entry['host_name']] = entry['base_url']
-			print("  %-15s: %s" % (entry['host_name'], entry['base_url']))
+			print(L_PADDING + "%-15s: %s" % (entry['host_name'], entry['base_url']))
 		print(DIVIDER_BOLD + "\n")
 
 	def initSeriesMap(self, series):
@@ -77,8 +79,11 @@ class ConfigData:
 		"""
 		self.__series = {}
 		print(DIVIDER_BOLD)
-		print("  Detected Series Data:")
-		print(DIVIDER_THIN)
+		print(L_PADDING + "Detected Series Data:")
+		print(DIVIDER_BOLD)
+
+		headers = ["Abbr", "Lang", "Code", "Host", "Title"]
+		data = []
 		for entry in series:
 			# Each series host must have a corresponding entry in self.__hosts
 			if entry['host'] not in self.__hosts:
@@ -95,14 +100,17 @@ class ConfigData:
 				'host': entry['host'],
 				'code': entry['code']
 			}
-			print("  %-15s: lang=%-3s code=%-10s host=%-10s title=%s" % (
-					entry['abbr'],
-					entry['lang'],
-					entry['code'],
-					entry['host'],
-					entry['name']
-				)
+			row = (entry['abbr'], 
+				entry['lang'], 
+				entry['code'], 
+				entry['host'], 
+				entry['name']
 			)
+			data.append(row)
+
+		# Print series config data as pretty table
+		table_str = tabulate(data, headers=headers)
+		print(L_PADDING + table_str.replace('\n', '\n'+L_PADDING))
 		print(DIVIDER_BOLD + "\n")
 
 	#--------------------------------------------------------------------------

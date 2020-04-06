@@ -35,9 +35,15 @@ $(document).ready(function()
 
 function replace_placeholders_in_line(line_num)
 {
-  var line_elem = document.querySelector('.content_line#l'+line_num);
-  $(line_elem).unbind();
+  // Validity check
+  if(line_num <= 0)
+    return;
 
+  var line_elem = document.querySelector('.content_line#l'+line_num);
+  if(line_num == 132)
+    console.log("A");
+
+  var bound = true;
   var placeholders = line_elem.getElementsByClassName('placeholder')
   // Replace each placeholder on this line
   for(let elem of placeholders){
@@ -52,6 +58,10 @@ function replace_placeholders_in_line(line_num)
         var replacement = "<span class=\'notranslate word\'>" + word + "</span>"
 
       elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
+      if(bound){
+        $(line_elem).unbind();
+        bound = false;
+      }
     }
   }
 
@@ -68,6 +78,7 @@ function replace_placeholders_in_line(line_num)
       preceding_elem.innerText = preceding_elem.innerText.replace(remove_articles, "$2");
     }
   }
+
 }
 
 function bind_all_lines()

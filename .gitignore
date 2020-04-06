@@ -1,8 +1,9 @@
 logs/*
+venv/
 *.log
 *.txt
 *.html
+*.pyc
 !requirements.txt
 !user_config.txt
 !skeleton.html
-venv/

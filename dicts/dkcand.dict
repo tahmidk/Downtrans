@@ -3,17 +3,37 @@
 // Names
 @name{神崎, Kanzaki}
 @name{大成, Taisei}
-@name{ローケンス, Lokens}
-@name{ニール, Near}
-@name{ウルミラ, Ulmira}
+@name{大和, Yamato}
+@name{奈々子, Nanako}
 @name{ジャンヌ, Jeanne}
 @name{ラーバス, Rabbath}
+@name{ウルミラ, Ulmira}
+@name{ローケンス, Lokens}
+@name{ニール, Near}
+@name{ウルシア, Ulshia}
 @name{グランベルク, Granberg}
 @name{シリーダ, Shireeda}
 @name{ルーニング, Louning}
 @name{ガディザム, Gaddizam}
 @name{シュゲール, Schgeer}
 @name{ギヌル, Ginul}
+@name{美咲, Misaki}
+@name{ギラン, Gillan}
+@name{ミリーナ, Myrina}
+@name{エターヌ, Ethan}
+@name{マキネ, Makine}
+@name{マールイ, Marui}
+@name{メルサ, Melsa}
+@name{鷹虎, Takatora}
+@name{鈴木, Suzuki}
+@name{虎将, Torasho}
+@name{鷹博, Takahiro}
+@name{橘, Tachibana}
+@name}ツカサ, Tsukasa}
+@name{流星, Ryusei}
+@name{マーケンス, Markens}
+@name{イシリア, Ishira}
+@name{マミューラ, Mamyura}
 
 // Places
 ラーバス国 --> Rabbath Country
@@ -21,15 +41,89 @@
 ドルチ --> Town of Dolci
 ナイディカ村 --> Naidika Village
 サンガ山 --> Sanga Mountain
+スルト荒野 --> Surt Wilderness
+訓練所 --> Training Arena
+モンドルの森 --> Mondol Forest
+人間の国 --> Humankin Country
+バルビスタ --> Barvista
+バルビスタ国 --> Barvista State
+バルビスタ城 --> Barvista Castle
+パルシアの森 --> Palcia Forest
+パルキ国 --> Park State
+ラーバス学園 --> Rabbath Academy
 
 // Skills
+//------------------[ Fire Magic ]---------------------
+炎魔法 --> Fire Magic
 ファイヤー・アロー --> Fire Arrow
+ファイア・アロー --> Fire Arrow
+ファイヤー・ボール --> Fire Ball
+ファイア・ボール --> Fire Ball
+ファイア・ワーク --> Fireworks
+//------------------[ Ice Magic ]----------------------
+氷魔法 --> Ice Magic
 アイス・ミサイル --> Ice Missile
+アイス・ウォール --> Ice Wall
+アイス・ボール --> Ice Ball
+アイス・ソード --> Ice Sword
+アイス・ロック --> Ice Rock
+//-----------------[ Water Magic ]---------------------
+ウォーター・ボール --> Water Ball
+//----------------[ Thunder Magic ]--------------------
+雷魔法 --> Thunder Magic
+マグネット・ウェーブ --> Magnet Wave
+ライトニング・ボルト --> Lightning Bolt
+//-----------------[ Earth Magic ]---------------------
+土魔法 --> Earth Magic
+アース・ショット --> Earth Shot
+アース・ニードル --> Earth Needle
+アース・スピア --> Earth Spear
+アース・クラクッレ --> Earth Crackle
+避雷針 --> Grounding Rod
+//------------------[ Wind Magic ]---------------------
+風魔法 --> Wind Magic
+ウィンド --> Wind
+エア・ボム --> Air Bomb
+エア・クッション --> Air Cushion
+無属性 --> Nonattributed Magic
+拘束 --> Restraint
+エア・スラッシュ --> Air Slash
+エア・カッター --> Air Cutter
+//-------------------[ Light ]-------------------------
+光魔法 --> Light Magic
+ワイド・ヒール --> Wide Heal
+ヒール --> Heal
+//-------------------[ Other ]-------------------------
+レゾナンス --> Resonance
+精神感応魔法 --> Spiritual Magic
+グリモア・ブック --> Grimoire Book
+村雨 --> Murasame
+ゴッド・エンチャント --> God Enchant
+エンチャント・シール --> Enchant Seal
+
+// Monsters
+オーガ --> Ogre
+パルシコング --> Pulsong Kong
+
+// Language
+ワシ --> My magnificent self
+義兄さん --> Bro-in-law
 
 // Terminology
 魔王 --> Demon King
+魔王様 --> Demon King-sama
+魔王修羅 --> Demon King Asura
+魔王修羅様 --> Demon King Asura-sama
+修羅 --> Asura
+修羅様 --> Asura-sama
 ヘルレウス --> Herleus
 ブルースコーピオン --> Blue Scorpion
+暗部 --> Dark Siders
+魔種樹 --> Demon Tree
+ムーン・ハーブ --> Moon Herb
+時の勇者 --> Hero of Time
+慈愛の女神 --> Goddess of Charity
+ラナミの実 --> Ranami Fruit
 
 // Misc
 
