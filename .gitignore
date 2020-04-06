@@ -2,5 +2,7 @@ logs/*
 *.log
 *.txt
 *.html
+!requirements.txt
 !user_config.txt
 !skeleton.html
+venv/
