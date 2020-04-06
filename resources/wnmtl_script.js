@@ -33,8 +33,11 @@ $(document).ready(function()
   });
 })
 
-function replace_placeholders_in_line(line_elem)
+function replace_placeholders_in_line(line_num)
 {
+  var line_elem = document.querySelector('.content_line#l'+line_num);
+  $(line_elem).unbind();
+
   var placeholders = line_elem.getElementsByClassName('placeholder')
   // Replace each placeholder on this line
   for(let elem of placeholders){
@@ -55,7 +58,7 @@ function replace_placeholders_in_line(line_elem)
   // At this point, translation and substitution for this line is complete. Do
   // some post processing (like remove unnecessary articles) to increase readability
   var siblingPlaceholders = 
-    document.querySelectorAll('.content_line#l'+prev_line_num+' font .placeholder');
+    document.querySelectorAll('.content_line#l'+line_num+' font .placeholder');
   for(let placeholder_elem of siblingPlaceholders)
   {
     var preceding_elem = placeholder_elem.previousSibling;
@@ -79,21 +82,13 @@ function bind_all_lines()
     var line = document.getElementById(l.id)
     $(line).on('DOMSubtreeModified', line, function() {
       // Basically, when Google Trans starts translating line(n) (aka. this line) this 
-      // func will replace the placeholders in line(n-1)
-      var prev_line_num = this.id.substring(1) - 1;
-      var prev_prev_line_num = this.id.substring(1) - 2;
-      var prev_line = document.querySelector('.content_line#l'+prev_line_num);
-      var prev_prev_line = document.querySelector('.content_line#l'+prev_prev_line_num);
+      // func will replace the placeholders in line(n-1) (and the one before in case it 
+      // was skipped)
+      var curr_line_num = this.id.substring(1);
+      var prev_line_num = curr_line_num - 1;
 
-      if(prev_line_num == 67){
-        console.log("A");
-      }
-
-      // No more need to listen to changes in line(n-1). This function will handle all
-      // necessary postprocessing in one go
-      replace_placeholders_in_line(prev_prev_line);
-      $(prev_line).unbind();
-      replace_placeholders_in_line(prev_line);
+      replace_placeholders_in_line(prev_line_num-1);
+      replace_placeholders_in_line(prev_line_num);
     });
   }
 }
