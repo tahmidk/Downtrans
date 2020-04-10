@@ -7,6 +7,13 @@
     ],
     "series": [
         {
+            "abbr": "Futsal",
+            "name": "Blackmailed to join the Futsal Club",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n5523ex"
+        },
+        {
             "abbr": "DKCand",
             "name": "Summoned as a Demon King Candidate",
             "lang": "JP",

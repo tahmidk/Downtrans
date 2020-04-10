@@ -196,6 +196,20 @@ class HtmlWriter:
 		line_html = "<p>\n</p>\n<!--END_OF_BODY-->"
 		self.__resource = re.sub(r'<!--END_OF_BODY-->', line_html, self.__resource)
 
+	def finish(self, lang):
+		if lang == "JP":
+			content = u"章の終わり"
+		elif lang == "CN":
+			content = u"本章末"
+		else:
+			content = ""
+
+		end_line = "<p class=\"content_line end_line\" id=l%s>%s</p>" % \
+			(self.__linenum, content)
+		end_line = end_line + "<!--END_OF_BODY-->"
+		self.__linenum += 1
+		self.__resource = re.sub(r'<!--END_OF_BODY-->', end_line, self.__resource)
+
 	#--------------------------------------------------------------------------
 	#  Accessor function
 	#--------------------------------------------------------------------------

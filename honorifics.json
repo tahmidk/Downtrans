@@ -12,10 +12,12 @@
         {"h_raw": "姉ちゃん", "h_trans": "-neechan"},
         {"h_raw": "お姉様", "h_trans": "-oneesama"},
         {"h_raw": "おねーさん", "h_trans": "-oneesan"},
+        {"h_raw": "お姉さん", "h_trans": "-oneesan"},
         {"h_raw": "お姉ちゃん", "h_trans": "-oneechan"},
         {"h_raw": "おねーちゃん", "h_trans": "-oneechan"},
         {"h_raw": "姉さま", "h_trans": "-neesama"},
         {"h_raw": "姉様", "h_trans": "-anesama"},
+        {"h_raw": "姉", "h_trans": "-ane"},
         {"h_raw": "おにーちゃん", "h_trans": "-oniichan"},
         {"h_raw": "にーちゃん", "h_trans": "-niichan"},
         {"h_raw": "兄さん", "h_trans": "-niisan"},
@@ -30,7 +32,9 @@
         {"h_raw": "先生", "h_trans": "-sensei"},
         {"h_raw": "先輩", "h_trans": "-senpai"},
         {"h_raw": "嬢ちゃん", "h_trans": "-jouchan"},
-        {"h_raw": "母さん", "h_trans": "-kaasan"}
+        {"h_raw": "母さん", "h_trans": "-kaasan"},
+        {"h_raw": "おじいちゃん", "h_trans": "-ojiichan"},
+        {"h_raw": "婆さん", "h_trans": "-baasan"}
     ],
     "CN":[
     ]

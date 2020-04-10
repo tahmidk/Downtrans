@@ -478,10 +478,15 @@ def generateNameVariants(rName, tName, lang):
 	"""
 	res = [(rName, tName)]
 	with io.open(HONORIFICS_PATH, mode='r', encoding='utf8') as hon_file:
-		honorifics = json.loads(hon_file.read())
-		for entry in honorifics[lang]:
-			variant = (rName+entry['h_raw'], tName+entry['h_trans'])
-			res.append(variant)
+		try:
+			honorifics = json.loads(hon_file.read())
+			for entry in honorifics[lang]:
+				variant = (rName+entry['h_raw'], tName+entry['h_trans'])
+				res.append(variant)
+		except:
+			print("\n[Error] There seems to be a syntax issue with your \
+honorifics.json... Please correct it and try again")
+			sys.exit(1)
 
 	return res
 
@@ -610,7 +615,6 @@ def writeRaw(series, ch, content):
 		raw_file.write('\n')
 
 	# Close raw file
-	raw_file.write("End of Chapter\n")
 	raw_file.close()
 	return 0
 
@@ -693,6 +697,7 @@ def writeTrans(series, ch, globals_pkg, dev_opt):
 		html_writer.insertBlankLine()
 
 	# Write to trans file
+	html_writer.finish(config_data.getSeriesLang(series))
 	resource_string = html_writer.getResourceString()
 	trans_file.write(resource_string)
 
