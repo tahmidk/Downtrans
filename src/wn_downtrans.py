@@ -30,6 +30,7 @@ import ssl 							# For certificate authentication
 import configdata			# Custom config data structure
 import htmlparser			# Custom html parsing class
 import htmlwriter			# Custom html writing class
+import cacheutils			# Utility class related to caching info
 
 # =========================[ Constants ]=========================
 # Maximum number of retries on translate and URL fetching
@@ -148,6 +149,10 @@ def initArgParser():
 		help="Output uses local js/css instead of remote production ver"
 		)
 	mode_flags = parser.add_mutually_exclusive_group(required=True)
+	mode_flags.add_argument('-I', '--info',
+		action="store_true",
+		help="View config data in a clean table format"
+		)
 	mode_flags.add_argument('-C', '--clean',
 		action="store_true",
 		help="Clean the /raw and /trans subdirectories"
@@ -167,6 +172,8 @@ def initArgParser():
 				print("\n[Success] /raws and /trans cleaned. Exiting...")
 			else:
 				print(("\n[Complete] Cleaned all but %d files. Exiting..." % r))
+			sys.exit(0)
+		elif args[0] == '-I' or args[0] == '--info':
 			sys.exit(0)
 
 	# Positional arguments
@@ -820,12 +827,14 @@ def main():
 	if mode_batch:
 		chapters = list(range(ch_start, ch_end+1))
 		batch_procedure(series, chapters, globals_pkg, args.dev)
+		cacheutils.writeCacheData(series, ch_start)
 		openBrowser(series, ch_start)
 	elif mode_single:
 		err_code = default_procedure(series, ch_start, globals_pkg, args.dev)
 		if err_code != 0:
 			print("[Error] Could not download or translate. Exiting")
 			sys.exit(1)
+		cacheutils.writeCacheData(series, ch_start)
 		openBrowser(series, ch_start)
 	else:
 		print("[Error] Unexpected mode")

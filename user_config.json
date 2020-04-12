@@ -7,6 +7,13 @@
     ],
     "series": [
         {
+            "abbr": "IsekaiGenius",
+            "name": "Overspecced Genius in another World",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n1705er"
+        },
+        {
             "abbr": "Futsal",
             "name": "Blackmailed to join the Futsal Club",
             "lang": "JP",

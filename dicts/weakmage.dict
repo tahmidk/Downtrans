@@ -98,7 +98,6 @@
 @name{ジャネット, Janette}
 @name{ウンディーネ, Undyne}
 @name{サンドラ, Sandra}
-@name{あんな, Anna}
 @name{コンスタンス, Constance}
 @name{ヴァイオレット, Violet}
 @name{トニー, Tony}
@@ -205,6 +204,7 @@
 自爆魔法 --> Self-Destructive Magic
 召喚魔法 --> Evocation Magic
 結界魔法 --> Barrier Magic
+空間魔法 --. Space Magic
 //----------------------[ General Skills ]------------------------
 RPGゲームプレイヤー --> RPG Game Player
 RPGプレイヤー --> RPG Player

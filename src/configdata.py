@@ -6,7 +6,9 @@
   				in a given config JSON file customized by the user
 """
 from tabulate import tabulate	# Print pretty tables
+import functools 				# For reduction utility function
 import json 					# JSON processing library
+import cacheutils
 
 # Length of dividers when printing
 DIVIDER_BOLD = "=" * 120
@@ -82,7 +84,15 @@ class ConfigData:
 		print(L_PADDING + "Detected Series Data:")
 		print(DIVIDER_BOLD)
 
-		headers = ["Abbr", "Lang", "Code", "Host", "Title"]
+		# This is just for aesthetics
+		cache_data = cacheutils.readCacheData()
+		chlen = functools.reduce(
+			lambda a,b: max(len(str(a)), len(str(b))), 
+			list(cache_data.values())
+		)
+		NDEF = "-" * max(chlen, 1)
+
+		headers = ["Abbr", "Lang", "Code", "Host", "Title", "Latest"]
 		data = []
 		for entry in series:
 			# Each series host must have a corresponding entry in self.__hosts
@@ -100,11 +110,13 @@ class ConfigData:
 				'host': entry['host'],
 				'code': entry['code']
 			}
-			row = (entry['abbr'], 
-				entry['lang'], 
-				entry['code'], 
-				entry['host'], 
-				entry['name']
+
+			row = (entry['abbr'],
+				entry['lang'],
+				entry['code'],
+				entry['host'],
+				entry['name'],
+				cache_data[entry['abbr']] if entry['abbr'] in cache_data else NDEF
 			)
 			data.append(row)
 

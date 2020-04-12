@@ -93,6 +93,7 @@
 @name{ヨーデル, Yudel}
 @name{ニルバーナ, Nirvana}
 @name{トニー, Tony}
+@name{リーエ, Rie}
 モルア --> Morua
 マルコシアス --> Guardian Deity Marcosias
 
@@ -156,6 +157,7 @@
 ファイア・エンペラ・ジャッジメント・ソード --> Fire Emperor Judgement Sword
 ファイヤー・エンペラ・ジャッジメント・ソード --> Fire Emperor Judgement Sword
 ファイア・ストーム --> Fire Storm
+アポロン --> Apollon
 //------------------[ Ice Magic ]----------------------
 氷魔法 --> Ice Magic
 アイス・ミサイル --> Ice Missile
@@ -210,6 +212,7 @@
 エア・スラシュ --> Air Slash
 エア・カッター --> Air Cutter
 ダウンホース --> Down Horse
+ダウン・ホース --. Down Horse
 エア・ブロウ --> Air Blow
 エア・ブロー --> Air Blow
 エア・ショット --> Air Shot
@@ -225,6 +228,7 @@
 ヒール --> Heal
 サンライズ --> Sunrise
 //-------------------[ Other ]-------------------------
+アイシルク・レイン --> Aishilk Rain
 ダーク・シールド --> Dark Shield
 レゾナンス --> Resonance
 精神感応魔法 --> Spiritual Magic
@@ -240,6 +244,9 @@
 マジック・ビジョン --> Magic Vision
 アクセラレータ --> Accelerator
 エクスプロージョン --> Explosion
+グングニール --> Gungnir
+ブラッド・ヒール --> Blood Heal
+シルバー・ブレッド --> Silver Bullet
 
 // Monsters
 ゴブリン --> Goblin
@@ -302,6 +309,15 @@
 聖剣 --> Holy Swords
 ナウバ族 --> Nauba Clan
 ワールド・クロック --> World Clock
+千年のドラゴン --> Thousand Year Dragon
+サウザンド・ドラゴン --> Thousand Dragon
+アルティメット・バロン --> Ultimate Baron
+戦の乙女 --> War Maiden
+漆黒の魔女 --> Black Witch
+世界平和 --> World Peace
+聖なる戦線 --> Holy Front
+黄金の城 --> Golden Castle
+物の怪 --> Vengeful Beast
 
 // Misc
 屋敷 --> Mansion
