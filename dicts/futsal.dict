@@ -1,8 +1,20 @@
 // NCode Link: https://ncode.syosetu.com/n5523ex
 
-// Example comment (starts w/ '//''). Example  entries below...
-@name{ナルト, Naruto}
-@name{うずまき, Uzumaki}
-九尾の狐 --> Nine Tailed Fox
+// Names
+@name{ハルト, Haruto}
+@name{廣瀬, Hirose}
+@name{陽翔, Yosho}
+@name{長瀬, Nagase}				// Most popular girl in school
+@name{愛莉, Airi}
+
+// Places
+山嵜高校 --> Yamazaki High
+
+// Terminology
+フットサル --> Futsal
+フットサル部 --> Futsal Club
+フットサルボール --> Futsal Ball
+
+// Misc
 
 // END OF FILE

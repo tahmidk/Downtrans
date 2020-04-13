@@ -126,7 +126,7 @@ class ConfigData:
 			data.append(row)
 
 		# Print series config data as pretty table
-		table_str = tabulate(data, headers=headers)
+		table_str = tabulate(data, headers=headers, numalign="left")
 		self.vprint(L_PADDING + table_str.replace('\n', '\n'+L_PADDING))
 		self.vprint(DIVIDER_BOLD + "\n")
 
