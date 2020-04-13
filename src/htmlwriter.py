@@ -10,6 +10,12 @@ import os 				# OS level operations
 import io 				# File reading/writing
 import re 				# Regex for parsing
 
+from htmlparser import LType
+
+PRE_MARKER  = r"<!--END_OF_PRESCRIPT-->"
+MAIN_MARKER = r"<!--END_OF_BODY-->"
+POST_MARKER = r"<!--END_OF_AFTERWORD-->"
+
 class HtmlWriter:
 	#--------------------------------------------------------------------------
 	#  ctor
@@ -27,6 +33,7 @@ class HtmlWriter:
 		"""
 		self.__pId = 1
 		self.__linenum = 1
+		self.__imgnum = 1
 		self.__dictionary = dictionary
 		self.__log = log_file
 		with io.open(os.path.join(res_path), mode='r', encoding='utf8') as res:
@@ -133,22 +140,51 @@ class HtmlWriter:
 		"""
 		ch_num = "Chapter " + ch_num
 		self.__resource = re.sub(r'<!--CHAPTER_NUMBER-->', ch_num, self.__resource)
-		self.__log.write("Set chapter subtitle: %s" % ch_num)		
+		self.__log.write("Set chapter subtitle: %s" % ch_num)
 
-	def insertLine(self, line, lang):
+	def insertLine(self, line_data, lang):
 		"""-------------------------------------------------------------------
 			Function:		[insertLine]
 			Description:	Inserts a line as an html paragraph into the given 
 							resource string
 			Input:
-			  [line]		The line to add an html element for
+			  [line_data]	A 2-tuple representing line type and line content
 			  [lang]		The language the line is in
 			Return:			None
 			------------------------------------------------------------------
 		"""
+		(ltype, line) = line_data
 		# Strip unnecessary white space at the beginning
 		line = line.lstrip()
 
+		# Insert a prescript <hr> if prescript line detected
+		if ltype == LType.PRE:
+			hr_html = "%s\n<hr id=\"prescript_div\">" % PRE_MARKER
+			if not hr_html in self.__resource:
+				self.__resource = re.sub(PRE_MARKER, hr_html, self.__resource)
+		# Insert a postscript <hr> if postscript line detected
+		if ltype == LType.POST or ltype == LType.POST_IMG:
+			hr_html = "%s\n<hr id=\"postscript_div\">" % MAIN_MARKER
+			if not hr_html in self.__resource:
+				self.__resource = re.sub(MAIN_MARKER, hr_html, self.__resource)
+
+		# There's a special way to process images
+		if ltype == LType.REG_IMG:
+			alt = "image_%s" % self.__imgnum
+			img_html = "<img class=\"content_img\" id=\"i%s\" src=\"%s\" alt=\"%s\">\n%s" % \
+				(self.__imgnum, line, alt, MAIN_MARKER)
+			self.__resource = re.sub(MAIN_MARKER, img_html, self.__resource)
+			self.__imgnum += 1
+			return
+		elif ltype == LType.POST_IMG:
+			alt = "image_%s" % self.__imgnum
+			img_html = "<img class=\"content_img\" id=\"i%s\" src=\"%s\" alt=\"%s\">\n%s" % \
+				(self.__imgnum, line, alt, POST_MARKER)
+			self.__resource = re.sub(POST_MARKER, img_html, self.__resource)
+			self.__imgnum += 1
+			return
+
+		# Rest of this function handles normal lines
 		# Display roma for JP
 		if lang == "JP":
 			raw_line = "<p class=\"content_raw notranslate\" id=r%s>%s</p>" % \
@@ -161,9 +197,8 @@ class HtmlWriter:
 			src_lang = "zh-CN"
 
 		raw_html = "<a href=\"https://translate.google.com/?hl=en&tab=TT&authuser\
-=0#view=home&op=translate&sl=%s&tl=en&text=%s\" class=\"noDecoration\
-\" target=\"_blank\">%s</a>" % \
-			(src_lang, line, raw_line)
+=0#view=home&op=translate&sl=%s&tl=en&text=%s\" class=\"noDecoration\" target=\"\
+_blank\">%s</a>" % (src_lang, line, raw_line)
 
 		# Preprocess line using dictionary entities
 		for entry in self.__dictionary:
@@ -180,9 +215,19 @@ class HtmlWriter:
 				self.__pId += 1
 
 		# Integrate line into resource string
-		line_html = "<p class=\"content_line\" id=l%s>%s</p>" % (self.__linenum, line)
-		final_html = line_html + raw_html + "\n<!--END_OF_BODY-->"
-		self.__resource = re.sub(r'<!--END_OF_BODY-->', final_html, self.__resource)
+		if ltype == LType.PRE:
+			marker = PRE_MARKER
+		elif ltype == LType.REG or ltype == LType.TITLE:
+			marker = MAIN_MARKER
+		elif ltype == LType.POST:
+			marker = POST_MARKER
+		else:
+			print("[Error] Unrecognized LType!")
+			sys.exit(1)
+
+		line_html = "<p class=\"content_line\" id=l%s>%s</p>%s\n%s" % \
+			(self.__linenum, line, raw_html, marker)
+		self.__resource = re.sub(marker, line_html, self.__resource)
 		self.__linenum += 1
 
 	def insertBlankLine(self):
@@ -204,11 +249,10 @@ class HtmlWriter:
 		else:
 			content = ""
 
-		end_line = "<p class=\"content_line end_line\" id=l%s>%s</p>" % \
-			(self.__linenum, content)
-		end_line = end_line + "<!--END_OF_BODY-->"
+		end_line = "<p class=\"content_line end_line\" id=l%s>%s</p>\n%s" \
+			% (self.__linenum, content, POST_MARKER)
+		self.__resource = re.sub(POST_MARKER, end_line, self.__resource)
 		self.__linenum += 1
-		self.__resource = re.sub(r'<!--END_OF_BODY-->', end_line, self.__resource)
 
 	#--------------------------------------------------------------------------
 	#  Accessor function

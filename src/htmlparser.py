@@ -9,8 +9,20 @@
 
 # =========================[ Imports ]==========================
 from abc import ABC, abstractmethod		# Pythonic abstract inheritance
+from enum import Enum 					# Pythonic enumerators
 import bs4 as soup 						# Python HTML query tool
 import re 								# Regex for personalized parsing HTML
+
+
+# There are different types of content lines
+class LType(Enum):
+	TITLE 	 = 0	# Line is the chapter title
+	PRE  	 = 1 	# Lines just before the story content
+	REG  	 = 2 	# Just a regular text story line
+	POST 	 = 3	# Right after the story content, author's afterword
+	REG_IMG  = 4 	# Image embedded in the story content section
+	POST_IMG = 5	# Image embedded in afterword section
+
 
 def createParser(host):
 	"""-------------------------------------------------------------------
@@ -30,7 +42,6 @@ def createParser(host):
 		return Shu69Parser()
 
 	return None
-		
 
 #==========================================================================
 #	[HtmlParser]
@@ -63,7 +74,7 @@ class HtmlParser(ABC):
 		Input:
 		  [html]		The HTML source code in string form	for a given chap	
 		Return:			A list constisting of each line of content from the 
-						chapter
+						chapter in the form (LType, line)
 		-------------------------------------------------------------------
 	"""
 	@abstractmethod
@@ -116,21 +127,50 @@ class SyosetuParser(HtmlParser):
 
 	def parseContent(self, html):
 		content = []
+		html_soup = soup.BeautifulSoup(html, 'lxml')
 
-		# Parse lines and make them readable before adding them to content
-		lines = re.findall(r'<p id="L(.*?)">(.*?)</p>', html)
-		lines = [l[1] for l in lines]
-		for line in lines:
+		def processAndAppendLine(ltype, l):
 			# Turn break tags into new lines
-			if re.fullmatch(r'\s*<br\s*/>\s*', line):
-				content.append('\n')
+			if re.fullmatch(r'\s*<br\s*/>\s*', l):
+				content.append((ltype, '\n'))
 			else:
 				# Filter out <ruby> tags that are commonly found in line
-				if "<ruby>" in line:
-					line = re.sub(r'<ruby>(.*?)<rb>(.*?)</rb>(.*?)</ruby>', 
-						r'\2', line)
-				content.append(line)
-			content.append('\n')
+				if "<ruby>" in l:
+					l = re.sub(r'<ruby>(.*?)<rb>(.*?)</rb>(.*?)</ruby>', 
+						r'\2', l)
+				content.append((ltype, l))
+			content.append((ltype, '\n'))
+
+		# Get prescript content if it exists
+		prescript = html_soup.find('div', {'class': 'novel_view', 'id': 'novel_p'})
+		if prescript is not None:
+			for p in prescript.find_all('p', recursive=False):
+				processAndAppendLine(LType.PRE, p.getText())
+
+		# Get main content
+		main = html_soup.find('div', {'class': 'novel_view', 'id': 'novel_honbun'})
+		if main is not None:
+			for p in main.find_all('p', recursive=False):
+				images = p.find_all('img')
+				if len(images) > 0:
+					for img in images:
+						content.append((LType.REG_IMG, "https:" + img['src']))
+				else:
+					processAndAppendLine(LType.REG, p.getText())
+		else:
+			print("[Error] Main content section not found in html...")
+			sys.exit(1)
+
+		# Get afterword content if it exists
+		afterword = html_soup.find('div', {'class': 'novel_view', 'id': 'novel_a'})
+		if afterword is not None:
+			for p in afterword.find_all('p', recursive=False):
+				images = p.find_all('img')
+				if len(images) > 0:
+					for img in images:
+						content.append((LType.POST_IMG, "https:" + img['src']))
+				else:
+					processAndAppendLine(LType.POST, p.getText())
 
 		return content
 
@@ -168,8 +208,8 @@ class BiquyunParser(HtmlParser):
 		# Parse lines and make them readable before adding them to content
 		lines = re.findall(r'&nbsp;&nbsp;&nbsp;&nbsp;(.*?)<', html)
 		for line in lines:
-			content.append(line)
-			content.append(u'\n')
+			content.append((LType.REG, line))
+			content.append((LType.REG, u'\n'))
 
 		return content
 
@@ -204,8 +244,8 @@ class Shu69Parser(HtmlParser):
 		# Parse lines and make them readable before adding them to content
 		lines = re.findall(r'&nbsp;&nbsp;&nbsp;&nbsp;(.*?)<', html)
 		for line in lines:
-			content.append(line)
-			content.append(u'\n')
+			content.append((LType.REG, line))
+			content.append((LType.REG, u'\n'))
 
 		return content
 

@@ -650,21 +650,23 @@ def writeRaw(series, ch, content):
 		return 1
 
 	# Write to raw
-	for line in content:
-		raw_file.write(line)
-		raw_file.write('\n')
+	for (ltype, line) in content:
+		# Don't write image content to the raw file
+		if ltype != htmlparser.LType.REG_IMG and ltype != htmlparser.LType.POST_IMG:
+			raw_file.write(line + u'\n')
 
 	# Close raw file
 	raw_file.close()
 	return 0
 
-def writeTrans(series, ch, globals_pkg, dev_opt):
+def writeTrans(series, ch, content, globals_pkg, dev_opt=False):
 	"""-------------------------------------------------------------------
 		Function:		[writeTrans]
 		Description:	Write translations to trans file
 		Input:
 		  [series]		The series to write translation for
 		  [ch]			The chapter number to write translation for
+		  [content] 	The content to write as fetched from html_parser
 		  [globals_pkg]	Globals package
 		  [dev_opt] 	Write developer version HTML?
 		Return:			N/A
@@ -683,18 +685,6 @@ def writeTrans(series, ch, globals_pkg, dev_opt):
 		)
 	except Exception:
 		print(("[Error] Error opening translation file [%s]" % trans_name))
-		print("Exiting...")
-		return 1
-
-	# Open raw_file
-	try:
-		raw_name = "r%s_%d.txt" % (series, ch)
-		raw_file = io.open(os.path.join(RAW_PATH, series, raw_name), 
-			mode='r', 
-			encoding='utf8'
-		)
-	except Exception:
-		print(("[Error] Error opening raw file [%s]" % raw_name))
 		print("Exiting...")
 		return 1
 
@@ -720,30 +710,24 @@ def writeTrans(series, ch, globals_pkg, dev_opt):
 	html_writer.setChapterLink(getChapterUrl(series, ch, globals_pkg))
 	html_writer.setChapterNumber(str(ch))
 
-	# Count number of lines in raw source file
-	raw_list = []
-	for line in raw_file: 
-		raw_list.append(line)
-
-	num_lines = len(raw_list)
+	# Build the processed translation HTML
 	line_num = 0
-	for line in tqdm(raw_list, total=num_lines):
+	for line in tqdm(content, total=len(content)):
 		line_num += 1
 		# Skip blank lines
-		if not re.fullmatch(r'\s*\n', line):
+		if not re.fullmatch(r'\s*\n', line[1]):
 			# Check raw text against dictionary and replace matches
 			log_file.write("\n[L%d] Processing non-blank line..." % line_num)
 			html_writer.insertLine(line, config_data.getSeriesLang(series))
 		html_writer.insertBlankLine()
 
-	# Write to trans file
+	# Write the HTML to trans file
 	html_writer.finish(config_data.getSeriesLang(series))
 	resource_string = html_writer.getResourceString()
 	trans_file.write(resource_string)
 
 	# Close all files file
 	print(("Downtrans [t%s_%s.html] complete!" % (series, ch)))
-	raw_file.close()
 	trans_file.close()
 	log_file.close()
 	return 0
@@ -800,25 +784,20 @@ def default_procedure(series, ch, globals_pkg, dev_opt):
 	# Ret code: 0 - success, non-0 - failure
 	ret = 0
 
-	# Write the raw file if it doesn't already exist for this chapter
-	raw_name = "r%s_%d.txt" % (series, ch)
-	raw_chapter_path = os.path.join(RAW_PATH, series, raw_name)
-	if not os.path.exists(raw_chapter_path) or os.path.getsize(raw_chapter_path) == 0:
-		# Fetch the html source code
-		url = getChapterUrl(series, ch, globals_pkg)
-		config_data = globals_pkg.config_data
-		html = fetchHTML(url, config_data.getSeriesLang(series))
-		if html is None:
-			return 1
-
-		# Parse out relevant content from the website source code
-		html_parser = globals_pkg.html_parser
-		title = html_parser.parseTitle(html)
-		content = [title, u'\n'] + html_parser.parseContent(html)
-		ret += writeRaw(series, ch, content)
+	# Write the raw file
+	url = getChapterUrl(series, ch, globals_pkg)
+	config_data = globals_pkg.config_data
+	html = fetchHTML(url, config_data.getSeriesLang(series))
+	if html is None:
+		return 1
+	# Parse out relevant content from the website source code
+	html_parser = globals_pkg.html_parser
+	title = html_parser.parseTitle(html) + u'\n'
+	content = [(htmlparser.LType.TITLE, title)] + html_parser.parseContent(html)
+	ret += writeRaw(series, ch, content)
 
 	# Write translation as HTML
-	ret += writeTrans(series, ch, globals_pkg, dev_opt)
+	ret += writeTrans(series, ch, content, globals_pkg, dev_opt)
 	return ret
 
 

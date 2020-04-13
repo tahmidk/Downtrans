@@ -238,6 +238,12 @@ ul li span:nth-child(1){
   user-select: none;
 }
 
+.content_img{
+  display: block;
+  margin: auto;
+  padding: 1em;
+}
+
 /* Adaptive style for ultrawide */
 @media only screen and (max-width: 3440px){
   section{
