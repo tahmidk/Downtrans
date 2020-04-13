@@ -14,6 +14,7 @@ from tqdm import tqdm						# Progress bar
 from pdb import set_trace					# Python debugger
 from urllib.request import Request, urlopen	# Fetch URL Requests
 from stat import S_IREAD, S_IRGRP, S_IROTH 	# Changing file permissions
+from concurrent.futures import ThreadPoolExecutor as PoolExec # Parallelization
 
 import sys, os, io, shutil			# System operations
 import multiprocessing as mp 		# General mp utilities
@@ -64,18 +65,19 @@ class GlobalsPackage:
 #============================================================================
 #  Initializer functions
 #============================================================================
-def initConfig():
+def initConfig(verbose=False):
 	"""-------------------------------------------------------------------
 		Function:		[initConfig]
 		Description:	Initializes config data using user_config.txt
-		Input:			None
+		Input:
+		  [verbose] 	Print all config info or not
 		Return:			None, initializes a global config_data
 		------------------------------------------------------------------
 	"""
 	# If config file does not exist, create it and exit
 	if not os.path.exists(CONFIG_FILE_PATH):
-		print("\n[Error] user_config.json file does not exist. Creating file \
-			skeleton...")
+		print("\n[Error] user_config.json file does not exist. Creating file "
+			+ "skeleton...")
 		try:
 			src_dir = os.path.join(RESOURCE_PATH, "config_skeleton.json")
 			dst_dir = CONFIG_FILE_PATH
@@ -84,23 +86,23 @@ def initConfig():
 			print("\n[Error] Error creating user_config.json. Exiting...")
 			sys.exit(1)
 
-		print("\nuser_config.json created. Please add some series entries and \
-			try again. Exiting...")
+		print("\nuser_config.json created. Please add some series entries and "
+			+ "try again. Exiting...")
 		sys.exit(0)
 
 	# Otherwise, read config file and initialize globals
 	global config_data
-	config_data = configdata.ConfigData(CONFIG_FILE_PATH)
+	config_data = configdata.ConfigData(CONFIG_FILE_PATH, verbose)
 
 	# Post-config validation 
 	if config_data.getNumHosts() == 0:
-		print("\n[Error] No hosts detected. Please add at least 1 host in \
-			user_config.json under hosts")
+		print("\n[Error] No hosts detected. Please add at least 1 host in "
+			+ "user_config.json under hosts")
 		print("Exiting...")
 		sys.exit(1)
 	if config_data.getNumSeries() == 0:
-		print("\n[Error] No series detected. Please add some series in \
-			user_config.json under series")
+		print("\n[Error] No series detected. Please add some series in "
+			+ "user_config.json under series")
 		print("Exiting...")
 		sys.exit(1)
 
@@ -133,20 +135,26 @@ def initArgParser():
 	"""-------------------------------------------------------------------
 		Function:		[initArgParser]
 		Description:	Initializes the arg parser and runs sanity checks on 
-						user provided arguments
+						user provided arguments. Initializes config_data as a
+						sideeffect
 		Input:			None
 		Return:			The arg parser
-		PRECONDITION:	initConfig() has been invoked before this call
 		------------------------------------------------------------------
 	"""
+	global config_data
+
 	# Initialize parser and description
-	parser = argp.ArgumentParser(description="Download and run special \
-		translation on chapters directly from various host websites")
+	parser = argp.ArgumentParser(description="Download and run special "
+		+ "translation on chapters directly from various host websites")
 
 	# Mode flags are mutually exclusive: Either single or batch downtrans
 	parser.add_argument('-D', '--dev',
 		action="store_true",
 		help="Output uses local js/css instead of remote production ver"
+		)
+	parser.add_argument('-V', '--verbose',
+		action="store_true",
+		help="Print user config information"
 		)
 	mode_flags = parser.add_mutually_exclusive_group(required=True)
 	mode_flags.add_argument('-I', '--info',
@@ -157,6 +165,10 @@ def initArgParser():
 		action="store_true",
 		help="Clean the /raw and /trans subdirectories"
 		)
+	mode_flags.add_argument('-U', '--update',
+		action="store_true",
+		help="Checks and caches the most recent chapter for all series"
+		)
 	mode_flags.add_argument('-B', '--batch',
 		action="store_true", 
 		help="Downloads and translates a batch of chapters")
@@ -164,23 +176,13 @@ def initArgParser():
 		action="store_true", 
 		help="Downloads and translates one chapter")
 
-	if len(sys.argv) > 1:
-		args = sys.argv[1:]
-		if args[0] == '-C' or args[0] == '--clean':
-			r = handleClean()
-			if r == 0:
-				print("\n[Success] /raws and /trans cleaned. Exiting...")
-			else:
-				print(("\n[Complete] Cleaned all but %d files. Exiting..." % r))
-			sys.exit(0)
-		elif args[0] == '-I' or args[0] == '--info':
-			sys.exit(0)
-
 	# Positional arguments
 	parser.add_argument('series', 
+		nargs='?',
 		help="Which series to download and translate with a dictionary")
 	parser.add_argument('start',
 		type=int,
+		nargs='?',
 		help="The chapter number to start downtrans process at")
 	parser.add_argument('end',
 		type=int,
@@ -189,29 +191,32 @@ def initArgParser():
 
 	# Handle errors or address warnings
 	args = parser.parse_args()
-
+	initConfig(args.verbose or args.info)
+	# One command w/out 'series' and 'start' args
+	if args.one and (args.series is None or args.start is None):
+		parser.error("For single downloads, series and start args are both "
+			+ "required")
+	# Batch command w/out all 'series' 'start' and 'end' args
+	if args.batch and (args.series is None or args.start is None or args.end is None) :
+		parser.error("For batch downloads, series, start and end args are all "
+			+ "required")
 	# Series mapping does not exist in config data
-	global config_data
-	if not config_data.seriesIsValid(args.series):
-		parser.error("The series '"+str(args.series)+"' does not exist in the \
-			source code mapping")
-	# Batch command w/out 'end' chapter argument
-	if args.batch and not args.end:
-		parser.error("For batch downloads, both a start and end chapter are \
-			required")
-	# Single commang w/ 'out' chapter argument
-	elif args.one and args.end:
-		print(("[Warning] Detected flag -O for single download-translate but \
-			received both a 'start'\nand 'end' argument. Ignoring argument \
-			end=%d...." % args.end))
+	if (args.one or args.batch) and not config_data.seriesIsValid(args.series):
+		parser.error("The series '"+str(args.series)+"' does not exist in the "
+			+ "source code mapping")
 	# Chapter numbering starts at 1
-	if args.start < 1:
+	if (args.one or args.batch) and args.start < 1:
 		parser.error("Start chapter argument is a minimum of 1 [start=%d]" % 
 			args.start)
 	# End chapter must be greater than start chapter
 	if args.batch and not (args.start < args.end):
-		parser.error("End chapter must be greater than start chapter [start=%d,\
-		 end=%d]" % (args.start, args.end))
+		parser.error("End chapter must be greater than start chapter [start=%d,"
+		 + "end=%d]" % (args.start, args.end))
+	# One command w/ unnecessary end chapter argument
+	if args.one and args.end:
+		print(("[Warning] Detected flag -O for single download-translate but "
+			+ "received both a 'start'\nand 'end' argument. Script will ignore "
+			+ "argument end=%d...." % args.end))
 
 	return parser
 
@@ -223,25 +228,15 @@ def initHtmlParser(host):
 		Input:
 		  [host]		The host associated with a given series
 		Return:			None, initializes a global html_parser
-		PRECONDITION:	initConfig() has been invoked before this call
 		------------------------------------------------------------------
 	"""
 	global html_parser
-	global config_data
-
-	if host == "Syosetu":
-		html_parser = htmlparser.SyosetuParser()
-		return
-	elif host == "Biquyun":
-		html_parser = htmlparser.BiquyunParser()
-		return
-	elif host == "69shu":
-		html_parser = htmlparser.Shu69Parser()
-		return
+	html_parser = htmlparser.createParser(host)
 	
-	print("Unrecognized host %s! Make sure this host has an entry in the\
-		hosts field of user_config.json" % host)
-	sys.exit(1)
+	if html_parser is None:
+		print("Unrecognized host %s! Make sure this host has an entry in the \
+			hosts field of user_config.json" % host)
+		sys.exit(1)
 
 def initDict(series):
 	"""-------------------------------------------------------------------
@@ -262,10 +257,12 @@ def initDict(series):
 		try:
 			dict_file = io.open(dict_path, mode='w', encoding='utf8')
 			dict_file.write("// NCode Link: %s\n" % getSeriesUrl(series))
-			dict_file.write("\n// Example comment (starts w/ \'//\'').")
-			dict_file.write("\n// Example entry below")
-			dict_file.write(u'\nナルト --> Naruto\n')
-			dict_file.write("\n// END OF FILE")
+			dict_file.write("\n// Example comment (starts w/ \'//\''). Example "
+				+ " entries below...")
+			dict_file.write(u'\n@name{ナルト, Naruto}')
+			dict_file.write(u'\n@name{うずまき, Uzumaki}')
+			dict_file.write(u'\n九尾の狐 --> Nine Tailed Fox')
+			dict_file.write("\n\n// END OF FILE")
 			dict_file.close()
 			series_dict = {}
 		except Exception:
@@ -287,10 +284,11 @@ def initDict(series):
 		line = line[:-1]	# Ignore newline '\n' at the end of the line
 
 		# Skip comment lines and unformatted/misformatted lines
+		name_pattern = re.compile(r"\s*@name\{(.+), (.+)\}.*")
 		if line[0:2] == "//":
 			continue
-		elif re.fullmatch(r"\s*@name\{(.+), (.+)\}\s*", line) is not None:
-			nameMatch = re.fullmatch(r"\s*@name\{(.+), (.+)\}\s*", line)
+		elif name_pattern.fullmatch(line) is not None:
+			nameMatch = name_pattern.fullmatch(line)
 			variants = generateNameVariants(
 				nameMatch[1].strip(), 
 				nameMatch[2].strip(), 
@@ -304,9 +302,9 @@ def initDict(series):
 			if len(raw_div) != 2 or len(raw_div[0]) == 0 or len(raw_div[1]) == 0:
 				print("[Warning] Malformed line detected in dictionary: %s" %
 					line)
-				print("  Make sure to minimally have something in the form of \
-					\'RAW --> TRANSLATED   // Optional comment\' with nonempty \
-					RAW and TRANSLATED entries ... Skipping entry")
+				print("  Make sure to minimally have something in the form of "
+					+ "\'RAW --> TRANSLATED   // Optional comment\' with "
+					+ "nonempty RAW and TRANSLATED entries ... Skipping entry")
 				continue
 			trans_div = raw_div[1].split("//")
 			dictList.append((raw_div[0].strip(), trans_div[0].strip()))
@@ -433,6 +431,11 @@ def handleClean():
 					continue
 				print("Complete")
 
+	if ret == 0:
+		print("\n[Success] /raws /trans /logs cleaned. Exiting...")
+	else:
+		print(("\n[Complete] Cleaned all but %d files. Exiting..." % r))
+
 	return ret
 
 def openBrowser(series, ch):
@@ -449,8 +452,8 @@ def openBrowser(series, ch):
 	chrome_path = config_data.getChromePath()
 
 	if chrome_path is None:
-		print("No preferred browser detected. Please open translation files \
-			manually or input a path for chrome.exe file in user_config.json")
+		print("No preferred browser detected. Please open translation files "
+			+ "manually or input a path for chrome.exe file in user_config.json")
 	else:
 		path_trans = os.path.join(TRANS_PATH, series, "t%s_%d.html" % (series, ch))
 		try:
@@ -464,11 +467,11 @@ def openBrowser(series, ch):
 			google_chrome = webbrowser.get(chrome)
 			google_chrome.open('file://' + os.path.realpath(path_trans))
 		except OSError:
-			print("\n[Error] The chrome browser [%s] does not exist. \
-				Skipping" % chrome_path)
+			print("\n[Error] The chrome browser [%s] does not exist. "
+				+ "Skipping" % chrome_path)
 		except Exception:
-			print("\n[Error] Cannot open Google Chrome [%s]. \
-				Skipping" % chrome_path)
+			print("\n[Error] Cannot open Google Chrome [%s]. "
+				+ "Skipping" % chrome_path)
 
 def generateNameVariants(rName, tName, lang):
 	"""-------------------------------------------------------------------
@@ -491,11 +494,41 @@ def generateNameVariants(rName, tName, lang):
 				variant = (rName+entry['h_raw'], tName+entry['h_trans'])
 				res.append(variant)
 		except:
-			print("\n[Error] There seems to be a syntax issue with your \
-honorifics.json... Please correct it and try again")
+			print("\n[Error] There seems to be a syntax issue with your "
+				+ "honorifics.json... Please correct it and try again")
 			sys.exit(1)
 
 	return res
+
+def handleUpdate():
+	start = timer()
+	global config_data
+
+	series = list(config_data.getSeries().keys())
+	n = config_data.getNumSeries()
+	args = ((getSeriesUrl(s), config_data.getSeriesLang(s)) for s in series)
+
+	print("Updating series cache data...")
+	with PoolExec(max_workers=10) as pexec:
+		index = 0
+		for response in tqdm(pexec.map(lambda x: fetchHTML(*x), args), total=n):
+			s = series[index]
+			if response is not None:
+				parser = htmlparser.createParser(config_data.getSeriesHost(s))
+				latest = parser.getLatestChapter(response)
+				cacheutils.writeCacheData(series=s, ch_max=latest)
+			else:
+				print("[Error] Unable to fetch updates for \'%s\'" % s)
+			index += 1
+
+	# Print completion statistics
+	print("\n[Complete] Finished updating series")
+	elapsed = timer() - start
+	if elapsed > 60:
+		elapsed = elapsed / 60
+		print("  Elapsed Time: %.2f min" % elapsed)
+	else:
+		print("  Elapsed Time: %.2f sec" % elapsed)
 
 
 #============================================================================
@@ -568,13 +601,13 @@ def fetchHTML(url, lang):
 		# Some error has occurred
 		except Exception as e:
 			tries += 1
-			print("\n[Error] Could not get response from <%s>... Retrying \
-				[tries=%d]" % (url, tries))
+			print("\n[Error] Could not get response from <%s>... Retrying "
+				+ "[tries=%d]" % (url, tries))
 			time.sleep(2)
 		
 		if tries == MAX_TRIES:
-			print("\n[Error] Max tries reached. No response from <%s>. Make \
-				sure this URL exists" % url)
+			print("\n[Error] Max tries reached. No response from <%s>. Make "
+				+ "sure this URL exists" % url)
 			return None
 
 	# Read and decode the response according to series language
@@ -794,27 +827,26 @@ def main():
 	# Declare relevant globals
 	global config_data
 
-	#Initialize config data from user_config.json
-	initConfig()
-
 	# Fetch arguments from parser
 	parser = initArgParser()
 	args = parser.parse_args()
-	# Initialize arguments
-	mode_batch	= args.batch
-	mode_single = args.one
-	series 		= args.series
-	ch_start	= args.start
-	ch_end 		= args.end
+	if args.clean:
+		handleClean()
+		sys.exit(0)
+	elif args.info:
+		sys.exit(0)
+	elif args.update:
+		handleUpdate()
+		sys.exit(0)
 
 	# Create subdirectories if they don't already exist
-	initEssentialPaths(series)
+	initEssentialPaths(args.series)
 	# Initialize the HTML parser corresponding to the host of this series
-	initHtmlParser(config_data.getSeriesHost(series))
+	initHtmlParser(config_data.getSeriesHost(args.series))
 	# Initialize the series page table according to series host
-	initPageTable(series)
+	initPageTable(args.series)
 	# Initialize series dictionary
-	initDict(series)
+	initDict(args.series)
 
 	# Package the finished globals as a Python equivalent of a C-struct
 	globals_pkg = GlobalsPackage()
@@ -824,18 +856,18 @@ def main():
 	globals_pkg.packGlobal("page_table")
 
 	# Different execution paths depending on mode
-	if mode_batch:
-		chapters = list(range(ch_start, ch_end+1))
-		batch_procedure(series, chapters, globals_pkg, args.dev)
-		cacheutils.writeCacheData(series, ch_start)
-		openBrowser(series, ch_start)
-	elif mode_single:
-		err_code = default_procedure(series, ch_start, globals_pkg, args.dev)
+	if args.batch:
+		chapters = list(range(args.start, args.end+1))
+		batch_procedure(args.series, chapters, globals_pkg, args.dev)
+		cacheutils.writeCacheData(series, args.start)
+		openBrowser(args.series, args.start)
+	elif args.one:
+		err_code = default_procedure(args.series, args.start, globals_pkg, args.dev)
 		if err_code != 0:
 			print("[Error] Could not download or translate. Exiting")
 			sys.exit(1)
-		cacheutils.writeCacheData(series, ch_start)
-		openBrowser(series, ch_start)
+		cacheutils.writeCacheData(args.series, args.start)
+		openBrowser(args.series, args.start)
 	else:
 		print("[Error] Unexpected mode")
 		sys.exit(1)

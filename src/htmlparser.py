@@ -12,6 +12,26 @@ from abc import ABC, abstractmethod		# Pythonic abstract inheritance
 import bs4 as soup 						# Python HTML query tool
 import re 								# Regex for personalized parsing HTML
 
+def createParser(host):
+	"""-------------------------------------------------------------------
+		Function:		[createParser]
+		Description:	Given a host name, creates and returns the 
+						appropriate HtmlParser
+		Input:
+		  [host]		Host to create parser for
+		Return:			Concrete HtmlParser-derived object
+		-------------------------------------------------------------------
+	"""
+	if host == "Syosetu":
+		return SyosetuParser()
+	elif host == "Biquyun":
+		return BiquyunParser()
+	elif host == "69shu":
+		return Shu69Parser()
+
+	return None
+		
+
 #==========================================================================
 #	[HtmlParser]
 #	Generic abstract super class requiring children to implement a 
@@ -68,6 +88,18 @@ class HtmlParser(ABC):
 	@abstractmethod
 	def parsePageTableFromWeb(self, html): pass
 
+	"""-------------------------------------------------------------------
+		Function:		[getLatestChapter]
+		Description:	Retrieves the latest chapter number for the given series
+		Input:
+		  [html]		The base table of contents html for a given series
+		Return:			A list constisting of each line of content from the 
+						chapter
+		-------------------------------------------------------------------
+	"""
+	@abstractmethod
+	def getLatestChapter(self, html): pass
+
 #==========================================================================
 #	[SyosetuParser]
 #	HtmlParser specialized for parsing html chapters taken from the 
@@ -110,6 +142,11 @@ class SyosetuParser(HtmlParser):
 	def parsePageTableFromWeb(self, html): 
 		return None
 
+	def getLatestChapter(self, html):
+		pattern = re.compile(r"<dl class=\"novel_sublist2\">")
+		latest = len(pattern.findall(html))
+		return latest
+
 #==========================================================================
 #	[BiquyunParser]
 #	HtmlParser specialized for parsing html chapters taken from the 
@@ -142,6 +179,9 @@ class BiquyunParser(HtmlParser):
 		page_table = re.findall(r'<a href="/.*?/(.*?)\.html">', html)
 		return page_table
 
+	def getLatestChapter(self, html):
+		return len(self.parsePageTableFromWeb(html))
+
 #==========================================================================
 #	[Shu69Parser]
 #	HtmlParser specialized for parsing html chapters taken from the 
@@ -169,7 +209,6 @@ class Shu69Parser(HtmlParser):
 
 		return content
 
-
 	# Erratic chapter codes, so page table needed
 	def parsePageTableFromWeb(self, html):
 		page_table = []
@@ -182,3 +221,6 @@ class Shu69Parser(HtmlParser):
 				page_table.append(ch_html)
 
 		return page_table
+
+	def getLatestChapter(self, html):
+		return len(self.parsePageTableFromWeb(html))

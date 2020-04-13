@@ -1,5 +1,6 @@
 {
     "chrome_path": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+    "verbose": true,
     "hosts": [
         { "host_name": "Syosetu",   "base_url": "https://ncode.syosetu.com/"},
         { "host_name": "Biquyun",   "base_url": "https://www.biquyun.com/"},

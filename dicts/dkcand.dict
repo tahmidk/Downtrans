@@ -5,52 +5,55 @@
 @name{大成, Taisei}
 @name{タイセイ, Taisei}
 @name{大和, Yamato}
-@name{奈々子, Nanako}
-@name{ジャンヌ, Jeanne}
+@name{文雄, Fumio}						// MC's father
+@name{六花, Rokka}						// MC's mother
+@name{奈々子, Nanako}					// MC's female friend from prev world
+@name{青葉, Aoba}
+@name{ジャンヌ, Jeanne} 					// Demon princess, lover
 @name{ラーバス, Rabbath}
-@name{ウルミラ, Ulmira}
-@name{ローケンス, Lokens}
-@name{ニール, Near}
-@name{ウルシア, Ulshia}
+@name{ウルミラ, Ulmira}					// Jeanne's maid but also a princess, lover
+@name{ローケンス, Lokens}					// Dutiful right hand of the demon king
+@name{ニール, Near}						// Butler-like member of Herleus
+@name{ウルシア, Ulshia}					// Ulmira's mom
 @name{グランベルク, Granberg}
-@name{シリーダ, Shireeda}
-@name{ルーニング, Louning}
-@name{ガディザム, Gaddizam}
-@name{シュゲール, Schgeer}
+@name{シリーダ, Shireeda}					// Seductive onee-san member of Herleus
+@name{ルーニング, Louning}					// Demon King Candidate #2
+@name{ガディザム, Gaddizam}					// Demon King Candidate #3
+@name{シュゲール, Schgeer}					// Demon King Candidate #4
 @name{ギヌル, Ginul}
 @name{美咲, Misaki}
 @name{ギラン, Gillan}
-@name{ミリーナ, Myrina}
+@name{ミリーナ, Myrina}						// Demon Empress, Jeanne's mother
 妃ミリーナ --> Queen Myrina
-@name{エターヌ, Ethan}
-@name{マキネ, Makine}
+@name{エターヌ, Ethan}						// Loli lover
+@name{マキネ, Makine}						// Shinobi girl, lover
 @name{マールイ, Marui}
-@name{メルサ, Melsa}
+@name{メルサ, Melsa}						// Princess of Barvista, Ryusei's GF
 @name{鷹虎, Takatora}
-@name{鷹, Taka}
-@name{虎, Tora}
+@name{鷹, Taka}							// Annoying ass hero twin #1
+@name{虎, Tora}							// Annoying ass hero twin #2
 @name{鈴木, Suzuki}
 @name{虎将, Torasho}
 @name{鷹博, Takahiro}
 @name{橘, Tachibana}
-@name}ツカサ, Tsukasa}
-@name{流星, Ryusei}
-@name{マーケンス, Markens}
-@name{イシリア, Iscillia}
-@name{マミューラ, Mamyura}
+@name}ツカサ, Tsukasa}					// Summoned w/ Nanako as a Barvista hero
+@name{流星, Ryusei}						// Taisei's bro in law from prev world, Hero of Time
+@name{栞, Shiori}						// War Maiden, Ryusei's sister
+@name{マーケンス, Markens} 					// Son of Lokens, looks up to Taisei
+@name{イシリア, Iscillia}					// Daughter of Lokens, lover
+@name{マミューラ, Mamyura}					// Beloved teacher at Rabbath  Academy
 ミューちゃん --> Myuu-chan
 @name{ルネル, Luneru}
-@name{マリーナ, Marina}
+@name{マリーナ, Marina}					// Markens and Iscillia's mom
 @name{バルダー, Baldar}
 @name{タスト, Tusto}
-@name{ユピア, Yupia}
+@name{ユピア, Yupia}						// MC's maid and lover
 @name{ジェミラ, Jemira}
 @name{マルチス, Maltese}
 @name{ユニ, Yuni}
-@name{ドトール, Dotoru}
-@name{ミシナ, Mishina}
-@name{ミシカ, Mishika}
-@name{ダビルド, Dabild}
+@name{ドトール, Dotoru}					// Assassin of Norton Security
+@name{ミシナ, Mishina}						// Assassin of Norton Security
+@name{ダビルド, Dabild}					// Head of Norton Security
 @name{ランドニー, Landney}
 @name{ランドー, Landau}
 @name{マルス, Mars}
@@ -65,7 +68,7 @@
 @name{オリカ, Orika}
 @name{ミカリ, Mikari}
 @name{ベルジャ, Berja}
-@name{シャーマン, Sharmin}
+@name{シャーマン, Sharmin}					// Demon King candidate, lost to Jeanne's dad
 @name{エヴィン, Evin}
 @name{ガブド, Gabuud}
 @name{ケテフル, Ketful}
@@ -86,14 +89,21 @@
 @name{パールシヴァ, Parshva}
 @name{ケルン, Kernn}
 @name{ラプラス, Laplace}
-@name{アエリカ, Aerika}
-@name{カトリア, Katria}
-@name{ゴンザレス, Gonzales}
-@name{ユナール, Yunal}
-@name{ヨーデル, Yudel}
+@name{アエリカ, Aerika} 					// Holy Swords member
+@name{カトリア, Katria}					// Holy Swords member
+@name{ゴンザレス, Gonzales}					// Holy Swords member
+@name{ユナール, Yunal}						// Holy Swords member
+@name{ヨーデル, Yudel}						// Holy Swords member
 @name{ニルバーナ, Nirvana}
 @name{トニー, Tony}
-@name{リーエ, Rie}
+@name{リーエ, Rie}							// Ancient demon, well respected, loli baba
+@namae{マーラ, Marla}						// Rie's younger brother
+@name{モルソン, Molson}
+@name{タンダ, Tanda}						// King of Nomillia
+@name{ソル, Sol}							// Annoying first elf prince
+@name{トネル, Tonel} 						// King of Elven country
+@name{キリサ, Kirisa}
+@name{ギマム, Gimam}						// Second elf prince
 モルア --> Morua
 マルコシアス --> Guardian Deity Marcosias
 
@@ -144,6 +154,11 @@
 ヤーニガル村 --> Yanigahr Village
 ヤーニガルの森 --> Yanigahr Foreest
 ヤーニガル --> Yanigahr
+ノミリア山 --> Mount Nomillia
+ノミリア --> Nomillia
+ノミリア国 --> Nomillia Country
+エレクト城 --> Elect Castle
+エルフの国 --> Elf Country
 
 // Skills
 //------------------[ Fire Magic ]---------------------
@@ -227,6 +242,7 @@
 ヒーリング・オール --> Healing All
 ヒール --> Heal
 サンライズ --> Sunrise
+ソウル・ゲート --> Soul Gate
 //-------------------[ Other ]-------------------------
 アイシルク・レイン --> Aishilk Rain
 ダーク・シールド --> Dark Shield
@@ -247,6 +263,7 @@
 グングニール --> Gungnir
 ブラッド・ヒール --> Blood Heal
 シルバー・ブレッド --> Silver Bullet
+オール・エレメント・シェア --> All Element Share
 
 // Monsters
 ゴブリン --> Goblin

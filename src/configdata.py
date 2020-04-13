@@ -6,7 +6,7 @@
   				in a given config JSON file customized by the user
 """
 from tabulate import tabulate	# Print pretty tables
-import functools 				# For reduction utility function
+import functools as ft			# For reduction utility function
 import json 					# JSON processing library
 import cacheutils
 
@@ -19,7 +19,7 @@ class ConfigData:
 	#--------------------------------------------------------------------------
 	#  ctor
 	#--------------------------------------------------------------------------
-	def __init__(self, config_path):
+	def __init__(self, config_path, verbose=False):
 		"""-------------------------------------------------------------------
 			Function:		[CONSTRUCTOR]
 			Description:	Unpacks given config file in JSON format and makes 
@@ -31,18 +31,21 @@ class ConfigData:
 		with open(config_path) as config_file:
 			config = json.loads(config_file.read())
 
+			# Initialize verbose print function
+			print_verbose = verbose or config['verbose']
+			self.vprint = print if print_verbose else lambda *a,**k: None
 			# Initialize preferred browser path and counters
 			self.__num_hosts = len(config['hosts'])
 			self.__num_series = len(config['series'])
 			browser = config['chrome_path']
 			self.__browser = browser.rstrip() if len(browser) != 0 else None
 
-			print("\n" + DIVIDER_BOLD)
-			print("  chrome.exe Path: %s" % 
+			self.vprint("\n" + DIVIDER_BOLD)
+			self.vprint("  chrome.exe Path: %s" % 
 				self.__browser if self.__browser is not None else
 				"UNSET (Do not automatically open translations in browser)"
 			)
-			print(DIVIDER_BOLD + "\n")
+			self.vprint(DIVIDER_BOLD + "\n")
 
 			# Initialize list of host websites
 			self.initHostMap(config['hosts'])
@@ -62,13 +65,13 @@ class ConfigData:
 			------------------------------------------------------------------
 		"""
 		self.__hosts = {}
-		print(DIVIDER_BOLD)
-		print(L_PADDING + "Detected Host Websites:")
-		print(DIVIDER_THIN)
+		self.vprint(DIVIDER_BOLD)
+		self.vprint(L_PADDING + "Detected Host Websites:")
+		self.vprint(DIVIDER_THIN)
 		for entry in hosts:
 			self.__hosts[entry['host_name']] = entry['base_url']
-			print(L_PADDING + "%-15s: %s" % (entry['host_name'], entry['base_url']))
-		print(DIVIDER_BOLD + "\n")
+			self.vprint(L_PADDING + "%-15s: %s" % (entry['host_name'], entry['base_url']))
+		self.vprint(DIVIDER_BOLD + "\n")
 
 	def initSeriesMap(self, series):
 		"""-------------------------------------------------------------------
@@ -80,19 +83,18 @@ class ConfigData:
 			------------------------------------------------------------------
 		"""
 		self.__series = {}
-		print(DIVIDER_BOLD)
-		print(L_PADDING + "Detected Series Data:")
-		print(DIVIDER_BOLD)
+		self.vprint(DIVIDER_BOLD)
+		self.vprint(L_PADDING + "Detected Series Data:")
+		self.vprint(DIVIDER_BOLD)
 
 		# This is just for aesthetics
-		cache_data = cacheutils.readCacheData()
-		chlen = functools.reduce(
-			lambda a,b: max(len(str(a)), len(str(b))), 
-			list(cache_data.values())
-		)
-		NDEF = "-" * max(chlen, 1)
+		cache = cacheutils.readCacheData()
+		ch_curr_len = max([len(ccurr) for (ccurr, cmax) in list(cache.values())])
+		ch_max_len  = max([len(cmax) for (ccurr, cmax) in list(cache.values())])
+		CURR_NDEF = "-" * max(ch_curr_len, 1)
+		MAX_NDEF  = "-" * max(ch_max_len, 1)
 
-		headers = ["Abbr", "Lang", "Code", "Host", "Title", "Latest"]
+		headers = ["Abbr", "Lang", "Code", "Host", "Title", "Current", "Latest"]
 		data = []
 		for entry in series:
 			# Each series host must have a corresponding entry in self.__hosts
@@ -111,23 +113,46 @@ class ConfigData:
 				'code': entry['code']
 			}
 
+			ch_curr = cache[entry['abbr']][0] if entry['abbr'] in cache else CURR_NDEF
+			ch_max  = cache[entry['abbr']][1] if entry['abbr'] in cache else MAX_NDEF
 			row = (entry['abbr'],
 				entry['lang'],
 				entry['code'],
 				entry['host'],
 				entry['name'],
-				cache_data[entry['abbr']] if entry['abbr'] in cache_data else NDEF
+				ch_curr if int(ch_curr) > 0 else CURR_NDEF,
+				ch_max if int(ch_max) > 0 else MAX_NDEF
 			)
 			data.append(row)
 
 		# Print series config data as pretty table
 		table_str = tabulate(data, headers=headers)
-		print(L_PADDING + table_str.replace('\n', '\n'+L_PADDING))
-		print(DIVIDER_BOLD + "\n")
+		self.vprint(L_PADDING + table_str.replace('\n', '\n'+L_PADDING))
+		self.vprint(DIVIDER_BOLD + "\n")
 
 	#--------------------------------------------------------------------------
 	#  Accessor functions
 	#--------------------------------------------------------------------------
+	def getHosts(self):
+		"""-------------------------------------------------------------------
+			Function:		[getHosts]
+			Description:	Fetches the user provided hosts data
+			Input:			None
+			Return:			Dict of hosts
+			------------------------------------------------------------------
+		"""
+		return self.__hosts
+
+	def getSeries(self):
+		"""-------------------------------------------------------------------
+			Function:		[getHosts]
+			Description:	Fetches the user provided series data
+			Input:			None
+			Return:			Dict of series
+			------------------------------------------------------------------
+		"""
+		return self.__series
+
 	def getNumHosts(self):
 		"""-------------------------------------------------------------------
 			Function:		[getNumHosts]
@@ -136,7 +161,7 @@ class ConfigData:
 			Return:			Number of hosts
 			------------------------------------------------------------------
 		"""
-		return self.__num_hosts
+		return len(self.__hosts)
 
 	def getNumSeries(self):
 		"""-------------------------------------------------------------------
@@ -146,7 +171,7 @@ class ConfigData:
 			Return:			Number of series
 			------------------------------------------------------------------
 		"""
-		return self.__num_series
+		return len(self.__series)
 
 	def getChromePath(self):
 		"""-------------------------------------------------------------------
