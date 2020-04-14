@@ -719,7 +719,6 @@ def writeTrans(series, ch, content, globals_pkg, dev_opt=False):
 			# Check raw text against dictionary and replace matches
 			log_file.write("\n[L%d] Processing non-blank line..." % line_num)
 			html_writer.insertLine(line, config_data.getSeriesLang(series))
-		html_writer.insertBlankLine()
 
 	# Write the HTML to trans file
 	html_writer.finish(config_data.getSeriesLang(series))

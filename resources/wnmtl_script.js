@@ -88,7 +88,7 @@ function replace_placeholders_in_line(line_num)
   if(line_num == 12)
     console.log("A");
 
-  $(line_elem).unbind();
+  //$(line_elem).unbind();
   var placeholders = line_elem.getElementsByClassName('placeholder')
   // Replace each placeholder on this line
   for(let elem of placeholders){
@@ -123,14 +123,33 @@ function replace_placeholders_in_line(line_num)
 
 function bind_all_lines()
 {
-  var content_lines = document.getElementsByClassName('content_line');
-  for(let cl of content_lines){
-    var line = document.getElementById(cl.id);
-    content_queue.enqueue(line.id.substring(1));
-    $(line).on('DOMSubtreeModified', line, function() {
-      to_process = content_queue.dequeue_until(this.id.substring(1));
-      for(let tp of to_process)
-        replace_placeholders_in_line(tp);
+  var dummies = document.getElementsByClassName('dummy');
+  var checkpoint = new Array(dummies.length).fill(false);
+  var line_processed = new Array(dummies.length - 1).fill(false);
+  for(let d of dummies){
+    var dummy = document.getElementById(d.id);
+    $(dummy).on('DOMSubtreeModified', dummy, function() {
+      $(this).unbind();
+      var dummy_curr_id = this.id.substring(1);
+      checkpoint[dummy_curr_id] = true;
+
+      // If D and D-1 are both triggered, then the line between them, L=D
+      // should be completely translated and ready to postprocess
+      var dummy_prev_id = dummy_curr_id - 1;
+      if(dummy_prev_id > 0 && checkpoint[dummy_prev_id]){
+        if(!line_processed[dummy_prev_id]){
+          replace_placeholders_in_line(dummy_prev_id);
+          line_processed[dummy_prev_id] = true;
+        }
+      }
+
+      var dummy_next_id = dummy_curr_id + 1;
+      if(dummy_next_id < checkpoint.length && checkpoint[dummy_next_id]){
+        if(!line_processed[dummy_curr_id]){
+          replace_placeholders_in_line(dummy_curr_id);
+          line_processed[dummy_curr_id] = true;
+        }
+      }
     });
   }
 }

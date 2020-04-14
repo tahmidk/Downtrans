@@ -31,9 +31,12 @@ class HtmlWriter:
 			  [dev_opt] 	Output developer version HTML?
 			------------------------------------------------------------------
 		"""
+		# Various id attribute initializations
 		self.__pId = 1
 		self.__linenum = 1
 		self.__imgnum = 1
+		self.__dummynum = 1
+
 		self.__dictionary = dictionary
 		self.__log = log_file
 		with io.open(os.path.join(res_path), mode='r', encoding='utf8') as res:
@@ -142,6 +145,26 @@ class HtmlWriter:
 		self.__resource = re.sub(r'<!--CHAPTER_NUMBER-->', ch_num, self.__resource)
 		self.__log.write("Set chapter subtitle: %s" % ch_num)
 
+	def generateDummy(self, lang):
+		"""-------------------------------------------------------------------
+			Function:		[generateDummy]
+			Description:	Generates an dummy html element. These dummy elements
+							are used by the JS algorithm during the postprocessing
+			Input:
+			  [lang] 	Which lang are we creating a dummy for?
+			Return:			HTML dummy element as a string
+			------------------------------------------------------------------
+		"""
+		if lang == "JP":
+			dummy = u"ダミー"
+		elif lang == "CN":
+			dummy = u"假"
+
+		dummy_html = "<p class=\"dummy\" id=\"d%s\">%s</p>\n" % \
+			(self.__dummynum, dummy)
+		self.__dummynum += 1
+		return dummy_html
+
 	def insertLine(self, line_data, lang):
 		"""-------------------------------------------------------------------
 			Function:		[insertLine]
@@ -153,6 +176,10 @@ class HtmlWriter:
 			Return:			None
 			------------------------------------------------------------------
 		"""
+		if(self.__linenum == 1):
+			dummy_html = self.generateDummy(lang) + PRE_MARKER
+			self.__resource = re.sub(PRE_MARKER, dummy_html, self.__resource)
+
 		(ltype, line) = line_data
 		# Strip unnecessary white space at the beginning
 		line = line.lstrip()
@@ -225,21 +252,11 @@ _blank\">%s</a>" % (src_lang, line, raw_line)
 			print("[Error] Unrecognized LType!")
 			sys.exit(1)
 
+		dummy_html = self.generateDummy(lang) + marker
 		line_html = "<p class=\"content_line\" id=l%s>%s</p>%s\n%s" % \
-			(self.__linenum, line, raw_html, marker)
+			(self.__linenum, line, raw_html, dummy_html)
 		self.__resource = re.sub(marker, line_html, self.__resource)
 		self.__linenum += 1
-
-	def insertBlankLine(self):
-		"""-------------------------------------------------------------------
-			Function:		[insertBlankLine]
-			Description:	Convenience function to insert blank line
-			Input:			None
-			Return:			None
-			------------------------------------------------------------------
-		"""
-		line_html = "<p>\n</p>\n<!--END_OF_BODY-->"
-		self.__resource = re.sub(r'<!--END_OF_BODY-->', line_html, self.__resource)
 
 	def finish(self, lang):
 		if lang == "JP":
