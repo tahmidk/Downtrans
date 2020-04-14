@@ -2,10 +2,15 @@
 
 // Names
 @name{ハルト, Haruto}
+@name{ヒロセ, Hirose}
 @name{廣瀬, Hirose}
 @name{陽翔, Yosho}
 @name{長瀬, Nagase}				// Most popular girl in school
 @name{愛莉, Airi}
+@name{倉畑, Kurahata}			// Haruto's class's bespectacled class rep
+@name{比奈, Hina}
+@name{クラハタ, Kurahata}
+@name{ヒナ, Hina}
 
 // Places
 山嵜高校 --> Yamazaki High
@@ -16,5 +21,8 @@
 フットサルボール --> Futsal Ball
 
 // Misc
+陰キャ --> Antisocial
+中二病 --> Chunibyou Syndrome
+学級委員 --> Class Rep
 
 // END OF FILE

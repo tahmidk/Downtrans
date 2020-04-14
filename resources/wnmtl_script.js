@@ -40,7 +40,7 @@ function replace_placeholders_in_line(line_num)
     return;
 
   var line_elem = document.querySelector('.content_line#l'+line_num);
-  if(line_num == 132)
+  if(line_num == 214)
     console.log("A");
 
   var bound = true;
