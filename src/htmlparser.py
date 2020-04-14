@@ -133,6 +133,9 @@ class SyosetuParser(HtmlParser):
 			# Turn break tags into new lines
 			if re.fullmatch(r'\s*<br\s*/>\s*', l):
 				content.append((ltype, '\n'))
+			# Skip blanks
+			elif re.fullmatch(r'\s*', l):
+				return
 			else:
 				# Filter out <ruby> tags that are commonly found in line
 				if "<ruby>" in l:

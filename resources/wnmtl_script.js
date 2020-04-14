@@ -1,4 +1,49 @@
-// Toggle function for night and day mode
+// Super simple queue class specialized for content line processing
+class ContentQueue
+{ 
+    // Array is used to implement a Queue 
+    constructor(){ 
+      this.contents = []; 
+    } 
+                  
+    enqueue(line){
+      this.contents.push(line);
+    }
+
+    dequeue(){
+      if(!this.is_empty())
+        return this.contents.shift();
+      return null;
+    }
+
+    dequeue_until(line){
+      if(!this.is_empty() && this.contents.includes(line)){
+        var ret = [];
+        while(this.front() != line && !this.is_empty()){
+          var l = this.dequeue();
+          ret.push(l);
+        }
+
+        return ret;
+      }
+      else{
+        return null;
+      }
+    }
+
+    is_empty(){
+      return this.contents.length == 0;
+    }
+
+    front(){
+      if(!this.is_empty())
+        return this.contents[0];
+      return null;
+    }
+}
+var content_queue = new ContentQueue();
+
+// Toggle function for night and day mode and bind all lines for processing
 $(document).ready(function()
 {
   /* Bind all lines to listen to changes to their inner html contents
@@ -6,7 +51,7 @@ $(document).ready(function()
      run the replace_placeholder procedure w/out confusing the 
      translation
   */
-  bind_all_lines()
+  bind_all_lines();
 
   // Add functionality to day/night mode button 
   $('ul').click(function(){
@@ -40,10 +85,10 @@ function replace_placeholders_in_line(line_num)
     return;
 
   var line_elem = document.querySelector('.content_line#l'+line_num);
-  if(line_num == 214)
+  if(line_num == 12)
     console.log("A");
 
-  var bound = true;
+  $(line_elem).unbind();
   var placeholders = line_elem.getElementsByClassName('placeholder')
   // Replace each placeholder on this line
   for(let elem of placeholders){
@@ -53,15 +98,11 @@ function replace_placeholders_in_line(line_num)
 
       // Pay attention to which mode it is
       if(document.querySelector("section").classList.contains('dark'))
-        var replacement = "<span class=\'notranslate word dark\'>" + word + "</span>"
+        var replacement = "<span class=\'notranslate word dark\'>" + word + "</span>";
       else
-        var replacement = "<span class=\'notranslate word\'>" + word + "</span>"
+        var replacement = "<span class=\'notranslate word\'>" + word + "</span>";
 
       elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
-      if(bound){
-        $(line_elem).unbind();
-        bound = false;
-      }
     }
   }
 
@@ -78,44 +119,19 @@ function replace_placeholders_in_line(line_num)
       preceding_elem.innerText = preceding_elem.innerText.replace(remove_articles, "$2");
     }
   }
-
 }
 
 function bind_all_lines()
 {
   var content_lines = document.getElementsByClassName('content_line');
-  for(let l of content_lines){
-    // First line doesn't need the following binding
-    if(l.id == 'l1'){
-      continue;
-    }
-
-    var line = document.getElementById(l.id)
+  for(let cl of content_lines){
+    var line = document.getElementById(cl.id);
+    content_queue.enqueue(line.id.substring(1));
     $(line).on('DOMSubtreeModified', line, function() {
-      // Basically, when Google Trans starts translating line(n) (aka. this line) this 
-      // func will replace the placeholders in line(n-1) (and the one before in case it 
-      // was skipped)
-      var curr_line_num = this.id.substring(1);
-      var prev_line_num = curr_line_num - 1;
-
-      replace_placeholders_in_line(prev_line_num-1);
-      replace_placeholders_in_line(prev_line_num);
+      to_process = content_queue.dequeue_until(this.id.substring(1));
+      for(let tp of to_process)
+        replace_placeholders_in_line(tp);
     });
-  }
-}
-
-// Replaces ALL placeholders with their respective words (not one by one)
-function replace_placeholders()
-{
-  var placeholders = document.getElementsByClassName('placeholder');
-  for(let elem of placeholders){
-    if( elem.innerHTML.toLowerCase().includes("placeholder") ){
-      var word = document.getElementById('w' + elem.id).innerHTML;
-      var pattern = new RegExp("placeholder", 'gi');
-      var replacement = "<span class=\'word\'>" + word + "</span>"
-
-      elem.innerHTML = elem.innerHTML.replace(pattern, replacement);
-    }
   }
 }
 
