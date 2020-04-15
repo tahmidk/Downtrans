@@ -34,7 +34,9 @@ class ConfigData:
 			# Initialize verbose print function
 			print_verbose = verbose or config['verbose']
 			self.vprint = print if print_verbose else lambda *a,**k: None
-			# Initialize preferred browser path and counters
+
+			# Initialize other settings
+			self.__write_raw = config['write_raw']
 			self.__num_hosts = len(config['hosts'])
 			self.__num_series = len(config['series'])
 			browser = config['chrome_path']
@@ -246,6 +248,9 @@ class ConfigData:
 		"""
 		if self.hostIsValid(host_name):
 			return self.__hosts[host_name]
+
+	def getWriteRawOpt(self):
+		return self.__write_raw
 
 	#--------------------------------------------------------------------------
 	#  Validation functions

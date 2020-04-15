@@ -721,7 +721,6 @@ def writeTrans(series, ch, content, globals_pkg, dev_opt=False):
 			html_writer.insertLine(line, config_data.getSeriesLang(series))
 
 	# Write the HTML to trans file
-	html_writer.finish(config_data.getSeriesLang(series))
 	resource_string = html_writer.getResourceString()
 	trans_file.write(resource_string)
 
@@ -793,7 +792,8 @@ def default_procedure(series, ch, globals_pkg, dev_opt):
 	html_parser = globals_pkg.html_parser
 	title = html_parser.parseTitle(html) + u'\n'
 	content = [(htmlparser.LType.TITLE, title)] + html_parser.parseContent(html)
-	ret += writeRaw(series, ch, content)
+	if config_data.getWriteRawOpt():
+		ret += writeRaw(series, ch, content)
 
 	# Write translation as HTML
 	ret += writeTrans(series, ch, content, globals_pkg, dev_opt)

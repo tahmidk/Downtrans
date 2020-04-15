@@ -258,19 +258,6 @@ _blank\">%s</a>" % (src_lang, line, raw_line)
 		self.__resource = re.sub(marker, line_html, self.__resource)
 		self.__linenum += 1
 
-	def finish(self, lang):
-		if lang == "JP":
-			content = u"章の終わり"
-		elif lang == "CN":
-			content = u"本章末"
-		else:
-			content = ""
-
-		end_line = "<p class=\"content_line end_line\" id=l%s>%s</p>\n%s" \
-			% (self.__linenum, content, POST_MARKER)
-		self.__resource = re.sub(POST_MARKER, end_line, self.__resource)
-		self.__linenum += 1
-
 	#--------------------------------------------------------------------------
 	#  Accessor function
 	#--------------------------------------------------------------------------

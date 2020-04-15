@@ -133,7 +133,7 @@ function bind_all_lines()
       var dummy_curr_id = this.id.substring(1);
       checkpoint[dummy_curr_id] = true;
 
-      // If D and D-1 are both triggered, then the line between them, L=D
+      // If D and D-1 are both triggered, then the line between them, L=D-1
       // should be completely translated and ready to postprocess
       var dummy_prev_id = dummy_curr_id - 1;
       if(dummy_prev_id > 0 && checkpoint[dummy_prev_id]){
@@ -143,6 +143,8 @@ function bind_all_lines()
         }
       }
 
+      // If D and D+1 are both triggered, then the line between them, L=D
+      // should be completely translated and ready to postprocess
       var dummy_next_id = dummy_curr_id + 1;
       if(dummy_next_id < checkpoint.length && checkpoint[dummy_next_id]){
         if(!line_processed[dummy_curr_id]){

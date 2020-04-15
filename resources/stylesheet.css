@@ -43,18 +43,34 @@ section.dark{
   color:#cecece;
 }
 
-.scroll_indicator{
+.sidebar{
   position: fixed;
-  width: 3em;
-  height: 40%;
   left: 11em;
   top: 30%;
+  width: 3em;
+  height: 40%;
+}
+
+.toggle_mini_div{
+  position: absolute;
+  display: block;
+  width: 3em;
+  height: 30px;
+  left: 0;
+}
+
+.scroll_indicator{
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 3em;
+  height: 100%;
 }
 
 .scroll_bar{
   position: absolute;
   top: 0;
-  right: 2.5em;
+  right: 50%;
   width: 1px;
   height: 0%;
   background: #000;
@@ -79,8 +95,8 @@ section.dark{
 
 .scroll_notch{
   position: absolute;
-  top: 47.5%;
-  right: 1em;
+  top: 40%;
+  right: 0;
   font-family: 'Courier', sans-serif;
   font-size: 1em;
   color: #000;
@@ -179,6 +195,27 @@ ul{
   user-select: none;
 }
 
+ul.toggle_mini{
+  position: fixed;
+  margin:0;
+  padding:0;
+  width:3em;
+  height:30px;
+  z-index:1;
+  border:1px solid #000;
+  border-radius:0.6em;
+  cursor:pointer;
+  overflow:hidden;
+  font-size: 1em;
+  font-weight: bolder;
+
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 ul.active{
   border-color:#fff;
 }
@@ -266,7 +303,7 @@ ul li span:nth-child(1){
     text-align: justify;
   }
 
-  .scroll_indicator{
+  .sidebar{
     left: 14em;
   }
 }
@@ -281,7 +318,7 @@ ul li span:nth-child(1){
     text-align: justify;
   }
 
-  .scroll_indicator{
+  .sidebar{
     left: 11em;
   }
 }
@@ -298,7 +335,7 @@ ul li span:nth-child(1){
     text-align: justify;
   }
 
-  .scroll_indicator{
+  .sidebar{
     left: 9em;
     font-size: 0.8em;
   }
@@ -330,7 +367,7 @@ ul li span:nth-child(1){
   .fade_div.dark{
     background-image: linear-gradient(#151515, #151515fc, rgba(0, 0, 0, 0));
   }
-  .scroll_indicator{
+  .sidebar{
     display: none;
   }
 }

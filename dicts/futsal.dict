@@ -1,28 +1,86 @@
 // NCode Link: https://ncode.syosetu.com/n5523ex
 
 // Names
+@name{はると, Haruto}
 @name{ハルト, Haruto}
+@name{ハル, Haru} 				// Kanazawa's nickname for Haruto
 @name{ヒロセ, Hirose}
 @name{廣瀬, Hirose}
 @name{陽翔, Yosho}
+@name{たなか, Tanaka} 			// Just a generic common Japanese name, Haruto's alter ego
+@name{田中, Tanaka}
 @name{長瀬, Nagase}				// Most popular girl in school
 @name{愛莉, Airi}
 @name{倉畑, Kurahata}			// Haruto's class's bespectacled class rep
 @name{比奈, Hina}
 @name{クラハタ, Kurahata}
 @name{ヒナ, Hina}
+@name{金澤, Kanazawa} 			// Small sportsy tomboy gal, athletic and outgoing
+@name{瑞希, Mizuki}
+@name{カナザワ, Kanazawa}
+@name{みずき, Mizuki}
+@name{ミズキ, Mizuki}
+@name{楠美, Kusumi} 				// Overprotective, half-stalker friend of Kurahata
+@name{琴音, Kotone}
+@name{くすみ, Kusumi}
+@name{クスミ, Kusumi}
+@name{コトネ, Kotone}
+// Real-world people in the world of sports
+カッサーノ --> Cassano 			// Antonio Cassano
+カントナ --> Cantona 			// Eric Cantona
+フリスト --> Hristo 			// A Bulgerian football player
+ストイチコフ --> Stoichov
+ガブリエル --> Gabriel
+バティストゥータ --> Batistuta
+サビオラ --> Sabiola 			// Javier Sabiola
 
 // Places
+山嵜 --> Yamazaki
+ヤマサキ --> Yamazaki
 山嵜高校 --> Yamazaki High
+上大塚駅 --> Kamiotsuka Station
 
 // Terminology
+//---------------------[ Sports terminology ]---------------------
+ふっとさる --> Futsal
 フットサル --> Futsal
-フットサル部 --> Futsal Club
 フットサルボール --> Futsal Ball
+フットサル部 --> Futsal Club
+フットボール --> Football
+サッカー --> Soccer
+サッカー部 --> Soccer Club
+ダブルダッチ --> Double Dutch
+オフサイド --> Offside
+バスケ --> Basketball
+バスケ部 --> Basketball Club
+テニス --> Tennis
+オフサイドトラップ --> Offside Trap
+パスミス --> missed pass
+パス --> pass
+チェック --> check
+勝負 --> match/match set
+//---------------------------[ Other ]----------------------------
+茶道部 --> Tea Ceremony Club
+中二病 --> Chunibyou Syndrome
+歩くAV --> Walking AV 				// Secret nickname Yamazaki High guys gave Nagase
 
 // Misc
 陰キャ --> Antisocial
-中二病 --> Chunibyou Syndrome
 学級委員 --> Class Rep
+コート --> Court
+メンド --> troublesome
+ぼっち --> loner
+ビッチ --> bitch
+ナーイス --> nice
+ホンマ --> really
+ガッコ --> school
+パパン --> Daddy
+マクド --> McDon's
+マック --> McDonalds
+阿保 --> Stupid
+ヤンキー --> Delinquent
+ハーレム --> Harem
+ツンデレ --> Tsundere
+風紀委員 --> Disciplinary Committee
 
 // END OF FILE
