@@ -108,22 +108,24 @@ class ConfigData:
 				)
 				sys.exit(1)
 
+			ch_curr = int(cache[entry['abbr']][0]) if entry['abbr'] in cache else 0
+			ch_max  = int(cache[entry['abbr']][1]) if entry['abbr'] in cache else 0
 			self.__series[entry['abbr']] = {
-				'name': entry['name'],
-				'lang': entry['lang'],
-				'host': entry['host'],
-				'code': entry['code']
+				'name'	 : entry['name'],
+				'lang'	 : entry['lang'],
+				'host'	 : entry['host'],
+				'code'	 : entry['code'],
+				'ch_curr': ch_curr,
+				'ch_max' : ch_max
 			}
 
-			ch_curr = cache[entry['abbr']][0] if entry['abbr'] in cache else CURR_NDEF
-			ch_max  = cache[entry['abbr']][1] if entry['abbr'] in cache else MAX_NDEF
 			row = (entry['abbr'],
 				entry['lang'],
 				entry['code'],
 				entry['host'],
 				entry['name'],
-				ch_curr if int(ch_curr) > 0 else CURR_NDEF,
-				ch_max if int(ch_max) > 0 else MAX_NDEF
+				ch_curr if ch_curr > 0 else CURR_NDEF,
+				ch_max if ch_max > 0 else MAX_NDEF
 			)
 			data.append(row)
 
@@ -188,7 +190,7 @@ class ConfigData:
 	def getSeriesTitle(self, series_abbr):
 		"""-------------------------------------------------------------------
 			Function:		[getSeriesLang]
-			Description:	Fetches the given series language
+			Description:	Fetches the given series full title
 			Input:			
 			  [series_abbr] Abbreviated name of the series to look up
 			Return:			Given series full title in string form
@@ -214,7 +216,7 @@ class ConfigData:
 	def getSeriesHost(self, series_abbr):
 		"""-------------------------------------------------------------------
 			Function:		[getSeriesHost]
-			Description:	Fetches the given series language
+			Description:	Fetches the given series host name
 			Input:			
 			  [series_abbr]	Abbreviated name of the series to look up
 			Return:			Given series host website in string form
@@ -227,7 +229,7 @@ class ConfigData:
 	def getSeriesCode(self, series_abbr):
 		"""-------------------------------------------------------------------
 			Function:		[getSeriesCode]
-			Description:	Fetches the given series language
+			Description:	Fetches the given series book code
 			Input:			
 			  [series_abbr] Abbreviated name of the series to look up
 			Return:			Given series web code in string form
@@ -235,6 +237,33 @@ class ConfigData:
 		"""
 		if self.seriesIsValid(series_abbr):
 			return self.__series[series_abbr]['code']
+		return None
+
+	def getSeriesCurrChapter(self, series_abbr):
+		"""-------------------------------------------------------------------
+			Function:		[getSeriesCurrChapter]
+			Description:	Fetches current chapter user is on for this series
+			Input:			
+			  [series_abbr] Abbreviated name of the series to look up
+			Return:			Given series current chapter
+			------------------------------------------------------------------
+		"""
+		if self.seriesIsValid(series_abbr):
+			return self.__series[series_abbr]['ch_curr']
+		return None
+
+	def getSeriesMaxChapter(self, series_abbr):
+		"""-------------------------------------------------------------------
+			Function:		[getSeriesMaxChapter]
+			Description:	Fetches most recent chapter released by author of 
+							this series
+			Input:			
+			  [series_abbr] Abbreviated name of the series to look up
+			Return:			Given series latest chapter
+			------------------------------------------------------------------
+		"""
+		if self.seriesIsValid(series_abbr):
+			return self.__series[series_abbr]['ch_max']
 		return None
 
 	def getHostUrl(self, host_name):

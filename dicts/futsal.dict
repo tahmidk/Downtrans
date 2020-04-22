@@ -1,44 +1,116 @@
 // NCode Link: https://ncode.syosetu.com/n5523ex
 
 // Names
+@name{廣瀨, Hirose}
+@name{廣瀬, Hirose}
+@name{陽翔, Haruto}
+廣瀬陽翔 --> Hirose Haruto
+@name{ひろせ, Hirose}
+@name{ヒロセ, Hirose}
 @name{はると, Haruto}
 @name{ハルト, Haruto}
-@name{ハル, Haru} 				// Kanazawa's nickname for Haruto
-@name{ヒロセ, Hirose}
-@name{廣瀬, Hirose}
-@name{陽翔, Yosho}
-@name{たなか, Tanaka} 			// Just a generic common Japanese name, Haruto's alter ego
-@name{田中, Tanaka}
-@name{長瀬, Nagase}				// Most popular girl in school
+ハル --> Haru 							// Mizuki's nickname for Haruto
+はーくん --> Ha-kun 						// nickname for Haruto
+ひろぽんさん --> Hiropon-san				// Rei's nickname for Haruto
+@name{長瀬, Nagase}						// Most popular girl in school, surprisingly socially awkward?
 @name{愛莉, Airi}
-@name{倉畑, Kurahata}			// Haruto's class's bespectacled class rep
+長瀬愛莉 --> Nagase Airi
+@name{ながせ, Nagase}
+@name{ナガセ, Nagase}
+@name{あいり, Airi}
+@name{アイリ, Airi}
+Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
+@name{倉畑, Kurahata}					// Haruto's class's bespectacled class rep
 @name{比奈, Hina}
+倉畑比奈 --> Kurahata Hina
 @name{クラハタ, Kurahata}
 @name{ヒナ, Hina}
-@name{金澤, Kanazawa} 			// Small sportsy tomboy gal, athletic and outgoing
+@name{くらはた, Kurahata}
+@name{ひな, Hina}
+ひーにゃん --> Hinyan 						// Nickname for Neko Hina
+くらはたひなです --> Kurahata Hina-desu 		// Hina's SNS tagname
+@name{金澤, Kanazawa} 					// Small sportsy tomboy gal, athletic and outgoing
 @name{瑞希, Mizuki}
+金澤瑞希 --> Kanazawa Mizuki
 @name{カナザワ, Kanazawa}
 @name{みずき, Mizuki}
 @name{ミズキ, Mizuki}
-@name{楠美, Kusumi} 				// Overprotective, half-stalker friend of Kurahata
+みんなだいすきみずきさん --> Everyone's Beloved Mizuki-chan // Mizuki's SNS tagname
+みんなだいすきみずきさん＠暑すぎワロタ --> Everyone's Beloved Mizuki-chan @ Smokin' Hot (lol) // Mizuki's full SNS tagname
+@name{楠美, Kusumi} 						// Overprotective, half-stalker friend of Kurahata
 @name{琴音, Kotone}
+楠美琴音 --> Kusumi Kotone
 @name{くすみ, Kusumi}
 @name{クスミ, Kusumi}
 @name{コトネ, Kotone}
-// Real-world people in the world of sports
-カッサーノ --> Cassano 			// Antonio Cassano
-カントナ --> Cantona 			// Eric Cantona
-フリスト --> Hristo 			// A Bulgerian football player
-ストイチコフ --> Stoichov
-ガブリエル --> Gabriel
-バティストゥータ --> Batistuta
-サビオラ --> Sabiola 			// Javier Sabiola
+くすみん --> Kusumin~ 						// Mizuki's nickname for Kusumi
+@name{早坂, Hayasaka}					// Middle schooler who Haru tutors as a part time job
+@name{有希, Yuki}
+早坂有希 --> Hayasaka Yuki
+@name{ハヤサカ, Hayasaka}
+@name{ユキ, Yuki}
+@name{峯岸, Minegishi} 					// Futsal club advisor, 
+@name{綾乃, Ayano}
+峯岸綾乃 --> Minegishi Ayano
+@name{ミネギシ, Minegishi}
+@name{アヤノ, Ayano}
+//-------------------[ Soccer club peeps ]----------------------
+@name{林, Hayashi}						// A rising soccer player in the Yamasaki soccer club
+ハヤシ --> Hayashi
+甘栗 --> Chestnut Bastard				// how Haruto refers to Hayashi
+@name{菊池, Kikuchi} 					// Another member
+キクチ --> Kikuchi
+//---------------[ Jounan University peeps ]--------------------
+@name{大久保, Okubo} 					// Leader of Team Amigo, M
+@name{遠藤, Endou}						// M
+@name{矢島, Yajima} 						// M
+@name{中原, Nakahara} 					// F
+@name{奥村, Okumura}						// F
+//------------------[ Team Herencia ]---------------------------
+@name{市川, Ichikawa} 					// Hyperactive, refers to herself in TP perspective
+@name{イチカワ, Ichikawa}
+@name{ノノ, Nono}
+市川ノノ --> Ichikawa Nono
+//-----------------------[ Misc ]-------------------------------
+@name{レイ, Rei} 							// Owner of a cosplay shop, friend of Hina
+@name{星崎アテナ, Hoshizaki Athena} 		// Anime character within
+@name{真琴, Makoto} 						// Airi's little brother
+@name{マコト, Makoto}
+有希ママ --> Yuki's Mama 					// Yuki's mother
+@name{エリ, Eri}							// Classmate and friend of Yuki
 
 // Places
+関西 --> Kansai Prefecture
+関東 --> Kanto Prefecture
+富山 --> Toyama Prefecture
+大分 --> Oita Prefecture
+神奈川県 --> Kanagawa Prefecture
 山嵜 --> Yamazaki
 ヤマサキ --> Yamazaki
 山嵜高校 --> Yamazaki High
+常盤森 --> Tokiwamori
+トキワモリ --> Tokiwamori
+常盤森学園 --> Tokiwamori Academy
 上大塚駅 --> Kamiotsuka Station
+上大塚 --> Kamiotsuka
+早坂家 --> The Hayasaka House
+バレンシア --> Valencia
+大阪 --> Osaka
+セレゾン --> Cerezon
+横浜 --> Yokohama
+横浜市 --> Yokohama City
+城南大学 --> Jounan University
+CIGAR KISS --> CIGAR KISS
+みなと島 --> Minato Island
+シーワールド --> Sea World Theme Park
+代々木 --> Yoyogi
+代々木アリーナ --> Yoyogi Arena
+渋谷 --> Shibuya City
+原宿 --> Hrajuku District
+浦安 --> Urayasu
+北海道 --> Hokkaido
+竹下通 --> Takeshita Street
+海浜公園 --> Beach Park
 
 // Terminology
 //---------------------[ Sports terminology ]---------------------
@@ -46,6 +118,8 @@
 フットサル --> Futsal
 フットサルボール --> Futsal Ball
 フットサル部 --> Futsal Club
+フットサルコート --> Futsal Court
+フットサル同好会 --> Futsal Society
 フットボール --> Football
 サッカー --> Soccer
 サッカー部 --> Soccer Club
@@ -55,32 +129,119 @@
 バスケ部 --> Basketball Club
 テニス --> Tennis
 オフサイドトラップ --> Offside Trap
+U-17 --> U17 Soccer Team
+U-17代表 --> U17 National Soccer Team
+U-17ワールドカップ --> U17 World Cup
+日本サッカー --> Japan Soccer
+セレゾン大阪ユース --> Cerezo Osaka Youth Team
+横浜ブランコス --> Yokohama Blancos
+ファール --> Foul
+PK戦 --> Penalty Kick Shot
+ボランチ --> Volante Position
+ビーチサッカー --> Beach Soccer
+マルセイユルーレット --> Marseille Roulette
+フットサルの高校選手権 --> High School Futsal Championships
+ゴレイロ --> goalie
+フィクソ --> fix
+ピヴォ --> pivot
+アラ --> winger
+リターン --> return
+チームメイト --> teammate
+ポストプレー --> postplay
 パスミス --> missed pass
 パス --> pass
 チェック --> check
+フリー --> free
 勝負 --> match/match set
+VAMOSCUP --> Vamos Cup Tourney
+バモスカップ --> Vamos Cup Tourney
+アウトプレー --> Outplay
+個サル --> Individual Participation Futsal Tourney
+ダイアゴナルラン --> Diagonal Run
+ヒールリフト --> Heel Lift
+ゴールマウス --> goalmouth
 //---------------------------[ Other ]----------------------------
 茶道部 --> Tea Ceremony Club
 中二病 --> Chunibyou Syndrome
-歩くAV --> Walking AV 				// Secret nickname Yamazaki High guys gave Nagase
+歩くAV --> Walking AV 					// Secret nickname Yamazaki High guys gave Nagase
+ドゲザねこ --> Dogeza Cat
+スイパラ --> SWEETS PARADICE
+オーバメヤン1号 --> Aubameyan		 		// Name of Haruto's moped (lol)
+ビブス --> soccer vests
+お姫様抱っこ --> Princess Carry
+フリーマン --> Freeman
+アミーゴ --> Team Amigo
+ヤング・トラフォード --> Team Young Trafford
+エレンシア --> Team Herencia
+Herencia --> Team Herencia
+ゴスロリ --> Gothic Lolita
+決定力 --> decisive power
+文化祭実行委員 --> Cultural Festival Committee
+A組 --> A Class
+B組 --> B Class
+C組 --> C Class
+委員長 --> Committee Chairman
+
+// Language
+エライ --> tired
+ホンマ --> really
+メンド --> troublesome
+めんど --> troublesome
+キモ --> yuck
+どうも --> hello/thanks
+クソ --> shit/trash
+先輩 --> Senpai
+後輩 --> Kouhai
+辛い --> bothersome
+バチクソ --> extremely
+メッチャ --> extremely
+どした --> what's up
+むり --> impossible
+センパイ --> senpai
 
 // Misc
 陰キャ --> Antisocial
+コミュ障 --> Socially Inept
 学級委員 --> Class Rep
 コート --> Court
-メンド --> troublesome
 ぼっち --> loner
 ビッチ --> bitch
-ナーイス --> nice
-ホンマ --> really
+ナイス --> nice
+ゴール --> goal
 ガッコ --> school
 パパン --> Daddy
 マクド --> McDon's
 マック --> McDonalds
 阿保 --> Stupid
 ヤンキー --> Delinquent
+DQN --> Deliinquent
 ハーレム --> Harem
+ボケ --> idiot
+ロリ --> Loli
+ロリコン --> Lolicon
+パンツ --> pants/panties
 ツンデレ --> Tsundere
-風紀委員 --> Disciplinary Committee
+風紀 --> Disciplinary Committee
+風紀委員 --> Disciplinary Committee Member
+体育 --> Sports Committee
+体育委員 --> Sports Committee Member
+生徒会 --> Student Council
+偏差値 --> Academic Standard Deviation Score
+舐め --> underestimate
+技術 --> technique
+土下座 --> Dogeza
+デレデレ --> sweet
+関西弁 --> Kansai Dialect
+サイコパス --> Psychopath
+部長 --> Club President
+ぶちょ --> Club President
+ハイタッチ --> high five
+小悪魔 --> Lesser Demon
+悪魔 --> Demon
+じゃんまけ --> loser of jan-ken-po
+一年 --> first year
+二年 --> second year
+三年 --> third year
+エリア --> area
 
 // END OF FILE

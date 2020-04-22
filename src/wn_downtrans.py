@@ -147,15 +147,22 @@ def initArgParser():
 	parser = argp.ArgumentParser(description="Download and run special "
 		+ "translation on chapters directly from various host websites")
 
-	# Mode flags are mutually exclusive: Either single or batch downtrans
-	parser.add_argument('-D', '--dev',
+	# These options can be mixed-and-matched
+	parser.add_argument('-d', '--dev',
 		action="store_true",
 		help="Output uses local js/css instead of remote production ver"
 		)
-	parser.add_argument('-V', '--verbose',
+	parser.add_argument('-v', '--verbose',
 		action="store_true",
 		help="Print user config information"
 		)
+	parser.add_argument('-n', '--next',
+		action="store_true",
+		help="Shortcut to download the next chapter when using -O/--one. This "
+		 + "option takes precedence over the [series] [ch_start] pos arguments")
+
+	# Mode flags are mutually exclusive. Only one of these actions can be executed
+	# per execution of this script
 	mode_flags = parser.add_mutually_exclusive_group(required=True)
 	mode_flags.add_argument('-I', '--info',
 		action="store_true",
@@ -192,31 +199,53 @@ def initArgParser():
 	# Handle errors or address warnings
 	args = parser.parse_args()
 	initConfig(args.verbose or args.info)
-	# One command w/out 'series' and 'start' args
-	if args.one and (args.series is None or args.start is None):
-		parser.error("For single downloads, series and start args are both "
-			+ "required")
-	# Batch command w/out all 'series' 'start' and 'end' args
-	if args.batch and (args.series is None or args.start is None or args.end is None) :
-		parser.error("For batch downloads, series, start and end args are all "
-			+ "required")
-	# Series mapping does not exist in config data
-	if (args.one or args.batch) and not config_data.seriesIsValid(args.series):
-		parser.error("The series '"+str(args.series)+"' does not exist in the "
-			+ "source code mapping")
-	# Chapter numbering starts at 1
-	if (args.one or args.batch) and args.start < 1:
-		parser.error("Start chapter argument is a minimum of 1 [start=%d]" % 
-			args.start)
-	# End chapter must be greater than start chapter
-	if args.batch and not (args.start < args.end):
-		parser.error("End chapter must be greater than start chapter [start=%d,"
-		 + "end=%d]" % (args.start, args.end))
-	# One command w/ unnecessary end chapter argument
-	if args.one and args.end:
-		print(("[Warning] Detected flag -O for single download-translate but "
-			+ "received both a 'start'\nand 'end' argument. Script will ignore "
-			+ "argument end=%d...." % args.end))
+
+	# -O/--one parser constraints
+	if args.one:
+		if not args.next:
+			# One command w/out either 'series' and 'start' args or -n flag is invalid
+			if args.series is None or args.start is None:
+				parser.error("For single downloads, series and start args are "
+					+ "both required if not using -n/--next flag")
+			# Series mapping does not exist in config data
+			if not config_data.seriesIsValid(args.series):
+				parser.error("The series '"+str(args.series)+"' does not exist "
+					+ "in the source code mapping")
+			# Chapter numbering must start at 1
+			if args.start < 1:
+				parser.error("Start chapter argument is a minimum of 1 [start= "
+					+ "%d]" % args.start)
+		else:
+			# One command w/ both -n and series+start at the same time is invalid
+			if not args.series:
+				parser.error("For single downloads, if using -n to download "
+					+ "the next chapter in cache, must specify series argument")
+
+
+		# One command w/ unnecessary end chapter argument, not fatal
+		if args.end:
+			print(("[Warning] Detected flag -O for single download-translate but "
+				+ "received both a 'start'\nand 'end' argument. Script will "
+				+ "ignore argument end=%d...." % args.end))
+
+	# -B/--batch parser constraints
+	if args.batch:
+		# Batch command w/out all 'series' 'start' and 'end' args is invalid
+		if args.series is None or args.start is None or args.end is None:
+			parser.error("For batch downloads, series, start and end args are all "
+				+ "required")
+		# Series mapping does not exist in config data
+		if not config_data.seriesIsValid(args.series):
+			parser.error("The series '"+str(args.series)+"' does not exist in "
+				+ "the source code mapping")
+		# Chapter numbering must start at 1
+		if args.start < 1:
+			parser.error("Start chapter argument is a minimum of 1 [start=%d]" % 
+				args.start)
+		# End chapter must be greater than start chapter
+		if not args.start < args.end:
+			parser.error("End chapter must be strictly greater than the start "
+				+ "chapter [start=%d, end=%d]" % (args.start, args.end))
 
 	return parser
 
@@ -817,6 +846,7 @@ def main():
 		handleUpdate()
 		sys.exit(0)
 
+
 	# Create subdirectories if they don't already exist
 	initEssentialPaths(args.series)
 	# Initialize the HTML parser corresponding to the host of this series
@@ -837,15 +867,16 @@ def main():
 	if args.batch:
 		chapters = list(range(args.start, args.end+1))
 		batch_procedure(args.series, chapters, globals_pkg, args.dev)
-		cacheutils.writeCacheData(series, args.start)
+		cacheutils.writeCacheData(series, args.end)
 		openBrowser(args.series, args.start)
 	elif args.one:
-		err_code = default_procedure(args.series, args.start, globals_pkg, args.dev)
+		ch_start = config_data.getSeriesCurrChapter(args.series)+1 if args.next else args.start
+		err_code = default_procedure(args.series, ch_start, globals_pkg, args.dev)
 		if err_code != 0:
 			print("[Error] Could not download or translate. Exiting")
 			sys.exit(1)
-		cacheutils.writeCacheData(args.series, args.start)
-		openBrowser(args.series, args.start)
+		cacheutils.writeCacheData(args.series, ch_start)
+		openBrowser(args.series, ch_start)
 	else:
 		print("[Error] Unexpected mode")
 		sys.exit(1)

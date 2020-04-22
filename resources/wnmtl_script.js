@@ -1,48 +1,3 @@
-// Super simple queue class specialized for content line processing
-class ContentQueue
-{ 
-    // Array is used to implement a Queue 
-    constructor(){ 
-      this.contents = []; 
-    } 
-                  
-    enqueue(line){
-      this.contents.push(line);
-    }
-
-    dequeue(){
-      if(!this.is_empty())
-        return this.contents.shift();
-      return null;
-    }
-
-    dequeue_until(line){
-      if(!this.is_empty() && this.contents.includes(line)){
-        var ret = [];
-        while(this.front() != line && !this.is_empty()){
-          var l = this.dequeue();
-          ret.push(l);
-        }
-
-        return ret;
-      }
-      else{
-        return null;
-      }
-    }
-
-    is_empty(){
-      return this.contents.length == 0;
-    }
-
-    front(){
-      if(!this.is_empty())
-        return this.contents[0];
-      return null;
-    }
-}
-var content_queue = new ContentQueue();
-
 // Toggle function for night and day mode and bind all lines for processing
 $(document).ready(function()
 {
@@ -85,10 +40,6 @@ function replace_placeholders_in_line(line_num)
     return;
 
   var line_elem = document.querySelector('.content_line#l'+line_num);
-  if(line_num == 12)
-    console.log("A");
-
-  //$(line_elem).unbind();
   var placeholders = line_elem.getElementsByClassName('placeholder')
   // Replace each placeholder on this line
   for(let elem of placeholders){
@@ -130,7 +81,8 @@ function bind_all_lines()
     var dummy = document.getElementById(d.id);
     $(dummy).on('DOMSubtreeModified', dummy, function() {
       $(this).unbind();
-      var dummy_curr_id = this.id.substring(1);
+      // A dummy is "triggered" when it's touched by google translate
+      var dummy_curr_id = parseInt(this.id.substring(1));
       checkpoint[dummy_curr_id] = true;
 
       // If D and D-1 are both triggered, then the line between them, L=D-1

@@ -95,7 +95,7 @@ section.dark{
 
 .scroll_notch{
   position: absolute;
-  top: 40%;
+  top: 45%;
   right: 0;
   font-family: 'Courier', sans-serif;
   font-size: 1em;
@@ -139,6 +139,7 @@ section.dark{
 /* Line styles */
 .content_line{
   margin: 4em 0 0 0;
+  overflow-wrap: break-word;
 }
 
 /* Raw styles */
@@ -182,6 +183,7 @@ ul{
   height:30px;
   z-index:1;
   border:1px solid #000;
+  background: #151515;
   border-radius:0.6em;
   cursor:pointer;
   overflow:hidden;
@@ -218,6 +220,7 @@ ul.toggle_mini{
 
 ul.active{
   border-color:#fff;
+  background: #fff;
 }
 
 ul li{

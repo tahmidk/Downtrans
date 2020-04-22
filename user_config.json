@@ -1,6 +1,6 @@
 {
     "chrome_path": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
-    "verbose": true,
+    "verbose": false,
     "write_raw": false,
     "hosts": [
         { "host_name": "Syosetu",   "base_url": "https://ncode.syosetu.com/"},
@@ -8,6 +8,13 @@
         { "host_name": "69shu",     "base_url": "https://www.69shu.org/book/"}
     ],
     "series": [
+        {
+            "abbr": "LonerOtaku",
+            "name": "The Loner Otaku's Romcom Starts Now",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n8897ff"
+        },
         {
             "abbr": "IsekaiGenius",
             "name": "Overspecced Genius in another World",
