@@ -1,0 +1,50 @@
+// NCode Link: https://ncode.syosetu.com/n9118gd
+
+// Names
+//-----------------------------[ Teachers ]-----------------------------------
+@name{高宮, Takamiya}			// Tituar unmotivated teacher of second year
+@name{統道, Osamudo}
+@name{大津, Ootsu}				// Fellow beautiful, outgoing female teacher
+@name{絵里, Eri}
+@name{中谷, Nakatani}			// Head teacher of the 2nd years, strict
+@name{山本, Yamamoto}
+@name{白石, Shiraishi}			// Veteran teacher
+@name{和真, Kazuma}
+//-----------------------------[ Students ]-----------------------------------
+@name{最上, Mogami}				// Student (F), class rep, prim-n-proper type
+@name{千裕, Chihiro}
+@name{神原, Kanbara}				// Student (F), aggressive gal type, class boss?
+@name{紗月, Satsuki}
+@name{有村, Arimura}				// Student (F), Basketball club ace
+@name{華, Hana}
+@name{藤崎, Fujisaki}			// Different class student (F), Basketball club
+@name{優里香, Yurika}
+@name{瀬川, Segawa}				// Student (M)
+@name{正彦, Masahiko}
+@name{小林, Kobayashi}			// Student (F), friend of Chihiro, health rep
+@name{明日香, Asuka}
+@name{佐々木, Sasaki}			// Student (M), library rep
+@name{和人, Kazuto}\
+@name{東条, Toujou}				// Student (M), beautification rep
+@name{正志, Masahi}
+@name{鈴原, Suzuhara}			// Student (M), discipline rep
+@name{萌絵, Moe}
+@name{菅原, Sugawara}			// Student (F), entourage of Satsuki
+@name{蘭, Ran}
+
+// Places
+城ノ口高校 --> Jonoguchi High
+
+// Misc
+委員会 --> representative
+学級委員 --> class representative
+図書委員 --> library representative
+美化委員 --> beautification representative
+風紀委員 --> discipline representative
+保健委員 --> health representative
+文化祭 --> cultural festival
+体育祭実行 --> sports festival
+陰キャ --> loner
+舐める --> underestimate
+
+// END OF FILE

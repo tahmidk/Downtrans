@@ -9,18 +9,53 @@
     ],
     "series": [
         {
+            "abbr": "99x",
+            "name": "I Confessed 99 Times But It Didn't Work",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n5829ej"
+        },
+        {
+            "abbr": "LoveBook",
+            "name": "Reading Book of Love",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n1531ga"
+        },
+        {
+            "abbr": "DotingDad",
+            "name": "As Long As I Have My Ultra Cute Daughter",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n7678ge"
+        },
+        {
+            "abbr": "Noragami",
+            "name": "The Incompetent's Contract With the Noragami",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n2300gd"
+        },
+        {
+            "abbr": "LonerClub",
+            "name": "The Loner's Club Activities",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n3429ge"
+        },
+        {
+            "abbr": "LazyTeach",
+            "name": "Takamiya-sensei is Popular With JK",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n9118gd"
+        },
+        {
             "abbr": "LonerOtaku",
             "name": "The Loner Otaku's Romcom Starts Now",
             "lang": "JP",
             "host": "Syosetu",
             "code": "n8897ff"
-        },
-        {
-            "abbr": "IsekaiGenius",
-            "name": "Overspecced Genius in another World",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n1705er"
         },
         {
             "abbr": "Futsal",
@@ -30,39 +65,11 @@
             "code": "n5523ex"
         },
         {
-            "abbr": "DKCand",
-            "name": "Summoned as a Demon King Candidate",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n2160dv"
-        },
-        {
-            "abbr": "StrongAdv",
-            "name": "Strongest Adventurer's School Life",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n2679fr"
-        },
-        {
             "abbr": "WeakMage",
             "name": "Clearing an Isekai with the Zero-Believers Goddess",
             "lang": "JP",
             "host": "Syosetu",
             "code": "n1217et"
-        },
-        {
-            "abbr": "Kanna",
-            "name": "Kanna no Kanna",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n3877cq"
-        },
-        {
-            "abbr": "ChiyuMahou",
-            "name": "The Wrong Way to Use Healing Magic",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n2468ca"
         },
         {
             "abbr": "Glitch",
@@ -72,25 +79,11 @@
             "code": "n9078bd"
         },
         {
-            "abbr": "Mismatch",
-            "name": "The Student Unsuited for Demon Lord School",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n1578dx"
-        },
-        {
             "abbr": "Magicex",
             "name": "Magical Explorer",
             "lang": "JP",
             "host": "Syosetu",
             "code": "n2413ep"
-        },
-        {
-            "abbr": "Wordmaster",
-            "name": "Konjiki no Wordmaster",
-            "lang": "JP",
-            "host": "Syosetu",
-            "code": "n7031bs"
         },
         {
             "abbr": "GodOfIllusions",

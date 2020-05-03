@@ -1,5 +1,6 @@
 logs/*
 venv/
+.vscode/
 *.log
 *.txt
 *.html

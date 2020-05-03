@@ -295,8 +295,6 @@ class ConfigData:
 			------------------------------------------------------------------
 		"""
 		if host_name not in self.__hosts:
-			print("Host \'%s\' was not initialized from config file!" %
-				host_name)
 			return False
 		return True
 
@@ -311,7 +309,5 @@ class ConfigData:
 			------------------------------------------------------------------
 		"""
 		if series_abbr not in self.__series:
-			print("Series \'%s\' was not initialized from config file!" %
-				series_abbr)
 			return False
 		return True

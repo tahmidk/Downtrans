@@ -10,8 +10,11 @@
 @name{はると, Haruto}
 @name{ハルト, Haruto}
 ハル --> Haru 							// Mizuki's nickname for Haruto
-はーくん --> Ha-kun 						// nickname for Haruto
 ひろぽんさん --> Hiropon-san				// Rei's nickname for Haruto
+ひろぽん --> Hiropon
+はーくん --> Ha-kun 						// nickname for Haruto
+ハーレム野郎 --> Harem Bastard 				// Nickname from classmates lol
+@name{エロ瀬, Erose} 						// Guy classmates' nickname for Haruto lol
 @name{長瀬, Nagase}						// Most popular girl in school, surprisingly socially awkward?
 @name{愛莉, Airi}
 長瀬愛莉 --> Nagase Airi
@@ -37,6 +40,7 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 @name{ミズキ, Mizuki}
 みんなだいすきみずきさん --> Everyone's Beloved Mizuki-chan // Mizuki's SNS tagname
 みんなだいすきみずきさん＠暑すぎワロタ --> Everyone's Beloved Mizuki-chan @ Smokin' Hot (lol) // Mizuki's full SNS tagname
+エターナルみずき＠大福の秋 --> Eternal Mizuki @ Autumn Daifuku // Another one
 @name{楠美, Kusumi} 						// Overprotective, half-stalker friend of Kurahata
 @name{琴音, Kotone}
 楠美琴音 --> Kusumi Kotone
@@ -44,6 +48,13 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 @name{クスミ, Kusumi}
 @name{コトネ, Kotone}
 くすみん --> Kusumin~ 						// Mizuki's nickname for Kusumi
+@name{市川, Ichikawa} 					// Hyperactive, refers to herself in TP perspective
+@name{イチカワ, Ichikawa}
+@name{ノノ, Nono}
+市川ノノ --> Ichikawa Nono
+ノ乃ノの乃＠ノの＠＠＠ --> @Nononononono 	// Nono's SNS tag name
+ノートルダム --> Notre Dame 					// Stupid nickname Nono gives herself lol
+ノートルダムさん --> Notre Dame-san
 @name{早坂, Hayasaka}					// Middle schooler who Haru tutors as a part time job
 @name{有希, Yuki}
 早坂有希 --> Hayasaka Yuki
@@ -54,12 +65,52 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 峯岸綾乃 --> Minegishi Ayano
 @name{ミネギシ, Minegishi}
 @name{アヤノ, Ayano}
+@name{真琴, Makoto} 						// Airi's little brother(!?)
+@name{マコト, Makoto}
+長瀬弟 --> Nagase's Little Brother
+長瀬真琴 --> Nagase Makoto
+ナガセマコト --> Nagase Makoto
+マコくん --> Mako-kun						// Yuki's nickname for Makoto
+マコちん --> Mako'cchin					// Nono's nickname for Makoto
+まこりーん --> Mako-rin 					// Eri's nickname for Makoto
 //-------------------[ Soccer club peeps ]----------------------
-@name{林, Hayashi}						// A rising soccer player in the Yamasaki soccer club
-ハヤシ --> Hayashi
+@name{小山田, Oyamada} 					// Teacher of A Class and Soccer Club advisor. Nicknamed Hancho
+ハンチョウ --> Hanchō						// Nickname for Oyamada-sensei
+@name{林, Hayashi}						// Soccer Club captain
+@name{賢太郎, Kentarou}
+@name{健太郎, Kentarou}
+@name{ハヤシ, Hayashi}
+@name{ケンタロウ, Kentarou}
+林賢太郎 --> Hayashi Kentarou
+ハヤシケンタロウ --> Hayashi Kentarou
 甘栗 --> Chestnut Bastard				// how Haruto refers to Hayashi
-@name{菊池, Kikuchi} 					// Another member
-キクチ --> Kikuchi
+@name{菊池, Kikuchi}						// Soccer Club ace, baldy
+@name{駿介, Shunsuke}
+@name{キクチ, Kikuchi}
+@name{シュンスケ, Shunsuke}
+菊池駿介 --> Kikuchi Shunsuke
+キクチシュンスケ --> Kikuchi Shunsuke
+@name{谷口, Taniguchi}					// Oyamada's favorite
+@name{大悟, Daigo}
+@name{タニグチ, Taniguchi}
+@name{ダイゴ, Daigo}
+谷口大悟 --> Taniguchi Daigo
+タニグチダイゴ --> Taniguchi Daigo
+@name{葛西, Kasai} 						// One of Haruto's first guy friends
+@name{武臣, Takeomi}
+@name{カサイ, Kasai}
+@name{タケオミ, Takeomi}
+葛西武臣 --> Kasai Takeomi
+カサイタケオミ --> Kasai Takeomi
+オミ --> Omi 								// Shortening of Takeomi's name
+@name{茂木, Motegi} 						// One of Haruto's first guy friends
+@name{哲哉, Tetsuya}
+@name{モギ, Mogi}
+@name{テツヤ, Tetsuya}
+茂木哲哉 --> Mogi Tetsuya
+モギテツヤ --> Mogi Tetsuya
+@name{牧野, Makino}
+@name{佐々木, Sasaki}
 //---------------[ Jounan University peeps ]--------------------
 @name{大久保, Okubo} 					// Leader of Team Amigo, M
 @name{遠藤, Endou}						// M
@@ -67,17 +118,14 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 @name{中原, Nakahara} 					// F
 @name{奥村, Okumura}						// F
 //------------------[ Team Herencia ]---------------------------
-@name{市川, Ichikawa} 					// Hyperactive, refers to herself in TP perspective
-@name{イチカワ, Ichikawa}
-@name{ノノ, Nono}
-市川ノノ --> Ichikawa Nono
 //-----------------------[ Misc ]-------------------------------
-@name{レイ, Rei} 							// Owner of a cosplay shop, friend of Hina
+@name{レイ, Rei} 							// Owner of a cosplay shop, otaku friend of Hina
 @name{星崎アテナ, Hoshizaki Athena} 		// Anime character within
-@name{真琴, Makoto} 						// Airi's little brother
-@name{マコト, Makoto}
 有希ママ --> Yuki's Mama 					// Yuki's mother
 @name{エリ, Eri}							// Classmate and friend of Yuki
+@name{甲太郎, Kotarou} 					// Hina's little brother
+@name{奥野, Okuno} 						// Otaku friend and previous classmate of Hina
+シャイロック --> Shylock 					// Character from The Merchant of Venice
 
 // Places
 関西 --> Kansai Prefecture
@@ -91,9 +139,11 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 常盤森 --> Tokiwamori
 トキワモリ --> Tokiwamori
 常盤森学園 --> Tokiwamori Academy
+常盤森《トキワモリ》学園 --> Tokiwamori Academy
 上大塚駅 --> Kamiotsuka Station
 上大塚 --> Kamiotsuka
 早坂家 --> The Hayasaka House
+長瀬家 --> The Nagase House
 バレンシア --> Valencia
 大阪 --> Osaka
 セレゾン --> Cerezon
@@ -111,6 +161,11 @@ CIGAR KISS --> CIGAR KISS
 北海道 --> Hokkaido
 竹下通 --> Takeshita Street
 海浜公園 --> Beach Park
+市大 --> City University
+西中 --> Nishinaka
+コスモパーク --> Cosmo Park
+沖縄 --> Okinawa
+山形 --> Yamagata
 
 // Terminology
 //---------------------[ Sports terminology ]---------------------
@@ -128,6 +183,7 @@ CIGAR KISS --> CIGAR KISS
 バスケ --> Basketball
 バスケ部 --> Basketball Club
 テニス --> Tennis
+テニス部 --> Tennis Club
 オフサイドトラップ --> Offside Trap
 U-17 --> U17 Soccer Team
 U-17代表 --> U17 National Soccer Team
@@ -160,6 +216,7 @@ VAMOSCUP --> Vamos Cup Tourney
 ダイアゴナルラン --> Diagonal Run
 ヒールリフト --> Heel Lift
 ゴールマウス --> goalmouth
+鳥かご --> Birdcage
 //---------------------------[ Other ]----------------------------
 茶道部 --> Tea Ceremony Club
 中二病 --> Chunibyou Syndrome
@@ -177,10 +234,17 @@ Herencia --> Team Herencia
 ゴスロリ --> Gothic Lolita
 決定力 --> decisive power
 文化祭実行委員 --> Cultural Festival Committee
-A組 --> A Class
-B組 --> B Class
-C組 --> C Class
+A組 --> Ⓐ Class
+B組 --> Ⓑ Class
+C組 --> Ⓒ Class
+D組 --> Ⓓ Class
 委員長 --> Committee Chairman
+ヴェニスの商人 --> The Merchant of Venice
+ヤマガク祭 --> Yamazaki Academy Festival
+裏四天王 --> Hidden Four Heavenly Kings of Yamazaki
+長瀬姉弟 --> Nagase siblings
+バンクシー --> Banksy
+ヴァージン・ブレイカーズ --> Virgin Breakers
 
 // Language
 エライ --> tired
@@ -190,14 +254,16 @@ C組 --> C Class
 キモ --> yuck
 どうも --> hello/thanks
 クソ --> shit/trash
-先輩 --> Senpai
-後輩 --> Kouhai
+下手クソ --> socially awkward
 辛い --> bothersome
 バチクソ --> extremely
 メッチャ --> extremely
 どした --> what's up
 むり --> impossible
-センパイ --> senpai
+あんがと --> thanks (Kansai accent)
+さんきゅ --> thank you
+兄妹 --> siblings
+ロクに --> recently
 
 // Misc
 陰キャ --> Antisocial
@@ -223,7 +289,8 @@ DQN --> Deliinquent
 ツンデレ --> Tsundere
 風紀 --> Disciplinary Committee
 風紀委員 --> Disciplinary Committee Member
-体育 --> Sports Committee
+体育 --> Physical Education
+体育の授業 --> PE Class
 体育委員 --> Sports Committee Member
 生徒会 --> Student Council
 偏差値 --> Academic Standard Deviation Score
@@ -237,11 +304,26 @@ DQN --> Deliinquent
 ぶちょ --> Club President
 ハイタッチ --> high five
 小悪魔 --> Lesser Demon
-悪魔 --> Demon
+悪魔 --> Full-Fledged Demon
+魔王 --> Demon King
 じゃんまけ --> loser of jan-ken-po
+じゃん負け --> loser of jan-ken-po
 一年 --> first year
 二年 --> second year
 三年 --> third year
 エリア --> area
+ゴールド --> gold
+マネ --> manager
+パリピ --> Party Peeps
+シスコン --> siscon
+異分子 --> alienated
+マネキン --> mannequin
+カロリ --> calories
+打ち上げ --> closing party
+変態 --> pervert
+赤点 --> red marks of complete and utter academic failure
+ぶっちゃけ --> frankly speaking
+下手くそ --> shitty bastard
+ヘタレ --> good-for-nothing
 
 // END OF FILE

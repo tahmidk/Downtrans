@@ -127,6 +127,8 @@ class SyosetuParser(HtmlParser):
 
 	def parseContent(self, html):
 		content = []
+		# Filter out <ruby> tags that mess up translation
+		html = re.sub(r'<ruby>(.*?)<rb>(.*?)</rb>(.*?)</ruby>', r'\2', html)
 		html_soup = soup.BeautifulSoup(html, 'lxml')
 
 		def processAndAppendLine(ltype, l):
@@ -137,10 +139,6 @@ class SyosetuParser(HtmlParser):
 			elif re.fullmatch(r'\s*', l):
 				return
 			else:
-				# Filter out <ruby> tags that are commonly found in line
-				if "<ruby>" in l:
-					l = re.sub(r'<ruby>(.*?)<rb>(.*?)</rb>(.*?)</ruby>', 
-						r'\2', l)
 				content.append((ltype, l))
 			content.append((ltype, '\n'))
 

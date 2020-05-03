@@ -13,6 +13,7 @@ from collections import OrderedDict			# Ordered Dictionary
 from tqdm import tqdm						# Progress bar
 from pdb import set_trace					# Python debugger
 from urllib.request import Request, urlopen	# Fetch URL Requests
+from urllib.error import HTTPError 			# HTTP fetch errors
 from stat import S_IREAD, S_IRGRP, S_IROTH 	# Changing file permissions
 from concurrent.futures import ThreadPoolExecutor as PoolExec # Parallelization
 
@@ -156,10 +157,23 @@ def initArgParser():
 		action="store_true",
 		help="Print user config information"
 		)
-	parser.add_argument('-n', '--next',
+
+	# Control flags are shortcuts that download the previous, current, or next 
+	# chapter for a series according to the current cache data. Only available
+	# when using -O/--one
+	ctrl_flags = parser.add_mutually_exclusive_group(required=False)
+	ctrl_flags.add_argument('-p', '--prev',
 		action="store_true",
-		help="Shortcut to download the next chapter when using -O/--one. This "
-		 + "option takes precedence over the [series] [ch_start] pos arguments")
+		help="A control flag to download the previous chapter when using -O/--one. "
+		 + "This option takes precedence over the [series] [ch_start] pos arguments")
+	ctrl_flags.add_argument('-c', '--curr',
+		action="store_true",
+		help="A control flag to download the current chapter when using -O/--one. "
+		 + "This option takes precedence over the [series] [ch_start] pos arguments")
+	ctrl_flags.add_argument('-n', '--next',
+		action="store_true",
+		help="A control flag to download the next chapter when using -O/--one. "
+		 + "This option takes precedence over the [series] [ch_start] pos arguments")
 
 	# Mode flags are mutually exclusive. Only one of these actions can be executed
 	# per execution of this script
@@ -202,11 +216,12 @@ def initArgParser():
 
 	# -O/--one parser constraints
 	if args.one:
-		if not args.next:
+		ctrl_flag_set = args.prev or args.curr or args.next
+		if not ctrl_flag_set:
 			# One command w/out either 'series' and 'start' args or -n flag is invalid
 			if args.series is None or args.start is None:
 				parser.error("For single downloads, series and start args are "
-					+ "both required if not using -n/--next flag")
+					+ "both required if not using a control flag")
 			# Series mapping does not exist in config data
 			if not config_data.seriesIsValid(args.series):
 				parser.error("The series '"+str(args.series)+"' does not exist "
@@ -308,6 +323,20 @@ def initDict(series):
 
 	# Parse the mappings into a list
 	dictList = []
+
+	# First add standalone honorifics
+	with io.open(HONORIFICS_PATH, mode='r', encoding='utf8') as hon_file:
+		try:
+			honorifics = json.loads(hon_file.read())
+			for entry in honorifics[config_data.getSeriesLang(series)]:
+				if entry['standalone']:
+					dictList.append((entry['h_raw'], entry['h_trans']))
+		except:
+			print("\n[Error] There seems to be a syntax issue with your "
+				+ "honorifics.json... Please correct it and try again")
+			sys.exit(1)
+
+	# Next, process the user's dict file
 	for line in dict_file:
 		line = line.lstrip()
 		line = line[:-1]	# Ignore newline '\n' at the end of the line
@@ -407,6 +436,7 @@ def handleClean():
 						one file in either subdirectory
 		------------------------------------------------------------------
 	"""
+	global config_data
 	ret = 0
 
 	# Clean up raw/ directory
@@ -426,6 +456,10 @@ def handleClean():
 					continue
 				print("Complete")
 
+			series_name = series_dir.split('/')[-1]
+			if not config_data.seriesIsValid(series_name):
+				os.rmdir(series_dir)
+
 	# Clean up trans/ directory
 	print(("\nCleaning directory: %s..." % TRANS_PATH))
 	trans_subdir = [x[0] for x in os.walk(TRANS_PATH)]
@@ -443,6 +477,10 @@ def handleClean():
 					continue
 				print("Complete")
 
+			series_name = series_dir.split('/')[-1]
+			if not config_data.seriesIsValid(series_name):
+				os.rmdir(series_dir)
+
 	# Clean up logs/ directory
 	print(("\nCleaning directory: %s..." % LOG_PATH))
 	log_subdir = [x[0] for x in os.walk(LOG_PATH)]
@@ -459,6 +497,10 @@ def handleClean():
 					ret = ret + 1
 					continue
 				print("Complete")
+
+			series_name = series_dir.split('/')[-1]
+			if not config_data.seriesIsValid(series_name):
+				os.rmdir(series_dir)
 
 	if ret == 0:
 		print("\n[Success] /raws /trans /logs cleaned. Exiting...")
@@ -520,7 +562,7 @@ def generateNameVariants(rName, tName, lang):
 		try:
 			honorifics = json.loads(hon_file.read())
 			for entry in honorifics[lang]:
-				variant = (rName+entry['h_raw'], tName+entry['h_trans'])
+				variant = (rName+entry['h_raw'], tName+"-"+entry['h_trans'])
 				res.append(variant)
 		except:
 			print("\n[Error] There seems to be a syntax issue with your "
@@ -540,15 +582,19 @@ def handleUpdate():
 	print("Updating series cache data...")
 	with PoolExec(max_workers=10) as pexec:
 		index = 0
+		l_series = config_data.getSeries().keys()
 		for response in tqdm(pexec.map(lambda x: fetchHTML(*x), args), total=n):
 			s = series[index]
 			if response is not None:
 				parser = htmlparser.createParser(config_data.getSeriesHost(s))
 				latest = parser.getLatestChapter(response)
-				cacheutils.writeCacheData(series=s, ch_max=latest)
+				cacheutils.writeCacheData(series=s, l_series=l_series, ch_max=latest)
 			else:
 				print("[Error] Unable to fetch updates for \'%s\'" % s)
 			index += 1
+
+	# Display to the user
+	configdata.ConfigData(CONFIG_FILE_PATH, True)
 
 	# Print completion statistics
 	print("\n[Complete] Finished updating series")
@@ -627,11 +673,17 @@ def fetchHTML(url, lang):
 			request = Request(url, None, headers)
 			response = urlopen(request, context=ssl._create_unverified_context())
 			break
+		# Page not found
+		except HTTPError as e:
+			if e.code == 404:
+				print("\n[Error] URL not found. Is the following page real?: " + 
+					url)
+				sys.exit(1)
 		# Some error has occurred
 		except Exception as e:
 			tries += 1
-			print("\n[Error] Could not get response from <%s>... Retrying "
-				+ "[tries=%d]" % (url, tries))
+			print("\n[Error] Could not get response from <%s>... Retrying " % url
+				+ "[tries=%s]" % tries)
 			time.sleep(2)
 		
 		if tries == MAX_TRIES:
@@ -841,6 +893,7 @@ def main():
 		handleClean()
 		sys.exit(0)
 	elif args.info:
+		# Should already be handled in initArgParser
 		sys.exit(0)
 	elif args.update:
 		handleUpdate()
@@ -864,18 +917,28 @@ def main():
 	globals_pkg.packGlobal("page_table")
 
 	# Different execution paths depending on mode
+	l_series = config_data.getSeries().keys()
 	if args.batch:
 		chapters = list(range(args.start, args.end+1))
 		batch_procedure(args.series, chapters, globals_pkg, args.dev)
-		cacheutils.writeCacheData(series, args.end)
+		cacheutils.writeCacheData(series, l_series, args.end)
 		openBrowser(args.series, args.start)
 	elif args.one:
-		ch_start = config_data.getSeriesCurrChapter(args.series)+1 if args.next else args.start
+		ch_curr = config_data.getSeriesCurrChapter(args.series)
+		if args.prev:
+			ch_start = max(ch_curr-1, 1)
+		elif args.curr:
+			ch_start = ch_curr
+		elif args.next:
+			ch_start = ch_curr+1
+		else:
+			ch_start = args.start
+
 		err_code = default_procedure(args.series, ch_start, globals_pkg, args.dev)
 		if err_code != 0:
 			print("[Error] Could not download or translate. Exiting")
 			sys.exit(1)
-		cacheutils.writeCacheData(args.series, ch_start)
+		cacheutils.writeCacheData(args.series, l_series, ch_start)
 		openBrowser(args.series, ch_start)
 	else:
 		print("[Error] Unexpected mode")

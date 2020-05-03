@@ -1,95 +1,95 @@
 // NCode Link: https://ncode.syosetu.com/n1217et
 
 // Names
-@name{高月, Takatsuki}
+@name{高月, Takatsuki}						// The weakest mage (but is he really tho?)
 @name{まこと, Makoto}
 @name{マコト, Makoto}
 まこ --> Make-kun
 マコくん --> Mako-kun
 @name{タッキー, Takki}
 精霊使いくん --> Spirit Wielder-kun
-@name{ノア, Noah}
+@name{ノア, Noah}								// Makoto's so-called evil-goddess
 女神ノア --> Goddess Noah
-@name{ルーシー, Lucy}
+@name{ルーシー, Lucy}							// Red-haird elf girl, daughter of Crimson Witch
 るーちゃん --> Lu-chan
 ルーシー・Ｊ・ウォーカー --> Lucy J. Walker
 魔法使いさん --> Magician-san
-@name{さーさん, Sa-san}
+@name{さーさん, Sa-san}						// Makoto and Fujiyan's friend and classmate
 @name{あや, Aya}
 @name{アヤ, Aya}
 @name{佐々木, Sasaki}
 戦士さん --> Warrior-san
-@name{ふじやん, Fujiyan}
+@name{フリアエ, Freya}							// Moon priestess
+@name{フーリ, Frey}
+ふーちゃん --> Fuu-chan
+@name{ふじやん, Fujiyan}						// Makoto's best friend, samurai-like dialogue
 @name{藤原, Fujiwara}
 @name{みちお, Michio}
 @name{ミチオ, Michio}
-@name{ルーカス, Lucas}
-@name{マリー, Mary}
-@name{ジャン, Jean}
-@name{エミリー, Emily}
+@name{ルーカス, Lucas}							// Great adventurer, Makoto's drinking buddy
+@name{マリー, Mary}							// Guild oneesan, affectionate towards Makoto
+@name{ジャン, Jean}							// Old friend of Makoto from days of small quests
+@name{エミリー, Emily}							// Jean's childhood friend and lover
 @name{ウォーカー, Walker}
-@name{ニナ, Nina}
-@name{クリス, Chris}
+@name{ニナ, Nina}								// Fujiyan's wife, former slave rabbit girl
+@name{クリス, Chris}							// Fujiyan's wife, noble
 @name{クリスティアナ, Christiana}
-@name{りょうすけ, Ryosuke}
+@name{りょうすけ, Ryosuke}						// Hero of light
 @name{リョウスケ, Ryosuke}
 @name{桜井, Sakurai}
-@name{横山, Yokoyama}
+@name{横山, Yokoyama}						// Most beautiful girl in class, Ryosuke's wife
 @name{さき, Saki}
 @name{サキ, Saki}
-@name{ノエル, Noel}
+@name{ノエル, Noel}							// light priestess, Ryosuke's fiance
 @name{ハイランド, Highland}
-@name{ソフィア, Sophia}
+@name{ソフィア, Sophia}						// Tsundere water priestess
 ソフィーちゃん --> Sophie-chan
 @name{ローゼス, Rozess}
-@name{アベル, Abel}
+@name{アベル, Abel}							// Savior of a past era
 救世主アベル --> Abel The Savior
 @name{ロザリー, Rosalie}
-@name{レオナード, Leonardo}
+@name{レオナード, Leonardo} 					// Sophia's little brother, hero of ice
 @name{レオ, Leo}
-@name{エイル, Eiru}
-@name{岡田, Okada}
-@name{北山, Kitayama}
-@name{川本, Kawamoto}
+@name{エイル, Eiru}							// Goddess of water
+@name{岡田, Okada}							// debauched classmate
+@name{北山, Kitayama}						// 
+@name{川本, Kawamoto}						// Most beautiful girl in class, Ryosuke's wife
 @name{えり, Eri}
+@name{エリ, Eri}
 @name{勇者, Hero}
 @name{武田, Takeda}
-@name{ジェラルド, Gerald}
+@name{ジェラルド, Gerald}						// Hero of Lightning
 ジェラさん --> Gerald-san
-@name{バランタイン, Valentin}
+@name{バランタイン, Valentin}					// Gerald's sister
 @name{大賢者, Great Sage}
-@name{ジョニィ, Johnny}
+@name{ジョニィ, Johnny}						// One of the heroes of the past era
 ジョニイ --> Johnny
 @name{アンナ, Anna}
-@name{エリ, Eri}
 @name{テオギル, Teogir}
-@name{アルテナ, Altina}
-@name{ピーター, Peter}
+@name{アルテナ, Altina}						// Goddess of Light
+@name{ピーター, Peter}							// Mob boss rescued by Makoto
 @name{カストール, Castor}
-@name{ガイウス, Gaius}
+@name{ガイウス, Gaius}							// Castor family
 @name{ジュリアーノ, Julian}
-@name{ロマ, Roma}
+@name{ロマ, Roma}								// Head of Borgia house
 @name{ボルジア, Borgia}
-@name{マルコ, Marco}
+@name{マルコ, Marco}							// Head of Whitehorse house
 @name{ホワイトホース, Whitehorse}
-@name{ロレンツォ, Lorenzo}
+@name{ロレンツォ, Lorenzo}						// Head of Beliz house
 @name{ベリーズ, Beliz}
-@name{バルトロメオ, Bartholomeo}
+@name{バルトロメオ, Bartholomeo}				// Head of Valentin house
 @name{バランタイン, Valentin}
-@name{ミハエル, Michael}
+@name{ミハエル, Michael}						// Head of Roland house
 @name{ローランド, Roland}
-@name{ヴィットリオ, Vittorio}
+@name{ヴィットリオ, Vittorio}					// Head of Whiteheather house
 @name{ホワイトヘザー, Whiteheather}
 @name{ユーウェイン, Yuwein}
 ユーウェイン総長 --> Secretary General Yuwein
 @name{ブラッドノック, Bloodnoc}
 @name{シャウーラ一, Shaura}
-@name{デネボーラ一, Denevrah}
+@name{デネボーラ一, Denevrah}					// Priestess of fire
 @name{ジェノバ, Genovah}
 @name{ジャック, Jack}
-@name{フリアエ, Freya}
-@name{フーリ, Frey}
-ふーちゃん --> Fuu-chan
 @name{イヴリース, Iblis}
 @name{イザク, Isaac}
 大主教イザク --> Archbishop Isaac
@@ -106,14 +106,14 @@
 @name{セテカー, Settekar}
 @name{ザガン, Zagan}
 @name{ジンバラ, Jinbara}
-@name{マキシミリアン, Maximilian}
+@name{マキシミリアン, Maximilian}				// Hero of nature
 マキシさん --> Maxi-san
 @name{ラガヴーリン, Ragavulin}
 @name{里長, Satosa}
-@name{オルガ, Olga}
+@name{オルガ, Olga}							// Hero of fire
 オルガ・ソール・タリスカー --> Olga Sol Talisker
 @name{タリスカー, Talisker}
-タリスカー将軍 --> General Talisker
+タリスカー将軍 --> General Talisker				// Great general of the fire country
 @name{ケイコ, Keiko}
 @name{河北, Kahoku}
 @name{マルタン, Martin}
@@ -122,11 +122,11 @@
 ダリア・ソール・グレイトキース --> Daria Sol Greatkeith
 @name{グレイトキース, Greatkeith}
 @name{ゲーアハルト, Gayhart}
-@name{エステル, Esther}
+@name{エステル, Esther}						// Priestess of destiny
 @name{オルト, Ortho}
-@name{アレク, Alec}
+@name{アレク, Alec}							// Hero of the Sun, demigod
 @name{アレクサンドル, Alexander}
-@name{イラ, Ira}
+@name{イラ, Ira}								// Goddess of destiny
 @name{ハヴェル, Havel}
 ツイ --> Sui
 ナイア --> Naia
@@ -153,7 +153,7 @@
 ハヤテ --> Hayate
 
 // Places
-マッカレン --> Makkaren
+マッカレン --> Makkaren								// Starting town of Makoto
 魔の森 --> Demon's Forest
 大迷宮 --> Grand Labyrinth
 英雄酒場 --> Hero's Bar
@@ -346,6 +346,7 @@ RPGプレイヤー --> RPG Player
 ローゼスの勇者 --> Hero of Rozess
 水の女神 --> Water Goddess
 光の勇者 --> Hero of Light
+太陽の勇者 --> Hero of the Sun
 陽の巫女 --> Sun Priestess
 太陽の女神 --> Sun Goddess
 火の女神 --> Flame Goddess
@@ -411,7 +412,12 @@ RPGプレイヤー --> RPG Player
 堕天の王 --> Fallen King
 悪魔の王 --> Demon King
 月魔法使い --> Moon Magician
+精霊王 --> Spirit King
+火の大精霊 --> Great Fire Fairy
+風の大精霊 --> Great Gale Fairy
+水の精霊王 --> Spirit King of Water
 水の大精霊 --> Great Water Fairy
+土の大精霊 --> Great Gaia Fairy
 鬼神の大槌 --> Demon God's Mallet
 鬼神の槌 --> Demon God's Mallet
 神気 --> God Aura
@@ -436,8 +442,11 @@ RPGプレイヤー --> RPG Player
 言の葉の契約 --> Verbal Covenant
 血の契約 --> Blood Covenant
 躯の契約 --> Physical Covenant
-
-
+神王ユピテル --> King of Gods Jupiter
+聖女 --> Supreme Saint
+神の試練 --> Trial of God
+月の巫女の守護騎士 --> Guardian Knight of the Moon Priestess
+精霊兵器 --> Spirit Arms
 
 // Language
 ご主人様 --> Master
@@ -445,8 +454,6 @@ RPGプレイヤー --> RPG Player
 拙者 --> I/Me
 ワシ --> I(formal)
 若頭 --> Young master
-姉さま --> Elder Sister
-兄さま --> Elder Brother
 姫 --> Milady/Princess
 
 // Misc
@@ -461,5 +468,6 @@ RPGプレイヤー --> RPG Player
 オークション --> Auction
 姫様 --> Princess
 イライラ --> irritated
+不定 --> undefined
 
 // END OF FILE
