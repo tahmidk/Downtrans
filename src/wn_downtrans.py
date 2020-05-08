@@ -47,6 +47,7 @@ LOG_PATH = 			os.path.join("../logs/")
 RESOURCE_PATH = 	os.path.join("../resources/")
 CONFIG_FILE_PATH = 	os.path.join("../user_config.json")
 HONORIFICS_PATH =   os.path.join("../honorifics.json")
+COMMON_DICT_PATH =  os.path.join("../dicts/common.dict")
 
 # Format of the divider for .dict file
 DIV = r' --> '
@@ -278,16 +279,17 @@ def initHtmlParser(host):
 	html_parser = htmlparser.createParser(host)
 	
 	if html_parser is None:
-		print("Unrecognized host %s! Make sure this host has an entry in the \
-			hosts field of user_config.json" % host)
+		print("Unrecognized host %s! Make sure this host has an entry in " % host
+			+ "the hosts field of user_config.json")
 		sys.exit(1)
 
-def initDict(series):
+def initDict(series, common_opt):
 	"""-------------------------------------------------------------------
 		Function:		[initDict]
 		Description:	Initializes the global series dictionary 
 		Input:
 		  [series]		The series to initialize dictionary file (.dict) for
+		  [common_opt]	Option to use common.dict
 		Return:			None, initializes a global series_dict
 		------------------------------------------------------------------
 	"""
@@ -310,19 +312,12 @@ def initDict(series):
 			dict_file.close()
 			series_dict = {}
 		except Exception:
-			print("[Error] Error creating or modifying dict file [%s]" % 
-				dict_name)
+			print("[Error] Error creating or modifying dict file [%s]" % dict_name)
 		return
 
-	# Open dict file in read mode
-	try:
-		dict_file = io.open(dict_path, mode='r', encoding='utf8')
-	except Exception:
-		print("[Error] Error opening dictionary file [%s]" % dict_name)
-		sys.exit(1)
-
 	# Parse the mappings into a list
-	dictList = []
+	series_lang = config_data.getSeriesLang(series)
+	dict_list = []
 
 	# First add standalone honorifics
 	with io.open(HONORIFICS_PATH, mode='r', encoding='utf8') as hon_file:
@@ -330,48 +325,32 @@ def initDict(series):
 			honorifics = json.loads(hon_file.read())
 			for entry in honorifics[config_data.getSeriesLang(series)]:
 				if entry['standalone']:
-					dictList.append((entry['h_raw'], entry['h_trans']))
+					dict_list.append((entry['h_raw'], entry['h_trans']))
 		except:
 			print("\n[Error] There seems to be a syntax issue with your "
 				+ "honorifics.json... Please correct it and try again")
 			sys.exit(1)
 
-	# Next, process the user's dict file
-	for line in dict_file:
-		line = line.lstrip()
-		line = line[:-1]	# Ignore newline '\n' at the end of the line
+	# Process common_dict if option is set
+	if common_opt:
+		try:
+			dict_list.extend(processDictFile(series_lang, COMMON_DICT_PATH))
+		except Exception:
+			print("[Error] Error processing common.dict file. Make sure this file "
+				+ "exists or switch use_common_dict option in user_config to false")
+			sys.exit(1)
 
-		# Skip comment lines and unformatted/misformatted lines
-		name_pattern = re.compile(r"\s*@name\{(.+), (.+)\}.*")
-		if line[0:2] == "//":
-			continue
-		elif name_pattern.fullmatch(line) is not None:
-			nameMatch = name_pattern.fullmatch(line)
-			variants = generateNameVariants(
-				nameMatch[1].strip(), 
-				nameMatch[2].strip(), 
-				config_data.getSeriesLang(series))
-			for variant in variants:
-				dictList.append(variant)
-		else:
-			if DIV not in line:
-				continue
-			raw_div = line.split(DIV)
-			if len(raw_div) != 2 or len(raw_div[0]) == 0 or len(raw_div[1]) == 0:
-				print("[Warning] Malformed line detected in dictionary: %s" %
-					line)
-				print("  Make sure to minimally have something in the form of "
-					+ "\'RAW --> TRANSLATED   // Optional comment\' with "
-					+ "nonempty RAW and TRANSLATED entries ... Skipping entry")
-				continue
-			trans_div = raw_div[1].split("//")
-			dictList.append((raw_div[0].strip(), trans_div[0].strip()))
+	# Process series specific dict
+	try:
+		dict_list.extend(processDictFile(series_lang, dict_path))
+	except Exception:
+		print("[Error] Error opening dictionary file [%s]" % dict_name)
+		sys.exit(1)
 
 	# Initialize the global. Need to sort such that longer strings are processed
 	# before the shorter ones so sort by length of the Chinese string
-	dictList.sort(key= lambda x: len(x[0]), reverse=True)
-	series_dict = OrderedDict(dictList)
-	dict_file.close()
+	dict_list.sort(key= lambda x: len(x[0]), reverse=True)
+	series_dict = OrderedDict(dict_list)
 
 def initPageTable(series):
 	"""-------------------------------------------------------------------
@@ -408,8 +387,7 @@ def initPageTable(series):
 				table_file.write(entry + u'\n')
 			table_file.close()
 		except Exception:
-			print("[Error] Error creating or modifying table file [%s]" % 
-				table_name)
+			print("[Error] Error creating or modifying table file [%s]" % table_name)
 
 		# Mark file as readonly
 		os.chmod(series_table, S_IREAD|S_IRGRP|S_IROTH)
@@ -421,8 +399,7 @@ def initPageTable(series):
 			for line in table_file:
 				if line != u'\n':	page_table.append(line[:-1])
 		except Exception:
-			print("[Error] Error reading existing series table file [%s]" % 
-				table_name)
+			print("[Error] Error reading existing series table file [%s]" % table_name)
 
 #============================================================================
 #  General utility functions
@@ -507,7 +484,51 @@ def handleClean():
 	else:
 		print(("\n[Complete] Cleaned all but %d files. Exiting..." % r))
 
-	return ret
+	return 
+
+def processDictFile(series_lang, dict_path):
+	"""-------------------------------------------------------------------
+		Function:		[processDictFile]
+		Description:	Opens a given chapter in select browser
+		Input:
+		  [series_lang]	Series language
+		  [dict_path]	Path to the dictionary file
+		Return:			N/A
+		------------------------------------------------------------------
+	"""
+	dict_list = []
+
+	with io.open(dict_path, mode='r', encoding='utf8') as dict_file:
+		for line in dict_file:
+			line = line.lstrip()
+			line = line[:-1]	# Ignore newline '\n' at the end of the line
+
+			# Skip comment lines and unformatted/misformatted lines
+			name_pattern = re.compile(r"\s*@name\{(.+), (.+)\}.*")
+			name_match = name_pattern.fullmatch(line)
+			if line[0:2] == "//":
+				continue
+			elif name_match is not None:
+				variants = generateNameVariants(
+					name_match[1].strip(), 
+					name_match[2].strip(), 
+					series_lang)
+				for variant in variants:
+					dict_list.append(variant)
+			else:
+				if DIV not in line:
+					continue
+				raw_div = line.split(DIV)
+				if len(raw_div) != 2 or len(raw_div[0]) == 0 or len(raw_div[1]) == 0:
+					print("[Warning] Malformed line detected in dictionary: %s" % line)
+					print("  Make sure to minimally have something in the form of "
+						+ "\'RAW --> TRANSLATED   // Optional comment\' with "
+						+ "nonempty RAW and TRANSLATED entries ... Skipping entry")
+					continue
+				trans_div = raw_div[1].split("//")
+				dict_list.append((raw_div[0].strip(), trans_div[0].strip()))
+
+	return dict_list
 
 def openBrowser(series, ch):
 	"""-------------------------------------------------------------------
@@ -538,11 +559,9 @@ def openBrowser(series, ch):
 			google_chrome = webbrowser.get(chrome)
 			google_chrome.open('file://' + os.path.realpath(path_trans))
 		except OSError:
-			print("\n[Error] The chrome browser [%s] does not exist. "
-				+ "Skipping" % chrome_path)
+			print("\n[Error] The chrome browser [%s] does not exist. Skipping" % chrome_path)
 		except Exception:
-			print("\n[Error] Cannot open Google Chrome [%s]. "
-				+ "Skipping" % chrome_path)
+			print("\n[Error] Cannot open Google Chrome [%s]. Skipping" % chrome_path)
 
 def generateNameVariants(rName, tName, lang):
 	"""-------------------------------------------------------------------
@@ -687,8 +706,8 @@ def fetchHTML(url, lang):
 			time.sleep(2)
 		
 		if tries == MAX_TRIES:
-			print("\n[Error] Max tries reached. No response from <%s>. Make "
-				+ "sure this URL exists" % url)
+			print("\n[Error] Max tries reached. No response from <%s>. " % url
+				+ "Make sure this URL exists")
 			return None
 
 	# Read and decode the response according to series language
@@ -907,7 +926,7 @@ def main():
 	# Initialize the series page table according to series host
 	initPageTable(args.series)
 	# Initialize series dictionary
-	initDict(args.series)
+	initDict(args.series, config_data.getUseCommonDictOpt())
 
 	# Package the finished globals as a Python equivalent of a C-struct
 	globals_pkg = GlobalsPackage()

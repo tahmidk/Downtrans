@@ -296,11 +296,6 @@ RPGプレイヤー --> RPG Player
 
 // Creatures
 精霊さん --> Spirit-san
-ゴブリン --> Goblin
-グリフォン --> Griffon
-キメラ --> Chimera
-ハーピー --> Harpy
-ラミア --> Lamia
 ラミア女王 --> Lamia Queen
 シーサペント --> Sea Serpent
 オーク --> Ork
@@ -309,8 +304,6 @@ RPGプレイヤー --> RPG Player
 スケルトン --> Skeleton
 ゾンビ --> Zombie
 死霊騎士 --> Death Knight
-オーガ --> Ogre
-コボルト --> Kobold
 巨人 --> Titan
 緑竜 --> Green Dragon
 古竜 --> Elder Dragon
@@ -449,21 +442,13 @@ RPGプレイヤー --> RPG Player
 精霊兵器 --> Spirit Arms
 
 // Language
-ご主人様 --> Master
-旦那様 --> Husband
 拙者 --> I/Me
-ワシ --> I(formal)
 若頭 --> Young master
 姫 --> Milady/Princess
 
 // Misc
-魔法使い --> Magician
-女神サマ --> Goddess-sama
 貴様 --> Bastard
-魔王 --> Demon Lord
-魔神 --> Demon
 エリア --> area
-ハーレム --> Harem
 私の騎士 --> My Guardian Knight
 オークション --> Auction
 姫様 --> Princess

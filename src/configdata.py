@@ -37,6 +37,7 @@ class ConfigData:
 
 			# Initialize other settings
 			self.__write_raw = config['write_raw']
+			self.__use_common_dict = config['use_common_dict']
 			self.__num_hosts = len(config['hosts'])
 			self.__num_series = len(config['series'])
 			browser = config['chrome_path']
@@ -280,6 +281,9 @@ class ConfigData:
 
 	def getWriteRawOpt(self):
 		return self.__write_raw
+
+	def getUseCommonDictOpt(self):
+		return self.__use_common_dict
 
 	#--------------------------------------------------------------------------
 	#  Validation functions

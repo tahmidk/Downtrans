@@ -4,33 +4,50 @@
 //-----------------------------[ Teachers ]-----------------------------------
 @name{高宮, Takamiya}			// Tituar unmotivated teacher of second year
 @name{統道, Osamudo}
+高宮統道 --> Takamiya Osamudo
 @name{大津, Ootsu}				// Fellow beautiful, outgoing female teacher
 @name{絵里, Eri}
+大津絵里 --> Ootsu Eri
 @name{中谷, Nakatani}			// Head teacher of the 2nd years, strict
 @name{山本, Yamamoto}
+中谷山本 --> Nakatani Yamamoto
 @name{白石, Shiraishi}			// Veteran teacher
 @name{和真, Kazuma}
+白石和真 --> Shiraishi Kazuma
 //-----------------------------[ Students ]-----------------------------------
 @name{最上, Mogami}				// Student (F), class rep, prim-n-proper type
 @name{千裕, Chihiro}
+最上千裕 --> Mogami Chihiro
 @name{神原, Kanbara}				// Student (F), aggressive gal type, class boss?
 @name{紗月, Satsuki}
+神原紗月 --> Kanbara Satsuki
 @name{有村, Arimura}				// Student (F), Basketball club ace
 @name{華, Hana}
+有村華 --> Arimura Hana
 @name{藤崎, Fujisaki}			// Different class student (F), Basketball club
 @name{優里香, Yurika}
+藤崎優里香 --> Fujisaki Yurika
 @name{瀬川, Segawa}				// Student (M)
 @name{正彦, Masahiko}
+瀬川正彦 --> Segawa Masahiko
 @name{小林, Kobayashi}			// Student (F), friend of Chihiro, health rep
 @name{明日香, Asuka}
+小林明日香 --> Kobayashi Asuka
 @name{佐々木, Sasaki}			// Student (M), library rep
-@name{和人, Kazuto}\
+@name{和人, Kazuto}
+佐々木和人 --> Sasaki Kazuto
 @name{東条, Toujou}				// Student (M), beautification rep
 @name{正志, Masahi}
+東条正志 --> Toujou Masahi
 @name{鈴原, Suzuhara}			// Student (M), discipline rep
 @name{萌絵, Moe}
+鈴原萌絵 --> Suzuhara Moe
 @name{菅原, Sugawara}			// Student (F), entourage of Satsuki
 @name{蘭, Ran}
+菅原蘭 --> Sugawara Ran
+@name{速水, Hayami}				// Student (F)
+@name{由美, Yumi}
+速水由美 --> Hayami Yumi
 
 // Places
 城ノ口高校 --> Jonoguchi High
@@ -42,9 +59,7 @@
 美化委員 --> beautification representative
 風紀委員 --> discipline representative
 保健委員 --> health representative
-文化祭 --> cultural festival
-体育祭実行 --> sports festival
-陰キャ --> loner
-舐める --> underestimate
+文化祭 --> cultural festival 
+体育祭 --> sports festival
 
 // END OF FILE
