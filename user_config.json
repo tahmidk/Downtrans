@@ -10,39 +10,46 @@
     ],
     "series": [
         {
-            "abbr": "99x",
-            "name": "I Confessed 99 Times But It Didn't Work",
+            "abbr": "StepModel",
+            "name": "My Step-Sister Is a Model",
             "lang": "JP",
             "host": "Syosetu",
-            "code": "n5829ej"
+            "code": "n7057gi"
         },
         {
-            "abbr": "LoveBook",
-            "name": "Reading Book of Love",
+            "abbr": "BocchiIdol",
+            "name": "I'm the Best Idol in Japan",
             "lang": "JP",
             "host": "Syosetu",
-            "code": "n1531ga"
+            "code": "n9946fx"
         },
         {
-            "abbr": "DotingDad",
-            "name": "As Long As I Have My Ultra Cute Daughter",
+            "abbr": "FlagCrush",
+            "name": "The Adventurer Contracted to the Strongest Deity Crushes Flags",
             "lang": "JP",
             "host": "Syosetu",
-            "code": "n7678ge"
+            "code": "n3404fh"
         },
         {
-            "abbr": "Noragami",
-            "name": "The Incompetent's Contract With the Noragami",
+            "abbr": "CHJK",
+            "name": "When My Childhood Friend Becomes JK",
             "lang": "JP",
             "host": "Syosetu",
-            "code": "n2300gd"
+            "code": "n4893gi"
         },
         {
-            "abbr": "LonerClub",
-            "name": "The Loner's Club Activities",
+            "abbr": "WhiteRabbit",
+            "name": "The Strongest Incompetent Reaches for the Top",
             "lang": "JP",
             "host": "Syosetu",
-            "code": "n3429ge"
+            "code": "n0737ga"
+        },
+        {
+            "abbr": "Surrounded",
+            "name": "Surrounded By Four",
+            "lang": "JP",
+            "host": "Syosetu",
+            "code": "n9450ge"
         },
         {
             "abbr": "LazyTeach",
@@ -73,18 +80,18 @@
             "code": "n1217et"
         },
         {
-            "abbr": "Glitch",
-            "name": "This World Is a Game but Only I Know It",
+            "abbr": "WiseYankee",
+            "name": "Genius DQ Revieves God's Wisdom",
             "lang": "JP",
             "host": "Syosetu",
-            "code": "n9078bd"
+            "code": "n8093ex"
         },
         {
-            "abbr": "Magicex",
-            "name": "Magical Explorer",
+            "abbr": "StrongTeach",
+            "name": "Strongest Soldier Becomes a Teacher",
             "lang": "JP",
             "host": "Syosetu",
-            "code": "n2413ep"
+            "code": "n2874gh"
         },
         {
             "abbr": "GodOfIllusions",

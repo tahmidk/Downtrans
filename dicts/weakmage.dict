@@ -62,6 +62,7 @@
 ジェラさん --> Gerald-san
 @name{バランタイン, Valentin}					// Gerald's sister
 @name{大賢者, Great Sage}
+@name{賢者, Sage}
 @name{ジョニィ, Johnny}						// One of the heroes of the past era
 ジョニイ --> Johnny
 @name{アンナ, Anna}
@@ -128,6 +129,17 @@
 @name{アレクサンドル, Alexander}
 @name{イラ, Ira}								// Goddess of destiny
 @name{ハヴェル, Havel}
+//------------------------------[1000 Years Ago]
+@name{モモ, Momo} 							// Little girl from 1000 years ago
+豪魔のバラム --> God's Right Balaam 			// Top three demon executive #1
+バラム --> Balaam
+妖艶のシューリ --> Bewitching Shuri 			// Top three demon executive #2
+魔眼のセテカー --> Magic Eye Seteka 			// Top three demon executive #3
+@name{カイン, Kain}
+@name{ヴォルフ, Wolf} 							// Hero of Gaia
+@name{ジュリエッタ, Julietta} 					// Hero of Nature
+@name{デッケル, Decckil}						// Hero of Iron
+//------------------------------[Misc]
 ツイ --> Sui
 ナイア --> Naia
 スカーフェイス --> Scarface
@@ -183,6 +195,7 @@
 海底神殿 --> Abyssal Atlantic Temple
 グレイトキース城 --> Greatkeith Castle
 コルネット --> Cornet
+聖アンナ大聖堂 --> Saint Anna Cathedral
 
 // Skills
 //--------------------------[ Types ]-----------------------------
@@ -314,13 +327,21 @@ RPGプレイヤー --> RPG Player
 // Ranking
 //----------------[ Adventurer Ranks ]---------------------
 ストーンランク --> Stone Rank
+ストーン級 --> Stone Class
 ブロンズランク --> Bronze Rank
+ブロンズ級 --> Bronze Class
 アイアンランク --> Iron Rank
+アイアン級 --> Iron Class
 シルバーランク --> Silver Rank
+シルバー級 --> Silver Class
 ゴールドランク --> Gold Rank
+ゴールド級 --> Gold Class
 プラチナランク --> Platinum Rank
+プラチナ級 --> Platinum Class
 ミスリルランク --> Mythril Rank
+ミスリル級 --> Mythril Class
 オリハルコンランク --> Orichalcum Rank
+オリハルコン級 --> Orichalcum Class
 災害指定 --> Calamity Class
 //------------------[ Magic Levels ]-----------------------
 魔法使い見習い --> Apprentice Magician
@@ -356,6 +377,8 @@ RPGプレイヤー --> RPG Player
 呪いの巫女 --> Cursed Priestess
 氷雪の勇者 --> Hero of Frost
 風樹の勇者 --> Hero of Nature
+木の勇者 --> Hero of Nature
+土の勇者 --> Hero of Gaia
 木の女神 --> Goddess of Nature
 木の女神の巫女 --> Priestess of Nature
 稲妻の勇者 --> Hero of Thunder
@@ -440,6 +463,8 @@ RPGプレイヤー --> RPG Player
 神の試練 --> Trial of God
 月の巫女の守護騎士 --> Guardian Knight of the Moon Priestess
 精霊兵器 --> Spirit Arms
+悪神王 --> Evil King
+勇者アベルの伝説 --> Legend of Hero Abel
 
 // Language
 拙者 --> I/Me

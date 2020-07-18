@@ -506,7 +506,7 @@ def processDictFile(series_lang, dict_path):
 			# Skip comment lines and unformatted/misformatted lines
 			name_pattern = re.compile(r"\s*@name\{(.+), (.+)\}.*")
 			name_match = name_pattern.fullmatch(line)
-			if line[0:2] == "//":
+			if line[0:2] == "//" or len(line) == 0 or line.isspace():
 				continue
 			elif name_match is not None:
 				variants = generateNameVariants(
@@ -517,6 +517,8 @@ def processDictFile(series_lang, dict_path):
 					dict_list.append(variant)
 			else:
 				if DIV not in line:
+					fname = os.path.basename(dict_path)
+					print("[%s] Skipping misformatted line:\t%s" % (fname, line))
 					continue
 				raw_div = line.split(DIV)
 				if len(raw_div) != 2 or len(raw_div[0]) == 0 or len(raw_div[1]) == 0:
@@ -528,6 +530,7 @@ def processDictFile(series_lang, dict_path):
 				trans_div = raw_div[1].split("//")
 				dict_list.append((raw_div[0].strip(), trans_div[0].strip()))
 
+	print("\n")
 	return dict_list
 
 def openBrowser(series, ch):

@@ -1,0 +1,285 @@
+// NCode Link: https://ncode.syosetu.com/n8093ex
+
+//---------------------------------[ Names ]--------------------------------------
+@name{聖, Hijiri}
+@name{ヒジリ, Hijiri}
+ヒジリ ケン --> Hijiri Ken
+@name{賢, Ken}
+聖 賢 --> Hijiri Ken
+@name{ケン, Ken}
+ケンケン --> Kenken
+// Classmates
+@name{春, Haru}
+@name{ハル, Haru}
+@name{宇喜多, Ukita}
+宇喜多 春 --> Ukita Haru					// Popular young female HR teacher
+@name{七峰, Nanamine}
+@name{ナナミネ, Nanamine}
+@name{琴葉, Kotoha}
+@name{コトハ, Kotoha}
+ことりん --> Kotorin~
+ナナミネ・コトハ --> Nanamine Kotoha
+七峰 琴葉 --> Nanamine Kotoha 			// Female childhood friend, pretty and popular... naive and simpleminded, Class's 3-Idiots #1
+@name{獅子島, Shishijima}
+@name{蓮, Hasu}
+@name{レン, Ren}
+獅子島 蓮 --> Shishijima Hasu 			// Male childhood friend, handsome and popular
+@name{石田, Ishida}
+@name{亮介, Ryosuke}
+石田 亮介 --> Ishida Ryosuke 			// Shitty classmate stuck far up his own ass
+@name{中本, Nakamoto}
+@name{来栖朱, Kurusakari}
+中本 来栖朱 --> Nakamoto Kurusakari 		// Class otaku relishing their isekai
+@name{山本, Yamamoto}
+@name{七海, Nanami}
+ななみん --> Nanamin
+山本 七海 --> Yamamoto Nanami 			// Class's 3-Idiots #2 good friends with Ken, Hasu, and Kotoha
+@name{谷原, Tanihara}
+@name{涼子, Ryouko}
+スズっち --> Suzu-cchi
+すずっち --> Suzu-cchi
+谷原 涼子 --> Tanihara Ryouko 			// Class's 3-Idiots #3, good friends with Ken, Hasu, and Kotoha
+@name{綾瀬, Ayase}
+@name{優, Yu}
+綾瀬 優 --> Ayase Yu 					// Class rep, 2nd in academics only to Ken
+@name{寺島, Terashima}
+@name{美咲, Misaki}
+@name{ミサキ, Misaki}
+@name{みさき, Misaki}
+寺島 美咲 --> Terashima Misaki 			// Kotoha's roommate
+@name{高橋, Takahashi}
+@name{颯太, Souta}
+@name{ソウタ, Souta}
+@name{ダッシュ, Dash} 					 	// Class's nickname for Souta lol
+高橋 颯太 --> Takahashi Souta 			// Hasu's roommate
+@name{杉原, Sugihara}
+@name{幸太, Kouta}
+杉原 幸太 --> Sugihara Kouta 			// Classmate
+@name{川飛, Kawahito}
+@name{裕翔, Yusho}
+川飛 裕翔 --> Kawahito Yusho 			// Classmate
+@name{音無, Otonashi}
+@name{愛美, Manami}
+音無 愛美 --> Otonashi Manami 			// Classmate
+@name{貫田, Nukita}
+@name{雛, Hina}
+貫田 雛 --> Nukita Hina 					// Classmate
+@name{山下, Satoru}
+@name{悟, Yamashita}
+山下 悟 --> Satoru Yamashita 			// Classmate
+// Isekai
+@name{アルスカーク, Arsclark}
+@name{ミラトニア, Milatonia}
+アルスカーク・ミラトニア九世 --> Arsclark Milatonia IX 		// King they were summoned to
+@name{スカルバード, Skullbard} 							// King's subordinate
+@name{ルドルフ, Rudolph}
+@name{バルキウス, Barcius}
+ルドルフ・バルキウス --> Rudolph Barcius 					// King's right hand loyal soldier
+@name{フィリア, Philia}
+リアちゃん --> Lia-chan 								// Nanami's nickname
+フィリア・ミラトニア --> Philia Milatonia 					// 3rd princess, towards Hasu she...
+@name{ワイド, Waido}
+@name{バルド, Bard} 									// (M) First adventurer met
+@name{ウルク, Ulk} 									// (F) First adventurer met, mage
+@name{ウルクリーナ, Ulkrina}
+@name{ルナラージャ, Lunaraja}
+ウルクリーナ・ルナラージャ --> Ulkrina Lunaraja 				// ... real name, princess of Lunaraja Kingdom
+@name{レト, Leto} 									// (M) First adventurer met, tank
+@name{シャム, Shamu} 									// Beastman slave kid
+@name{ヨルド, Yorde} 									// Abusive master, stepping stone
+@name{ヨルデ, Yorde}
+@name{リンフィア, Lynfia}
+@name{りんふぃや, Lynfia}
+@name{リフィ, Lyfi} 									// Ken's nickname
+@name{イヴィリア, Ivillia}
+リンフィア・ベル・イヴィリア --> Lynfia Bell Ivillia 			// Silver haired demon girl slave, first companion... maou
+@name{メイ, Mei} 										// Receptionist nee-san
+@name{マイ, Mai} 										// Receptionist nee-san twin
+@name{ダグラス, Douglas}
+@name{オーバーン, Auburn}
+ダグラス・オーバーン --> Douglas Auburn 					// Fernankia Guild Master
+@name{女王, Queen}									// = Near
+@name{ニール, Near} 									// Lynfia's subordinate, second companion
+あおがみのおねーちゃん --> Aogami-neechan 					// Ravi's nickname for Near
+@name{トム, Tom}
+@name{ラビ, Ravi} 									// Dungeon core loli
+ロリっこ --> Loli kid
+@name{メイズ, Maze} 									// Ravi's technical mother, senior dungeon core
+@name{ギルファルド, Gilfard}
+@name{ギル, Gil}
+@name{シルバ, Silver}
+ギルファルド・シルバ --> Gilfard Silver 					// Financial tycoon of Three Emperors 1000 Treasures
+@name{セレス, Seras} 									// Gilfard's aide
+@name{ラクレー, Lakree} 								// Sword deva of Three Emperors
+@name{サクラス, Sakurasu}
+サクラス・オーバーン --> Sakurasu Auburn  					// Bartender
+ラーちゃん --> La-chan
+@name{ヴェルデウス, Verdius}
+@name{オグル, Ogle}
+ヴェルデウス・オグル --> Verdius Ogle 						// Mei and Mai's demon father
+@name{リューラ, Ryuular}
+@name{ソトブ, Sotob}
+リューラ・ソトブ Ryuular Sotob 							// Previous subordinate of Near from the Demon army
+@name{ホルスク, Holusk} 								// Previous subordinate of Near
+@name{ホルクス, Holusk}
+@name{ヘル, Hell} 									// High ranking demon
+@name{ミレア, Millea}
+@name{ロゼルカ, Rozelka}
+ミレア・ロゼルカ --> Millea Rozelka 						// Magic school student
+@name{ファリス, Faris}
+@name{マギアーナ, Magiana}
+ファリス・マギアーナ --> Faris Magiana 						// Magic King (Queen) of Three Emperors
+@name{ランフィール, Ranfir} 								// Current demon king
+@name{ドロット, Drott} 								// Former team member of Douglas
+@name{エンドール, Endor} 								// Former team member of Douglas
+@name{ローレス, Loress} 								// Douglas's wife
+@name{オゾル, Ozor}
+@name{ボルボッソ, Borbosso}
+オゾル・ボルボッソ --> Ozor Borbosso
+// Others
+トモ --> God of Wisdom Tomo
+ヨル --> Demon Goddess Yoru
+@name{ヘビ右衛門, Snakemon}
+@name{へびえもん, Snakemon} 								// Ravi's loyal serpent
+@name{ヘビ, Snake}
+@name{スラ左衛門, Slimeon}
+@name{すらざえもん, Slimeon} 								// Ravi's loyal slime
+@name{ごれぞう, Golezoda}
+@name{ゴレ蔵, Golezoda}
+@name{ごれぞうだ, Golezoda} 								// Ravi's loyal golem
+@name{ハピ江, Harpicco} 									// Ravi's loyal harpy
+@name{ゴレ, Golem}
+@name{ゼロ, Zero}
+ナイトメア --> Nightmare
+@name{亀井, Kamei}
+@name{久介, Kousuke}
+亀井 久介 --> Kamei Kousuke 								// Lost Japanese spirit, Ryuhime's Inverted Castle dungeon master
+龍姫 --> Ryuuhime
+ファルドーラ --> Faldora 									// Ryuuhime
+@name{エル, Eru} 											// Ken's familiar, whale loli
+@name{愛菜, Aina} 										// Ken's deceased little sisted from the past life
+
+//--------------------------------[ Places ]---------------------------------------
+ルナラージャ王国 --> Lunaraja Kingdom
+ラクル --> City of Rakur
+フェルナンキア --> Fernankia
+マギアーナ --> Magiana 					// Magic school
+バルギド --> Barghid
+魔族の国 --> Demon Country
+エヴィリアル帝国 --> Eviliar Empire
+エヴィリアル --> Eviliar
+エヴィエリアル --> Eviliar
+中央魔法学院 --> Central Magic Academy
+龍姫の逆城 --> Ryuhime's Inverted Castle
+
+//--------------------------------[ Status ]---------------------------------------
+HP --> [ h p ]
+MP --> [ m p ]
+攻撃力 --> [ a t k ]
+守備力 --> [ d e f ]
+機動力 --> [ s p d ]
+運 --> [ l u k ]
+
+//--------------------------------[ Skills ]---------------------------------------
+グラビテーション --> Gravitation
+オーバーグラビティ --> Overgravity
+剣術 --> Swordplay
+格闘 --> Close Combat
+索敵 --> Searcher
+隠密 --> Concealment
+暗視 --> Night Vision
+威圧 --> Intimidation
+計算 --> Calculation
+記憶 --> Memory
+予測思考 --> Speed of Thought
+持久 --> Endurance
+異常耐性 --> Status Resistance
+魔力硬化 --> Magic Resistance
+神の知恵 --> Wisdom of God
+魔力干渉 --> Magic Interference
+ヒールオール --> Heal All
+メガヒール --> Mega Heal
+ハイヒール --> High Heal
+ヒール --> Heal
+絶対零度 --> Absolute Zero
+シザーウィンド --> Scissor Gale
+アイスバレット --> Ice Bullet
+アイスロック --> Ice Rock
+ウォーターガン --> Water Gun
+ソロブースト --> Solo Boost
+デュオブースト --> Duo Boost
+トリオブースト --> Trio Boost
+カルテットブースト --> Quartet Boost
+クインテットブースト --> Quintet Boost
+ガスト --> Gust
+マグネティクス --> Magnetics
+レールガン --> Railgun
+エンチャント --> Enchantment
+並列思考 --> Parallel Thought
+神象魔法 --> Divine Magic
+ファイアボール --> Fireball
+アイススピア --> Ice Spear
+ファイアアロー --> Fire Arrow
+ファイアスラッシュ --> Fire Slash
+ファイアボム --> Fire Bomb
+棒術 --> Staff Technique
+ダンジョン --> Dungeon
+短剣 --> Dagger Arts
+鑑定 --> Appraisal
+超鑑定 --> Super Appraisal
+道具鑑定 --> Tool Analysis
+ステータス表示 --> Status Display
+弓術 --> Archery
+話術 --> Communication
+カリスマ --> Charisma
+死神 --> Shinigami
+逆転 --> Reversal
+精神体憑依 --> Spirit Possession
+
+//------------------------------[ Terminology ]------------------------------------
+特異点 --> Singularity
+賢智 --> Wisdom
+知恵の神 --> God of Wisdom
+命の神 --> God of Life
+力の神 --> God of Power 
+魔族の神様 --> Demon God
+精神の神 --> Spiritual God
+アイテムボックス --> Item Box
+黒龍の女王 --> Black Dragon Queen
+黒竜の女王 --> Black Dragon Queen
+覚醒半魔 --> Half-Blood Awakening
+ハードミスリル --> Hard Mythril
+ミスリル --> Mythril
+アダマンタイト --> Adamantite
+ヴァルヴィディア --> Valvidia
+生物迷宮 --> Biological Labrinth
+金髪のガーディアン --> Blonde Guardian 			// Ken (lol)
+魔石 --> Magic Stone
+三帝 --> Three Emperors
+魔道王 --> Magic King
+剣天 --> Sword Deva
+万宝 --> 1000 Treasures
+リトルバブル --> Little Bubble
+モンスターバブル --> Monster Bubble
+ホロー --> hollow
+バルムンク --> Balmunk
+シャドリグラ --> Shadrigra 						// Ancient shadow dragon
+エビルモナーク --> Evil Monarch
+聖剣 フェルクレス --> Sacred Sword Ferkles
+フェルクレス --> Ferkles
+デスウェポン --> Death Weapon
+バハムート --> Bahamut
+
+// Monsters
+ゴーレム --> Golem
+スノウウルフ --> Snow Wolf
+
+//---------------------------------[ Misc ]---------------------------------------
+ケンカ --> fight
+ボウズ --> brat
+坊主 --> brat
+クラスメイト --> classmate
+ダブル --> double
+メイン --> main
+
+// END OF FILE

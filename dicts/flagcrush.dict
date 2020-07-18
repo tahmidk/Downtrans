@@ -1,0 +1,404 @@
+// NCode Link: https://ncode.syosetu.com/n3404fh
+
+//----------------------------------[ Names ]----------------------------------
+@name{黒永, Kuronaga}
+@name{クロナガ, Kuronaga}
+@name{くろなが, Kuronaga}
+@name{ゆう, Yu}
+@name{ゆー, Yu}
+@name{悠, Yu}
+@name{ユウ, Yu}
+@name{ユー, Yu}
+ユウっち --> Yu-cchi
+黒永悠 --> Kuronaga Yu 
+クロナガユウ --> Kuronaga Yu
+くろながゆー --> Kuronaga Yu
+くろながゆう --> Kuronaga Yu
+@name{クリファ, Krifaa} 							// Contracted ultimate deity
+@name{ミコト, Mikoto} 								// Name bestowed to Krifaa by Yu
+// Tutorial
+@name{モーガン, Morgan}
+モーガン・ル・フェイ --> Morgan Le Faye 				// High elf benefactor
+@name{ケーロン, Keiron} 							// Dwarf
+@name{ミド, Mido}  								// Dwarf
+@name{アマルティア, Amartia} 						// Fairy rescued by Yu
+// Regulars
+@name{メアリー, Mary}
+@name{スコットヤード, Scottyard}
+メアリー・スコットヤード --> Mary Scottyard
+@name{ラッシュ, Rush}
+ラッシュ・スコットヤード --> Rush Scottyard
+@name{ボッツ, Botsu}
+@name{ザッツマン, Thatsman}
+ボッツ・ザッツマン --> Botsu Thatsman 					// Leader of Fort Guardians
+@name{シー, Shi}
+@name{パルジャミン, Parjamin}
+シー・パルジャミン --> Shi Parjamin 					// Mithru immigration inspector
+@name{ダーバン, Durban}
+@name{ベンドリ, Bendri}
+ダーバン・ベンドリ --> Durban Bendri
+@name{フィオーネ, Fione} 							// Fox girl guild receptionist
+@name{エリザベート, Elizabeth} 
+エリちゃん --> Eli-chan
+エリ姉 --> Eli-ane
+@name{ツェルペリ, Zelperi}
+エリザベート・Ｋ・ツェルペリ --> Elizabeth K Zelperi 		// S Ranker of Goldwinged Lion, 14yo dragon girl
+@name{アイヴィー, Ivy}
+@name{デュクセンヘイグ, Duxenheig}
+アイヴィー・デュクセンヘイグ --> Ivy Duxenheig 			// Silver haired loli, vampire outcast
+@name{モミジ, Momiji}
+@name{アザクラ, Azakura}
+モミジ・アザクラ --> Momiji Azakura 					// Oni girl working at the Craftsman guild
+@name{マージョリー, Majorie}
+@name{アルマ, Alma} 								// Adorable tsundere demon lord appearing as a cat
+アルマ師匠 --> Master Alma
+@name{ラウラ, Laura}
+@name{レオンハート, Leonhart}
+ラウラ・レオンハート --> Laura Leonhart 				// Guild master, androgynous female, Title is Ash Lion
+//ラン --> Ran 									1st of Yu's 3 snakes
+ハク --> Haku										// 2nd of Yu's 3 snakes
+シロ --> Shiro									// 3rd of Yu's 3 snakes
+// Dragon's summit
+@name{アジ, Aji}
+@name{ダハーカ, Dahaka}
+アジ・ダハーカ --> Aji Dahaka 						// Supreme dragon and ruler of Dragon's Summit... loli
+@name{フカナヅチ, Fukanazuchi} 						// Dragon at the Dragon's Summit
+@name{オルド, Ordo} 								// Silver dragon subordinate to Aji (M)
+@name{オルガ, Olga} 								// Golden dragon subordinate to Aji (F)
+@name{オルカ, Orca} 								// Olga and Ordo's newborn child
+@name{オルタ, Oltha} 								// Olga and Ordo's newborn child
+@name{グラレウス, Glareus}
+@name{ヤマカタツカミ, Yamatatsukami}
+@name{ウェールズ, Wales}
+// Eight Deadly Sins
+@name{メノウ, Menou}
+@name{スペルビア, Superbia}
+メノウ・スペルビア --> Menou Superbia 					// The Illusionist
+// Others
+@name{アルバート, Albert}
+@name{ダンブルビー, Dunmblebee}
+アルバート・ダンブルビー --> Albert Dunmblebee 			// Handsome but troublesome A-ranker of Three Swords who loves Fione
+@name{イージィ, Ieji}
+@name{ジョー, Jou}
+イージィ・ジョー --> Ieji Jou 							// Female member of Three Swords
+@name{ドゥーガル, Dougal}
+@name{ザンバ, Zanba}
+ドゥーガル・ザンバ --> Dougal Zanba 					// Elderly male member of Three Swords
+@name{ジェシー, Jessie} 							// Little girl from Kana Village
+@name{キャロル, Carol}
+@name{エッジコム, Edgecom}
+キャロル・エッジコム --> Carol Edgecom  				// Guild girl on second floor and friend of Fione
+@name{ランダ, Randa} 								// Previous owner of Yu's house
+@name{キュー, Kyuu} 								// Magimon feathered dragon
+@name{ソーフィ, Sophie} 							// Seductive succubus ranker
+ママ --> Mama
+@name{ガンジ, Ganji}								// Refined old man ranker
+ガンジ・フォン・ロードゴリ --> Ganji von Lodgory
+@name{エンジ, Enji}
+エンジ・フォン・ロードゴリ --> Enji von Lodgory 			// Ganji's super androgynous son
+@name{ローグ, Rogue}								// Ivy's bully #1
+@name{マーロ, Marlo} 								// Ivy's bully #2
+@name{ユーリニス, Eulinis}
+@name{イスカリオテ, Iscalliot}
+ユーリニス・ド・イスカリオテ --> Eulinis De Iscalliot 		// 9th Ranker of Goldwing Lion
+@name{ベイガー, Beiga}
+@name{クリドリフ, Kridriff}
+ベイガー・クリドリフ --> Beiga Kridriff
+@name{ローマン, Roman} 							// Dwarf working at Crag Cavern Pavilion
+@name{レイミー, Ramii}
+@name{オーランド, Orlando}
+レイミー・オーランド --> Ramii Orlando 					// GM of Merchant guild
+ドローレ --> Dolor 								// A feisty wyvern
+@name{ルウラ, Ruura}
+ルウラ・レオンハト --> Ruura Leonhart 					// Laura's little sister and 13th ranker
+@name{ガマローネ, Gamalone} 						// Froggy head of Toad's Moneybox
+@name{ナタリア, Natalie}
+@name{シーシェパート, Seashept}
+ナタリア・シーシェパート --> Natalie Seashept 			// Nun of Belka Orphanage
+@name{カイン, Kain} 								// Orphan
+@name{リル, Riru} 								// Orphan
+@name{セイブス, Seibas}
+@name{マッケンロー, McEnroe}
+セイブス・マッケンロー --> Seibas McEnroe 				// Well known commentator
+@name{ミミ, Mimi}
+@name{ブリティッシュヘア, Britshea}
+ミミ・ブリティッシュヘア --> Mimi Britshea 				// S-rank level receptionist girl. Loli, rank 31
+@name{ベアトリクス, Beatrix}
+@name{メリドー, Merideau}
+ベアトリクス・メリドー --> Beatrix Merideau 			// Platinum haired knight girl, rank 6 SS
+@name{ゲンブ, Genbu}
+@name{ミカヅキ, Mikazuki}
+ゲンブ・ミカヅキ --> Genbu Mikazuki					// GM of the Moonfrost Wolf and king of Vanaheim
+@name{トモエ, Tomoe}
+トモエ・ミカヅキが --> Tomoe Mikazuki 					// Little mistress of the Moonfrost Wolf
+@name{オルティナ, Ortina}
+@name{ホワイトラン, Whiterun}
+オルティナ・ホワイトラン --> Ortina Whiterun 			// Joshua's older sister, heir to Breath of the White Orchid Dragon
+@name{ヨシュア, Joshua}
+ヨシュア・ホワイトラン --> Joshua Whiterun 				// Ortina's little brother, colluding to become heir
+ヨッくん --> Jo-kkun
+ヨっくん --> jo-kkun
+@name{ベヒト, Behito}
+ベヒト・ホワイトラン --> Behito Whiterun 				// Predecessor to the White Orchid Dragon guild
+@name{ファーマン, Ferman}
+@name{ロンドルド, Rondoldo}
+ファーマン・ロンドルド --> Ferman Rondoldo 				// 
+@name{カネミツ, Kanemitsu}
+@name{トキサダ, Tokisada}
+カネミツ・トキサダ --> Kanemitsu Tokisada 				// Rank 5 of Goldwing Lion
+@name{フィン, Finn}
+@name{マックール, Macuul}
+フィン・マックール --> Finn Macuul 					// Rank 12 of Goldwing Lion
+@name{ミコー, Miko}
+ミコー・フェム・ダルタニアス --> Miko Fem d'Artanias 		// Rank 4 of Goldwing Lion
+@name{ルツギ, Rutsugi}
+@name{キサラギ, Kisaragi}
+ルツギ・キサラギ --> Rutsugi Kisaragi 				// Rank 7 of Moonfrost Wolf
+@name{タチツギ, Tachitsuki}
+@name{タチヅキ, Tachitsuki}
+@name{キサラギ, Kisaragi}
+タチツギ・キサラギ --> Tachitsuki Kisaragi 			// Rank 8 of Moonfrost
+@name{ゲンノスケ, Gennosuke}
+@name{イカリ, Ikari}
+ゲンノスケ・イカリ --> Gennosuke Ikari 				// Rank 19 of Goldwing Lion
+@name{ダン, Dan}
+@name{マッカトニー, McCartney}
+ダン・マッカトニー --> Dan McCartney 					// Rank 22 of Goldwing Lion
+@name{リシュリー, Richie}
+@name{スヴェイ, Svey}
+リシュリー・スヴェイ --> Richie Svey 					// Rank 24 of Goldwing Lion
+@name{ツヴァイ, Zwei}
+@name{フォーベッタ, Forbetta}
+ツヴァイ・V・フォーベッタ --> Zwei V Forbetta 			// Rank 25 of Goldwing Lion
+@name{ジム, Jim}
+@name{サーファンクル, Sirfunkle}
+ジム・サーファンクル --> Jim Sirfunkle 				// Rank 26 of Goldwing Lion
+@name{ネイサン, Nathan}
+@name{ネーサン, Nathan}
+@name{キルシュテン, Kirsten}
+ネイサン・キルシュテン --> Nathan Kirsten 				// Rank 29 of Goldwing Lion
+@name{ドグウ, Dogu}
+@name{フジバハマ, Fujibahama}
+ドグウ・フジバハマ --> Dogu Fujibahama 				// Rank 12 of Goldwing Lion
+@name{ナミ, Nami}
+@name{サラカゲ, Salakage}
+ナミ・サラカゲ --> Nami Salakage 						// Rank 17 of Goldwing Lion
+@name{ゴウラ, Goura}
+ふぁざー --> father 								// Ruura's pronoun for Goura
+ゴウラ・レオンハート --> Goura Leonhart					// Rank 1 of Goldwing Lion (GM) Laura and Ruura's father
+@name{サラ, Sarah}
+@name{ジークバルト, Siegwald}
+@name{ゴーン, Ghozen}
+ジークバルト・ゴーン --> Siegwald Ghozen				// Head of 3rd Dragon Knights
+@name{リョウマ, Ryouma}
+@name{ナナキ, Nanaki}
+リョウマ・ナナキ --> Ryouma Nanaki 					// A contractor like Yu
+@name{カロ, Karo}
+@name{ガラシャ, Garasha}
+@name{ムラザキ, Murazaki}
+ガラシャ・ムラザキ --> Garasha Murazaki 				// 2nd head of Brave Party, purple haired anego
+@name{エイル, Eiru}
+@name{セバスチャン, Sebastian}
+エイル・セバスチャン --> Eiru Sebastian 				// Vice president of Lirimkiss, fox neesan
+@name{シャーリィ, Shari}
+@name{ニャルトラテップ, Nyarlathotep}
+シャーリィ・ニャルトラテップ --> Shari Nyarlathotep 		// 3rd in command of Lirimkiss, blue haired cat neesan
+@name{ネム, Nemu}
+@name{ミネレ, Minere} 								// Receptionist at Fairy's Kiss
+@name{スウェー, Sway}
+@name{ビバルディ, Vivaldi} 							// Leader of an illegal drug cartel
+@name{ヨハネ, Yohane}
+@name{ランディバル, Randival}
+ヨハネ・ランディバル --> Yohane Randival
+@name{ゼノビア, Zenovia}
+@name{オプス, Opus}
+ゼノビア・オプス --> Zenovia Opus 					// Rank 2 of Goldwinged Lion
+@name{デルポ, Delpo}
+@name{ポポロ, Poporo}
+デルポ・ポポロ --> Delpo Poporo 						// Rank 3 of Goldwinged Lion
+@name{ムクロ, Mukuro}
+@name{キューベイ, Kyuubei}
+ムクロ・キューベイ --> Mukuro Kyuubei 					// Rank 10 of Goldwinged Lion
+@name{イヴ, Eve} 									// God of Creation
+
+//----------------------------------[ Places ]---------------------------------
+パルキゲニア --> Parkigenia 			 			// Name of the isekai world
+クリファの祠 --> Krifaa's Shrine
+ジャングラ --> Jungla
+帝国ガルバディア --> Imperial Garvadia 				// Scientifically advanced empire to the west
+ガルバディア --> Garvadia
+ルルイエ皇国 --> Ruruie Empire						// Eastern empire with strong slave system
+ルルイエ --> Ruruie
+ミトルゥー連邦 --> Mithru Federation 				// Southern union of multiple small countries
+ミトルゥー --> Mithru
+ミトゥルー連邦 --> Mithru Federation
+ミトゥルー --> Mithru
+ベルカ --> Belka 									// Mithru capital
+聖都ラフラン --> Holy City Rafflan 					// Smallest city nation with the longest history up north
+ラフラン --> Rafflan
+アレスタ --> Alestar 								// Advanceed maritime nation past the east sea
+巌窟亭 --> Crag Cavern Pavilion
+ベルカ孤児院 --> Belka Orphanage
+龍峰 --> Dragon's Summit
+龍神の水郷 --> Dragon King's Waterscape
+雹晶崫 --> Crystal Hail Pagoda
+雹晶窟 --> Crystal Hail Cave
+アジ・ダハーカの龍峰 --> Aji Dahaka's Dragon Summit
+ヴァナヘイム国 --> Vanaheim Country
+ヴァナヘイム --> Vanaheim
+魔獣都市スルト --> Demon Beast City Surtr
+スルト --> Surtr
+デザートヘル収容所 --> Desert Hell Internment Camp
+
+//----------------------------------[ Skills ]---------------------------------
+鋼の探求心 --> Steel Inquiry
+鍛治師の心 --> Heart of the Blacksmith
+浸食 --> Erosion
+冒涜者 --> Profanity
+三日月斬り --> Crescent Moon Slash
+九墨蛇 --> Nine Ink Snakes
+閉心 --> Sealed Heart
+E・ショット --> E-Shot
+デス・ペナルティ --> Death Penalty
+蛇縄絡 --> Binding Snake
+兇劍 --> Wicked Edge
+顕魔 --> Demonify
+魔人 --> Majin 												// Also Delpo's title
+死者の贈り物 --> Gift of the Dead
+逆誄歌 --> Song of Reversal
+夜刀神の加護 --> Blessings of the Night Blade Deity
+骸の呼声 --> Call of the Haunted
+
+//----------------------------------[ Monsters ]-------------------------------
+ウェンディゴ --> Wendigo
+アルカラグモ --> Alcaragmo
+ブードゥラット --> Voodrat
+バロウルフ --> Barowolf
+プルゴッコ --> Pulgocco
+レムレース --> Remlace
+嵐飛龍 --> Storm Dragon
+
+//----------------------------------[ Ranking ]--------------------------------
+Sランク --> S Rank
+SSランク --> SS Rank
+SSSランク --> SSS Rank
+Aランク --> A Rank
+AAランク --> AA Rank
+AAAランク --> AAA Rank
+Bランク --> B Rank
+Cランク --> C Rank
+Dランク --> D Rank
+Eランク --> E Rank
+Fランク --> F Rank
+Gランク --> G Rank
+
+//----------------------------------[ Terminology ]----------------------------
+// Titles
+翠の魔女 --> Green Witch  						// Morgan's title
+貪欲な魔女 --> Greedy Witch
+緋の魔女 --> Scarlet Witch
+姫と狩人 --> Hime and Hunter 						// Ivy and Yu's title
+魔物殺し --> Monster Slayer 						// Yu's title
+灰獅子の懐刀 --> Ash Lion's Sword 				// Yu's title
+救いの使者 --> Messenger of Salvation 			// Yu's title
+辺境の英雄 --> Hero of the Frontier 				// Yu's title
+鉄仮面 --> Iron Mask 							// Remii's title
+銀狼 --> Silver Wolf 							// Genbu Mikazuki's title
+紅兜 --> Red Helm 								// Momiji's title
+エルセロの闘猫 --> El Cerro's Fighting Cat 			// Mimi's title
+舞獅子 --> Strong Lion Cub 						// Ruura's title
+暴炎の息吹 --> Blazing Breath 					// Joshua's title
+金獅子 --> Gold Lion 							// Laura/Ruura's father's title
+黒獅子 --> Black Lion
+霄太刀 --> Sky Saber 							// Tokisada's title
+荊の剣聖 --> Wild Rose Swordsman 					// Beatrix's title
+貪慾王 --> King of Desire 						// Eulinis's title
+瑠璃九雀 --> Beryl Sparrow 						// Finn's title
+瑠璃孔雀 --> Azure Peacock
+天秤 --> Balance 								// Miko's title
+風切鋏 --> Gale Slicing Scythe 					// Gennosuke's title
+ケイドムの堅者 --> Kendom's Tough One 				// Dan's title
+鋸蜘蛛 --> Saw Spider 							// Richie's title
+橙の魔砲使い --> Orange MAG Gun 					// Zwei's title
+鉄剣 --> Iron Sword 								// Jim's title
+切り裂き魔 --> Rending Warlock 					// Nathan's title
+重狼 --> Heavy Wolf 								// Dogu's title
+群狼 --> Wolf Flock 								// Nami's title
+龍殺し --> Dragon Slayer 							// Siegwald's title
+鬼夜叉 --> Oniyasha 								// Ryouma's title
+豹王 --> Leopard King 							// Head of Second Knight Platoon's title
+冥王 --> Hades 									// Yohane's title
+水雲の息吹 --> Breath of the Mist 				// Ortina's title
+爆炎の息吹 --> Breath of the Bomb 				// Joshua's title
+氷の女帝 --> Ice Empress 							// Zenovia's title
+串刺し卿 --> Lord Skewer 							// Elizabeth's title
+戦慄を奏でる旋律 --> Ominous Melody 				// Mukuro's title
+// Other
+クリファの神樹 --> Krifaa's Sacred Tree
+魔素欠乏症 --> Mana Deficiency
+ケーロンの魔銃 --> Keiron's Magic Gun
+リッタァブレイカー --> Ritta Breaker 					// Weapon name
+金翼の若獅子 --> Goldwinged Lion
+ヒューム --> Hume
+冒険者ギルド --> Adventurer Guild
+職人ギルド --> Craftsman Guild
+商人ギルド --> Merchant Guild
+闇ギルド --> Darkness Guild
+鬼人族 --> Oni Clan
+マージョリー不動産 --> Majorie Real Estate
+三又矛 --> Three Swords
+灰獅子 --> Ash Lion
+夜魔族 --> Night Demon Clan
+転移石碑 --> Transitional Obelisk
+マギモン --> Magimon
+砦の守護者 --> Fort Guardians 					// Botsu, Rush and Mary's PT name
+勇猛会 --> Brave Party 							// Ganji's guild name
+リリムキッス --> Lirimkiss 							// Sophia's guild name
+傲慢なる鉄槌 --> Haughty Hammer 					// Famous guild
+禊の教会 --> Church of Purity 					// Famous guild
+オーランド総合商社 --> Orlando General Trading Co 	
+第壱竜騎士部隊 --> First Dragon Knight Unit
+蝦蟇の貯金箱 --> Toad's Moneybox
+獄門踏鞴の十二工 --> Gokumon's Twelve Works
+月霜の狼 --> Moonfrost Wolf
+結晶病 --> Crystalis Syndrome
+霊剣ソルシオン --> Spirit Sword Solscion
+ソルシオン --> Spirit Sword Solscion
+ドラクマの神樹 --> Dracuma Sacred Tree
+フェンリル --> Fenrir
+ベへモス --> Behemoth
+ティターン --> Titan
+リヴァイアサン --> Leviathan
+金星竜 --> Venus Dragon 							// Olga
+銀星竜 --> Silver Star Dragon 					// Ordo
+ドラグマ --> Dragma 								// Sacred tree
+花の悪魔カンパニュラ --> Flora Demon Kampanura
+白蘭竜の息吹 --> Breath of the White Orchid Dragon 	// Famous guild 
+ギガース --> Gigas 									// Famous guild having skirmishes with BotWOD
+ヘパイカトス --> Smithing God Hepaikatos
+ミケルダ --> Mikelda
+雪結花 --> Snow Flower
+魔漏病 --> Continuous Magic Discharge Disease
+妖精の唇 --> Fairy's Kiss							// One of Sophia's entertainment estates
+フェアリー・キッス --> Fairy's Kiss 
+第二騎士団 --> Second Knight Platoon
+奇術師 --> The Illusionist
+奇術師 --> Eight Deadly Sins
+八つの大罪 --> Eight Deadly Sins
+七つの大罪 --> Seven Deadly Sins
+夜刀神 --> Night Blade Deity
+R・S --> R・S
+機械甲手 --> Machine Armor
+ハーデスの惜涙 --> Hades Tears
+旧神 --> Ancient God
+十三翼 --> Top 13
+創造神 --> God of Creation
+牛鬼 --> Ushioni
+魅惑の唇 --> Enchanted Lips
+
+//----------------------------------[ Misc ]-----------------------------------
+夢現 --> Dreamscape
+ランク --> Rank
+ランカー --> Ranker
+
+// END OF FILE

@@ -60,6 +60,7 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 早坂有希 --> Hayasaka Yuki
 @name{ハヤサカ, Hayasaka}
 @name{ユキ, Yuki}
+@name{ゆっきー, Yuki}
 @name{峯岸, Minegishi} 					// Futsal club advisor, 
 @name{綾乃, Ayano}
 峯岸綾乃 --> Minegishi Ayano
@@ -70,6 +71,7 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 長瀬弟 --> Nagase's Little Brother
 長瀬真琴 --> Nagase Makoto
 ナガセマコト --> Nagase Makoto
+@name{マコ, Mako}
 マコくん --> Mako-kun						// Yuki's nickname for Makoto
 マコちん --> Mako'cchin					// Nono's nickname for Makoto
 まこりーん --> Mako-rin 					// Eri's nickname for Makoto
@@ -117,7 +119,9 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 @name{矢島, Yajima} 						// M
 @name{中原, Nakahara} 					// F
 @name{奥村, Okumura}						// F
-//------------------[ Team Herencia ]---------------------------
+//------------------[ From the past ]---------------------------
+@name{内海, Utsumi}
+@name{ジュリー, Julie}
 //-----------------------[ Misc ]-------------------------------
 @name{レイ, Rei} 							// Owner of a cosplay shop, otaku friend of Hina
 @name{星崎アテナ, Hoshizaki Athena} 		// Anime character within
@@ -126,6 +130,7 @@ Airi Nagase --> Airi Nagase 			// Airi's SNS tagname
 @name{甲太郎, Kotarou} 					// Hina's little brother
 @name{奥野, Okuno} 						// Otaku friend and previous classmate of Hina
 シャイロック --> Shylock 					// Character from The Merchant of Venice
+@nsme{文香, Fumika}
 
 // Places
 関西 --> Kansai Prefecture
@@ -166,6 +171,7 @@ CIGAR KISS --> CIGAR KISS
 コスモパーク --> Cosmo Park
 沖縄 --> Okinawa
 山形 --> Yamagata
+アオカン --> Aokan High
 
 // Terminology
 //---------------------[ Sports terminology ]---------------------

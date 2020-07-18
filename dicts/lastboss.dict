@@ -1,0 +1,62 @@
+// NCode Link: https://ncode.syosetu.com/n8501eq
+
+//------------------------------[ Names ]----------------------------------------
+@name{ウィルフレド, Wilfred}
+@name{ウィル, Wil}
+@name{ハーヴィー, Harvey}
+ウィルフレド・ハーヴィー --> Wilfred Harvey
+// Wil's Party
+@name{コーゼスト, Kozest} 				// Intelligent magic tool assimilated w/ MC
+@name{ファウスト, Faust} 				// Name of the Hellhound
+@name{デューク, Duke} 					// Name of the Sapphire Golem
+@name{アンヘリカ, Anherika} 			// Tank of High Light and Dark Elf
+@name{アン, An}
+@name{アルヴォデュモンド, Alvodumond}
+アンヘリカ・アルヴォデュモンド --> Anherika Alvodumond
+// Others
+@name{ルピィ, Rupi}
+@name{ルピタ, Rupita}
+@name{リットン, Litton}
+ルピタ・リットン --> Rupita Litton 		// Guild receptionist
+@name{ディオへネス, Dionez}
+@name{ヒギンズ, Higgins}
+ディオへネス・ヒギンズ --> Dionez Higgins 	// Guild master
+@name{クライド, Clyde}
+@name{ファーカー, Falker}
+クライド・ファーカー --> Clyde Falker 		// Swordsman of High Light
+@name{セオドア, Theodore}
+@name{レイランド, Leyland}
+セオドア・レイランド --> Theodore Leyland 	// Leader of High Light
+@name{アリエル, Ariel} 				// Magician of High Light
+@name{ルシンダ, Lucinda} 				// Thief of High Light
+@name{ラファエル, Raphael}
+@name{アディソン, Addison}
+ラファエル・アディソン --> Raphael Addison 	// Magician and researcher of ancient magic tools
+@name{ノーリーン, Nurin} 				// Maid working at Raphael's mansion
+
+//------------------------------[ Skills ]---------------------------------------
+破滅の咆哮 --> Roar of Ruination
+
+//------------------------------[ Places ]---------------------------------------
+魔王の庭 --> Demon King's Garden
+ラーナルー市 --> Lanaru City
+オールディス王国 --> Ordis Kingdom
+蒼眼の新月 --> Bluemoon Inn
+
+//------------------------------[ Monsters ]-------------------------------------
+ヘルハウンド --> Hellhound
+サファイアゴーレム --> Sapphire Golem
+ジュエルゴーレム --> Jewel Golem
+
+//------------------------------[ Terminology ]----------------------------------
+ギルマス --> Guild Master
+輝光 --> High Light 							// An adventurer party
+水晶地図板追跡盤 --> Crystal Tracer Board
+魔水晶 --> Magic Crystal
+黒の軌跡 --> Black Locus 						// Wil's party name
+超振動短剣 --> Ultraresonant Dagger 
+
+//------------------------------[ Misc ]-----------------------------------------
+マスター --> Master
+
+// END OF FILE

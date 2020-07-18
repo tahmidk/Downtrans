@@ -223,9 +223,11 @@ class HtmlWriter:
 				(self.__linenum, line)
 			src_lang = "zh-CN"
 
+		# Double quotations in the google translate anchor mess up the link
+		line_0 = line.replace("\"", "\'")
 		raw_html = "<a href=\"https://translate.google.com/?hl=en&tab=TT&authuser\
 =0#view=home&op=translate&sl=%s&tl=en&text=%s\" class=\"noDecoration\" target=\"\
-_blank\">%s</a>" % (src_lang, line, raw_line)
+_blank\">%s</a>" % (src_lang, line_0, raw_line)
 
 		# Preprocess line using dictionary entities
 		for entry in self.__dictionary:

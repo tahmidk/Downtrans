@@ -17,12 +17,14 @@ KAI --> k  a  i
 @name{桃井, Momoi}						// Stepsis #1, ultra cold outside, sweet inside beauty, flat
 @name{咲姫, Saki}
 桃井咲姫 --> Momoi Saki
+桃井の子 --> Momoi Child 					// Alice's nickname for Saki
 @name{花姫, Hanahime}					// Online name
 @name{桃井, Momoi}						// Stepsis #2, cheerful loli type, domestic and loaded
 @name{桜, Sakura}
 桃井桜 --> Momoi Sakura
 桃井妹 --> Little Sister Momoi
 ちびっこ天使 --> Chibi Angel				// Alice's nickname for Sakura
+ちびっ子天使 --> Chibi Angel
 @name{香苗, Kanae}						// Stepmother
 桃井香苗 --> Momoi Kanae
 //-------------------------------------------[ School ]------------------------------------------------
@@ -46,8 +48,6 @@ KAI --> k  a  i
 木村寧々 --> Kimura Nene
 @name{祐一郎, Yuichiro}
 木村祐一郎 --> Kimura Yuichiro
-@name{春花, Haruka}
-小鳥居春花 --> Kotori Haruka
 @name{平等院, Byodoin}					
 @name{アリス, Alice}						// Young mistress of another financial giant, mysterious twin
 平等院アリス --> Byodoin Alice
@@ -76,7 +76,11 @@ Aさん --> Mr. A
 @name{青山, Aoyama}						// Classmate of Saki
 @name{影山, Kageyama}					// Classmate of Saki
 //-------------------------------------------[ Others ]------------------------------------------------
-@name{小鳥居, Kotori}					// Middle school girlfriend
+@name{小鳥居, Kotori}
+@name{春花, Haruka}
+小鳥居春花 --> Kotori Haruka 			// Middle school girlfriend
+@name{春, Haru}
+秋刀魚春 --> Haru Akitou 				// Anime VA
 @name{桐山, Kiriyama}					// Popular person in same class, cause of trauma
 キリちゃん --> Kiri-chan
 和也 --> Kazuya							// Kiriyama gang #1
@@ -85,10 +89,10 @@ Aさん --> Mr. A
 紫之宮社長 --> President Shinomiya
 @name{紫之宮, Shinomiya}					// Eldest daughter of Shinomiya Corp
 紫之宮愛 --> Shinomiya Ai
-@name{黒, Kuro}
+@name{黒, Black}
 @name{柳, Yanagi}
-黒柳 --> Kuro Yanagi
-クロ --> Kuro	
+黒柳 --> Black Yanagi
+クロ --> Black	
 ネコクロ --> Nekokuro 						// Author, not in story, like, of this work
 @name{鈴花, Suzuhana}					// Important friend of Saijo in the past
 
@@ -113,5 +117,6 @@ Aさん --> Mr. A
 竜王のショウギ！ --> Ryuou's Work is Never Done
 ネットの彼女を、本気で彼女にしたら駄目ですか？ --> And You Thought There is Never a Girl Online?
 映像記憶能力 --> Eidetic Memory Ability
+かなにゃん --> Kananyan
 
 // END OF FILE
